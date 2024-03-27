@@ -1,0 +1,84 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class CustomerSpawner : MonoBehaviour
+{
+    public GameObject customerPrefab; // Reference to your Customer prefab
+    public float minBudget = 1.0f;
+    public float maxBudget = 50.0f;
+    public Transform shoppingBGParent; // Reference to the ShoppingBG GameObject
+
+    private bool shopIsOpen = false;
+    private float spawnTimer = 0f;
+    private float spawnRate = 5f; // Start with a default spawn rate of 5 seconds
+    //private float reputation = 1.0f; // Starting reputation
+
+    [SerializeField] private float reputation = 5f;
+
+    public float Reputation => reputation;
+
+    void Update()
+    {
+        if (shopIsOpen && shoppingBGParent.childCount <= 9) // Allows for exactly 10 customers
+        {
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer <= 0)
+            {
+                SpawnCustomer();
+                AdjustSpawnRateBasedOnReputation();
+                spawnTimer = spawnRate;
+            }
+        }
+
+        AdjustSpawnRateBasedOnReputation();
+    }
+
+    public void OpenShop()
+    {
+        shopIsOpen = true;
+        spawnTimer = spawnRate; // Reset spawn timer
+    }
+
+    public void CloseShop()
+    {
+        shopIsOpen = false;
+    }
+
+    void SpawnCustomer()
+    {
+        float randomBudget = Random.Range(minBudget, maxBudget);
+        GameObject customerObject = Instantiate(customerPrefab, shoppingBGParent);
+        Customer customer = customerObject.GetComponent<Customer>();
+        customer.budget = randomBudget;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(shoppingBGParent.GetComponent<RectTransform>());
+        InformationBar.Instance.DisplayMessage($"A new customer has entered the shop.");
+    }
+
+    void AdjustSpawnRateBasedOnReputation()
+    {
+        // This formula adjusts the spawn rate so that a lower reputation results in fewer customers
+        // and a higher reputation results in more frequent customers.
+        // For a reputation of 5, the spawn rate might be around 15 seconds between customers.
+        // As the reputation increases, the spawn rate decreases, allowing for more customers to enter.
+
+        // Adjust these values to change how drastically the spawn rate changes with reputation.
+        float minSpawnRate = 15f; // Minimum time between spawns at lowest reputation
+        float maxSpawnRate = 2f;  // Maximum spawn frequency at highest reputation
+
+        // Calculate spawn rate based on reputation
+        // Linear interpolation from minSpawnRate to maxSpawnRate based on reputation percentage
+        spawnRate = Mathf.Lerp(minSpawnRate, maxSpawnRate, reputation / 100f);
+
+        // Optionally, log the new spawn rate for debugging
+        // Debug.Log($"New spawn rate: {spawnRate} seconds.");
+    }
+
+
+    public void UpdateReputation(float change)
+    {
+        reputation += change;
+        reputation = Mathf.Clamp(reputation, 1f, 100f); // Clamp between 1% and 100%
+
+        
+    }
+}
