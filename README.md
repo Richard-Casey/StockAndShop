@@ -1,2 +1,3 @@
 # StockAndShop
  
+Dissertation artifact
