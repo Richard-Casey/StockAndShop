@@ -7,6 +7,7 @@ public class CustomerSpawner : MonoBehaviour
     public float minBudget = 1.0f;
     public float maxBudget = 50.0f;
     public Transform shoppingBGParent; // Reference to the ShoppingBG GameObject
+    public DailySummaryManager dailySummaryManager;
 
     private bool shopIsOpen = false;
     private float spawnTimer = 0f;
@@ -51,6 +52,7 @@ public class CustomerSpawner : MonoBehaviour
         Customer customer = customerObject.GetComponent<Customer>();
         customer.budget = randomBudget;
         LayoutRebuilder.ForceRebuildLayoutImmediate(shoppingBGParent.GetComponent<RectTransform>());
+        dailySummaryManager.RegisterCustomerEntry();
         InformationBar.Instance.DisplayMessage($"A new customer has entered the shop.");
     }
 

@@ -6,7 +6,7 @@ public class NavigationController : MonoBehaviour
     public CanvasGroup tillPanel;
     public CanvasGroup stockPanel;
     public CanvasGroup shelvePanel;
-    public CanvasGroup summeryPanel;
+    public CanvasGroup summaryPanel;
     public CanvasGroup mainMenuPanel;
     public CanvasGroup wholesalePanel;
     public CanvasGroup startScreen;
@@ -26,7 +26,7 @@ public class NavigationController : MonoBehaviour
     {
         SetPanelVisibility(tillPanel, false);
         SetPanelVisibility(stockPanel, false);
-        SetPanelVisibility(summeryPanel, false);
+        SetPanelVisibility(summaryPanel, false);
         SetPanelVisibility(shelvePanel, false);
         SetPanelVisibility(mainMenuPanel, true);
         SetPanelVisibility(wholesalePanel, false);
@@ -42,7 +42,7 @@ public class NavigationController : MonoBehaviour
     {
         SetPanelVisibility(tillPanel, true);
         SetPanelVisibility(stockPanel, false);
-        SetPanelVisibility(summeryPanel, false);
+        SetPanelVisibility(summaryPanel, false);
         SetPanelVisibility(shelvePanel, false);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, false);
@@ -65,7 +65,7 @@ public class NavigationController : MonoBehaviour
     {
         SetPanelVisibility(tillPanel, true);
         SetPanelVisibility(stockPanel, false);
-        SetPanelVisibility(summeryPanel, false);
+        SetPanelVisibility(summaryPanel, false);
         SetPanelVisibility(shelvePanel, false);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, false);
@@ -80,7 +80,7 @@ public class NavigationController : MonoBehaviour
     {
         SetPanelVisibility(tillPanel, false);
         SetPanelVisibility(stockPanel, true);
-        SetPanelVisibility(summeryPanel, false);
+        SetPanelVisibility(summaryPanel, false);
         SetPanelVisibility(shelvePanel, false);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, false);
@@ -96,7 +96,7 @@ public class NavigationController : MonoBehaviour
     {
         SetPanelVisibility(tillPanel, false);
         SetPanelVisibility(stockPanel, false);
-        SetPanelVisibility(summeryPanel, false);
+        SetPanelVisibility(summaryPanel, false);
         SetPanelVisibility(shelvePanel, true);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, false);
@@ -108,11 +108,11 @@ public class NavigationController : MonoBehaviour
 
     }
 
-    public void ShowSummeryPanel()
+    public void ShowSummaryPanel()
     {
         SetPanelVisibility(tillPanel, false);
         SetPanelVisibility(stockPanel, false);
-        SetPanelVisibility(summeryPanel, true);
+        SetPanelVisibility(summaryPanel, true);
         SetPanelVisibility(shelvePanel, false);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, false);
@@ -128,7 +128,7 @@ public class NavigationController : MonoBehaviour
     {
         SetPanelVisibility(tillPanel, false);
         SetPanelVisibility(stockPanel, false);
-        SetPanelVisibility(summeryPanel, false);
+        SetPanelVisibility(summaryPanel, false);
         SetPanelVisibility(shelvePanel, false);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, true);

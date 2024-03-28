@@ -889,7 +889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -81, y: 275.25586}
+  m_AnchoredPosition: {x: 25, y: 124}
   m_SizeDelta: {x: 124.171, y: 27.488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4111360708703133864
@@ -1038,7 +1038,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 106, y: -151.25586}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4111360708716703454
@@ -1076,7 +1076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -106, y: 296}
+  m_AnchoredPosition: {x: 0, y: 139.89}
   m_SizeDelta: {x: 1010, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4111360708716703451
@@ -1422,7 +1422,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -609.3, y: 155}
+  m_AnchoredPosition: {x: -503.4, y: 0}
   m_SizeDelta: {x: 3, y: 282}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4111360708874400685
@@ -2015,8 +2015,9 @@ GameObject:
   - component: {fileID: 4111360709199391604}
   - component: {fileID: 4111360709199391605}
   - component: {fileID: 4111360709199391498}
+  - component: {fileID: 828310378499422423}
   m_Layer: 5
-  m_Name: SummeryPrefab
+  m_Name: SummaryPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2105,6 +2106,32 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &828310378499422423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4111360709199391499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a645959846735b94aa2e23793218e710, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayText: {fileID: 4111360708703133865}
+  numOfCustomersNum: {fileID: 4111360708736666008}
+  mostPopularItem: {fileID: 4111360710009185164}
+  leastPopularItem: {fileID: 4111360709289284928}
+  highestTransactionValueText: {fileID: 4111360710415395013}
+  mostProfitableCustomer: {fileID: 4111360708626628914}
+  mostProfitableTransactionAmount: {fileID: 4111360709284929227}
+  mostProfitableTransactionProfit: {fileID: 4111360708329401825}
+  dailyProfit: {fileID: 4111360708892172275}
+  customerSatisfaction: {fileID: 4111360709918678754}
+  stockShortagesCustomers: {fileID: 4111360709545691081}
+  stockShortagesItems: {fileID: 4111360708721696131}
+  dailyRevenue: {fileID: 4111360708515082575}
+  dailyExpenses: {fileID: 4111360709901401216}
 --- !u!1 &4111360709203371823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,7 +2340,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -106, y: 14}
+  m_AnchoredPosition: {x: 0, y: -139.83}
   m_SizeDelta: {x: 1010, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4111360709265466428
@@ -3204,7 +3231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 397.5, y: 155.2}
+  m_AnchoredPosition: {x: 503.13, y: 0}
   m_SizeDelta: {x: 3, y: 282}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4111360709696905278
