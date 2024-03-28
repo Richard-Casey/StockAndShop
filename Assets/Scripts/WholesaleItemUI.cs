@@ -21,6 +21,7 @@ public class WholesaleItemUI : MonoBehaviour
     public WholesaleManager wholesaleManager;
     public BuyItemHandler buyItemHandler;
     public InventoryManager inventoryManager;
+    public DailySummaryManager dailySummaryManager;
 
     private bool listenersAdded = false;
     
@@ -105,28 +106,54 @@ public class WholesaleItemUI : MonoBehaviour
             float newCashAmount = cashDisplay.cashOnHand - totalCost;
             cashDisplay.SetCash(newCashAmount); // Update the cash amount in CashDisplay
 
-            // Move the purchased item to the inventory through the WholesaleManager
-            wholesaleManager.MoveItemsToInventory(itemName, quantity);
+            //Calculate expenses for the current purchase
+            float expenses = totalCost;
 
-            // Debug log statements for tracking
-            Debug.Log($"Bought {quantity} {itemName}(s).");
-            Debug.Log($"Remaining cash: £{newCashAmount}"); // Use the newCashAmount here
+            // Think of this as informing the DailySummaryManager about thew Expense
+            //dailySummaryManager.RegisterDailyExpenses(expenses); 
+/* ABOVE HERE
+ * ABOVE HERE
+ * ABOVE HEREABOVE HEREABOVE HEREABOVE HERE
+ * ABOVE HERE
+ * ABOVE HERE
+ * ABOVE HERE
+ * ABOVE HERE
+ * ABOVE HERE
+ * ABOVE HERE
+ * ABOVE HEREABOVE HERE
+ * ABOVE HEREABOVE HEREABOVE HERE
+ * ABOVE HEREABOVE HEREABOVE HEREABOVE HEREABOVE HERE
+ * ABOVE HEREABOVE HEREABOVE HERE
+ * ABOVE HEREABOVE HERE
+ * ABOVE HEREABOVE HERE
+ * ABOVE HERE
+ * ABOVE HERE
+ * ABOVE HERE
+ * ABOVE HERE
+ * 
 
-            // Reset the quantity to 0
-            quantity = 0;
-            UpdateUI();
+// Move the purchased item to the inventory through the WholesaleManager
+wholesaleManager.MoveItemsToInventory(itemName, quantity);
 
-            // Update the Inventory UI
-            if (inventoryManager != null)
-            {
-                inventoryManager.UpdateInventoryUI();
-            }
-        }
-        else
-        {
-            Debug.LogError("Insufficient funds or missing WholesaleManager.");
-        }
-    }
+// Debug log statements for tracking
+Debug.Log($"Bought {quantity} {itemName}(s).");
+Debug.Log($"Remaining cash: £{newCashAmount}"); // Use the newCashAmount here
+
+// Reset the quantity to 0
+quantity = 0;
+UpdateUI();
+
+// Update the Inventory UI
+if (inventoryManager != null)
+{
+    inventoryManager.UpdateInventoryUI();
+}
+}
+else
+{
+Debug.LogError("Insufficient funds or missing WholesaleManager.");
+}
+}
 
 
 

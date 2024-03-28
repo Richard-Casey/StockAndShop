@@ -22,6 +22,7 @@ public class DailySummaryManager : MonoBehaviour
     private int itemsNotSatisfied = 0;
     private float dailyRevenue = 0f;
     private float dailyExpenses = 0f;
+    //private string mostProfitableCustomer = "";
 
     // Reference to the CustomerSpawner for reputation data
     private CustomerSpawner customerSpawner;
@@ -57,6 +58,10 @@ public class DailySummaryManager : MonoBehaviour
     {
         if (summaryScript != null) // Fix variable name
         {
+            foreach (var entry in itemSales)
+            {
+                Debug.Log($"Item: {entry.Key}, Quantity: {entry.Value}");
+            }
             summaryScript.UpdateData( // Fix variable name
                 currentDay,
                 numberOfCustomers,
@@ -89,6 +94,13 @@ public class DailySummaryManager : MonoBehaviour
         dailyRevenue += transactionValue;
         dailyProfit += transactionProfit;
 
+        //Update most profitable customer field
+        if (transactionProfit > mostProfitableTransactionProfit)
+        {
+            mostProfitableTransactionProfit = transactionProfit;
+            mostProfitableCustomer = customer.customerName;
+        }
+
         // Update item sales count
         foreach (var item in purchasedItems)
         {
@@ -105,6 +117,13 @@ public class DailySummaryManager : MonoBehaviour
 
         // Update most popular item
         UpdateMostPopularItem(); // Call the method to update the most popular item in the UI
+
+        if (transactionValue > highestTransactionValue)
+        {
+            highestTransactionValue = transactionValue;
+        }
+
+        UpdateSummaryInfo();
     }
 
     public void RegisterCustomerDissatisfaction(int itemsNotFound)
@@ -222,4 +241,5 @@ public class DailySummaryManager : MonoBehaviour
             summaryScript.UpdateMostPopularItem(mostPopular);
         }
     }
+
 }

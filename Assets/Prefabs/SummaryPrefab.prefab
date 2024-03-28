@@ -2124,8 +2124,8 @@ MonoBehaviour:
   leastPopularItem: {fileID: 4111360709289284928}
   highestTransactionValueText: {fileID: 4111360710415395013}
   mostProfitableCustomer: {fileID: 4111360708626628914}
-  mostProfitableTransactionAmount: {fileID: 4111360709284929227}
-  mostProfitableTransactionProfit: {fileID: 4111360708329401825}
+  mostProfitableTransactionAmount: {fileID: 4111360708637584005}
+  mostProfitableTransactionProfit: {fileID: 4111360710135162246}
   dailyProfit: {fileID: 4111360708892172275}
   customerSatisfaction: {fileID: 4111360709918678754}
   stockShortagesCustomers: {fileID: 4111360709545691081}
