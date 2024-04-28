@@ -4,39 +4,13 @@ using System.Collections;
 
 public class InformationBar : MonoBehaviour
 {
-    public static InformationBar Instance { get; private set; }
+    [SerializeField] private CanvasGroup canvasGroup; // Make sure to assign this
 
     [SerializeField] private TextMeshProUGUI informationText;
-    [SerializeField] private CanvasGroup canvasGroup; // Make sure to assign this
     [SerializeField] private RectTransform rectTransform; // Make sure to assign this
 
     public float animationDuration = 0.5f; // Duration for the rise and lower animations
     public float visibleDuration = 3f; // How long the bar stays fully visible before hiding
-
-    private void Awake()
-    {
-        if (Instance == null) { Instance = this; }
-        else { Destroy(gameObject); }
-
-        // Initially set the information bar to be invisible and not interactable
-        canvasGroup.alpha = 0;
-        canvasGroup.interactable = false;
-        canvasGroup.blocksRaycasts = false;
-    }
-
-    public void DisplayMessage(string message, float duration = 3f)
-    {
-        StopAllCoroutines(); // Stop any previous animations
-        StartCoroutine(ShowMessageWithAnimation(message, duration));
-    }
-
-    private IEnumerator ShowMessageWithAnimation(string message, float duration = 3f)
-    {
-        informationText.text = message;
-        yield return AnimateBar(true); // Move the information bar into view and fade in
-        yield return new WaitForSeconds(duration);
-        yield return AnimateBar(false); // Move the information bar out of view and fade out
-    }
 
     private IEnumerator AnimateBar(bool show)
     {
@@ -68,4 +42,31 @@ public class InformationBar : MonoBehaviour
         canvasGroup.interactable = show;
         canvasGroup.blocksRaycasts = show;
     }
+
+    private void Awake()
+    {
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
+
+        // Initially set the information bar to be invisible and not interactable
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+    }
+
+    private IEnumerator ShowMessageWithAnimation(string message, float duration = 3f)
+    {
+        informationText.text = message;
+        yield return AnimateBar(true); // Move the information bar into view and fade in
+        yield return new WaitForSeconds(duration);
+        yield return AnimateBar(false); // Move the information bar out of view and fade out
+    }
+
+    public void DisplayMessage(string message, float duration = 3f)
+    {
+        StopAllCoroutines(); // Stop any previous animations
+        StartCoroutine(ShowMessageWithAnimation(message, duration));
+    }
+
+    public static InformationBar Instance { get; private set; }
 }

@@ -4,35 +4,35 @@ using UnityEngine.UI;
 
 public class ShelfItemUI : MonoBehaviour
 {
-    [Header("UI Components")]
-    public Image itemImage;
-    public TextMeshProUGUI itemNameText;
-    public TextMeshProUGUI boughtForCostText;
-    public TextMeshProUGUI sellingPriceText;
-    public TextMeshProUGUI profitPerItemText;
-    public TextMeshProUGUI totalProfitText;
-    public TextMeshProUGUI quantityOnShelfText;
-    public Button minusButton;
-    public Button plusButton;
-    public Button removeButton;
-    public TextMeshProUGUI quantityToRemoveText;
-    public Image demandBar;
-    public InventoryItem inventoryItem;
-
-    [Header("Item Settings")]
-    public float sellingPrice;
-    public float profitPerItem;
-    public float totalProfit;
-    public int quantityOnShelf;
+    private DynamicContentSizeForOneColumn dynamicContentSizeScript;
 
     [Header("Manager References")]
     private InventoryManager inventoryManager;
     private ShelfManager shelfManager;
+    public TextMeshProUGUI boughtForCostText;
+    public Image demandBar;
+    public InventoryItem inventoryItem;
 
     [Header("Misc")]
     public InventoryItemUI inventoryItemUI;
+    [Header("UI Components")]
+    public Image itemImage;
     public string itemName;
-    private DynamicContentSizeForOneColumn dynamicContentSizeScript;
+    public TextMeshProUGUI itemNameText;
+    public Button minusButton;
+    public Button plusButton;
+    public float profitPerItem;
+    public TextMeshProUGUI profitPerItemText;
+    public int quantityOnShelf;
+    public TextMeshProUGUI quantityOnShelfText;
+    public TextMeshProUGUI quantityToRemoveText;
+    public Button removeButton;
+
+    [Header("Item Settings")]
+    public float sellingPrice;
+    public TextMeshProUGUI sellingPriceText;
+    public float totalProfit;
+    public TextMeshProUGUI totalProfitText;
 
 
     private void Awake()
@@ -43,8 +43,82 @@ public class ShelfItemUI : MonoBehaviour
         removeButton.onClick.AddListener(OnRemoveButtonClicked);
 
         // Find InventoryManager in the scene
-        inventoryManager = FindObjectOfType<InventoryManager>(); 
+        inventoryManager = FindObjectOfType<InventoryManager>();
         shelfManager = FindObjectOfType<ShelfManager>();
+    }
+
+    private void UpdateContentSize()
+    {
+        if (shelfManager != null)
+        {
+            // Call the UpdateContentSize function of the ShelfManager
+            shelfManager.UpdateContentSize();
+        }
+    }
+
+    private void UpdateDemandBar(Color color)
+    {
+        if (demandBar != null)
+        {
+            demandBar.color = color;
+        }
+        else
+        {
+            Debug.LogError("Demand bar is not assigned or is not an Image component.");
+        }
+    }
+
+    public void OnMinusButtonClicked()
+    {
+        // Decrease the quantity to remove, ensuring it doesn't go below zero
+        int quantityToRemove = int.Parse(quantityToRemoveText.text);
+        if (quantityToRemove > 0)
+        {
+            quantityToRemove--;
+            quantityToRemoveText.text = quantityToRemove.ToString();
+        }
+    }
+
+    public void OnPlusButtonClicked()
+    {
+        // Increase the quantity to remove, up to the maximum quantity on the shelf
+        int quantityToRemove = int.Parse(quantityToRemoveText.text);
+        if (quantityToRemove < quantityOnShelf)
+        {
+            quantityToRemove++;
+            quantityToRemoveText.text = quantityToRemove.ToString();
+        }
+    }
+
+    public void OnRemoveButtonClicked()
+    {
+        int quantityToRemove = int.Parse(quantityToRemoveText.text);
+        if (quantityToRemove > 0)
+        {
+            quantityOnShelf -= quantityToRemove;
+            quantityOnShelfText.text = quantityOnShelf.ToString();
+
+            totalProfit = profitPerItem * quantityOnShelf;
+            totalProfitText.text = "£" + totalProfit.ToString("F2");
+
+            if (inventoryManager != null)
+            {
+                inventoryManager.HandleRemovedShelfItem(itemName, boughtForCostText.text, sellingPriceText.text, quantityToRemove, itemImage.sprite);
+                InformationBar.Instance.DisplayMessage($"{quantityToRemove}x {itemName} removed from shelf");
+            }
+
+            quantityToRemoveText.text = "0";
+        }
+
+        if (quantityOnShelf <= 0)
+        {
+            shelfManager.RemoveShelfItem(this.gameObject);
+        }
+    }
+
+    public void SetDynamicContentSizeScript(DynamicContentSizeForOneColumn script)
+    {
+        dynamicContentSizeScript = script;
     }
 
     public void SetItemData(InventoryItem item, int sellQuantity)
@@ -91,80 +165,6 @@ public class ShelfItemUI : MonoBehaviour
         itemName = item.itemName;
 
         UpdateContentSize();
-    }
-
-    private void UpdateDemandBar(Color color)
-    {
-        if (demandBar != null)
-        {
-            demandBar.color = color;
-        }
-        else
-        {
-            Debug.LogError("Demand bar is not assigned or is not an Image component.");
-        }
-    }
-
-    public void OnPlusButtonClicked()
-    {
-        // Increase the quantity to remove, up to the maximum quantity on the shelf
-        int quantityToRemove = int.Parse(quantityToRemoveText.text);
-        if (quantityToRemove < quantityOnShelf)
-        {
-            quantityToRemove++;
-            quantityToRemoveText.text = quantityToRemove.ToString();
-        }
-    }
-
-    public void OnMinusButtonClicked()
-    {
-        // Decrease the quantity to remove, ensuring it doesn't go below zero
-        int quantityToRemove = int.Parse(quantityToRemoveText.text);
-        if (quantityToRemove > 0)
-        {
-            quantityToRemove--;
-            quantityToRemoveText.text = quantityToRemove.ToString();
-        }
-    }
-
-    public void OnRemoveButtonClicked()
-    {
-        int quantityToRemove = int.Parse(quantityToRemoveText.text);
-        if (quantityToRemove > 0)
-        {
-            quantityOnShelf -= quantityToRemove;
-            quantityOnShelfText.text = quantityOnShelf.ToString();
-
-            totalProfit = profitPerItem * quantityOnShelf;
-            totalProfitText.text = "£" + totalProfit.ToString("F2");
-
-            if (inventoryManager != null)
-            {
-                inventoryManager.HandleRemovedShelfItem(itemName, boughtForCostText.text, sellingPriceText.text, quantityToRemove, itemImage.sprite);
-                InformationBar.Instance.DisplayMessage($"{quantityToRemove}x {itemName} removed from shelf");
-            }
-
-            quantityToRemoveText.text = "0";
-        }
-
-        if (quantityOnShelf <= 0)
-        {
-            shelfManager.RemoveShelfItem(this.gameObject);
-        }
-    }
-
-    private void UpdateContentSize()
-    {
-        if (shelfManager != null)
-        {
-            // Call the UpdateContentSize function of the ShelfManager
-            shelfManager.UpdateContentSize();
-        }
-    }
-
-    public void SetDynamicContentSizeScript(DynamicContentSizeForOneColumn script)
-    {
-        dynamicContentSizeScript = script;
     }
 
     public void UpdateUI()

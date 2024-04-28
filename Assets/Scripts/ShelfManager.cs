@@ -4,17 +4,52 @@ using System.Linq;
 
 public class ShelfManager : MonoBehaviour
 {
-    [Header("Prefab and Container")]
-    public GameObject shelfItemPrefab;
-    public Transform shelfContainer;
+    public Transform contentGridLayout;
+    public DynamicContentSizeForOneColumn dynamicContentSizeScript;
 
     [Header("Manager References")]
     public InventoryManager inventoryManager;
-    public DynamicContentSizeForOneColumn dynamicContentSizeScript;
+    public Transform shelfContainer;
+    [Header("Prefab and Container")]
+    public GameObject shelfItemPrefab;
 
     [Header("Misc")]
     public List<GameObject> shelfItems;
-    public Transform contentGridLayout;
+
+    void InitializeShelfItems()
+    {
+        foreach (var item in shelfItems)
+        {
+            Destroy(item);
+        }
+        shelfItems.Clear();
+
+        // Get InventoryItems
+        List<InventoryItem> inventoryItems = inventoryManager.inventoryItems;
+
+        // Iterate through the selected items in the inventory
+        foreach (var inventoryItem in inventoryItems)
+        {
+            // Find the corresponding InventoryItemUI for this inventory item
+            InventoryItemUI selectedItemUI = inventoryManager.inventoryItemUIList.Find(ui => ui.itemName == inventoryItem.itemName);
+
+            // Check if the item is selected for selling and has a sell quantity greater than 0
+            if (selectedItemUI != null && selectedItemUI.isSelectedForSelling && selectedItemUI.sellQuantity > 0)
+            {
+                GameObject shelfItem = Instantiate(shelfItemPrefab, shelfContainer);
+                ShelfItemUI shelfItemUI = shelfItem.GetComponent<ShelfItemUI>();
+
+                if (shelfItemUI != null)
+                {
+                    // Populate the shelf item with data from the inventory item and sell quantity
+                    shelfItemUI.SetItemData(inventoryItem, selectedItemUI.sellQuantity);
+
+                    // Add the shelf item to the list
+                    shelfItems.Add(shelfItem);
+                }
+            }
+        }
+    }
 
     void Start()
     {
@@ -64,47 +99,6 @@ public class ShelfManager : MonoBehaviour
         }
     }
 
-    void InitializeShelfItems()
-    {
-        foreach (var item in shelfItems)
-        {
-            Destroy(item);
-        }
-        shelfItems.Clear();
-
-        // Get InventoryItems
-        List<InventoryItem> inventoryItems = inventoryManager.inventoryItems;
-
-        // Iterate through the selected items in the inventory
-        foreach (var inventoryItem in inventoryItems)
-        {
-            // Find the corresponding InventoryItemUI for this inventory item
-            InventoryItemUI selectedItemUI = inventoryManager.inventoryItemUIList.Find(ui => ui.itemName == inventoryItem.itemName);
-
-            // Check if the item is selected for selling and has a sell quantity greater than 0
-            if (selectedItemUI != null && selectedItemUI.isSelectedForSelling && selectedItemUI.sellQuantity > 0)
-            {
-                GameObject shelfItem = Instantiate(shelfItemPrefab, shelfContainer);
-                ShelfItemUI shelfItemUI = shelfItem.GetComponent<ShelfItemUI>();
-
-                if (shelfItemUI != null)
-                {
-                    // Populate the shelf item with data from the inventory item and sell quantity
-                    shelfItemUI.SetItemData(inventoryItem, selectedItemUI.sellQuantity);
-
-                    // Add the shelf item to the list
-                    shelfItems.Add(shelfItem);
-                }
-            }
-        }
-    }
-
-    // Method to update the shelf items
-    public void UpdateShelfItems()
-    {
-        InitializeShelfItems();
-    }
-
     public ShelfItemUI FindExistingShelfItem(string itemName, float sellingPrice)
     {
         // Iterate through your existing shelf items and find a match
@@ -117,48 +111,6 @@ public class ShelfManager : MonoBehaviour
             }
         }
         return null; // If no matching shelf item is found
-    }
-
-    public void RemoveShelfItem(GameObject shelfItem)
-    {
-        if (shelfItems.Contains(shelfItem))
-        {
-            shelfItems.Remove(shelfItem);
-            Destroy(shelfItem);
-
-            // Call the UpdateContentSize function
-            UpdateContentSize();
-        }
-    }
-
-    public void UpdateContentSize()
-    {
-        if (inventoryManager != null)
-        {
-            // Get the number of items in the shelf
-            int itemCount = shelfItems.Count;
-
-            // Call the UpdateContentSize function of the DynamicContentSizeForOneColumn script
-            inventoryManager.dynamicContentSizeScript.UpdateContentSize(itemCount);
-        }
-    }
-
-    public float GetLowestPriceOnShelf()
-    {
-        float lowestPrice = float.MaxValue; // Start with the maximum possible float value
-
-        // Loop through each shelf item to find the lowest price
-        foreach (var itemGameObject in shelfItems)
-        {
-            ShelfItemUI shelfItemUI = itemGameObject.GetComponent<ShelfItemUI>();
-            if (shelfItemUI != null && shelfItemUI.sellingPrice < lowestPrice)
-            {
-                lowestPrice = shelfItemUI.sellingPrice;
-            }
-        }
-
-        // If no items were found, or all items had invalid prices, return 0 or some default minimum price
-        return lowestPrice == float.MaxValue ? 0 : lowestPrice;
     }
 
     public float GetItemCost(string itemName)
@@ -185,6 +137,54 @@ public class ShelfManager : MonoBehaviour
             }
         }
         return -1; // Item not found
+    }
+
+    public float GetLowestPriceOnShelf()
+    {
+        float lowestPrice = float.MaxValue; // Start with the maximum possible float value
+
+        // Loop through each shelf item to find the lowest price
+        foreach (var itemGameObject in shelfItems)
+        {
+            ShelfItemUI shelfItemUI = itemGameObject.GetComponent<ShelfItemUI>();
+            if (shelfItemUI != null && shelfItemUI.sellingPrice < lowestPrice)
+            {
+                lowestPrice = shelfItemUI.sellingPrice;
+            }
+        }
+
+        // If no items were found, or all items had invalid prices, return 0 or some default minimum price
+        return lowestPrice == float.MaxValue ? 0 : lowestPrice;
+    }
+
+    public void RemoveShelfItem(GameObject shelfItem)
+    {
+        if (shelfItems.Contains(shelfItem))
+        {
+            shelfItems.Remove(shelfItem);
+            Destroy(shelfItem);
+
+            // Call the UpdateContentSize function
+            UpdateContentSize();
+        }
+    }
+
+    public void UpdateContentSize()
+    {
+        if (inventoryManager != null)
+        {
+            // Get the number of items in the shelf
+            int itemCount = shelfItems.Count;
+
+            // Call the UpdateContentSize function of the DynamicContentSizeForOneColumn script
+            inventoryManager.dynamicContentSizeScript.UpdateContentSize(itemCount);
+        }
+    }
+
+    // Method to update the shelf items
+    public void UpdateShelfItems()
+    {
+        InitializeShelfItems();
     }
 
 

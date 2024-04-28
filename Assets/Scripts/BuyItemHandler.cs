@@ -7,6 +7,6 @@ public class BuyItemHandler : MonoBehaviour
     {
         // Find the GameManager GameObject by name
         GameObject gameManager = GameObject.Find("GameManager");
-                
+
     }
 }

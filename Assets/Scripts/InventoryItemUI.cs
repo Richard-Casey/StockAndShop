@@ -4,32 +4,32 @@ using TMPro;
 
 public class InventoryItemUI : MonoBehaviour
 {
-    [Header("UI Components")]
-    public Image demandBar;
-    public Button plusButton;
-    public Button minusButton;
-    public TMP_InputField priceInputField;
-    public TextMeshProUGUI sellQuantityText;
-    public Button sellButton;
-
-    [Header("Item Settings")]
-    public string itemName;
-    public float itemCost;
-    public int quantity = 0;
-    public int sellQuantity = 0;
-
-    [Header("Manager References")]
-    public WholesaleManager wholesaleManager;
-    public InventoryManager inventoryManager;
-
-    [Header("Misc")]
-    public MaterialPropertyBlock demandBarMaterial;
-    public bool isSelectedForSelling = false;
+    private Image itemImageComponent;
+    private float originalCost;
 
     // Private fields and methods
     private float sellingPrice = 0.0f;
-    private Image itemImageComponent;
-    private float originalCost;
+    [Header("UI Components")]
+    public Image demandBar;
+
+    [Header("Misc")]
+    public MaterialPropertyBlock demandBarMaterial;
+    public InventoryManager inventoryManager;
+    public bool isSelectedForSelling = false;
+    public float itemCost;
+
+    [Header("Item Settings")]
+    public string itemName;
+    public Button minusButton;
+    public Button plusButton;
+    public TMP_InputField priceInputField;
+    public int quantity = 0;
+    public Button sellButton;
+    public int sellQuantity = 0;
+    public TextMeshProUGUI sellQuantityText;
+
+    [Header("Manager References")]
+    public WholesaleManager wholesaleManager;
 
 
     private void Awake()
@@ -47,147 +47,6 @@ public class InventoryItemUI : MonoBehaviour
             Debug.LogError("GameManager GameObject not found in the scene.");
         }
     }
-
-    private void Start()
-    {
-        // Store the original cost when initializing the item
-        originalCost = CalculateOriginalCost();
-
-        // Add listeners to the plus and minus buttons
-        plusButton.onClick.AddListener(() => IncrementQuantity()); // Lambda function with no arguments
-        minusButton.onClick.AddListener(DecrementQuantity);
-        sellButton.onClick.AddListener(OnSellButtonClicked);
-
-        // Update the DemandBar color initially
-        UpdateDemandBarColor(itemCost);
-
-        // Get the Image component attached to this GameObject
-        itemImageComponent = GetComponent<Image>();
-
-        priceInputField.text = itemCost.ToString("F2"); // Initialized with the base cost of the item
-        priceInputField.onValueChanged.AddListener(delegate { UpdateDemandBarBasedOnPrice(); });
-
-    }
-
-
-    public void UpdateUI()
-    {
-        // Set the text for the item name
-        TextMeshProUGUI itemNameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
-        itemNameText.text = itemName;
-
-        // Set the text for the quantity to sell
-        TextMeshProUGUI quantityText = transform.Find("QuantityText").GetComponent<TextMeshProUGUI>();
-        quantityText.text = quantity.ToString();
-
-        // Set the text for the sell quantity
-        sellQuantityText.text = sellQuantity.ToString(); // Update the sellQuantityText
-
-        // Set the text for the cost
-        TextMeshProUGUI costText = transform.Find("BoughtForText").GetComponent<TextMeshProUGUI>();
-        costText.text = "Cost Each £" + itemCost.ToString("F2");
-
-        // Get the Image component attached to this GameObject
-        Image itemImageComponent = GetComponent<Image>();
-
-        // Find the corresponding InventoryItem with the same itemName
-        InventoryItem correspondingItem = inventoryManager.inventoryItems.Find(item => item.itemName == itemName);
-
-        // Update the item image
-        if (itemImageComponent != null && correspondingItem != null)
-        {
-            itemImageComponent.sprite = correspondingItem.itemImage;
-        }
-
-        // Update the demand bar color based on the current itemCost
-        UpdateDemandBarColor(itemCost);
-        UpdateDemandBarBasedOnPrice();
-    }
-
-
-    private void UpdateDemandBarColor(float currentPrice)
-    {
-        float lowerBound = originalCost; // Green at the base cost
-        float idealPrice = originalCost * 1.25f; // Ideal price at + 25% of the original cost
-        float upperBound = originalCost * 1.5f;// Red at 50% increase of original price
-
-        //Normalize the current price within the range
-        float normalizedValue = Mathf.InverseLerp(lowerBound, upperBound, currentPrice);
-
-        // Interpolate the colour
-        Color demandColor;
-        if (currentPrice <= idealPrice)
-        {
-            // Interpolate between green and yellow towards the ideal price
-            demandColor = Color.Lerp(Color.green, Color.yellow, normalizedValue * 2); // Multiplied by 2 because it's half the range
-        }
-        else
-        {
-            // Interpolate between yellow and red past the ideal price
-            demandColor = Color.Lerp(Color.yellow, Color.red, (normalizedValue - 0.5f) * 2); // Adjusted range
-        }
-        SetDemandBarColor(demandColor);
-
-    }
-
-    private void SetDemandBarColor(Color color)
-    {
-        if (demandBar != null)
-        {
-            demandBar.color = color;
-        }
-        else
-        {
-            Debug.LogError("Demand bar is not assigned or is not an Image component.");
-        }
-    }
-
-    public void IncrementQuantity()
-    {
-        // Check if the player has this item in their inventory
-        if (sellQuantity < quantity)
-        {
-            sellQuantity++;
-            UpdateUI();
-        }
-        else
-        {
-            Debug.Log("You can't have more of this item.");
-        }
-    }
-
-
-    public void DecrementQuantity()
-    {
-        if (sellQuantity > 0)
-        {
-            sellQuantity--;
-            UpdateUI();
-        }
-        else
-        {
-            Debug.Log("Sell quantity is already at zero.");
-        }
-    }
-
-
-
-    private int GetItemQuantityInInventory(string itemName)
-    {
-        
-        foreach (InventoryItem item in inventoryManager.inventoryItems)
-        {
-            if (item.itemName == itemName)
-            {
-                return item.quantity;
-            }
-        }
-
-        // If the item is not found in the inventory, return 0 or any appropriate default value.
-        return 0;
-    }
-
-
 
     private float CalculateOriginalCost()
     {
@@ -207,6 +66,23 @@ public class InventoryItemUI : MonoBehaviour
         return 0.0f; //adjust this value as needed
     }
 
+
+
+    private int GetItemQuantityInInventory(string itemName)
+    {
+
+        foreach (InventoryItem item in inventoryManager.inventoryItems)
+        {
+            if (item.itemName == itemName)
+            {
+                return item.quantity;
+            }
+        }
+
+        // If the item is not found in the inventory, return 0 or any appropriate default value.
+        return 0;
+    }
+
     private int GetMaxQuantityInInventory(string itemName)
     {
         int maxQuantity = 0;
@@ -221,17 +97,9 @@ public class InventoryItemUI : MonoBehaviour
         return maxQuantity;
     }
 
-    private void UpdateDemandBarBasedOnPrice()
-    {
-        if (float.TryParse(priceInputField.text, out float enteredPrice))
-        {
-            Color demandColor = InventoryManager.CalculateDemandBarColor(enteredPrice, originalCost);
-            SetDemandBarColor(demandColor);
-        }
-    }
-
     void OnSellButtonClicked()
     {
+        Debug.Log("[InventoryItemUI] Sell button clicked for " + itemName);
         Debug.Log($"[OnSellButtonClicked] Before Selling: Item = {itemName}, Quantity in Inventory = {quantity}, Sell Quantity = {sellQuantity}");
         isSelectedForSelling = !isSelectedForSelling;
 
@@ -294,4 +162,134 @@ public class InventoryItemUI : MonoBehaviour
         }
         Debug.Log($"[OnSellButtonClicked] After Selling: Item = {itemName}, Quantity in Inventory = {quantity}, Sell Quantity Reset to = {sellQuantity}");
     }
+
+    private void SetDemandBarColor(Color color)
+    {
+        if (demandBar != null)
+        {
+            demandBar.color = color;
+        }
+        else
+        {
+            Debug.LogError("Demand bar is not assigned or is not an Image component.");
+        }
+    }
+
+    private void Start()
+    {
+        Debug.Log("[InventoryItemUI] Start called for item: " + itemName);
+
+        originalCost = CalculateOriginalCost();
+        Debug.Log($"[InventoryItemUI] Original cost for {itemName} set at {originalCost}");
+
+        plusButton.onClick.AddListener(() => IncrementQuantity());
+        minusButton.onClick.AddListener(DecrementQuantity);
+        sellButton.onClick.AddListener(OnSellButtonClicked);
+
+        UpdateDemandBarColor(itemCost);
+
+        itemImageComponent = GetComponent<Image>();
+        if (itemImageComponent == null)
+        {
+            Debug.LogError("[InventoryItemUI] Image component not found on " + itemName);
+        }
+
+        priceInputField.text = itemCost.ToString("F2");
+        priceInputField.onValueChanged.AddListener(delegate { UpdateDemandBarBasedOnPrice(); });
+    }
+
+    private void UpdateDemandBarBasedOnPrice()
+    {
+        if (float.TryParse(priceInputField.text, out float enteredPrice))
+        {
+            Color demandColor = InventoryManager.CalculateDemandBarColor(enteredPrice, originalCost);
+            SetDemandBarColor(demandColor);
+        }
+    }
+
+
+    private void UpdateDemandBarColor(float currentPrice)
+    {
+        float lowerBound = originalCost; // Green at the base cost
+        float idealPrice = originalCost * 1.25f; // Ideal price at + 25% of the original cost
+        float upperBound = originalCost * 1.5f;// Red at 50% increase of original price
+
+        //Normalize the current price within the range
+        float normalizedValue = Mathf.InverseLerp(lowerBound, upperBound, currentPrice);
+
+        // Interpolate the colour
+        Color demandColor;
+        if (currentPrice <= idealPrice)
+        {
+            // Interpolate between green and yellow towards the ideal price
+            demandColor = Color.Lerp(Color.green, Color.yellow, normalizedValue * 2); // Multiplied by 2 because it's half the range
+        }
+        else
+        {
+            // Interpolate between yellow and red past the ideal price
+            demandColor = Color.Lerp(Color.yellow, Color.red, (normalizedValue - 0.5f) * 2); // Adjusted range
+        }
+        SetDemandBarColor(demandColor);
+
+    }
+
+    public void IncrementQuantity()
+    {
+        if (sellQuantity < quantity)
+        {
+            sellQuantity++;
+            UpdateUI();
+        }
+        else
+        {
+            Debug.Log("[InventoryItemUI] Max sell quantity reached for " + itemName);
+        }
+    }
+
+    public void DecrementQuantity()
+    {
+        if (sellQuantity > 0)
+        {
+            sellQuantity--;
+            UpdateUI();
+        }
+        else
+        {
+            Debug.Log("[InventoryItemUI] No quantity to decrement for " + itemName);
+        }
+    }
+
+
+    public void UpdateUI()
+    {
+        Debug.Log($"[InventoryItemUI] Updating UI for {itemName}, Quantity: {quantity}, Sell Quantity: {sellQuantity}");
+
+        TextMeshProUGUI itemNameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
+        itemNameText.text = itemName;
+
+        TextMeshProUGUI quantityText = transform.Find("QuantityText").GetComponent<TextMeshProUGUI>();
+        quantityText.text = quantity.ToString();
+
+        // Retrieve the item image component
+        Image itemImageComponent = GetComponent<Image>();
+        if (itemImageComponent != null)
+        {
+            InventoryItem correspondingItem = inventoryManager.inventoryItems.Find(item => item.itemName == itemName);
+            if (correspondingItem != null && correspondingItem.itemImage != null)
+            {
+                itemImageComponent.sprite = correspondingItem.itemImage;
+            }
+            else
+            {
+                Debug.LogError("ItemImage component or sprite is null or not found.");
+            }
+        }
+        else
+        {
+            Debug.LogError("ItemImage component not found in UI.");
+        }
+    }
+
+
+
 }

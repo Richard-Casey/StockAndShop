@@ -5,43 +5,16 @@ using TMPro;
 
 public class WholesaleManager : MonoBehaviour
 {
-    [Header("Wholesale Items")]
-    public List<InventoryItem> wholesaleItems;
+    public Transform contentGridLayout;
+    public DynamicContentSizeForTwoColumns dynamicContentSizer;
 
     [Header("Manager References")]
     public InventoryManager inventoryManager;
 
     [Header("UI Components")]
     public GameObject wholesaleItemPrefab;
-    public Transform contentGridLayout;
-    public DynamicContentSizeForTwoColumns dynamicContentSizer;
-
-
-    void Start()
-    {
-        PopulateWholesaleUI();
-    }
-
-
-
-    // Method to move items from Wholesale to Inventory
-    public void MoveItemsToInventory(string itemName, int quantity)
-    {
-        InventoryItem item = wholesaleItems.Find(i => i.itemName == itemName);
-        if (item != null && inventoryManager != null && quantity > 0) // Add this condition
-        {
-            // Add to Inventory
-            inventoryManager.AddItem(new InventoryItem
-            {
-                itemName = item.itemName,
-                cost = item.cost,
-                quantity = quantity,
-                itemImage = item.itemImage,
-                demand = item.demand,
-                baseDemand = item.baseDemand
-            });
-        }
-    }
+    [Header("Wholesale Items")]
+    public List<InventoryItem> wholesaleItems;
 
 
     void PopulateWholesaleUI()
@@ -54,16 +27,16 @@ public class WholesaleManager : MonoBehaviour
             // Set properties of the instantiated UI element
             WholesaleItemUI itemUIComponent = itemUI.GetComponent<WholesaleItemUI>();
             itemUIComponent.itemName = item.itemName;
-            itemUIComponent.itemCost = item.cost; 
+            itemUIComponent.itemCost = item.cost;
             itemUIComponent.inventoryItem = item; // Assign the InventoryItem
             itemUIComponent.wholesaleManager = this;
-                        
+
             TextMeshProUGUI itemNameText = itemUI.transform.Find("NameText").GetComponent<TextMeshProUGUI>();
             itemNameText.text = item.itemName;
 
             // Set the price text to the correct price from the InventoryItem
             TextMeshProUGUI priceText = itemUI.transform.Find("PriceText").GetComponent<TextMeshProUGUI>();
-            priceText.text = "£" + item.cost.ToString("F2"); 
+            priceText.text = "£" + item.cost.ToString("F2");
 
             // Access the Image component
             Image itemImage = itemUIComponent.GetComponent<Image>();
@@ -71,7 +44,7 @@ public class WholesaleManager : MonoBehaviour
             // Check if itemImage is not null before accessing it
             if (itemImage != null)
             {
-               itemImage.sprite = item.itemImage;
+                itemImage.sprite = item.itemImage;
             }
 
             // Make sure the itemUI is active in the hierarchy
@@ -88,5 +61,36 @@ public class WholesaleManager : MonoBehaviour
             }
         }
     }
+
+
+    void Start()
+    {
+        PopulateWholesaleUI();
+    }
+
+
+
+    // When moving items to the inventory from wholesale
+    public void MoveItemsToInventory(string itemName, int quantity)
+    {
+        InventoryItem item = wholesaleItems.Find(i => i.itemName == itemName);
+        if (item != null && inventoryManager != null && quantity > 0)
+        {
+            inventoryManager.AddItem(new InventoryItem
+            {
+                itemName = item.itemName,
+                cost = item.cost,
+                quantity = quantity,
+                itemImage = item.itemImage, // Ensure this is correctly assigned
+                demand = item.demand,
+                baseDemand = item.baseDemand
+            });
+        }
+        else
+        {
+            Debug.LogError("Failed to find item or invalid setup in wholesale manager.");
+        }
+    }
+
 
 }

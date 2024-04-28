@@ -5,8 +5,8 @@ using System.Collections.Generic; // Make sure to include this for using Lists
 public class ReceiptGenerator : MonoBehaviour
 {
     public TextMeshProUGUI customerNameText;
-    public TextMeshProUGUI itemsListText;
     public TextMeshProUGUI individualCostsText;
+    public TextMeshProUGUI itemsListText;
     public TextMeshProUGUI totalCostText;
     public TextMeshProUGUI totalProfitText;
 

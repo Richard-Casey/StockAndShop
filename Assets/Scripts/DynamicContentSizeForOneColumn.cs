@@ -7,6 +7,18 @@ public class DynamicContentSizeForOneColumn : MonoBehaviour
     private RectTransform contentRectTransform;
     private HorizontalLayoutGroup horizontalLayoutGroup;
 
+    private float CalculateItemWidth()
+    {
+        // Calculate the item width based on HorizontalLayoutGroup settings
+        float spacing = horizontalLayoutGroup.spacing;
+        float padding = horizontalLayoutGroup.padding.left + horizontalLayoutGroup.padding.right;
+
+        // Calculate the item width
+        float itemWidth = spacing + padding;
+
+        return itemWidth;
+    }
+
     private void Start()
     {
         contentRectTransform = GetComponent<RectTransform>();
@@ -27,17 +39,5 @@ public class DynamicContentSizeForOneColumn : MonoBehaviour
             // Update the content size
             contentRectTransform.sizeDelta = new Vector2(contentWidth, contentRectTransform.sizeDelta.y);
         }
-    }
-
-    private float CalculateItemWidth()
-    {
-        // Calculate the item width based on HorizontalLayoutGroup settings
-        float spacing = horizontalLayoutGroup.spacing;
-        float padding = horizontalLayoutGroup.padding.left + horizontalLayoutGroup.padding.right;
-
-        // Calculate the item width
-        float itemWidth = spacing + padding;
-
-        return itemWidth;
     }
 }

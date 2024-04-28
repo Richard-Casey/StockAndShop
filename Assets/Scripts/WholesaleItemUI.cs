@@ -4,35 +4,31 @@ using UnityEngine.UI;
 
 public class WholesaleItemUI : MonoBehaviour
 {
-    [Header("UI Components")]
-    public TextMeshProUGUI quantityText;
-    public TextMeshProUGUI totalCostText;
-    public Button plusButton;
-    public Button minusButton;
-
-    [Header("Item Settings")]
-    public string itemName;
-    public float itemCost;
-    public int quantity;
+    public BuyItemHandler buyItemHandler;
+    public CashDisplay cashDisplay;
+    public DailySummaryManager dailySummaryManager;
 
     [Header("Manager References")]
     public InventoryItem inventoryItem;
-    public CashDisplay cashDisplay;
-    public WholesaleManager wholesaleManager;
-    public BuyItemHandler buyItemHandler;
     public InventoryManager inventoryManager;
-    public DailySummaryManager dailySummaryManager;
+    public float itemCost;
 
-    private bool listenersAdded = false;
-    
+    [Header("Item Settings")]
+    public string itemName;
+    public Button minusButton;
+    public Button plusButton;
+    public int quantity;
+
+    [Header("UI Components")]
+    public TextMeshProUGUI quantityText;
+    public TextMeshProUGUI totalCostText;
+    public WholesaleManager wholesaleManager;
+
     private void Awake()
     {
-        // Find the Buy button within the prefab
         Button buyButton = GetComponentInChildren<Button>();
-
         if (buyButton != null)
         {
-            // Add a listener to the button's click event and specify the method to call
             buyButton.onClick.AddListener(BuyItem);
         }
         else
@@ -40,31 +36,32 @@ public class WholesaleItemUI : MonoBehaviour
             Debug.LogError("Buy button not found in the prefab.");
         }
 
-        // Find the GameManager GameObject in the scene
-        GameObject gameManagerObject = GameObject.Find("GameManager");
-        if (gameManagerObject != null)
-        {
-            // Get the necessary components from the GameManager GameObject
-            wholesaleManager = gameManagerObject.GetComponent<WholesaleManager>();
-            buyItemHandler = gameManagerObject.GetComponent<BuyItemHandler>();
-            inventoryManager = gameManagerObject.GetComponent<InventoryManager>();
-        }
-        else
-        {
-            Debug.LogError("GameManager GameObject not found in the scene.");
-        }
-
-        // Remove the BuyItem listener from the minus button
         if (minusButton != null)
         {
             minusButton.onClick.RemoveListener(BuyItem);
         }
     }
 
-
     private void Start()
     {
         cashDisplay = FindObjectOfType<CashDisplay>();
+        if (cashDisplay == null)
+        {
+            Debug.LogError("CashDisplay component not found.");
+        }
+
+        wholesaleManager = FindObjectOfType <WholesaleManager>();
+        if (wholesaleManager == null)
+        {
+            Debug.LogError("WholesaleManager component not found.");
+        }
+
+        dailySummaryManager = FindObjectOfType<DailySummaryManager>();
+        if (dailySummaryManager == null)
+        {
+            Debug.LogError("DailySummaryManager component not found.");
+        }
+
         UpdateUI();
     }
 
@@ -72,14 +69,37 @@ public class WholesaleItemUI : MonoBehaviour
     {
         quantityText.text = quantity.ToString();
         float totalCost = inventoryItem.cost * quantity;
-        totalCostText.text = $"£{totalCost.ToString("F2")}";
+        totalCostText.text = $"£{totalCost:F2}";
     }
 
-    public void IncrementQuantity()
+    public void BuyItem()
     {
-        quantity++;
-        UpdateUI();
+        if (cashDisplay == null || wholesaleManager == null || dailySummaryManager == null)
+        {
+            Debug.LogError("One or more required components are not set");
+            return;
+        }
+
+        float totalCost = itemCost * quantity;
+
+        if (cashDisplay.cashOnHand >= totalCost)
+        {
+            cashDisplay.SetCash(cashDisplay.cashOnHand - totalCost);
+            dailySummaryManager.RegisterDailyExpenses(totalCost);
+            wholesaleManager.MoveItemsToInventory(itemName, quantity);
+
+            Debug.Log($"Bought {quantity} {itemName}(s). Remaining cash: £{cashDisplay.cashOnHand}");
+
+            quantity = 0; // Reset quantity
+            UpdateUI(); // Update the UI to reflect this change
+        }
+        else
+        {
+            Debug.LogError("Insufficient funds or missing WholesaleManager.");
+        }
     }
+
+
 
     public void DecrementQuantity()
     {
@@ -87,7 +107,7 @@ public class WholesaleItemUI : MonoBehaviour
         {
             quantity--;
             UpdateUI();
-            Debug.Log("Quantity decremented to: " + quantity); // Add this line
+            Debug.Log("Quantity decremented to: " + quantity);
         }
         else
         {
@@ -95,67 +115,10 @@ public class WholesaleItemUI : MonoBehaviour
         }
     }
 
-
-    public void BuyItem()
+    public void IncrementQuantity()
     {
-        float totalCost = itemCost * quantity;
-
-        if (cashDisplay != null && cashDisplay.cashOnHand >= totalCost && wholesaleManager != null)
-        {
-            // Deduct the total cost from cash on hand
-            float newCashAmount = cashDisplay.cashOnHand - totalCost;
-            cashDisplay.SetCash(newCashAmount); // Update the cash amount in CashDisplay
-
-            //Calculate expenses for the current purchase
-            float expenses = totalCost;
-
-            // Think of this as informing the DailySummaryManager about thew Expense
-            //dailySummaryManager.RegisterDailyExpenses(expenses); 
-/* ABOVE HERE
- * ABOVE HERE
- * ABOVE HEREABOVE HEREABOVE HEREABOVE HERE
- * ABOVE HERE
- * ABOVE HERE
- * ABOVE HERE
- * ABOVE HERE
- * ABOVE HERE
- * ABOVE HERE
- * ABOVE HEREABOVE HERE
- * ABOVE HEREABOVE HEREABOVE HERE
- * ABOVE HEREABOVE HEREABOVE HEREABOVE HEREABOVE HERE
- * ABOVE HEREABOVE HEREABOVE HERE
- * ABOVE HEREABOVE HERE
- * ABOVE HEREABOVE HERE
- * ABOVE HERE
- * ABOVE HERE
- * ABOVE HERE
- * ABOVE HERE
- * 
-
-// Move the purchased item to the inventory through the WholesaleManager
-wholesaleManager.MoveItemsToInventory(itemName, quantity);
-
-// Debug log statements for tracking
-Debug.Log($"Bought {quantity} {itemName}(s).");
-Debug.Log($"Remaining cash: £{newCashAmount}"); // Use the newCashAmount here
-
-// Reset the quantity to 0
-quantity = 0;
-UpdateUI();
-
-// Update the Inventory UI
-if (inventoryManager != null)
-{
-    inventoryManager.UpdateInventoryUI();
-}
-}
-else
-{
-Debug.LogError("Insufficient funds or missing WholesaleManager.");
-}
+        quantity++;
+        UpdateUI();
+    }
 }
 
-
-
-
-}

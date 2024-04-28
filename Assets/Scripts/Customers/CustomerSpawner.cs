@@ -3,58 +3,18 @@ using UnityEngine.UI;
 
 public class CustomerSpawner : MonoBehaviour
 {
-    public GameObject customerPrefab; // Reference to your Customer prefab
-    public float minBudget = 1.0f;
-    public float maxBudget = 50.0f;
-    public Transform shoppingBGParent; // Reference to the ShoppingBG GameObject
-    public DailySummaryManager dailySummaryManager;
-
-    private bool shopIsOpen = false;
-    private float spawnTimer = 0f;
-    private float spawnRate = 5f; // Start with a default spawn rate of 5 seconds
     //private float reputation = 1.0f; // Starting reputation
 
     [SerializeField] private float reputation = 5f;
 
-    public float Reputation => reputation;
-
-    void Update()
-    {
-        if (shopIsOpen && shoppingBGParent.childCount <= 9) // Allows for exactly 10 customers
-        {
-            spawnTimer -= Time.deltaTime;
-            if (spawnTimer <= 0)
-            {
-                SpawnCustomer();
-                AdjustSpawnRateBasedOnReputation();
-                spawnTimer = spawnRate;
-            }
-        }
-
-        AdjustSpawnRateBasedOnReputation();
-    }
-
-    public void OpenShop()
-    {
-        shopIsOpen = true;
-        spawnTimer = spawnRate; // Reset spawn timer
-    }
-
-    public void CloseShop()
-    {
-        shopIsOpen = false;
-    }
-
-    void SpawnCustomer()
-    {
-        float randomBudget = Random.Range(minBudget, maxBudget);
-        GameObject customerObject = Instantiate(customerPrefab, shoppingBGParent);
-        Customer customer = customerObject.GetComponent<Customer>();
-        customer.budget = randomBudget;
-        LayoutRebuilder.ForceRebuildLayoutImmediate(shoppingBGParent.GetComponent<RectTransform>());
-        dailySummaryManager.RegisterCustomerEntry();
-        InformationBar.Instance.DisplayMessage($"A new customer has entered the shop.");
-    }
+    private bool shopIsOpen = false;
+    private float spawnRate = 5f; // Start with a default spawn rate of 5 seconds
+    private float spawnTimer = 0f;
+    public GameObject customerPrefab; // Reference to your Customer prefab
+    public DailySummaryManager dailySummaryManager;
+    public float maxBudget = 50.0f;
+    public float minBudget = 1.0f;
+    public Transform shoppingBGParent; // Reference to the ShoppingBG GameObject
 
     void AdjustSpawnRateBasedOnReputation()
     {
@@ -75,12 +35,52 @@ public class CustomerSpawner : MonoBehaviour
         // Debug.Log($"New spawn rate: {spawnRate} seconds.");
     }
 
+    void SpawnCustomer()
+    {
+        float randomBudget = Random.Range(minBudget, maxBudget);
+        GameObject customerObject = Instantiate(customerPrefab, shoppingBGParent);
+        Customer customer = customerObject.GetComponent<Customer>();
+        customer.budget = randomBudget;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(shoppingBGParent.GetComponent<RectTransform>());
+        dailySummaryManager.RegisterCustomerEntry();
+        InformationBar.Instance.DisplayMessage($"A new customer has entered the shop.");
+    }
+
+    void Update()
+    {
+        if (shopIsOpen && shoppingBGParent.childCount <= 9) // Allows for exactly 10 customers
+        {
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer <= 0)
+            {
+                SpawnCustomer();
+                AdjustSpawnRateBasedOnReputation();
+                spawnTimer = spawnRate;
+            }
+        }
+
+        AdjustSpawnRateBasedOnReputation();
+    }
+
+    public void CloseShop()
+    {
+        shopIsOpen = false;
+    }
+
+    public void OpenShop()
+    {
+        shopIsOpen = true;
+        spawnTimer = spawnRate; // Reset spawn timer
+    }
+
 
     public void UpdateReputation(float change)
     {
         reputation += change;
         reputation = Mathf.Clamp(reputation, 1f, 100f); // Clamp between 1% and 100%
 
-        
+
     }
+
+    public float Reputation => reputation;
 }

@@ -7,25 +7,11 @@ using System.Linq;
 
 public class Customer : MonoBehaviour
 {
-    // Attributes
-    public string customerName;
-    public int itemsInBasket;
-    public string feedback;
-    public float budget = 50.0f;
     private List<string> desiredItems = new List<string>();
-    private List<string> foundItems = new List<string>();
-
-    // Reference to UI text elements
-    public TextMeshProUGUI nameText;
-    public TextMeshProUGUI itemsText;
-    public TextMeshProUGUI feedbackText;
-    public GameObject customerShoppingPrefab;
-    public Transform shoppingBGParent;
-    public GameObject tillBGPanel;
-    private ShelfManager shelfManager;
-    public float priceIncreaseTolerance;
 
     string[] firstInitials = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+    private List<string> foundItems = new List<string>();
+    private ShelfManager shelfManager;
     string[] surnames = new string[] {"Casey", "Podd", "Symonds", "Smith", "Jones", "Baker", "Fry", "Janes", "Thomas", "Bristow", "Williams", "Wilson", "Taylor", "Brown",
         "Johnson", "Evans", "Roberts", "Edwards", "Hughes", "Walker", "Davies", "Robinson", "Green", "Thompson", "Wright", "Wood", "Clark", "Clarke", "Anderson", "Campbell",
         "Martin", "Lewis", "Harris", "Jackson", "Patel", "Turner", "Cooper", "Hill", "Ward", "Morris", "Moore", "Lee", "King", "Harrison", "Morgan", "Allen", "James", "Scott",
@@ -33,18 +19,22 @@ public class Customer : MonoBehaviour
         "Murphy", "Miller", "Cox", "Khan", "Richards", "Marshall", "Simpson", "Ellis", "Adams", "Singh", "Begum", "Wilkinson", "Foster", "Chapman", "Powell", "Webb", "Rogers",
         "Gray", "Mason", "Ali", "Hunt", "Hussain", "Owen", "Palmer", "Holmes", "Barnes", "Knight", "Lloyd", "Butler", "Russell", "Fisher", "Barker", "Stevens", "Jenkins",
         "Dixon", "Fletcher"};
+    public float budget = 50.0f;
+    // Attributes
+    public string customerName;
+    public GameObject customerShoppingPrefab;
+    public string feedback;
+    public TextMeshProUGUI feedbackText;
+    public int itemsInBasket;
+    public TextMeshProUGUI itemsText;
 
-
-    [System.Serializable]
-    public class PurchasedItem
-    {
-        public string itemName;
-        public int quantity;
-        public float price;
-        public float profitPerItem;
-    }
+    // Reference to UI text elements
+    public TextMeshProUGUI nameText;
+    public float priceIncreaseTolerance;
 
     public List<PurchasedItem> purchasedItems = new List<PurchasedItem>();
+    public Transform shoppingBGParent;
+    public GameObject tillBGPanel;
 
 
 
@@ -55,55 +45,49 @@ public class Customer : MonoBehaviour
         InitializePriceTolerance();
     }
 
-    private void InitializePriceTolerance()
-    {
-        float chance = Random.Range(0f, 100f);
-        if (chance <= 80) // 80% chance
-        {
-            priceIncreaseTolerance = Random.Range(1.25f, 1.35f); // Standard tolerance (25% to 35%)
-        }
-        else if (chance <= 90) // 10% chance
-        {
-            priceIncreaseTolerance = Random.Range(1.2f, 1.25f); // Lower tolerance (20% to 25%)
-        }
-        else // 10% chance
-        {
-            priceIncreaseTolerance = Random.Range(1.35f, 2f); // Higher tolerance (35% to 100%)
-        }
-    }
 
-    private void InitializeDesiredItems()
+
+
+
+
+    bool CheckIfItemIsAvailable(string itemName)
     {
-        WholesaleManager wholesaleManager = FindObjectOfType<WholesaleManager>();
-        if (wholesaleManager != null && wholesaleManager.wholesaleItems.Count > 0)
+        // Assuming each shelf item GameObject has a ShelfItemUI component attached
+        // that holds the itemName and quantityOnShelf properties
+        foreach (var shelfItemGO in shelfManager.shelfItems)
         {
-            for (int i = 0; i < Mathf.Min(10, wholesaleManager.wholesaleItems.Count); i++)
+            ShelfItemUI shelfItem = shelfItemGO.GetComponent<ShelfItemUI>(); // Adjust ShelfItemUI to your actual component class name
+            if (shelfItem != null && shelfItem.itemName == itemName && shelfItem.quantityOnShelf > 0)
             {
-                InventoryItem randomItem = wholesaleManager.wholesaleItems[Random.Range(0, wholesaleManager.wholesaleItems.Count)];
-                if (!desiredItems.Contains(randomItem.itemName))
-                {
-                    desiredItems.Add(randomItem.itemName);
-                }
+                return true;
             }
         }
+        return false;
     }
 
-    
-
-    void Start()
+    bool CheckIfItemTooExpensive(string itemName)
     {
-        StartCoroutine(StartShoppingRoutine());
-        customerName = GenerateRandomName();
-        itemsInBasket = 0;
-        UpdateUI();
+        ShelfItemUI item = shelfManager.shelfItems
+            .Select(si => si.GetComponent<ShelfItemUI>())
+            .FirstOrDefault(siUI => siUI.itemName == itemName);
+
+        return item != null && item.sellingPrice > (item.inventoryItem.cost * 1.25f); // Adjust threshold as needed
     }
 
-    IEnumerator StartShoppingRoutine()
+
+    private InventoryItem ChooseItem(List<InventoryItem> availableItems)
     {
-        yield return new WaitForSeconds(2f);
-        EvaluateAndSelectItems();
-        GenerateFeedback();
-        StartCoroutine(RemoveCustomerIfNoPurchase());
+        // Implement your logic here. For now, return a random item
+        if (availableItems.Count > 0)
+        {
+            return availableItems[Random.Range(0, availableItems.Count)];
+        }
+        return null;
+    }
+
+    private bool ContinueShopping()
+    {
+        return Random.value > 0.2f; // 80% chance to continue shopping after each purchase
     }
 
     void EvaluateAndSelectItems()
@@ -130,6 +114,20 @@ public class Customer : MonoBehaviour
                 }
             }
         }
+    }
+
+    // Helper method to find a ShelfItemUI by item name
+    private ShelfItemUI FindShelfItemUI(ShelfManager shelfManager, string itemName)
+    {
+        foreach (var shelfItem in shelfManager.shelfItems)
+        {
+            ShelfItemUI shelfItemUI = shelfItem.GetComponent<ShelfItemUI>();
+            if (shelfItemUI.itemName == itemName)
+            {
+                return shelfItemUI;
+            }
+        }
+        return null; // No item found
     }
 
 
@@ -208,24 +206,76 @@ public class Customer : MonoBehaviour
         UpdateUI();
     }
 
-
-
-
-
-
-    bool CheckIfItemIsAvailable(string itemName)
+    string GenerateRandomName()
     {
-        // Assuming each shelf item GameObject has a ShelfItemUI component attached
-        // that holds the itemName and quantityOnShelf properties
-        foreach (var shelfItemGO in shelfManager.shelfItems)
+        string initial = firstInitials[Random.Range(0, firstInitials.Length)];
+        string surname = surnames[Random.Range(0, surnames.Length)];
+        return initial + ". " + surname;
+    }
+
+
+    float GetItemPrice(string itemName)
+    {
+        return shelfManager.GetItemPrice(itemName); // Ensure this method exists in ShelfManager
+    }
+
+    void GoToTill()
+    {
+        TillManager tillManager = FindObjectOfType<TillManager>();
+        if (tillManager != null)
         {
-            ShelfItemUI shelfItem = shelfItemGO.GetComponent<ShelfItemUI>(); // Adjust ShelfItemUI to your actual component class name
-            if (shelfItem != null && shelfItem.itemName == itemName && shelfItem.quantityOnShelf > 0)
+            tillManager.AddCustomerToQueue(this);
+            // Note: Do not destroy here. Let TillManager handle when it's time to destroy.
+        }
+    }
+
+    private void InitializeDesiredItems()
+    {
+        WholesaleManager wholesaleManager = FindObjectOfType<WholesaleManager>();
+        if (wholesaleManager != null && wholesaleManager.wholesaleItems.Count > 0)
+        {
+            for (int i = 0; i < Mathf.Min(10, wholesaleManager.wholesaleItems.Count); i++)
             {
-                return true;
+                InventoryItem randomItem = wholesaleManager.wholesaleItems[Random.Range(0, wholesaleManager.wholesaleItems.Count)];
+                if (!desiredItems.Contains(randomItem.itemName))
+                {
+                    desiredItems.Add(randomItem.itemName);
+                }
             }
         }
-        return false;
+    }
+
+    private void InitializePriceTolerance()
+    {
+        float chance = Random.Range(0f, 100f);
+        if (chance <= 80) // 80% chance
+        {
+            priceIncreaseTolerance = Random.Range(1.25f, 1.35f); // Standard tolerance (25% to 35%)
+        }
+        else if (chance <= 90) // 10% chance
+        {
+            priceIncreaseTolerance = Random.Range(1.2f, 1.25f); // Lower tolerance (20% to 25%)
+        }
+        else // 10% chance
+        {
+            priceIncreaseTolerance = Random.Range(1.35f, 2f); // Higher tolerance (35% to 100%)
+        }
+    }
+
+
+
+
+
+
+
+    private bool IsItemDesired(string itemName)
+    {
+        return desiredItems.Contains(itemName);
+    }
+
+    private bool IsPriceAcceptable(float price)
+    {
+        return price <= budget; // Simple check against the budget
     }
 
 
@@ -248,42 +298,22 @@ public class Customer : MonoBehaviour
         }
     }
 
-    void GoToTill()
+
+
+    void Start()
     {
-        TillManager tillManager = FindObjectOfType<TillManager>();
-        if (tillManager != null)
-        {
-            tillManager.AddCustomerToQueue(this);
-            // Note: Do not destroy here. Let TillManager handle when it's time to destroy.
-        }
+        StartCoroutine(StartShoppingRoutine());
+        customerName = GenerateRandomName();
+        itemsInBasket = 0;
+        UpdateUI();
     }
 
-
-
-
-
-
-
-    private bool IsItemDesired(string itemName)
+    IEnumerator StartShoppingRoutine()
     {
-        return desiredItems.Contains(itemName);
-    }
-
-    private bool IsPriceAcceptable(float price)
-    {
-        return price <= budget; // Simple check against the budget
-    }
-
-    private bool ContinueShopping()
-    {
-        return Random.value > 0.2f; // 80% chance to continue shopping after each purchase
-    }
-
-    string GenerateRandomName()
-    {
-        string initial = firstInitials[Random.Range(0, firstInitials.Length)];
-        string surname = surnames[Random.Range(0, surnames.Length)];
-        return initial + ". " + surname;
+        yield return new WaitForSeconds(2f);
+        EvaluateAndSelectItems();
+        GenerateFeedback();
+        StartCoroutine(RemoveCustomerIfNoPurchase());
     }
 
     void UpdateUI()
@@ -300,10 +330,30 @@ public class Customer : MonoBehaviour
         UpdateUI();
     }
 
-    public void ProvideFeedback(string message)
+    public void DisplayShoppingInfo()
     {
-        feedback = message;
-        UpdateUI();
+        // Ensure there's a prefab and parent assigned
+        if (customerShoppingPrefab != null && shoppingBGParent != null)
+        {
+            // Instantiate the shopping prefab under the ShoppingBG parent
+            GameObject shoppingInfoUI = Instantiate(customerShoppingPrefab, shoppingBGParent);
+
+            // Find the Text components in the instantiated prefab and update them
+            shoppingInfoUI.transform.Find("CustomerNameText").GetComponent<TextMeshProUGUI>().text = customerName;
+            shoppingInfoUI.transform.Find("ItemsInBasketText").GetComponent<TextMeshProUGUI>().text = $"Items: {itemsInBasket}";
+            shoppingInfoUI.transform.Find("FeedbackText").GetComponent<TextMeshProUGUI>().text = feedback;
+        }
+    }
+
+    public float GetItemCost(string itemName)
+    {
+        // Implementation depends on how ShelfManager stores item costs
+        return shelfManager.GetItemCost(itemName);
+    }
+
+    public List<PurchasedItem> GetPurchasedItems()
+    {
+        return purchasedItems;
     }
 
     public void MakePurchaseDecision(ShelfManager shelfManager)
@@ -341,70 +391,20 @@ public class Customer : MonoBehaviour
         }
     }
 
-    // Helper method to find a ShelfItemUI by item name
-    private ShelfItemUI FindShelfItemUI(ShelfManager shelfManager, string itemName)
+    public void ProvideFeedback(string message)
     {
-        foreach (var shelfItem in shelfManager.shelfItems)
-        {
-            ShelfItemUI shelfItemUI = shelfItem.GetComponent<ShelfItemUI>();
-            if (shelfItemUI.itemName == itemName)
-            {
-                return shelfItemUI;
-            }
-        }
-        return null; // No item found
+        feedback = message;
+        UpdateUI();
     }
 
 
-    private InventoryItem ChooseItem(List<InventoryItem> availableItems)
+    [System.Serializable]
+    public class PurchasedItem
     {
-        // Implement your logic here. For now, return a random item
-        if (availableItems.Count > 0)
-        {
-            return availableItems[Random.Range(0, availableItems.Count)];
-        }
-        return null;
-    }
-
-    public void DisplayShoppingInfo()
-    {
-        // Ensure there's a prefab and parent assigned
-        if (customerShoppingPrefab != null && shoppingBGParent != null)
-        {
-            // Instantiate the shopping prefab under the ShoppingBG parent
-            GameObject shoppingInfoUI = Instantiate(customerShoppingPrefab, shoppingBGParent);
-
-            // Find the Text components in the instantiated prefab and update them
-            shoppingInfoUI.transform.Find("CustomerNameText").GetComponent<TextMeshProUGUI>().text = customerName;
-            shoppingInfoUI.transform.Find("ItemsInBasketText").GetComponent<TextMeshProUGUI>().text = $"Items: {itemsInBasket}";
-            shoppingInfoUI.transform.Find("FeedbackText").GetComponent<TextMeshProUGUI>().text = feedback;
-        }
-    }
-
-    public List<PurchasedItem> GetPurchasedItems()
-    {
-        return purchasedItems;
-    }
-
-    bool CheckIfItemTooExpensive(string itemName)
-    {
-        ShelfItemUI item = shelfManager.shelfItems
-            .Select(si => si.GetComponent<ShelfItemUI>())
-            .FirstOrDefault(siUI => siUI.itemName == itemName);
-
-        return item != null && item.sellingPrice > (item.inventoryItem.cost * 1.25f); // Adjust threshold as needed
-    }
-
-
-    float GetItemPrice(string itemName)
-    {
-        return shelfManager.GetItemPrice(itemName); // Ensure this method exists in ShelfManager
-    }
-
-    public float GetItemCost(string itemName)
-    {
-        // Implementation depends on how ShelfManager stores item costs
-        return shelfManager.GetItemCost(itemName);
+        public string itemName;
+        public float price;
+        public float profitPerItem;
+        public int quantity;
     }
 
 }

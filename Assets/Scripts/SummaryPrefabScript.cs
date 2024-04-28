@@ -3,20 +3,20 @@ using TMPro;
 
 public class SummaryPrefabScript : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI customerSatisfaction;
+    [SerializeField] private TextMeshProUGUI dailyExpenses;
+    [SerializeField] private TextMeshProUGUI dailyProfit;
+    [SerializeField] private TextMeshProUGUI dailyRevenue;
     [SerializeField] private TextMeshProUGUI dayText;
-    [SerializeField] private TextMeshProUGUI numOfCustomersNum;
-    [SerializeField] private TextMeshProUGUI mostPopularItem;
-    [SerializeField] private TextMeshProUGUI leastPopularItem;
     [SerializeField] private TextMeshProUGUI highestTransactionValueText;
+    [SerializeField] private TextMeshProUGUI leastPopularItem;
+    [SerializeField] private TextMeshProUGUI mostPopularItem;
     [SerializeField] private TextMeshProUGUI mostProfitableCustomer;
     [SerializeField] private TextMeshProUGUI mostProfitableTransactionAmount;
     [SerializeField] private TextMeshProUGUI mostProfitableTransactionProfit;
-    [SerializeField] private TextMeshProUGUI dailyProfit;
-    [SerializeField] private TextMeshProUGUI customerSatisfaction;
+    [SerializeField] private TextMeshProUGUI numOfCustomersNum;
     [SerializeField] private TextMeshProUGUI stockShortagesCustomers;
     [SerializeField] private TextMeshProUGUI stockShortagesItems;
-    [SerializeField] private TextMeshProUGUI dailyRevenue;
-    [SerializeField] private TextMeshProUGUI dailyExpenses;
 
     // This method will be called to update the prefab with the day's summary data
     public void UpdateData(int day, int numberOfCustomers, string mostPopular, string leastPopular, float highestTransaction, string profitableCustomer, float profitableAmount, float profitableProfit, float profit, float satisfaction, int shortagesCustomers, int shortagesItems, float revenue, float expenses)
@@ -37,13 +37,13 @@ public class SummaryPrefabScript : MonoBehaviour
         dailyExpenses.text = $"£{expenses:F2}";
     }
 
-    public void UpdateNumberOfCustomers(int newNumberOfCustomers)
-    {
-        numOfCustomersNum.text = newNumberOfCustomers.ToString();
-    }
-
     public void UpdateMostPopularItem(string itemName)
     {
         mostPopularItem.text = itemName;
+    }
+
+    public void UpdateNumberOfCustomers(int newNumberOfCustomers)
+    {
+        numOfCustomersNum.text = newNumberOfCustomers.ToString();
     }
 }

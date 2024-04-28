@@ -6,20 +6,11 @@ using System.Linq;
 
 public class TillManager : MonoBehaviour
 {
-    public GameObject tillArea; // Assign the TillBG GameObject
-    public GameObject tillCustomerPrefab;
+    public static bool tillIsOccupied = false;
     private Queue<Customer> customerQueue = new Queue<Customer>();
     private bool isProcessing = false;
-    public static bool tillIsOccupied = false;
-
-    public void AddCustomerToQueue(Customer customer)
-    {
-        customerQueue.Enqueue(customer);
-        if (!isProcessing)
-        {
-            StartCoroutine(ProcessCustomerAtTill());
-        }
-    }
+    public GameObject tillArea; // Assign the TillBG GameObject
+    public GameObject tillCustomerPrefab;
 
 
 
@@ -114,6 +105,15 @@ public class TillManager : MonoBehaviour
         if (cashDisplay != null)
         {
             cashDisplay.SetCash(cashDisplay.cashOnHand + totalCost);
+        }
+    }
+
+    public void AddCustomerToQueue(Customer customer)
+    {
+        customerQueue.Enqueue(customer);
+        if (!isProcessing)
+        {
+            StartCoroutine(ProcessCustomerAtTill());
         }
     }
 

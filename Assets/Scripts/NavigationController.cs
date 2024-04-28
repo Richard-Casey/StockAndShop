@@ -2,25 +2,18 @@ using UnityEngine;
 
 public class NavigationController : MonoBehaviour
 {
+    public CanvasGroup cashDisplay;
+    public CanvasGroup informationBar;
+    public CanvasGroup mainMenuPanel;
+    public CanvasGroup openShopButton;
+    public CanvasGroup overlayButtonsUI;
+    public CanvasGroup shelvePanel;
+    public CanvasGroup startScreen;
+    public CanvasGroup stockPanel;
+    public CanvasGroup summaryPanel;
     [Header("UI Panels")]
     public CanvasGroup tillPanel;
-    public CanvasGroup stockPanel;
-    public CanvasGroup shelvePanel;
-    public CanvasGroup summaryPanel;
-    public CanvasGroup mainMenuPanel;
     public CanvasGroup wholesalePanel;
-    public CanvasGroup startScreen;
-    public CanvasGroup cashDisplay;
-    public CanvasGroup overlayButtonsUI;
-    public CanvasGroup openShopButton;
-    public CanvasGroup informationBar;
-
-    private void SetPanelVisibility(CanvasGroup panel, bool isVisible)
-    {
-        panel.alpha = isVisible ? 1 : 0; // 1 is fully visible, 0 is fully transparent
-        panel.blocksRaycasts = isVisible;
-        panel.interactable = isVisible;
-    }
 
     void Awake()
     {
@@ -38,20 +31,11 @@ public class NavigationController : MonoBehaviour
 
     }
 
-    public void StartGame()
+    private void SetPanelVisibility(CanvasGroup panel, bool isVisible)
     {
-        SetPanelVisibility(tillPanel, true);
-        SetPanelVisibility(stockPanel, false);
-        SetPanelVisibility(summaryPanel, false);
-        SetPanelVisibility(shelvePanel, false);
-        SetPanelVisibility(mainMenuPanel, false);
-        SetPanelVisibility(wholesalePanel, false);
-        SetPanelVisibility(startScreen, false);
-        SetPanelVisibility(cashDisplay, true);
-        SetPanelVisibility(overlayButtonsUI, true);
-        SetPanelVisibility(openShopButton, true);
-        SetPanelVisibility(informationBar, true);
-
+        panel.alpha = isVisible ? 1 : 0; // 1 is fully visible, 0 is fully transparent
+        panel.blocksRaycasts = isVisible;
+        panel.interactable = isVisible;
     }
 
     public void QuitGame()
@@ -60,13 +44,12 @@ public class NavigationController : MonoBehaviour
         Application.Quit();
     }
 
-    
-    public void ShowTilLPanel()
+    public void ShowShelfPanel()
     {
-        SetPanelVisibility(tillPanel, true);
+        SetPanelVisibility(tillPanel, false);
         SetPanelVisibility(stockPanel, false);
         SetPanelVisibility(summaryPanel, false);
-        SetPanelVisibility(shelvePanel, false);
+        SetPanelVisibility(shelvePanel, true);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, false);
         SetPanelVisibility(startScreen, false);
@@ -74,6 +57,7 @@ public class NavigationController : MonoBehaviour
         SetPanelVisibility(overlayButtonsUI, true);
         SetPanelVisibility(openShopButton, true);
         SetPanelVisibility(informationBar, true);
+
     }
 
     public void ShowStockPanel()
@@ -82,22 +66,6 @@ public class NavigationController : MonoBehaviour
         SetPanelVisibility(stockPanel, true);
         SetPanelVisibility(summaryPanel, false);
         SetPanelVisibility(shelvePanel, false);
-        SetPanelVisibility(mainMenuPanel, false);
-        SetPanelVisibility(wholesalePanel, false);
-        SetPanelVisibility(startScreen, false);
-        SetPanelVisibility(cashDisplay, true);
-        SetPanelVisibility(overlayButtonsUI, true);
-        SetPanelVisibility(openShopButton, true);
-        SetPanelVisibility(informationBar, true);
-
-    }
-
-    public void ShowShelfPanel()
-    {
-        SetPanelVisibility(tillPanel, false);
-        SetPanelVisibility(stockPanel, false);
-        SetPanelVisibility(summaryPanel, false);
-        SetPanelVisibility(shelvePanel, true);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, false);
         SetPanelVisibility(startScreen, false);
@@ -124,6 +92,22 @@ public class NavigationController : MonoBehaviour
 
     }
 
+
+    public void ShowTilLPanel()
+    {
+        SetPanelVisibility(tillPanel, true);
+        SetPanelVisibility(stockPanel, false);
+        SetPanelVisibility(summaryPanel, false);
+        SetPanelVisibility(shelvePanel, false);
+        SetPanelVisibility(mainMenuPanel, false);
+        SetPanelVisibility(wholesalePanel, false);
+        SetPanelVisibility(startScreen, false);
+        SetPanelVisibility(cashDisplay, true);
+        SetPanelVisibility(overlayButtonsUI, true);
+        SetPanelVisibility(openShopButton, true);
+        SetPanelVisibility(informationBar, true);
+    }
+
     public void ShowWholesalePanel()
     {
         SetPanelVisibility(tillPanel, false);
@@ -132,6 +116,22 @@ public class NavigationController : MonoBehaviour
         SetPanelVisibility(shelvePanel, false);
         SetPanelVisibility(mainMenuPanel, false);
         SetPanelVisibility(wholesalePanel, true);
+        SetPanelVisibility(startScreen, false);
+        SetPanelVisibility(cashDisplay, true);
+        SetPanelVisibility(overlayButtonsUI, true);
+        SetPanelVisibility(openShopButton, true);
+        SetPanelVisibility(informationBar, true);
+
+    }
+
+    public void StartGame()
+    {
+        SetPanelVisibility(tillPanel, true);
+        SetPanelVisibility(stockPanel, false);
+        SetPanelVisibility(summaryPanel, false);
+        SetPanelVisibility(shelvePanel, false);
+        SetPanelVisibility(mainMenuPanel, false);
+        SetPanelVisibility(wholesalePanel, false);
         SetPanelVisibility(startScreen, false);
         SetPanelVisibility(cashDisplay, true);
         SetPanelVisibility(overlayButtonsUI, true);

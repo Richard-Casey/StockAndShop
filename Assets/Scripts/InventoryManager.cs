@@ -5,25 +5,116 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-    [Header("Inventory Settings")]
-    public List<InventoryItem> inventoryItems = new List<InventoryItem>();
-
-    [Header("UI Components")]
-    public GameObject inventoryItemPrefab;
-    public Transform inventoryPanel;
     public Transform contentGridLayout;
 
     [Header("Dynamic Content")]
     public DynamicContentSizeForTwoColumns dynamicContentSizeScript;
+
+    [Header("UI Components")]
+    public GameObject inventoryItemPrefab;
+    [Header("Inventory Settings")]
+    public List<InventoryItem> inventoryItems = new List<InventoryItem>();
+
+
+    // Create a list to store InventoryItemUI elements
+    public List<InventoryItemUI> inventoryItemUIList = new List<InventoryItemUI>();
+    public Transform inventoryPanel;
     public ScrollRect scrollRect;
+    public ShopFloorManager shopFloorManager;// This can be categorized elsewhere if more appropriate
 
     [Header("Misc")]
     public Scrollbar verticalScrollbar;
-    public ShopFloorManager shopFloorManager;// This can be categorized elsewhere if more appropriate
 
-    
-    // Create a list to store InventoryItemUI elements
-    public List<InventoryItemUI> inventoryItemUIList = new List<InventoryItemUI>();
+    public void AddItem(InventoryItem itemToAdd)
+    {
+        InventoryItem foundItem = inventoryItems.Find(existingItem => existingItem.itemName == itemToAdd.itemName);
+        if (foundItem != null)
+        {
+            foundItem.quantity += itemToAdd.quantity;
+            Debug.Log("Updated quantity for existing item: " + foundItem.itemName + " to " + foundItem.quantity);
+        }
+        else
+        {
+            inventoryItems.Add(itemToAdd);
+            Debug.Log("Added new item: " + itemToAdd.itemName);
+        }
+        UpdateInventoryUI(); // Call this to refresh the UI each time an item is added
+    }
+
+
+
+
+    public void AddQuantityToInventoryItem(string itemName, int quantityToAdd)
+    {
+        InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
+        if (item != null)
+        {
+            item.quantity += quantityToAdd;
+        }
+        else
+        {
+            // If the item doesn't exist in the inventory, it could be added as a new item.
+            // This depends on how you want to handle such cases.
+            Debug.Log("Item not found in inventory: " + itemName);
+        }
+
+        // Update the UI to reflect the changes
+        UpdateInventoryUI();
+    }
+
+    public static Color CalculateDemandBarColor(float currentPrice, float originalCost)
+    {
+        float lowerBound = originalCost;
+        float idealPrice = originalCost * 1.25f;
+        float upperBound = originalCost * 1.5f;
+
+        float normalizedValue = Mathf.InverseLerp(lowerBound, upperBound, currentPrice);
+
+        Color demandColor;
+        if (currentPrice <= idealPrice)
+        {
+            demandColor = Color.Lerp(Color.green, Color.yellow, normalizedValue * 2);
+        }
+        else
+        {
+            demandColor = Color.Lerp(Color.yellow, Color.red, (normalizedValue - 0.5f) * 2);
+        }
+
+        return demandColor;
+    }
+
+    public void HandleRemovedShelfItem(string itemName, string costText, string sellingPriceText, int quantityToAdd, Sprite itemImage)
+    {
+        InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
+        if (item != null)
+        {
+            item.quantity += quantityToAdd;
+            if (item.quantity == 0)
+            {
+                // Logic to remove this item from the inventory list
+                inventoryItems.Remove(item);
+            }
+        }
+        else
+        {
+            // New item logic
+            float.TryParse(costText.Replace("£", ""), out float cost);
+            float.TryParse(sellingPriceText.Replace("£", ""), out float sellingPrice);
+
+            InventoryItem newItem = new InventoryItem
+            {
+                itemName = itemName,
+                cost = cost,
+                sellingPrice = sellingPrice,
+                quantity = quantityToAdd,
+                itemImage = itemImage // Use the passed image
+            };
+            inventoryItems.Add(newItem);
+        }
+
+        // Update the UI to reflect the changes
+        UpdateInventoryUI();
+    }
 
     // Method to move items from Inventory to Shop Floor
     public void MoveItemsToShopFloor(string itemName, int quantity)
@@ -47,22 +138,31 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void AddItem(InventoryItem itemToAdd)
+    public void RemoveItem(string itemName)
     {
-        // Check if the item already exists in the inventory
-        InventoryItem foundItem = inventoryItems.Find(existingItem => existingItem.itemName == itemToAdd.itemName);
-
-        if (foundItem != null)
+        InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
+        if (item != null)
         {
-            // If it exists, update the quantity and sellQuantity
-            foundItem.quantity += itemToAdd.quantity;
-            foundItem.sellQuantity += itemToAdd.quantity; // Initialize sellQuantity
+            inventoryItems.Remove(item);
+            UpdateInventoryUI();
+        }
+    }
+
+    public void UpdateInventoryItemQuantity(string itemName, int newQuantity)
+    {
+        // Find the item in the inventory
+        InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
+        if (item != null)
+        {
+            // Update the quantity
+            item.quantity = newQuantity;
         }
         else
         {
-            // If it doesn't exist, add it as a new item
-            inventoryItems.Add(itemToAdd);
+            Debug.LogError($"Item not found in inventory: {itemName}");
         }
+
+        UpdateInventoryUI();
     }
 
     public void UpdateInventoryUI()
@@ -128,105 +228,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-
-    public void AddQuantityToInventoryItem(string itemName, int quantityToAdd)
+    public InventoryItem FindItemByName(string name)
     {
-        InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
-        if (item != null)
-        {
-            item.quantity += quantityToAdd;
-        }
-        else
-        {
-            // If the item doesn't exist in the inventory, it could be added as a new item.
-            // This depends on how you want to handle such cases.
-            Debug.Log("Item not found in inventory: " + itemName);
-        }
-
-        // Update the UI to reflect the changes
-        UpdateInventoryUI();
+        return inventoryItems.FirstOrDefault(item => item.itemName == name);
     }
 
-    public void HandleRemovedShelfItem(string itemName, string costText, string sellingPriceText, int quantityToAdd, Sprite itemImage)
-    {
-        InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
-        if (item != null)
-        {
-            item.quantity += quantityToAdd;
-            if (item.quantity == 0)
-            {
-                // Logic to remove this item from the inventory list
-                inventoryItems.Remove(item);
-            }
-        }
-        else
-        {
-            // New item logic
-            float.TryParse(costText.Replace("£", ""), out float cost);
-            float.TryParse(sellingPriceText.Replace("£", ""), out float sellingPrice);
-
-            InventoryItem newItem = new InventoryItem
-            {
-                itemName = itemName,
-                cost = cost,
-                sellingPrice = sellingPrice,
-                quantity = quantityToAdd,
-                itemImage = itemImage // Use the passed image
-            };
-            inventoryItems.Add(newItem);
-        }
-
-        // Update the UI to reflect the changes
-        UpdateInventoryUI();
-    }
-
-    public void UpdateInventoryItemQuantity(string itemName, int newQuantity)
-    {
-        // Find the item in the inventory
-        InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
-        if (item != null)
-        {
-            // Update the quantity
-            item.quantity = newQuantity;
-        }
-        else
-        {
-            Debug.LogError($"Item not found in inventory: {itemName}");
-        }
-
-        UpdateInventoryUI();
-    }
-
-    public static Color CalculateDemandBarColor(float currentPrice, float originalCost)
-    {
-        float lowerBound = originalCost;
-        float idealPrice = originalCost * 1.25f;
-        float upperBound = originalCost * 1.5f;
-
-        float normalizedValue = Mathf.InverseLerp(lowerBound, upperBound, currentPrice);
-
-        Color demandColor;
-        if (currentPrice <= idealPrice)
-        {
-            demandColor = Color.Lerp(Color.green, Color.yellow, normalizedValue * 2);
-        }
-        else
-        {
-            demandColor = Color.Lerp(Color.yellow, Color.red, (normalizedValue - 0.5f) * 2);
-        }
-
-        return demandColor;
-    }
-
-    public void RemoveItem(string itemName)
-    {
-        InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
-        if (item != null)
-        {
-            inventoryItems.Remove(item);
-            UpdateInventoryUI();
-        }
-    }
 
 
 }

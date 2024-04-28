@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class DynamicContentSizeForTwoColumns : MonoBehaviour
 {
+    public RectTransform contentArea;
     [Header("Layout Settings")]
     public GridLayoutGroup gridLayoutGroup;
-    public RectTransform contentArea;
 
     public void UpdateContentSize(int itemCount)
     {
