@@ -74,6 +74,7 @@ public class WholesaleItemUI : MonoBehaviour
 
     public void BuyItem()
     {
+        Debug.Log("Attempting to buy item");
         if (cashDisplay == null || wholesaleManager == null || dailySummaryManager == null)
         {
             Debug.LogError("One or more required components are not set");

@@ -175,6 +175,8 @@ public class DailySummaryManager : MonoBehaviour
     public void RegisterDailyExpenses(float amount)
     {
         dailyExpenses += amount;
+        Debug.Log($"Expenses updated: New total expenses = £{dailyExpenses:F2}");
+        UpdateSummaryInfo(); // Ensure this method updates the relevant UI or summary display
     }
 
     public void RegisterTransaction(Customer customer, Dictionary<string, int> purchasedItems, float transactionValue, float transactionProfit)
