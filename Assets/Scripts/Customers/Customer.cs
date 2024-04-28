@@ -45,11 +45,6 @@ public class Customer : MonoBehaviour
         InitializePriceTolerance();
     }
 
-
-
-
-
-
     bool CheckIfItemIsAvailable(string itemName)
     {
         // Assuming each shelf item GameObject has a ShelfItemUI component attached
@@ -92,6 +87,7 @@ public class Customer : MonoBehaviour
 
     void EvaluateAndSelectItems()
     {
+        int itemsNotFound = 0; // Tracks items not found
         foreach (var desiredItemName in desiredItems)
         {
             var shelfItem = shelfManager.shelfItems
@@ -112,12 +108,26 @@ public class Customer : MonoBehaviour
 
                     shelfItem.UpdateUI();
                 }
+                else
+                {
+                    // Item found but either too expensive or budget is insufficient
+                    itemsNotFound++; // Track this as a missed opportunity due to price/budget constraints
+                }
             }
+            else
+            {
+                itemsNotFound++; // Item not found at all
+            }
+        }
+
+        if (itemsNotFound > 0)
+        {
+            FindObjectOfType<DailySummaryManager>().RegisterCustomerDissatisfaction(itemsNotFound, 1); // Notify the DailySummaryManager
         }
     }
 
-    // Helper method to find a ShelfItemUI by item name
-    private ShelfItemUI FindShelfItemUI(ShelfManager shelfManager, string itemName)
+        // Helper method to find a ShelfItemUI by item name
+        private ShelfItemUI FindShelfItemUI(ShelfManager shelfManager, string itemName)
     {
         foreach (var shelfItem in shelfManager.shelfItems)
         {
@@ -262,12 +272,6 @@ public class Customer : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
     private bool IsItemDesired(string itemName)
     {
         return desiredItems.Contains(itemName);
@@ -277,8 +281,6 @@ public class Customer : MonoBehaviour
     {
         return price <= budget; // Simple check against the budget
     }
-
-
 
     IEnumerator RemoveCustomerIfNoPurchase()
     {
@@ -297,8 +299,6 @@ public class Customer : MonoBehaviour
             //Destroy(gameObject);
         }
     }
-
-
 
     void Start()
     {

@@ -156,15 +156,13 @@ public class DailySummaryManager : MonoBehaviour
         IncrementDay();
     }
 
-    public void RegisterCustomerDissatisfaction(int itemsNotFound)
+    public void RegisterCustomerDissatisfaction(int itemsNotFound, int customerCount)
     {
-        if (itemsNotFound > 0)
-        {
-            customersNotSatisfied++;
-            itemsNotSatisfied += itemsNotFound;
-        }
+        customersNotSatisfied += customerCount; // Increment for each customer that didn't find items
+        itemsNotSatisfied += itemsNotFound; // Add the number of items not found
+        Debug.Log($"Customer could not find {itemsNotFound} items.");
+        UpdateSummaryInfo(); // Update the UI or other systems immediately
     }
-
 
     public void RegisterCustomerEntry()
     {
