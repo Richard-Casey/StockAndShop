@@ -101,18 +101,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   demandBar: {fileID: 6136363797030359941}
-  plusButton: {fileID: 3955979257046296043}
-  minusButton: {fileID: 8730067554179352072}
-  itemCost: 0
-  wholesaleManager: {fileID: 0}
   inventoryManager: {fileID: 0}
+  isSelectedForSelling: 0
+  itemCost: 0
   itemName: 
+  minusButton: {fileID: 8730067554179352072}
+  plusButton: {fileID: 3955979257046296043}
   priceInputField: {fileID: 1047721671880428512}
   quantity: 0
+  sellButton: {fileID: 3679145088872695739}
   sellQuantity: 0
   sellQuantityText: {fileID: 442075788118814333}
-  sellButton: {fileID: 3679145088872695739}
-  isSelectedForSelling: 0
+  wholesaleManager: {fileID: 0}
 --- !u!1 &706116275963654436
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,19 +660,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6047545550558193123}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WholesaleItemUI, Assembly-CSharp
-        m_MethodName: IncrementQuantity
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1923829160494977168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,19 +1498,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5559495701493645875}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: WholesaleItemUI, Assembly-CSharp
-        m_MethodName: DecrementQuantity
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5648364416862571913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1780,9 +1756,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 407443266520242300}
         m_TargetAssemblyTypeName: WholesaleItemUI, Assembly-CSharp
-        m_MethodName: BuyItem
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

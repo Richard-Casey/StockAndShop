@@ -235,42 +235,74 @@ public class InventoryItemUI : MonoBehaviour
 
     public void IncrementQuantity()
     {
+        Debug.Log($"[InventoryItemUI] Attempting to increment quantity for {itemName}. Current sellQuantity: {sellQuantity}, Available Quantity: {quantity}");
         if (sellQuantity < quantity)
         {
             sellQuantity++;
+            Debug.Log($"[InventoryItemUI] Incremented sellQuantity for {itemName} to {sellQuantity}");
             UpdateUI();
         }
         else
         {
-            Debug.Log("[InventoryItemUI] Max sell quantity reached for " + itemName);
+            Debug.Log($"[InventoryItemUI] Max sell quantity reached for {itemName}");
         }
     }
 
     public void DecrementQuantity()
     {
+        Debug.Log($"[InventoryItemUI] Attempting to decrement quantity for {itemName}. Current sellQuantity: {sellQuantity}");
         if (sellQuantity > 0)
         {
             sellQuantity--;
+            Debug.Log($"[InventoryItemUI] Decremented sellQuantity for {itemName} to {sellQuantity}");
             UpdateUI();
         }
         else
         {
-            Debug.Log("[InventoryItemUI] No quantity to decrement for " + itemName);
+            Debug.Log($"[InventoryItemUI] No quantity to decrement for {itemName}");
         }
     }
 
 
+
     public void UpdateUI()
     {
-        Debug.Log($"[InventoryItemUI] Updating UI for {itemName}, Quantity: {quantity}, Sell Quantity: {sellQuantity}");
+        Debug.Log($"[InventoryItemUI] Updating UI for {itemName}, Available Quantity: {quantity}, Sell Quantity: {sellQuantity}");
 
+        // Ensure that the itemNameText is updated correctly
         TextMeshProUGUI itemNameText = transform.Find("NameText").GetComponent<TextMeshProUGUI>();
-        itemNameText.text = itemName;
+        if (itemNameText != null)
+        {
+            itemNameText.text = itemName;
+        }
+        else
+        {
+            Debug.LogError("[InventoryItemUI] Failed to find 'NameText' component in UI.");
+        }
 
+        // Update the quantity text
         TextMeshProUGUI quantityText = transform.Find("QuantityText").GetComponent<TextMeshProUGUI>();
-        quantityText.text = quantity.ToString();
+        if (quantityText != null)
+        {
+            quantityText.text = quantity.ToString();
+        }
+        else
+        {
+            Debug.LogError("[InventoryItemUI] Failed to find 'QuantityText' component in UI.");
+        }
 
-        // Retrieve the item image component
+        // Update the sell quantity text, which seems to be missing in your current method
+        TextMeshProUGUI sellQuantityText = transform.Find("SellingQuantity").GetComponent<TextMeshProUGUI>();
+        if (sellQuantityText != null)
+        {
+            sellQuantityText.text = sellQuantity.ToString();
+        }
+        else
+        {
+            Debug.LogError("[InventoryItemUI] Failed to find 'SellingQuantity' component in UI.");
+        }
+
+        // Update the item image
         Image itemImageComponent = GetComponent<Image>();
         if (itemImageComponent != null)
         {
@@ -281,14 +313,15 @@ public class InventoryItemUI : MonoBehaviour
             }
             else
             {
-                Debug.LogError("ItemImage component or sprite is null or not found.");
+                Debug.LogError("[InventoryItemUI] ItemImage component or sprite is null or not found.");
             }
         }
         else
         {
-            Debug.LogError("ItemImage component not found in UI.");
+            Debug.LogError("[InventoryItemUI] ItemImage component not found in UI.");
         }
     }
+
 
 
 
