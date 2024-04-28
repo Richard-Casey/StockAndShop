@@ -601,8 +601,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4e1ee8aa2b41146817f8dd1ae87a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridLayoutGroup: {fileID: 132668308}
   contentArea: {fileID: 132668306}
+  gridLayoutGroup: {fileID: 132668308}
 --- !u!114 &132668308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,14 +680,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0dc624aead6d3334ebf9cc9f5f4f2f7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de740e898e93f1349872e01bfc6655b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1968,14 +1968,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.8105297, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0dc624aead6d3334ebf9cc9f5f4f2f7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98da43449a641e44ebf23622361a8efe, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3895,14 +3895,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.030314207, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0dc624aead6d3334ebf9cc9f5f4f2f7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb065492dc0b238498f1dd2268239015, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3965,14 +3965,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7783208, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0dc624aead6d3334ebf9cc9f5f4f2f7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 282e03b3805c2844ca8570d6416db91f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6433,7 +6433,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0dc624aead6d3334ebf9cc9f5f4f2f7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 88c8a197389e86b4984275d7ea79211a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6603,14 +6603,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.95149136, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0dc624aead6d3334ebf9cc9f5f4f2f7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e3272ff5287a08b42bdf92a4fc7396d4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6862,8 +6862,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4e1ee8aa2b41146817f8dd1ae87a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridLayoutGroup: {fileID: 1715821854}
   contentArea: {fileID: 1715821853}
+  gridLayoutGroup: {fileID: 1715821854}
 --- !u!1 &1782218454
 GameObject:
   m_ObjectHideFlags: 0
@@ -7195,8 +7195,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 672108232}
   m_HandleRect: {fileID: 672108230}
   m_Direction: 2
-  m_Value: 0.0000057455413
-  m_Size: 0.9921189
+  m_Value: 0.0000057454095
+  m_Size: 0.9921187
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7664,8 +7664,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1295334108}
   m_HandleRect: {fileID: 1295334107}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.9921189
+  m_Value: 0.0000057454095
+  m_Size: 0.9921187
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8106,15 +8106,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81089240a11d6d94ba65d6dc4fa5df48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItems: []
-  inventoryItemPrefab: {fileID: 407443266520242300, guid: 57edc26ae38261a498a6847880e1e1e6, type: 3}
-  inventoryPanel: {fileID: 995182222}
   contentGridLayout: {fileID: 132668306}
   dynamicContentSizeScript: {fileID: 132668307}
-  scrollRect: {fileID: 1889183020}
-  verticalScrollbar: {fileID: 1837001863}
-  shopFloorManager: {fileID: 2037523720}
+  inventoryItemPrefab: {fileID: 407443266520242300, guid: 57edc26ae38261a498a6847880e1e1e6, type: 3}
+  inventoryItems: []
   inventoryItemUIList: []
+  inventoryPanel: {fileID: 995182222}
+  scrollRect: {fileID: 1889183020}
+  shopFloorManager: {fileID: 2037523720}
+  verticalScrollbar: {fileID: 1837001863}
 --- !u!114 &2037523723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8127,17 +8127,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba146195d407b2a43b291db8031d8e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tillPanel: {fileID: 982670695}
-  stockPanel: {fileID: 995182224}
-  shelvePanel: {fileID: 1668572390}
-  summaryPanel: {fileID: 163017550}
-  mainMenuPanel: {fileID: 1641989771}
-  wholesalePanel: {fileID: 605035107}
-  startScreen: {fileID: 1641989771}
   cashDisplay: {fileID: 1884633364}
-  overlayButtonsUI: {fileID: 1557351934}
-  openShopButton: {fileID: 1088705476}
   informationBar: {fileID: 124654100}
+  mainMenuPanel: {fileID: 1641989771}
+  openShopButton: {fileID: 1088705476}
+  overlayButtonsUI: {fileID: 1557351934}
+  shelvePanel: {fileID: 1668572390}
+  startScreen: {fileID: 1641989771}
+  stockPanel: {fileID: 995182224}
+  summaryPanel: {fileID: 163017550}
+  tillPanel: {fileID: 982670695}
+  wholesalePanel: {fileID: 605035107}
 --- !u!114 &2037523724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8150,107 +8150,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c60672f8422274ba1a6112145940f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wholesaleItems:
-  - itemName: Toilet Roll
-    cost: 0.55
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: 4d3add7e2f36b2b43bd02666550c1c4c, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Soup
-    cost: 0.44
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: 4b8e22d03e7f58448afc17494d103b72, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Baked Beans
-    cost: 0.31
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: bddc66e9b1b46eb47a735b406f076032, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Bottled Water
-    cost: 0.89
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: 8b0ff5c66f0fb9d498cba58a929ae353, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Bread
-    cost: 0.74
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: ec9d7cc3016dbbf44b54b99c6770de40, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Cheese
-    cost: 1.19
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: 36472f514c903904db061bf0554f02ff, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Eggs
-    cost: 0.88
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: 22ff2a7a7999a044daea9cce8245c5da, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Ketchup
-    cost: 0.53
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: 58a18e3851967874fa288175a2db25e8, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Milk
-    cost: 0.7
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: fc5319dcfe8a1d04ba28916e55c4f93d, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Mustard
-    cost: 0.51
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: a1446fb9c2ea73441a64bf8491b025aa, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Shampoo
-    cost: 0.77
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: e11c7de8d4a741d4b8b387f92548a142, type: 3}
-    demand: 0
-    baseDemand: 0
-  - itemName: Steak
-    cost: 2.66
-    sellingPrice: 0
-    quantity: 10
-    sellQuantity: 0
-    itemImage: {fileID: 21300000, guid: e08057403918b534f981c96dde8d3cbe, type: 3}
-    demand: 0
-    baseDemand: 0
-  inventoryManager: {fileID: 2037523721}
-  wholesaleItemPrefab: {fileID: 7717736163375630633, guid: c8873c24a4ade194d972dc9f18f268b7, type: 3}
   contentGridLayout: {fileID: 1715821853}
   dynamicContentSizer: {fileID: 1715821855}
+  inventoryManager: {fileID: 2037523721}
+  wholesaleItemPrefab: {fileID: 7717736163375630633, guid: c8873c24a4ade194d972dc9f18f268b7, type: 3}
+  wholesaleItems:
+  - baseDemand: 0
+    cost: 0.55
+    demand: 0
+    itemImage: {fileID: 21300000, guid: 4d3add7e2f36b2b43bd02666550c1c4c, type: 3}
+    itemName: Toilet Roll
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.44
+    demand: 0
+    itemImage: {fileID: 21300000, guid: 4b8e22d03e7f58448afc17494d103b72, type: 3}
+    itemName: Soup
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.31
+    demand: 0
+    itemImage: {fileID: 21300000, guid: bddc66e9b1b46eb47a735b406f076032, type: 3}
+    itemName: Baked Beans
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.89
+    demand: 0
+    itemImage: {fileID: 21300000, guid: 8b0ff5c66f0fb9d498cba58a929ae353, type: 3}
+    itemName: Bottled Water
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.74
+    demand: 0
+    itemImage: {fileID: 21300000, guid: ec9d7cc3016dbbf44b54b99c6770de40, type: 3}
+    itemName: Bread
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 1.19
+    demand: 0
+    itemImage: {fileID: 21300000, guid: 36472f514c903904db061bf0554f02ff, type: 3}
+    itemName: Cheese
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.88
+    demand: 0
+    itemImage: {fileID: 21300000, guid: 22ff2a7a7999a044daea9cce8245c5da, type: 3}
+    itemName: Eggs
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.53
+    demand: 0
+    itemImage: {fileID: 21300000, guid: 58a18e3851967874fa288175a2db25e8, type: 3}
+    itemName: Ketchup
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.7
+    demand: 0
+    itemImage: {fileID: 21300000, guid: fc5319dcfe8a1d04ba28916e55c4f93d, type: 3}
+    itemName: Milk
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.51
+    demand: 0
+    itemImage: {fileID: 21300000, guid: a1446fb9c2ea73441a64bf8491b025aa, type: 3}
+    itemName: Mustard
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 0.77
+    demand: 0
+    itemImage: {fileID: 21300000, guid: e11c7de8d4a741d4b8b387f92548a142, type: 3}
+    itemName: Shampoo
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
+  - baseDemand: 0
+    cost: 2.66
+    demand: 0
+    itemImage: {fileID: 21300000, guid: e08057403918b534f981c96dde8d3cbe, type: 3}
+    itemName: Steak
+    quantity: 10
+    sellingPrice: 0
+    sellQuantity: 0
 --- !u!114 &2037523725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8275,12 +8275,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91a5d1037edc9184ab810c5ffeb61e42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shelfItemPrefab: {fileID: 8065749742784802446, guid: 12e2d169ae616084fa526a0520fb0378, type: 3}
-  shelfContainer: {fileID: 0}
-  inventoryManager: {fileID: 2037523721}
-  dynamicContentSizeScript: {fileID: 667581255}
-  shelfItems: []
   contentGridLayout: {fileID: 667581252}
+  dynamicContentSizeScript: {fileID: 667581255}
+  inventoryManager: {fileID: 2037523721}
+  shelfContainer: {fileID: 0}
+  shelfItemPrefab: {fileID: 8065749742784802446, guid: 12e2d169ae616084fa526a0520fb0378, type: 3}
+  shelfItems: []
 --- !u!114 &2037523728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8293,12 +8293,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be50249d56eec148a1bbc342ebb256b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customerPrefab: {fileID: 2069644870664914178, guid: be7eddb005ed3654a840c977cec0b079, type: 3}
-  minBudget: 1
-  maxBudget: 50
-  shoppingBGParent: {fileID: 188969292}
-  dailySummaryManager: {fileID: 2037523732}
   reputation: 5
+  customerPrefab: {fileID: 2069644870664914178, guid: be7eddb005ed3654a840c977cec0b079, type: 3}
+  dailySummaryManager: {fileID: 2037523732}
+  maxBudget: 50
+  minBudget: 1
+  shoppingBGParent: {fileID: 188969292}
 --- !u!114 &2037523729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8325,14 +8325,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02cff3a79edd0624b96d931a1101aa74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayDurationInSeconds: 600
-  openShopButton: {fileID: 980676635}
-  speedUpTimeButton: {fileID: 1153664088}
-  slowDownTimeButton: {fileID: 292096859}
-  normalTimeButton: {fileID: 1196545348}
   clockText: {fileID: 333845623}
   customerSpawner: {fileID: 2037523728}
+  normalTimeButton: {fileID: 1196545348}
+  openShopButton: {fileID: 980676635}
   pauseButton: {fileID: 466376933}
+  slowDownTimeButton: {fileID: 292096859}
+  speedUpTimeButton: {fileID: 1153664088}
+  dayDurationInSeconds: 600
 --- !u!114 &2037523731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8345,8 +8345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd5fb312b7880f4e89bb944fcfb05d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  informationText: {fileID: 506866467}
   canvasGroup: {fileID: 506866469}
+  informationText: {fileID: 506866467}
   rectTransform: {fileID: 506866466}
   animationDuration: 0.5
   visibleDuration: 3
@@ -8362,8 +8362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abaf5f676751334985ec9351679c26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  summaryPrefab: {fileID: 4111360709199391499, guid: d495120752d734541af064d5aa269a32, type: 3}
   summaryParent: {fileID: 2016811681}
+  summaryPrefab: {fileID: 4111360709199391499, guid: d495120752d734541af064d5aa269a32, type: 3}
 --- !u!1 &2039605927
 GameObject:
   m_ObjectHideFlags: 0
