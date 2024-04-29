@@ -75,7 +75,15 @@ public class DayCycle : MonoBehaviour
         clockText.gameObject.SetActive(false); // Hide the clock
         openShopButton.gameObject.SetActive(true);
         InformationBar.Instance.DisplayMessage("Day ended. Shop is now closed.");
+
+        var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
+        if (dailySummaryManager != null)
+        {
+            dailySummaryManager.EndOfDaySummary();  // Ensure this is the only place where EndOfDaySummary is called
+        }
     }
+
+
 
     public void NormalTime()
     {
@@ -110,17 +118,26 @@ public class DayCycle : MonoBehaviour
     public void StartDay()
     {
         isDayActive = true;
-        currentTime = 0; // Reset time for the start of the day
-        clockText.gameObject.SetActive(true); // Show the clock
+        currentTime = 0;
+        clockText.gameObject.SetActive(true);
 
-        customerSpawner.OpenShop(); // Tell the CustomerSpawner to start spawning customers
-
+        customerSpawner.OpenShop();
         openShopButton.gameObject.SetActive(false);
+        SetTimeControlButtonsActive(true);
+        pauseButton.gameObject.SetActive(true);
 
-        SetTimeControlButtonsActive(true); // Enable time control buttons
-        pauseButton.gameObject.SetActive(true); // Show the pause button
+        var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
+        if (dailySummaryManager != null)
+        {
+            dailySummaryManager.PrepareNewDay(); // Setup new day's summary right as the day starts
+        }
+
         InformationBar.Instance.DisplayMessage("Shop is now open!");
     }
+
+
+
+
 
     public void TogglePause()
     {
