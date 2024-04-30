@@ -10,7 +10,7 @@ public class DailySummaryManager : MonoBehaviour
 {
 
     // Day Tracking
-    private int currentDay = 1; // Start from day 1
+    public int currentDay = 1; // Start from day 1
     private int customersNotSatisfied = 0;
     //private string mostProfitableCustomer = "";
 
@@ -37,6 +37,7 @@ public class DailySummaryManager : MonoBehaviour
 
     [SerializeField] private Button prevDayButton;
     [SerializeField] private Button nextDayButton;
+    public bool CurrentDayIsNew() { return dailySummaries.Count < currentDay; }
 
 
     private string GetLeastPopularItem()
@@ -74,7 +75,6 @@ public class DailySummaryManager : MonoBehaviour
         }
     }
 
-
     private void ResetDailyStats()
     {
         numberOfCustomers = 0;
@@ -88,11 +88,6 @@ public class DailySummaryManager : MonoBehaviour
         dailyRevenue = 0f;
         dailyExpenses = 0f;
     }
-
-    // Dictionary to track sales of each item
-    //private Dictionary<string, int> itemSales = new Dictionary<string, int>();
-
-
 
     private void Start()
     {
@@ -130,61 +125,30 @@ public class DailySummaryManager : MonoBehaviour
         summary.transform.Find("ShopInfo/ExpensesValue").GetComponent<TextMeshProUGUI>().text = $"£{dailyExpenses:F2}";
     }
 
-    //public void PrepareNewDaySummary()
-    //{
-    //    // Check if a summary for the current day already exists
-    //    if (currentDay == dailySummaries.Count + 1)
-    //    {
-    //        EndOfDaySummary(); // This only runs if the day just ended, not at the start of a new day
-    //    }
-    //}
-
     public void EndOfDaySummary()
     {
         GameObject newSummary = Instantiate(summaryPrefab, summaryParent);
-        newSummary.SetActive(false); // Start with new summary disabled
-        dailySummaries.Add(newSummary); // Add to list
+        newSummary.SetActive(false); // Initially inactive
+        dailySummaries.Add(newSummary);
 
         if (dailySummaries.Count > 1)
         {
             dailySummaries[currentSummaryIndex].SetActive(false);
         }
         currentSummaryIndex = dailySummaries.Count - 1;
-        dailySummaries[currentSummaryIndex].SetActive(true);
 
-        UpdateButtonVisibility(); // Update button states
-
-        // Populate new summary with data
-        SummaryPrefabScript summaryScript = newSummary.GetComponent<SummaryPrefabScript>();
-        if (summaryScript != null)
+        if (currentSummaryIndex > 0)
         {
-            summaryScript.UpdateData(
-                day: currentDay,
-                numberOfCustomers: numberOfCustomers,
-                mostPopular: GetMostPopularItem(),
-                leastPopular: GetLeastPopularItem(),
-                highestTransaction: highestTransactionValue,
-                profitableCustomer: mostProfitableCustomer,
-                profitableAmount: highestTransactionValue,
-                profitableProfit: mostProfitableTransactionProfit,
-                profit: dailyProfit,
-                satisfaction: customerSpawner.Reputation,
-                shortagesCustomers: customersNotSatisfied,
-                shortagesItems: itemsNotSatisfied,
-                revenue: dailyRevenue,
-                expenses: dailyExpenses
-            );
-        }
-        else
-        {
-            Debug.LogError("SummaryPrefabScript component not found on the instantiated summary prefab.");
+            var summaryScript = dailySummaries[currentSummaryIndex - 1].GetComponent<SummaryPrefabScript>();
+            if (summaryScript)
+            {
+                summaryScript.UpdateData(currentDay, numberOfCustomers, GetMostPopularItem(), GetLeastPopularItem(), highestTransactionValue, mostProfitableCustomer, highestTransactionValue, mostProfitableTransactionProfit, dailyProfit, customerSpawner.Reputation, customersNotSatisfied, itemsNotSatisfied, dailyRevenue, dailyExpenses);
+            }
         }
 
         ResetDailyStats();
         IncrementDay();
     }
-
-
 
     public void RegisterCustomerDissatisfaction(int itemsNotFound, int customerCount)
     {
@@ -281,8 +245,6 @@ public class DailySummaryManager : MonoBehaviour
         }
     }
 
-
-
     public void ShowNextDay()
     {
         if (currentSummaryIndex < dailySummaries.Count - 1)
@@ -307,37 +269,32 @@ public class DailySummaryManager : MonoBehaviour
 
     public void PrepareNewDay()
     {
-        if (dailySummaries.Count == 0 || dailySummaries.Count < currentDay)
+        if (dailySummaries.Count < currentDay)
         {
-            InstantiateNewDaySummary(); // Handles creating a new day summary and updating UI
+            InstantiateNewDaySummary();
+        }
+        ActivateCurrentDaySummary();
+    }
+
+    private void ActivateCurrentDaySummary()
+    {
+        foreach (var summary in dailySummaries)
+        {
+            summary.SetActive(false);
+        }
+        if (currentDay <= dailySummaries.Count)
+        {
+            dailySummaries[currentDay - 1].SetActive(true);
+            currentSummaryIndex = currentDay - 1;
         }
     }
 
     private void InstantiateNewDaySummary()
     {
         GameObject newSummary = Instantiate(summaryPrefab, summaryParent);
-        newSummary.SetActive(true);
-
-        if (dailySummaries.Count > 1)
-        {
-            dailySummaries[currentSummaryIndex].SetActive(false);
-        }
-        currentSummaryIndex = dailySummaries.Count - 1;
-        dailySummaries[currentSummaryIndex].SetActive(true);
-
-        UpdateDayNumberDisplay(currentDay); // Update the day number display
+        newSummary.SetActive(true);  // Ensure it's set to active immediately
+        dailySummaries.Add(newSummary);
     }
-
-    private void UpdateDayNumberDisplay(int day)
-    {
-        //SummaryPrefabScript summaryScript = dailySummaries[currentSummaryIndex].GetComponent<SummaryPrefabScript>();
-        //if (summaryScript != null)
-        //{
-        //    summaryScript.UpdateDayNumber(day);
-        //}
-    }
-
-
 
 
 }

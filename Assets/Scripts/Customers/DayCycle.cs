@@ -117,25 +117,25 @@ public class DayCycle : MonoBehaviour
 
     public void StartDay()
     {
-        isDayActive = true;
-        currentTime = 0;
-        clockText.gameObject.SetActive(true);
-
-        customerSpawner.OpenShop();
-        openShopButton.gameObject.SetActive(false);
-        SetTimeControlButtonsActive(true);
-        pauseButton.gameObject.SetActive(true);
-
-        var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
-        if (dailySummaryManager != null)
+        if (!isDayActive)
         {
-            dailySummaryManager.PrepareNewDay(); // Setup new day's summary right as the day starts
+            isDayActive = true;
+            currentTime = 0;
+            customerSpawner.OpenShop();
+            openShopButton.gameObject.SetActive(false);
+            SetTimeControlButtonsActive(true);
+            pauseButton.gameObject.SetActive(true);
+            clockText.gameObject.SetActive(true);
+
+            var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
+            if (dailySummaryManager != null)
+            {
+                dailySummaryManager.PrepareNewDay(); // Ensure this prepares the summary for a new day.
+            }
+
+            InformationBar.Instance.DisplayMessage("Shop is now open!");
         }
-
-        InformationBar.Instance.DisplayMessage("Shop is now open!");
     }
-
-
 
 
 

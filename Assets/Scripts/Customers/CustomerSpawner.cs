@@ -71,7 +71,15 @@ public class CustomerSpawner : MonoBehaviour
     {
         shopIsOpen = true;
         spawnTimer = spawnRate; // Reset spawn timer
+
+        // Prepare new day summary
+        var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
+        if (dailySummaryManager != null)
+        {
+            dailySummaryManager.PrepareNewDay();
+        }
     }
+
 
 
     public void UpdateReputation(float change)
