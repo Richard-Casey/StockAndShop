@@ -88,6 +88,9 @@ public class Customer : MonoBehaviour
     void EvaluateAndSelectItems()
     {
         int itemsNotFound = 0; // Tracks items not found
+        float totalSpent = 0; // Total amount spent by the customer
+        float totalProfit = 0; // Total profit from this customer's purchases
+
         foreach (var desiredItemName in desiredItems)
         {
             var shelfItem = shelfManager.shelfItems
@@ -104,6 +107,9 @@ public class Customer : MonoBehaviour
                     shelfItem.quantityOnShelf--;
 
                     float profit = shelfItem.sellingPrice - shelfItem.inventoryItem.cost;
+                    totalSpent += shelfItem.sellingPrice;
+                    totalProfit += profit;
+
                     purchasedItems.Add(new PurchasedItem { itemName = shelfItem.itemName, quantity = 1, price = shelfItem.sellingPrice, profitPerItem = profit });
 
                     shelfItem.UpdateUI();
@@ -120,14 +126,21 @@ public class Customer : MonoBehaviour
             }
         }
 
+        // Debug log to display what the customer has bought, the total spent, and the total profit
+        if (purchasedItems.Any())
+        {
+            Debug.Log($"Customer: {customerName} bought {purchasedItems.Count} items, spent a total of £{totalSpent:F2}, resulting in a total profit of £{totalProfit:F2}.");
+        }
+
         if (itemsNotFound > 0)
         {
             FindObjectOfType<DailySummaryManager>().RegisterCustomerDissatisfaction(itemsNotFound, 1); // Notify the DailySummaryManager
         }
     }
 
-        // Helper method to find a ShelfItemUI by item name
-        private ShelfItemUI FindShelfItemUI(ShelfManager shelfManager, string itemName)
+
+    // Helper method to find a ShelfItemUI by item name
+    private ShelfItemUI FindShelfItemUI(ShelfManager shelfManager, string itemName)
     {
         foreach (var shelfItem in shelfManager.shelfItems)
         {
@@ -189,32 +202,36 @@ public class Customer : MonoBehaviour
             feedback += (string.IsNullOrEmpty(positiveFeedback) ? "" : " ") + negativeFeedback;
         }
 
-        // Calculate reputation change
-        float reputationChange = 0f;
-        int foundItemsCount = purchasedItems.Count;
-        int notFoundItemsCount = desiredItems.Count - foundItemsCount;
-
-        // For each found item, increase reputation
-        reputationChange += foundItemsCount * 0.1f; // 0.1% per item found
-
-        // Double reputation if all desired items were found and purchased
-        if (foundItemsCount == desiredItems.Count)
-        {
-            reputationChange *= 2; // Double the reputation change
-        }
-
-        // Deduct reputation for not found items
-        reputationChange -= notFoundItemsCount * 0.02f; // 0.02% per item not found
-
-        // Communicate the change to CustomerSpawner
-        CustomerSpawner customerSpawner = FindObjectOfType<CustomerSpawner>();
-        if (customerSpawner != null)
-        {
-            customerSpawner.UpdateReputation(reputationChange);
-        }
-
         UpdateUI();
+
+        // Calculate and update customer satisfaction based on feedback
+        UpdateCustomerSatisfaction(itemsConsideredExpensive.Count, itemsNotPurchased.Count);
     }
+
+    void UpdateCustomerSatisfaction(int expensiveItemsCount, int notPurchasedItemsCount)
+    {
+        float satisfactionChange = 0f;
+        if (expensiveItemsCount > 0)
+        {
+            satisfactionChange -= expensiveItemsCount * 0.5f; // Decrease satisfaction for each too expensive item
+        }
+        if (notPurchasedItemsCount > 0)
+        {
+            satisfactionChange -= notPurchasedItemsCount * 0.2f; // Decrease satisfaction for each not purchased item
+        }
+        if (purchasedItems.Count > 0)
+        {
+            satisfactionChange += purchasedItems.Count * 0.3f; // Increase satisfaction for each purchased item
+        }
+
+        // Find DailySummaryManager and update daily satisfaction
+        DailySummaryManager dailySummaryManager = FindObjectOfType<DailySummaryManager>();
+        if (dailySummaryManager != null)
+        {
+            dailySummaryManager.UpdateDailyCustomerSatisfaction(satisfactionChange);
+        }
+    }
+
 
     string GenerateRandomName()
     {
@@ -235,7 +252,7 @@ public class Customer : MonoBehaviour
         if (tillManager != null)
         {
             tillManager.AddCustomerToQueue(this);
-            // Note: Do not destroy here. Let TillManager handle when it's time to destroy.
+            FindObjectOfType<CustomerSpawner>().CustomerExited(); // Signal when customer goes to till
         }
     }
 
@@ -282,26 +299,27 @@ public class Customer : MonoBehaviour
         return price <= budget; // Simple check against the budget
     }
 
-    IEnumerator RemoveCustomerIfNoPurchase()
+    private IEnumerator RemoveCustomerIfNoPurchase()
     {
-        yield return new WaitForSeconds(4f); // Wait before checking for next action
+        yield return new WaitForSeconds(4f); // Adjusted time to ensure shopping can complete
 
         if (itemsInBasket == 0)
         {
             Debug.Log($"Removing customer: {customerName} due to 0 items in basket.");
             InformationBar.Instance.DisplayMessage($"{customerName} left without purchasing.");
+            FindObjectOfType<CustomerSpawner>().CustomerExited(); // Customer exits without purchase
             Destroy(gameObject); // Remove this customer object if they haven't selected any items
         }
         else
         {
-            // If the customer has items in their basket, move them to the till instead of removing them
             GoToTill();
-            //Destroy(gameObject);
         }
     }
 
-    void Start()
+    private void Start()
     {
+        // Signal that a new customer has started shopping
+        FindObjectOfType<CustomerSpawner>().CustomerEntered();
         StartCoroutine(StartShoppingRoutine());
         customerName = GenerateRandomName();
         itemsInBasket = 0;

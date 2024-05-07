@@ -15,6 +15,22 @@ public class CustomerSpawner : MonoBehaviour
     public float maxBudget = 50.0f;
     public float minBudget = 1.0f;
     public Transform shoppingBGParent; // Reference to the ShoppingBG GameObject
+    public int activeCustomers { get; private set; } = 0;
+    public int ActiveCustomers => activeCustomers;
+
+    public void CustomerEntered()
+    {
+        activeCustomers++;
+    }
+
+    public void CustomerExited()
+    {
+        activeCustomers--;
+        if (activeCustomers == 0)
+        {
+            FindObjectOfType<DailySummaryManager>().CheckAndEndDay();
+        }
+    }
 
     void AdjustSpawnRateBasedOnReputation()
     {
@@ -76,7 +92,7 @@ public class CustomerSpawner : MonoBehaviour
         var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
         if (dailySummaryManager != null)
         {
-            dailySummaryManager.PrepareNewDay();
+            dailySummaryManager.PrepareDay();
         }
     }
 

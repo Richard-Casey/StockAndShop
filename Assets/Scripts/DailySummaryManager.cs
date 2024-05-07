@@ -1,248 +1,249 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;  // This is essential for accessing the Button class
+using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 
-
+[System.Serializable]
+public struct DailyStats
+{
+    public int dayNumber;
+    public int numberOfCustomers;
+    public float dailyRevenue;
+    public float dailyExpenses;
+    public float dailyProfit;
+    public List<string> itemNames; // For tracking item sales
+    public List<int> itemCounts;
+    public string mostProfitableCustomer;
+    public float highestTransactionValue;
+    public float mostProfitableTransactionProfit;
+    public float customerSatisfaction; // Stores customer satisfaction percentage
+}
 
 public class DailySummaryManager : MonoBehaviour
 {
-
-    // Day Tracking
-    public int currentDay = 1; // Start from day 1
-    private int customersNotSatisfied = 0;
-    //private string mostProfitableCustomer = "";
-
-    // Reference to the CustomerSpawner for reputation data
+    public int currentDay = 1;
+    public float dayEndTime = 17.00f;
+    private List<DailyStats> dailyStatsList = new List<DailyStats>();
     private CustomerSpawner customerSpawner;
-    private float dailyExpenses = 0f;
-    private float dailyProfit = 0f;
-    private float dailyRevenue = 0f;
-    private float highestTransactionValue = 0f;
-    private GameObject instantiatedSummaryPrefab;
-    private Dictionary<string, int> itemSales = new Dictionary<string, int>();
-    private int itemsNotSatisfied = 0;
-    private string mostProfitableCustomer = "";
-    private float mostProfitableTransactionProfit = 0f;
 
-
-    // Track daily statistics
-    private int numberOfCustomers = 0;
     [SerializeField] private Transform summaryParent;
     [SerializeField] private GameObject summaryPrefab;
-    private SummaryPrefabScript summaryScript;
     private List<GameObject> dailySummaries = new List<GameObject>();
     private int currentSummaryIndex = 0;
 
     [SerializeField] private Button prevDayButton;
     [SerializeField] private Button nextDayButton;
-    public bool CurrentDayIsNew() { return dailySummaries.Count < currentDay; }
 
-
-    private string GetLeastPopularItem()
-    {
-        // Filter out items that haven't been sold
-        var soldItems = itemSales.Where(kv => kv.Value > 0);
-
-        // Find the item with the lowest quantity sold
-        var leastPopular = soldItems.OrderBy(kv => kv.Value).FirstOrDefault().Key;
-
-        // Return the name of the least popular item
-        return leastPopular ?? "N/A";
-    }
-
-    private string GetMostPopularItem()
-    {
-        return itemSales.OrderByDescending(i => i.Value).FirstOrDefault().Key ?? "N/A";
-    }
-
-    private void IncrementDay()
-    {
-        currentDay++;
-    }
-
-    private void InstantiatedSummaryPrefab()
-    {
-        instantiatedSummaryPrefab = Instantiate(summaryPrefab, summaryParent);
-
-        instantiatedSummaryPrefab.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-
-        summaryScript = instantiatedSummaryPrefab.GetComponent<SummaryPrefabScript>();
-        if (summaryScript == null)
-        {
-            Debug.LogError("SummaryPrefabScript component not found on the instantiated summary prefab.");
-        }
-    }
-
-    private void ResetDailyStats()
-    {
-        numberOfCustomers = 0;
-        itemSales.Clear();
-        highestTransactionValue = 0f;
-        mostProfitableTransactionProfit = 0f;
-        mostProfitableCustomer = "";
-        dailyProfit = 0f;
-        customersNotSatisfied = 0;
-        itemsNotSatisfied = 0;
-        dailyRevenue = 0f;
-        dailyExpenses = 0f;
-    }
-
-    private void Start()
+    void Start()
     {
         customerSpawner = FindObjectOfType<CustomerSpawner>();
-        InstantiatedSummaryPrefab();
-        UpdateButtonVisibility(); // Initial button visibility setup
+        InstantiateSummaryPrefab();
+        PrepareDay(); // Ensure the day is prepared at game start
     }
 
-    private void UpdateMostPopularItem()
+    void InitializeDay()
     {
-        if (itemSales.Count > 0)
+        if (dailyStatsList.Count < currentDay) // If there's no entry for the current day, add one
         {
-            // Find the item with the highest quantity sold
-            string mostPopular = itemSales.OrderByDescending(kv => kv.Value).First().Key;
-
-            // Update the UI text field with the most popular item
-            summaryScript.UpdateMostPopularItem(mostPopular);
-        }
-    }
-
-    private void UpdateSummary(GameObject summary)
-    {
-        summary.transform.Find("ShopInfo/NumOfCustomersNum").GetComponent<TextMeshProUGUI>().text = numberOfCustomers.ToString();
-        summary.transform.Find("ShopInfo/MostPopularItem").GetComponent<TextMeshProUGUI>().text = GetMostPopularItem();
-        summary.transform.Find("ShopInfo/LeastPopularItem").GetComponent<TextMeshProUGUI>().text = GetLeastPopularItem();
-        summary.transform.Find("ShopInfo/HighestValue").GetComponent<TextMeshProUGUI>().text = $"£{highestTransactionValue:F2}";
-        summary.transform.Find("ShopInfo/MostProfitableTransactionText/CustomerName").GetComponent<TextMeshProUGUI>().text = mostProfitableCustomer;
-        summary.transform.Find("ShopInfo/MostProfitableTransactionText/Amount/Value").GetComponent<TextMeshProUGUI>().text = $"£{highestTransactionValue:F2}";
-        summary.transform.Find("ShopInfo/MostProfitableTransactionText/Profit/Value").GetComponent<TextMeshProUGUI>().text = $"£{mostProfitableTransactionProfit:F2}";
-        summary.transform.Find("ShopInfo/DailyProfit/Amount").GetComponent<TextMeshProUGUI>().text = $"£{dailyProfit:F2}";
-        summary.transform.Find("ShopInfo/CustomerSatisfaction").GetComponent<TextMeshProUGUI>().text = $"{customerSpawner.Reputation:F0}%";
-        summary.transform.Find("ShopInfo/StockShortages/Amount").GetComponent<TextMeshProUGUI>().text = $"{customersNotSatisfied} Customers";
-        summary.transform.Find("ShopInfo/StockShortages/Items").GetComponent<TextMeshProUGUI>().text = $"{itemsNotSatisfied} Items";
-        summary.transform.Find("ShopInfo/RevenueValue").GetComponent<TextMeshProUGUI>().text = $"£{dailyRevenue:F2}";
-        summary.transform.Find("ShopInfo/ExpensesValue").GetComponent<TextMeshProUGUI>().text = $"£{dailyExpenses:F2}";
-    }
-
-    public void EndOfDaySummary()
-    {
-        GameObject newSummary = Instantiate(summaryPrefab, summaryParent);
-        newSummary.SetActive(false); // Initially inactive
-        dailySummaries.Add(newSummary);
-
-        if (dailySummaries.Count > 1)
-        {
-            dailySummaries[currentSummaryIndex].SetActive(false);
-        }
-        currentSummaryIndex = dailySummaries.Count - 1;
-
-        if (currentSummaryIndex > 0)
-        {
-            var summaryScript = dailySummaries[currentSummaryIndex - 1].GetComponent<SummaryPrefabScript>();
-            if (summaryScript)
+            DailyStats newDayStats = new DailyStats
             {
-                summaryScript.UpdateData(currentDay, numberOfCustomers, GetMostPopularItem(), GetLeastPopularItem(), highestTransactionValue, mostProfitableCustomer, highestTransactionValue, mostProfitableTransactionProfit, dailyProfit, customerSpawner.Reputation, customersNotSatisfied, itemsNotSatisfied, dailyRevenue, dailyExpenses);
-            }
+                dayNumber = currentDay,
+                itemNames = new List<string>(),
+                itemCounts = new List<int>(),
+                dailyExpenses = 0,
+                dailyProfit = 0,
+                dailyRevenue = 0,
+                mostProfitableCustomer = "",
+                highestTransactionValue = 0,
+                mostProfitableTransactionProfit = 0
+            };
+            dailyStatsList.Add(newDayStats);
+            UpdateSummary(); // Update the summary to reflect the new day initialization
         }
-
-        ResetDailyStats();
-        IncrementDay();
-    }
-
-    public void RegisterCustomerDissatisfaction(int itemsNotFound, int customerCount)
-    {
-        customersNotSatisfied += customerCount; // Increment for each customer that didn't find items
-        itemsNotSatisfied += itemsNotFound; // Add the number of items not found
-        Debug.Log($"Customer could not find {itemsNotFound} items.");
-        UpdateSummaryInfo(); // Update the UI or other systems immediately
-    }
-
-    public void RegisterCustomerEntry()
-    {
-        numberOfCustomers++;
-        summaryScript.UpdateNumberOfCustomers(numberOfCustomers);
     }
 
     public void RegisterDailyExpenses(float amount)
     {
-        dailyExpenses += amount;
-        Debug.Log($"Expenses updated: New total expenses = £{dailyExpenses:F2}");
-        UpdateSummaryInfo(); // Ensure this method updates the relevant UI or summary display
+        if (currentDay > dailyStatsList.Count)
+        {
+            PrepareDay(); // Ensure day is prepared before registering expenses
+        }
+        DailyStats todayStats = dailyStatsList[currentDay - 1];
+        todayStats.dailyExpenses += amount;
+        dailyStatsList[currentDay - 1] = todayStats; // Update the list with modified day stats
+        UpdateSummary();
+    }
+
+
+    void InstantiateSummaryPrefab()
+    {
+        GameObject newSummary = Instantiate(summaryPrefab, summaryParent);
+        RectTransform rectTransform = newSummary.GetComponent<RectTransform>();
+
+        // Set size, scale, anchors, pivot, and position
+        rectTransform.sizeDelta = new Vector2(1298, 674);
+        rectTransform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        rectTransform.anchoredPosition = Vector2.zero;
+
+        dailySummaries.Add(newSummary);
+        if (dailySummaries.Count > 1)
+            dailySummaries[currentSummaryIndex].SetActive(false);
+        currentSummaryIndex = dailySummaries.Count - 1;
+        newSummary.SetActive(true);
+    }
+
+    public void RegisterCustomerEntry()
+    {
+        if (dailyStatsList.Count == 0 || dailyStatsList.Last().dayNumber != currentDay)
+        {
+            dailyStatsList.Add(new DailyStats
+            {
+                dayNumber = currentDay,
+                itemNames = new List<string>(),
+                itemCounts = new List<int>(),
+                customerSatisfaction = customerSpawner.Reputation // Start with current reputation
+            });
+        }
+        DailyStats todayStats = dailyStatsList.Last();
+        todayStats.numberOfCustomers++;
+        dailyStatsList[dailyStatsList.Count - 1] = todayStats;
+        UpdateSummary(); // Update the summary right after updating the stats
     }
 
     public void RegisterTransaction(Customer customer, Dictionary<string, int> purchasedItems, float transactionValue, float transactionProfit)
     {
-        // Update daily revenue and profit
-        dailyRevenue += transactionValue;
-        dailyProfit += transactionProfit;
-
-        //Update most profitable customer field
-        if (transactionProfit > mostProfitableTransactionProfit)
-        {
-            mostProfitableTransactionProfit = transactionProfit;
-            mostProfitableCustomer = customer.customerName;
-        }
-
-        // Update item sales count
+        DailyStats todayStats = dailyStatsList.LastOrDefault();
         foreach (var item in purchasedItems)
         {
-            // Update item sales dictionary
-            if (itemSales.ContainsKey(item.Key))
+            int index = todayStats.itemNames.IndexOf(item.Key);
+            if (index == -1)
             {
-                itemSales[item.Key] += item.Value;
+                todayStats.itemNames.Add(item.Key);
+                todayStats.itemCounts.Add(item.Value);
             }
             else
             {
-                itemSales[item.Key] = item.Value;
+                todayStats.itemCounts[index] += item.Value;
             }
         }
-
-        // Update most popular item
-        UpdateMostPopularItem(); // Call the method to update the most popular item in the UI
-
-        if (transactionValue > highestTransactionValue)
+        todayStats.dailyRevenue += transactionValue;
+        todayStats.dailyProfit += transactionProfit;
+        if (transactionProfit > todayStats.mostProfitableTransactionProfit)
         {
-            highestTransactionValue = transactionValue;
+            todayStats.mostProfitableTransactionProfit = transactionProfit;
+            todayStats.mostProfitableCustomer = customer.customerName;
         }
+        if (transactionValue > todayStats.highestTransactionValue)
+            todayStats.highestTransactionValue = transactionValue;
 
-        UpdateSummaryInfo();
+        dailyStatsList[dailyStatsList.Count - 1] = todayStats;
+        UpdateSummary(); // Update the summary right after updating the stats
     }
 
-    public void UpdateSummaryInfo()
+
+    public void PrepareDay()
     {
-        if (summaryScript != null) // Fix variable name
+        if (dailyStatsList.Count < currentDay)
         {
-            foreach (var entry in itemSales)
+            AddNewDayStats(); // Add a new day stats if not present
+        }
+        UpdateSummary(); // Update the summary UI
+    }
+
+    void AddNewDayStats()
+    {
+        DailyStats newDayStats = new DailyStats
+        {
+            dayNumber = currentDay,
+            itemNames = new List<string>(),
+            itemCounts = new List<int>(),
+            dailyExpenses = 0,
+            dailyProfit = 0,
+            dailyRevenue = 0,
+            mostProfitableCustomer = "",
+            highestTransactionValue = 0,
+            mostProfitableTransactionProfit = 0,
+            customerSatisfaction = customerSpawner.Reputation // Start with current reputation
+        };
+        dailyStatsList.Add(newDayStats);
+    }
+
+
+    public void EndOfDaySummary()
+    {
+        if (dailyStatsList.Count == 0 || dailyStatsList.Last().dayNumber != currentDay)
+        {
+            DailyStats newDayStats = new DailyStats
             {
-                Debug.Log($"Item: {entry.Key}, Quantity: {entry.Value}");
+                dayNumber = currentDay,
+                itemNames = new List<string>(),
+                itemCounts = new List<int>(),
+                customerSatisfaction = customerSpawner.Reputation
+            };
+            dailyStatsList.Add(newDayStats);
+        }
+
+        DebugLogDayStats(dailyStatsList.Last());
+
+        if (dailySummaries.Count > currentSummaryIndex)
+        {
+            var summaryScript = dailySummaries[currentSummaryIndex].GetComponent<SummaryPrefabScript>();
+            if (summaryScript != null)
+            {
+                summaryScript.UpdateDataFromStats(dailyStatsList.Last(), 0, 0); // Add actual logic to calculate unsatisfied customers
             }
-            summaryScript.UpdateData( // Fix variable name
-                currentDay,
-                numberOfCustomers,
-                GetMostPopularItem(),
-                GetLeastPopularItem(),
-                highestTransactionValue,
-                mostProfitableCustomer,
-                highestTransactionValue,
-                mostProfitableTransactionProfit,
-                dailyProfit,
-                customerSpawner.Reputation,
-                customersNotSatisfied,
-                itemsNotSatisfied,
-                dailyRevenue,
-                dailyExpenses
-            );
+        }
+
+        IncrementDay();
+    }
+
+
+    void DebugLogDayStats(DailyStats dayStats)
+    {
+        Debug.Log($"Day: {dayStats.dayNumber}\n" +
+                  $"Number of Customers: {dayStats.numberOfCustomers}\n" +
+                  $"Daily Revenue: £{dayStats.dailyRevenue:F2}\n" +
+                  $"Daily Expenses: £{dayStats.dailyExpenses:F2}\n" +
+                  $"Daily Profit: £{dayStats.dailyProfit:F2}\n" +
+                  $"Most Profitable Customer: {dayStats.mostProfitableCustomer}\n" +
+                  $"Highest Transaction Value: £{dayStats.highestTransactionValue:F2}\n" +
+                  $"Most Profitable Transaction Profit: £{dayStats.mostProfitableTransactionProfit:F2}\n" +
+                  $"Customer Satisfaction: {dayStats.customerSatisfaction}%\n" +
+                  $"Items Sold: {string.Join(", ", dayStats.itemNames.Zip(dayStats.itemCounts, (name, count) => $"{name} ({count})"))}");
+    }
+
+    void ResetDailyStats()
+    {
+        if (dailyStatsList.Count > 0)
+        {
+            var lastStats = dailyStatsList.Last();
+            lastStats.itemNames.Clear();
+            lastStats.itemCounts.Clear();
+            lastStats.numberOfCustomers = 0;
+            lastStats.dailyRevenue = 0;
+            lastStats.dailyExpenses = 0;
+            lastStats.dailyProfit = 0;
+            lastStats.mostProfitableCustomer = "";
+            lastStats.highestTransactionValue = 0;
+            lastStats.mostProfitableTransactionProfit = 0;
+            dailyStatsList[dailyStatsList.Count - 1] = lastStats;
         }
     }
 
-    private void UpdateButtonVisibility()
+    void IncrementDay()
     {
-        if (prevDayButton != null && nextDayButton != null)
-        {
-            prevDayButton.gameObject.SetActive(currentSummaryIndex > 0);
-            nextDayButton.gameObject.SetActive(currentSummaryIndex < dailySummaries.Count - 1);
-        }
+        currentDay++;
+        PrepareDay();
+    }
+
+    void UpdateButtonVisibility()
+    {
+        prevDayButton.gameObject.SetActive(currentSummaryIndex > 0);
+        nextDayButton.gameObject.SetActive(currentSummaryIndex < dailySummaries.Count - 1);
     }
 
     public void ShowNextDay()
@@ -252,7 +253,6 @@ public class DailySummaryManager : MonoBehaviour
             dailySummaries[currentSummaryIndex].SetActive(false);
             currentSummaryIndex++;
             dailySummaries[currentSummaryIndex].SetActive(true);
-            UpdateButtonVisibility();
         }
     }
 
@@ -263,38 +263,101 @@ public class DailySummaryManager : MonoBehaviour
             dailySummaries[currentSummaryIndex].SetActive(false);
             currentSummaryIndex--;
             dailySummaries[currentSummaryIndex].SetActive(true);
-            UpdateButtonVisibility();
         }
     }
 
-    public void PrepareNewDay()
+    public void StartNewDay()
     {
-        if (dailySummaries.Count < currentDay)
-        {
-            InstantiateNewDaySummary();
-        }
-        ActivateCurrentDaySummary();
+        ResetDailyStats();
+        UpdateSummaryForNewDay();
     }
 
-    private void ActivateCurrentDaySummary()
+    void UpdateSummaryForNewDay()
     {
-        foreach (var summary in dailySummaries)
+        if (dailySummaries.Count == 0)
         {
-            summary.SetActive(false);
+            InstantiateSummaryPrefab();
         }
-        if (currentDay <= dailySummaries.Count)
+        else
         {
-            dailySummaries[currentDay - 1].SetActive(true);
-            currentSummaryIndex = currentDay - 1;
+            var summaryScript = dailySummaries[currentSummaryIndex].GetComponent<SummaryPrefabScript>();
+            summaryScript.UpdateData(
+                currentDay, 0, "N/A", "N/A", 0, "N/A", 0, 0, 0, customerSpawner.Reputation, 0, 0, 0, 0);
         }
     }
 
-    private void InstantiateNewDaySummary()
+    public void RegisterCustomerDissatisfaction(int itemsNotFound, int customerCount)
     {
-        GameObject newSummary = Instantiate(summaryPrefab, summaryParent);
-        newSummary.SetActive(true);  // Ensure it's set to active immediately
-        dailySummaries.Add(newSummary);
+        if (dailyStatsList.Count > 0)
+        {
+            DailyStats todayStats = dailyStatsList.Last();
+            todayStats.numberOfCustomers += customerCount; // Example of how you might update dissatisfaction counts
+            dailyStatsList[dailyStatsList.Count - 1] = todayStats; // Make sure to assign back to list
+        }
     }
 
+    public void UpdateDailyCustomerSatisfaction(float satisfactionChange)
+    {
+        if (dailyStatsList.Count > 0)
+        {
+            DailyStats todayStats = dailyStatsList.Last();
+            todayStats.customerSatisfaction += satisfactionChange; // Adjust satisfaction
+            todayStats.customerSatisfaction = Mathf.Clamp(todayStats.customerSatisfaction, 0, 100); // Keep within bounds
+            dailyStatsList[dailyStatsList.Count - 1] = todayStats; // Assign updated stats back to list
+        }
+    }
+
+    void UpdateSummary()
+    {
+        if (currentSummaryIndex >= 0 && currentSummaryIndex < dailySummaries.Count)
+        {
+            var summaryScript = dailySummaries[currentSummaryIndex].GetComponent<SummaryPrefabScript>();
+            if (summaryScript != null)
+            {
+                DailyStats currentStats = dailyStatsList[currentSummaryIndex];
+                summaryScript.UpdateData(
+                    currentStats.dayNumber,
+                    currentStats.numberOfCustomers,
+                    "N/A", // Temporary placeholders
+                    "N/A",
+                    currentStats.highestTransactionValue,
+                    currentStats.mostProfitableCustomer,
+                    0, // Assuming you add logic for most/least popular
+                    currentStats.mostProfitableTransactionProfit,
+                    currentStats.dailyProfit,
+                    currentStats.customerSatisfaction,
+                    0, // customersNotSatisfied placeholder
+                    0, // itemsNotSatisfied placeholder
+                    currentStats.dailyRevenue,
+                    currentStats.dailyExpenses
+                );
+            }
+        }
+        else
+        {
+            Debug.LogError("Current summary index is out of range.");
+        }
+    }
+
+    public void CheckAndEndDay()
+    {
+        if (DayHasEnded())
+        {
+            EndOfDaySummary();
+        }
+    }
+
+    private bool DayHasEnded()
+    {
+        // Check if the current time in DayCycle is greater than or equal to the day's duration
+        return DayCycle.Instance.currentTime >= DayCycle.Instance.dayDurationInSeconds;
+    }
+
+
+    private bool CheckIfTimeIsEndOfDay()
+    {
+        // Ensure that DayCycle.Instance is correctly checking for the end of day based on dayEndTime
+        return DayCycle.Instance.currentTime >= dayEndTime * 3600; // Convert hours to seconds if necessary
+    }
 
 }

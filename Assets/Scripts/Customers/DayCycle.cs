@@ -1,30 +1,20 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.UI; // For interacting with UI elements
-using TMPro; // For TextMeshPro elements
+using UnityEngine.UI;
+using TMPro;
 
 public class DayCycle : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI clockText; // Clock display
-    private float currentTime = 0;
     [SerializeField] private CustomerSpawner customerSpawner; // Reference to the CustomerSpawner script
+    [SerializeField] private DailySummaryManager dailySummaryManager; // Reference to the DailySummaryManager
+
+    public float currentTime = 0; // Added this line to declare currentTime
     private bool isDayActive = false;
     private bool isPaused = false;
-    [SerializeField] private Button normalTimeButton; // Button to reset time speed
-
-    [SerializeField] private Button openShopButton; // Button to open the shop
-    [SerializeField] private Button pauseButton;
-    [SerializeField] private Button slowDownTimeButton; // Button to slow down time
-    [SerializeField] private Button speedUpTimeButton; // Button to speed up time
+    [SerializeField] private Button normalTimeButton, openShopButton, pauseButton, slowDownTimeButton, speedUpTimeButton;
     private int timeMultiplier = 1;
-    public float dayDurationInSeconds = 600; // 10 Minutes for 1 day
-
-    private void SetTimeControlButtonsActive(bool isActive)
-    {
-        speedUpTimeButton.gameObject.SetActive(isActive);
-        slowDownTimeButton.gameObject.SetActive(isActive);
-        normalTimeButton.gameObject.SetActive(isActive);
-    }
+    public float dayDurationInSeconds = 600; // Duration of a game day in seconds
+    public static DayCycle Instance { get; private set; }
 
     private void Start()
     {
@@ -38,82 +28,70 @@ public class DayCycle : MonoBehaviour
         pauseButton.gameObject.SetActive(false); // Initially hide the pause button
     }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+
     void Update()
     {
         if (isDayActive && !isPaused)
         {
-            currentTime += Time.deltaTime * timeMultiplier; // Adjust for speed changes
-            UpdateClock(); // Update the clock based on current time
-
+            currentTime += Time.deltaTime * timeMultiplier;
+            UpdateClock();
             if (currentTime >= dayDurationInSeconds)
-            {
                 EndDay();
-            }
         }
     }
 
     void UpdateClock()
     {
         float dayProgress = currentTime / dayDurationInSeconds;
-        float dayHours = 9f + (dayProgress * 8f); // Assuming the shop is open from 9 AM to 5 PM
+        float dayHours = 9f + (dayProgress * 8f); // Simulating a work day from 9 AM to 5 PM
         int hours = (int)dayHours;
         int minutes = (int)((dayHours - hours) * 60f);
-        clockText.text = string.Format("{0:D2}:{1:D2}", hours, minutes); // Format time in HH:MM
+        clockText.text = string.Format("{0:D2}:{1:D2}", hours, minutes);
     }
 
     public void EndDay()
     {
+        if (customerSpawner.ActiveCustomers > 0)
+        {
+            return; // Wait for all customers to exit
+        }
+
+        FinalizeDay();
+    }
+
+    private void FinalizeDay()
+    {
         isDayActive = false;
         currentTime = 0;
-        timeMultiplier = 1; // Reset time speed
-        Time.timeScale = 1; // Reset Unity time scale
+        timeMultiplier = 1;
+        Time.timeScale = 1;
 
-        customerSpawner.CloseShop(); // Tell the CustomerSpawner to stop spawning customers
-
-        SetTimeControlButtonsActive(false); // Disable time control buttons
-        pauseButton.gameObject.SetActive(false); // Hide the pause button
-        clockText.gameObject.SetActive(false); // Hide the clock
+        customerSpawner.CloseShop();
+        SetTimeControlButtonsActive(false);
+        pauseButton.gameObject.SetActive(false);
+        clockText.gameObject.SetActive(false);
         openShopButton.gameObject.SetActive(true);
-        InformationBar.Instance.DisplayMessage("Day ended. Shop is now closed.");
 
-        var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
+        InformationBar.Instance.DisplayMessage("Day ended. Shop is now closed.");
         if (dailySummaryManager != null)
         {
-            dailySummaryManager.EndOfDaySummary();  // Ensure this is the only place where EndOfDaySummary is called
+            dailySummaryManager.CheckAndEndDay();
         }
     }
 
-
-
-    public void NormalTime()
-    {
-        // Return time scale back to normal
-        timeMultiplier = 1;
-        Time.timeScale = timeMultiplier;
-        Debug.Log("Time reset to normal");
-    }
-
-    public void SlowDownTime()
-    {
-        // Decrementally decrease the time scale
-        if (timeMultiplier > 1) // Ensure timeMultiplier doesn't go below normal speed
-        {
-            timeMultiplier /= 2;
-            Time.timeScale = timeMultiplier;
-            Debug.Log("Time slowed down");
-        }
-    }
-
-    public void SpeedUpTime()
-    {
-        // Incrementally increase the time scale
-        if (timeMultiplier < 16) // Set a cap for the multiplier, for example, 16x
-        {
-            timeMultiplier *= 2;
-            Time.timeScale = timeMultiplier;
-            Debug.Log("Time sped up");
-        }
-    }
 
     public void StartDay()
     {
@@ -127,29 +105,52 @@ public class DayCycle : MonoBehaviour
             pauseButton.gameObject.SetActive(true);
             clockText.gameObject.SetActive(true);
 
-            var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
             if (dailySummaryManager != null)
-            {
-                dailySummaryManager.PrepareNewDay(); // Ensure this prepares the summary for a new day.
-            }
+                dailySummaryManager.PrepareDay(); // Prepare for a new day
 
             InformationBar.Instance.DisplayMessage("Shop is now open!");
         }
     }
 
+    private void SetTimeControlButtonsActive(bool isActive)
+    {
+        speedUpTimeButton.gameObject.SetActive(isActive);
+        slowDownTimeButton.gameObject.SetActive(isActive);
+        normalTimeButton.gameObject.SetActive(isActive);
+    }
 
+    public void NormalTime()
+    {
+        timeMultiplier = 1;
+        Time.timeScale = timeMultiplier;
+    }
+
+    public void SlowDownTime()
+    {
+        if (timeMultiplier > 1)
+        {
+            timeMultiplier /= 2;
+            Time.timeScale = timeMultiplier;
+        }
+    }
+
+    public void SpeedUpTime()
+    {
+        if (timeMultiplier < 16)
+        {
+            timeMultiplier *= 2;
+            Time.timeScale = timeMultiplier;
+        }
+    }
 
     public void TogglePause()
     {
         isPaused = !isPaused;
-        Time.timeScale = isPaused ? 0 : timeMultiplier; // Pause or resume the game
-
-        // Disable or enable time control buttons based on pause state
+        Time.timeScale = isPaused ? 0 : timeMultiplier;
         speedUpTimeButton.interactable = !isPaused;
         slowDownTimeButton.interactable = !isPaused;
         normalTimeButton.interactable = !isPaused;
 
         InformationBar.Instance.DisplayMessage(isPaused ? "Game paused." : "Game resumed.");
     }
-
 }

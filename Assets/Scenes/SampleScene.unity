@@ -276,7 +276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &60334846
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1526,7 +1526,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &349201845
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6010,7 +6010,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413635860}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &1428159722
 GameObject:
   m_ObjectHideFlags: 0
@@ -8235,8 +8235,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1295334108}
   m_HandleRect: {fileID: 1295334107}
   m_Direction: 2
-  m_Value: 0.0000057454095
-  m_Size: 0.9921187
+  m_Value: 0.0000057454754
+  m_Size: 0.9921188
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -8870,6 +8870,7 @@ MonoBehaviour:
   maxBudget: 50
   minBudget: 1
   shoppingBGParent: {fileID: 188969292}
+  activeCustomers: 0
 --- !u!114 &2037523729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8898,6 +8899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockText: {fileID: 333845623}
   customerSpawner: {fileID: 2037523728}
+  dailySummaryManager: {fileID: 2037523732}
   normalTimeButton: {fileID: 1196545348}
   openShopButton: {fileID: 980676635}
   pauseButton: {fileID: 466376933}
@@ -8933,6 +8935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abaf5f676751334985ec9351679c26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentDay: 1
   summaryParent: {fileID: 2016811681}
   summaryPrefab: {fileID: 4111360709199391499, guid: d495120752d734541af064d5aa269a32, type: 3}
   prevDayButton: {fileID: 349201846}
