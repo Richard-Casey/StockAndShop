@@ -81,12 +81,13 @@ public class TillManager : MonoBehaviour
             .GroupBy(item => item.itemName)
             .ToDictionary(group => group.Key, group => group.Sum(item => item.quantity));
 
-        // Update item sales in the DailySummaryManager
+        // Update item sales and possibly the highest transaction in the DailySummaryManager
         DailySummaryManager summaryManager = FindObjectOfType<DailySummaryManager>();
         if (summaryManager != null)
         {
             // Pass purchasedItemsDict to RegisterTransaction method
             summaryManager.RegisterTransaction(customer, purchasedItemsDict, totalCost, totalProfit);
+            summaryManager.CheckAndUpdateHighestTransactionValue(totalCost, customer.customerName, totalProfit);
         }
         else
         {
@@ -95,6 +96,8 @@ public class TillManager : MonoBehaviour
 
         return tillCustomerInstance;
     }
+
+
 
 
 

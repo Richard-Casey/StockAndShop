@@ -58,6 +58,26 @@ public class DailySummaryManager : MonoBehaviour
         
     }
 
+    public void CheckAndUpdateHighestTransactionValue(float transactionValue, string customerName, float transactionProfit)
+    {
+        int lastIndex = dailyStatsList.Count - 1; // Correctly getting the last index
+        DailyStats lastStats = dailyStatsList[lastIndex]; // Getting a reference, not a copy
+
+        if (transactionValue > lastStats.highestTransactionValue)
+        {
+            lastStats.highestTransactionValue = transactionValue;
+            lastStats.mostProfitableCustomer = customerName;
+            lastStats.mostProfitableTransactionProfit = transactionProfit;
+
+            dailyStatsList[lastIndex] = lastStats; // Updating the list with modified stats
+
+            UpdateUI(); // Explicitly calling UpdateUI to refresh the display
+        }
+    }
+
+
+
+
 
     void InitializeDay()
     {
@@ -256,14 +276,10 @@ public class DailySummaryManager : MonoBehaviour
             dailyExpensesText.text = $"£{currentStats.dailyExpenses:F2}";
             dailyProfitText.text = $"£{currentStats.dailyProfit:F2}";
             mostProfitableCustomerText.text = currentStats.mostProfitableCustomer;
-            highestTransactionValueText.text = $"£{currentStats.highestTransactionValue:F2}";
+            highestTransactionValueText.text = $"£{currentStats.highestTransactionValue:F2}"; // Ensure this line exists and is correct
             customerSatisfactionText.text = $"{currentStats.customerSatisfaction:F0}%";
-
-            // Directly update the most and least popular items
             mostPopularItemText.text = DetermineMostPopularItem(currentStats);
             leastPopularItemText.text = DetermineLeastPopularItem(currentStats);
-            Debug.Log("Most Popular Item: " + mostPopularItemText.text);
-            Debug.Log("Least Popular Item: " + leastPopularItemText.text);
         }
     }
 
