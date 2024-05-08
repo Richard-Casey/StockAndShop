@@ -4,20 +4,25 @@ using TMPro;
 
 public class DayCycle : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI clockText; // Clock display
+    [SerializeField] public TextMeshProUGUI clockText; // Clock display
     [SerializeField] private CustomerSpawner customerSpawner; // Reference to the CustomerSpawner script
     [SerializeField] private DailySummaryManager dailySummaryManager; // Reference to the DailySummaryManager
 
     public float currentTime = 0; // Added this line to declare currentTime
-    private bool isDayActive = false;
+    public int currentDay = 0;
+    public bool isDayActive = false;
     private bool isPaused = false;
-    [SerializeField] private Button normalTimeButton, openShopButton, pauseButton, slowDownTimeButton, speedUpTimeButton;
+    [SerializeField] public Button normalTimeButton, openShopButton, pauseButton, slowDownTimeButton, speedUpTimeButton;
     private int timeMultiplier = 1;
     public float dayDurationInSeconds = 600; // Duration of a game day in seconds
     public static DayCycle Instance { get; private set; }
+    public bool isFirstDayStarted = false;
 
     private void Start()
     {
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         openShopButton.onClick.AddListener(StartDay);
         speedUpTimeButton.onClick.AddListener(SpeedUpTime);
         slowDownTimeButton.onClick.AddListener(SlowDownTime);
@@ -26,6 +31,12 @@ public class DayCycle : MonoBehaviour
 
         SetTimeControlButtonsActive(false); // Initially disable time control buttons
         pauseButton.gameObject.SetActive(false); // Initially hide the pause button
+
+        // Ensure UI reflects the actual initial state which should be 'Day 0'
+        if (dailySummaryManager != null)
+        {
+            dailySummaryManager.UpdateUI();
+        }
     }
 
     private void Awake()
@@ -40,7 +51,6 @@ public class DayCycle : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 
     void Update()
     {
@@ -64,11 +74,12 @@ public class DayCycle : MonoBehaviour
 
     public void EndDay()
     {
+        Debug.Log("[DayCycle] EndDay called with activeCustomers: " + customerSpawner.ActiveCustomers);
         if (customerSpawner.ActiveCustomers > 0)
         {
-            return; // Wait for all customers to exit
+            Debug.Log("[DayCycle] Cannot end day, customers still active.");
+            return;
         }
-
         FinalizeDay();
     }
 
@@ -86,15 +97,13 @@ public class DayCycle : MonoBehaviour
         openShopButton.gameObject.SetActive(true);
 
         InformationBar.Instance.DisplayMessage("Day ended. Shop is now closed.");
-        if (dailySummaryManager != null)
-        {
-            dailySummaryManager.CheckAndEndDay();
-        }
+        dailySummaryManager.EndOfDaySummary();
+        currentDay++;  // Increment here after all end-of-day processing
     }
-
 
     public void StartDay()
     {
+        Debug.Log("[DayCycle] StartDay called. isDayActive: " + isDayActive);
         if (!isDayActive)
         {
             isDayActive = true;
@@ -105,14 +114,28 @@ public class DayCycle : MonoBehaviour
             pauseButton.gameObject.SetActive(true);
             clockText.gameObject.SetActive(true);
 
-            if (dailySummaryManager != null)
-                dailySummaryManager.PrepareDay(); // Prepare for a new day
+            if (currentDay == 0)
+            {
+                Debug.Log("[DayCycle] Handling first day.");
+                dailySummaryManager.StartNewDayWithoutReset(); // Make sure this handles day 0 properly
+            }
+            else
+            {
+                Debug.Log("[DayCycle] Handling new day.");
+                dailySummaryManager.PrepareForNewDay(); // This should only be called from day 1 onwards
+            }
 
             InformationBar.Instance.DisplayMessage("Shop is now open!");
         }
     }
 
-    private void SetTimeControlButtonsActive(bool isActive)
+
+
+
+
+
+
+    public void SetTimeControlButtonsActive(bool isActive)
     {
         speedUpTimeButton.gameObject.SetActive(isActive);
         slowDownTimeButton.gameObject.SetActive(isActive);
@@ -153,4 +176,27 @@ public class DayCycle : MonoBehaviour
 
         InformationBar.Instance.DisplayMessage(isPaused ? "Game paused." : "Game resumed.");
     }
+
+    public void OpenShopUIUpdates()
+    {
+        SetTimeControlButtonsActive(true);
+        pauseButton.gameObject.SetActive(true);
+        clockText.gameObject.SetActive(true);
+    }
+
+    public void StartNewDay()
+    {
+        if (currentDay == 0)
+        {
+            // When it's the transition from day 0 to day 1
+            dailySummaryManager.StartNewDayWithoutReset(); // Starts the day without resetting stats
+        }
+        else
+        {
+            // Normal day start for subsequent days
+            dailySummaryManager.PrepareForNewDay(); // Resets stats including expenses
+        }
+        currentDay++; // Increment the day counter for the next operation
+    }
+
 }

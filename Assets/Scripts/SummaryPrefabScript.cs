@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System; // This is required for Int32, but in Unity, you can usually just use 'int'
+using System.Linq;
 
 public class SummaryPrefabScript : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class SummaryPrefabScript : MonoBehaviour
         );
     }
 
+
     // This is a placeholder. You'll need to define how you calculate this based on your game's data structures.
     private float DetermineTotalSpentByMostProfitableCustomer(DailyStats stats)
     {
@@ -75,33 +77,19 @@ public class SummaryPrefabScript : MonoBehaviour
         numOfCustomersNum.text = newNumberOfCustomers.ToString();
     }
 
-    private string DetermineMostPopularItem(DailyStats stats)
+    public string DetermineMostPopularItem(DailyStats stats)
     {
-        int maxCount = 0;
-        string mostPopular = "N/A";
-        foreach (var count in stats.itemCounts)
-        {
-            if (count > maxCount)
-            {
-                maxCount = count;
-            }
-        }
-        return maxCount > 0 ? stats.itemNames[stats.itemCounts.IndexOf(maxCount)] : mostPopular;
+        if (stats.itemSales.Count == 0) return "N/A";
+        return stats.itemSales.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
     }
 
-    private string DetermineLeastPopularItem(DailyStats stats)
+    public string DetermineLeastPopularItem(DailyStats stats)
     {
-        int minCount = int.MaxValue;
-        string leastPopular = "N/A";
-        foreach (var count in stats.itemCounts)
-        {
-            if (count < minCount)
-            {
-                minCount = count;
-            }
-        }
-        return minCount < int.MaxValue ? stats.itemNames[stats.itemCounts.IndexOf(minCount)] : leastPopular;
+        if (stats.itemSales.Count == 0) return "N/A";
+        return stats.itemSales.Aggregate((l, r) => l.Value < r.Value ? l : r).Key;
     }
+
+
 
     // Keep these if necessary for your architecture, otherwise consider restructuring to remove UI element data fetching
     public int GetNumberOfCustomers() => int.Parse(numOfCustomersNum.text);

@@ -26,11 +26,13 @@ public class CustomerSpawner : MonoBehaviour
     public void CustomerExited()
     {
         activeCustomers--;
-        if (activeCustomers == 0)
+        // Only check for ending the day if no customers are left and the day is officially over
+        if (activeCustomers == 0 && !DayCycle.Instance.isDayActive)
         {
             FindObjectOfType<DailySummaryManager>().CheckAndEndDay();
         }
     }
+
 
     void AdjustSpawnRateBasedOnReputation()
     {
@@ -80,20 +82,19 @@ public class CustomerSpawner : MonoBehaviour
 
     public void CloseShop()
     {
+        Debug.Log("[CustomerSpawner] CloseShop called. DayCycle active status: " + DayCycle.Instance.isDayActive);
         shopIsOpen = false;
     }
 
     public void OpenShop()
     {
+        if (!DayCycle.Instance.isDayActive)
+        {
+            DayCycle.Instance.StartNewDay(); // Handle day start properly
+        }
         shopIsOpen = true;
         spawnTimer = spawnRate; // Reset spawn timer
-
-        // Prepare new day summary
-        var dailySummaryManager = FindObjectOfType<DailySummaryManager>();
-        if (dailySummaryManager != null)
-        {
-            dailySummaryManager.PrepareDay();
-        }
+        Debug.Log("Shop is now open.");
     }
 
 

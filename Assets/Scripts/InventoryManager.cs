@@ -233,6 +233,12 @@ public class InventoryManager : MonoBehaviour
         return inventoryItems.FirstOrDefault(item => item.itemName == name);
     }
 
+    public List<InventoryItem> GetAvailableItemsForSale()
+    {
+        // This method returns all items available in the inventory
+        return inventoryItems.Where(item => item.quantity > 0).ToList();
+    }
+
 
 
 }

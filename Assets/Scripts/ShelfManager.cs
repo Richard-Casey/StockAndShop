@@ -187,5 +187,20 @@ public class ShelfManager : MonoBehaviour
         InitializeShelfItems();
     }
 
+    public Dictionary<string, int> GetShelfItemQuantities()
+    {
+        Dictionary<string, int> quantities = new Dictionary<string, int>();
+        foreach (var item in shelfItems)
+        {
+            ShelfItemUI ui = item.GetComponent<ShelfItemUI>();
+            if (ui != null && !quantities.ContainsKey(ui.itemName))
+            {
+                quantities.Add(ui.itemName, ui.quantityOnShelf); // Use initial quantity for calculations
+            }
+        }
+        return quantities;
+    }
+
+
 
 }

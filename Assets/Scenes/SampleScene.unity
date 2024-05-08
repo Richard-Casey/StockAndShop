@@ -540,7 +540,7 @@ GameObject:
   - component: {fileID: 55451446}
   - component: {fileID: 55451445}
   m_Layer: 5
-  m_Name: LeastPopularItemText (1)
+  m_Name: LeastPopularItemTextItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8081,7 +8081,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2037523732}
         m_TargetAssemblyTypeName: DailySummaryManager, Assembly-CSharp
-        m_MethodName: OnOpenShopButtonPressed
+        m_MethodName: IncrementDay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17439,12 +17439,15 @@ MonoBehaviour:
   customerSpawner: {fileID: 2037523728}
   dailySummaryManager: {fileID: 2037523732}
   currentTime: 0
+  currentDay: 0
+  isDayActive: 0
   normalTimeButton: {fileID: 1196545348}
   openShopButton: {fileID: 980676635}
   pauseButton: {fileID: 466376933}
   slowDownTimeButton: {fileID: 292096859}
   speedUpTimeButton: {fileID: 1153664088}
   dayDurationInSeconds: 600
+  isFirstDayStarted: 0
 --- !u!114 &2037523731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17474,15 +17477,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0abaf5f676751334985ec9351679c26a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDay: 1
+  currentDay: 0
+  summaryPrefabScript: {fileID: 0}
   dayText: {fileID: 605959270}
   numberOfCustomersText: {fileID: 1983754467}
+  numberOfPurchasingCustomersText: {fileID: 1136259703}
   dailyRevenueText: {fileID: 339223206}
   dailyExpensesText: {fileID: 1097566419}
   dailyProfitText: {fileID: 1767696024}
   mostProfitableCustomerText: {fileID: 496725053}
   highestTransactionValueText: {fileID: 1635798636}
   customerSatisfactionText: {fileID: 784499221}
+  mostPopularItemText: {fileID: 1737534329}
+  leastPopularItemText: {fileID: 55451445}
 --- !u!1 &2039605927
 GameObject:
   m_ObjectHideFlags: 0
