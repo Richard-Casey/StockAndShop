@@ -116,7 +116,6 @@ public class Customer : MonoBehaviour
                 }
                 else
                 {
-                    // Item found but either too expensive or budget is insufficient
                     itemsNotFound++; // Track this as a missed opportunity due to price/budget constraints
                 }
             }
@@ -134,9 +133,10 @@ public class Customer : MonoBehaviour
 
         if (itemsNotFound > 0)
         {
-            FindObjectOfType<DailySummaryManager>().RegisterCustomerDissatisfaction(itemsNotFound, 1); // Notify the DailySummaryManager
+            FindObjectOfType<DailySummaryManager>().RegisterStockShortage(1, itemsNotFound); // Notify the DailySummaryManager for each customer and the number of items not found
         }
     }
+
 
 
     // Helper method to find a ShelfItemUI by item name

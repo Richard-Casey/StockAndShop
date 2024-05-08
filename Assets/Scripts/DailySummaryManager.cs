@@ -3,7 +3,6 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 
-// This is the data stored and therefore displayed on the summary panel
 [System.Serializable]
 public struct DailyStats
 {
@@ -17,9 +16,12 @@ public struct DailyStats
     public string mostProfitableCustomer;
     public float highestTransactionValue;
     public float mostProfitableTransactionProfit;
-    public float mostProfitableTransactionAmount; // Ensure this is added if missing
+    public float mostProfitableTransactionAmount;
     public float customerSatisfaction;
+    public int stockShortagePerCustomer;
+    public int stockShortagePerItem;
 }
+
 
 
 
@@ -45,6 +47,9 @@ public class DailySummaryManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI customerSatisfactionText;
     [SerializeField] private TextMeshProUGUI mostPopularItemText;
     [SerializeField] private TextMeshProUGUI leastPopularItemText;
+    [SerializeField] private TextMeshProUGUI stockShortagePerCustomerText;
+    [SerializeField] private TextMeshProUGUI stockShortagePerItemText;
+
 
 
 
@@ -273,8 +278,12 @@ public class DailySummaryManager : MonoBehaviour
             leastPopularItemText.text = DetermineLeastPopularItem(currentStats);
             mostProfitableAmountText.text = $"£{currentStats.mostProfitableTransactionAmount:F2}";
             mostProfitableProfitText.text = $"£{currentStats.mostProfitableTransactionProfit:F2}";
+            stockShortagePerCustomerText.text = $"Per Customer: {currentStats.stockShortagePerCustomer}";
+            stockShortagePerItemText.text = $"Per Item: {currentStats.stockShortagePerItem}";
+            
         }
     }
+
 
 
     string DetermineMostPopularItem(DailyStats stats)
@@ -370,4 +379,18 @@ public class DailySummaryManager : MonoBehaviour
         dailyStatsList[dailyStatsList.Count - 1] = todayStats; // Update the last element
         UpdateUI();
     }
+
+    public void RegisterStockShortage(int customersAffected, int itemsNotFound)
+    {
+        int lastIndex = dailyStatsList.Count - 1;
+        DailyStats todayStats = dailyStatsList[lastIndex];
+
+        todayStats.stockShortagePerCustomer += customersAffected;
+        todayStats.stockShortagePerItem += itemsNotFound;
+
+        dailyStatsList[lastIndex] = todayStats; // Update the list with modified stats
+        UpdateUI(); // Explicitly calling UpdateUI to refresh the display
+    }
+
+
 }
