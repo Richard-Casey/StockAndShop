@@ -17492,6 +17492,8 @@ MonoBehaviour:
   customerSatisfactionText: {fileID: 784499221}
   mostPopularItemText: {fileID: 1737534329}
   leastPopularItemText: {fileID: 55451445}
+  stockShortagePerCustomerText: {fileID: 1149435493}
+  stockShortagePerItemText: {fileID: 556067446}
 --- !u!1 &2039605927
 GameObject:
   m_ObjectHideFlags: 0
