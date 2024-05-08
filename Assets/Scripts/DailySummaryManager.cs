@@ -275,28 +275,27 @@ public class DailySummaryManager : MonoBehaviour
 
     string DetermineLeastPopularItem(DailyStats stats)
     {
-        if (stats.itemSales.Count == 0) return "N/A";
-
-        // Get initial quantities from ShelfManager
+        // Retrieve initial quantities on the shelf from ShelfManager
         var shelfQuantities = FindObjectOfType<ShelfManager>().GetShelfItemQuantities();
 
-        // Combine shelf quantities with sold quantities for a full picture
+        // Calculate the total units involved (initial stock minus remaining stock to find out total units moved)
+        Dictionary<string, int> totalUnitsMoved = new Dictionary<string, int>();
+
         foreach (var item in shelfQuantities)
         {
-            if (stats.itemSales.ContainsKey(item.Key))
-            {
-                stats.itemSales[item.Key] += item.Value;
-            }
-            else
-            {
-                stats.itemSales.Add(item.Key, item.Value);
-            }
+            int unitsSold = stats.itemSales.ContainsKey(item.Key) ? stats.itemSales[item.Key] : 0;
+            totalUnitsMoved[item.Key] = unitsSold;  // Only count the units actually sold
         }
 
-        // Now find the least popular item, considering unsold items as well
-        var leastPopular = stats.itemSales.OrderBy(x => x.Value).FirstOrDefault();
-        return leastPopular.Key ?? "N/A";  // Handle possible null key if all items have 0 sales and dictionary keys are somehow unset
+        // Finding the least popular item by identifying the item with the lowest units moved
+        if (totalUnitsMoved.Count == 0)
+            return "N/A";
+
+        var leastPopular = totalUnitsMoved.OrderBy(x => x.Value).ThenByDescending(x => shelfQuantities[x.Key]).FirstOrDefault();
+        return leastPopular.Key;  // Assumes there's always at least one item
     }
+
+
 
 
 
