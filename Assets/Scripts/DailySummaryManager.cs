@@ -13,12 +13,14 @@ public struct DailyStats
     public float dailyRevenue;
     public float dailyExpenses;
     public float dailyProfit;
-    public Dictionary<string, int> itemSales; // For tracking item sales
+    public Dictionary<string, int> itemSales;
     public string mostProfitableCustomer;
     public float highestTransactionValue;
     public float mostProfitableTransactionProfit;
-    public float customerSatisfaction; // Stores customer satisfaction percentage
+    public float mostProfitableTransactionAmount; // Ensure this is added if missing
+    public float customerSatisfaction;
 }
+
 
 
 public class DailySummaryManager : MonoBehaviour
@@ -37,6 +39,8 @@ public class DailySummaryManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dailyExpensesText;
     [SerializeField] private TextMeshProUGUI dailyProfitText;
     [SerializeField] private TextMeshProUGUI mostProfitableCustomerText;
+    [SerializeField] private TextMeshProUGUI mostProfitableAmountText;
+    [SerializeField] private TextMeshProUGUI mostProfitableProfitText;
     [SerializeField] private TextMeshProUGUI highestTransactionValueText;
     [SerializeField] private TextMeshProUGUI customerSatisfactionText;
     [SerializeField] private TextMeshProUGUI mostPopularItemText;
@@ -132,58 +136,45 @@ public class DailySummaryManager : MonoBehaviour
 
     public void RegisterTransaction(Customer customer, Dictionary<string, int> purchasedItems, float transactionValue, float transactionProfit)
     {
-        DailyStats todayStats = dailyStatsList.Last();
+        int lastIndex = dailyStatsList.Count - 1;
+        DailyStats currentDayStats = dailyStatsList[lastIndex];
 
+        // Registering the sales of each item
         foreach (var item in purchasedItems)
         {
-            // Ensure the item is in the dictionary, then increment its count
-            if (todayStats.itemSales.ContainsKey(item.Key))
-            {
-                todayStats.itemSales[item.Key] += item.Value;
-            }
-        }
-
-        // Increment the number of purchasing customers if there are items in the purchase.
-        if (purchasedItems.Count > 0)
-        {
-            todayStats.numberOfPurchasingCustomers++;
-            Debug.Log($"Number of purchasing customers updated: {todayStats.numberOfPurchasingCustomers}");
-        }
-
-        // Update item sales count.
-        foreach (var item in purchasedItems)
-        {
-            if (todayStats.itemSales.ContainsKey(item.Key))
-            {
-                todayStats.itemSales[item.Key] += item.Value;
-                Debug.Log($"Updated {item.Key}: {todayStats.itemSales[item.Key]}");
-            }
+            if (currentDayStats.itemSales.ContainsKey(item.Key))
+                currentDayStats.itemSales[item.Key] += item.Value;
             else
-            {
-                todayStats.itemSales.Add(item.Key, item.Value);
-                Debug.Log($"Added new item {item.Key}: {item.Value}");
-            }
+                currentDayStats.itemSales[item.Key] = item.Value;
         }
 
-        // Update for the most profitable transaction if this transaction's value is higher than the current highest.
-        if (transactionValue > todayStats.highestTransactionValue)
+        currentDayStats.numberOfPurchasingCustomers++;
+        currentDayStats.dailyRevenue += transactionValue;
+        currentDayStats.dailyProfit += transactionProfit;
+
+        // Check for highest transaction value
+        if (transactionValue > currentDayStats.highestTransactionValue)
         {
-            todayStats.highestTransactionValue = transactionValue;
-            todayStats.mostProfitableCustomer = customer.customerName;
-            todayStats.mostProfitableTransactionProfit = transactionProfit;
-            Debug.Log($"New highest transaction: {transactionValue} by {customer.customerName}");
+            currentDayStats.highestTransactionValue = transactionValue;
+            // Other updates can be done here if needed
         }
 
-        // Update the day's revenue and profit.
-        todayStats.dailyRevenue += transactionValue;
-        todayStats.dailyProfit += transactionProfit;
-        Debug.Log($"Total Revenue for the day: {todayStats.dailyRevenue}, Total Profit for the day: {todayStats.dailyProfit}");
+        // Check for most profitable transaction
+        if (transactionProfit > currentDayStats.mostProfitableTransactionProfit)
+        {
+            currentDayStats.mostProfitableTransactionProfit = transactionProfit;
+            currentDayStats.mostProfitableCustomer = customer.customerName;
+            // Assuming you want to track the total amount as well for the most profitable transaction
+            currentDayStats.mostProfitableTransactionAmount = transactionValue;
+        }
 
-        // Replace the last day's stats with updated stats.
-        dailyStatsList[dailyStatsList.Count - 1] = todayStats;
+        // Update the list with new stats
+        dailyStatsList[lastIndex] = currentDayStats;
 
+        // Update UI
         UpdateUI();
     }
+
 
 
 
@@ -276,12 +267,15 @@ public class DailySummaryManager : MonoBehaviour
             dailyExpensesText.text = $"£{currentStats.dailyExpenses:F2}";
             dailyProfitText.text = $"£{currentStats.dailyProfit:F2}";
             mostProfitableCustomerText.text = currentStats.mostProfitableCustomer;
-            highestTransactionValueText.text = $"£{currentStats.highestTransactionValue:F2}"; // Ensure this line exists and is correct
+            highestTransactionValueText.text = $"£{currentStats.highestTransactionValue:F2}";
             customerSatisfactionText.text = $"{currentStats.customerSatisfaction:F0}%";
             mostPopularItemText.text = DetermineMostPopularItem(currentStats);
             leastPopularItemText.text = DetermineLeastPopularItem(currentStats);
+            mostProfitableAmountText.text = $"£{currentStats.mostProfitableTransactionAmount:F2}";
+            mostProfitableProfitText.text = $"£{currentStats.mostProfitableTransactionProfit:F2}";
         }
     }
+
 
     string DetermineMostPopularItem(DailyStats stats)
     {

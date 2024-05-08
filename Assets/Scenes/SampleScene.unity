@@ -17486,6 +17486,8 @@ MonoBehaviour:
   dailyExpensesText: {fileID: 1097566419}
   dailyProfitText: {fileID: 1767696024}
   mostProfitableCustomerText: {fileID: 496725053}
+  mostProfitableAmountText: {fileID: 1635798636}
+  mostProfitableProfitText: {fileID: 1965903035}
   highestTransactionValueText: {fileID: 576408416}
   customerSatisfactionText: {fileID: 784499221}
   mostPopularItemText: {fileID: 1737534329}
