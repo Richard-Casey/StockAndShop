@@ -49,6 +49,7 @@ public class DailySummaryManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI leastPopularItemText;
     [SerializeField] private TextMeshProUGUI stockShortagePerCustomerText;
     [SerializeField] private TextMeshProUGUI stockShortagePerItemText;
+    [SerializeField] private OverallSummaryManager overallSummaryManager;
 
 
 
@@ -325,7 +326,13 @@ public class DailySummaryManager : MonoBehaviour
             mostProfitableProfitText.text = $"£{currentStats.mostProfitableTransactionProfit:F2}";
             stockShortagePerCustomerText.text = $"Per Customer: {currentStats.stockShortagePerCustomer}";
             stockShortagePerItemText.text = $"Per Item: {currentStats.stockShortagePerItem}";
-            
+
+            // Now update the OverallSummaryManager UI as well
+            if (overallSummaryManager != null)
+            {
+                overallSummaryManager.UpdateOverallStats();
+            }
+
         }
     }
 
@@ -413,6 +420,13 @@ public class DailySummaryManager : MonoBehaviour
         dailyStatsList.Add(newDayStats);
         UpdateUI();
     }
+
+    public List<DailyStats> GetDailyStats()
+    {
+        // Returns a shallow copy of the dailyStatsList to prevent modification from outside
+        return new List<DailyStats>(dailyStatsList);
+    }
+
 
     public void RegisterDailyExpenses(float amount)
     {

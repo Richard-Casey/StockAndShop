@@ -15345,7 +15345,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 672108232}
   m_HandleRect: {fileID: 672108230}
   m_Direction: 2
-  m_Value: 0.0000057454095
+  m_Value: 0.000011490819
   m_Size: 0.9921187
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -16084,7 +16084,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1295334108}
   m_HandleRect: {fileID: 1295334107}
   m_Direction: 2
-  m_Value: 0.0000057454095
+  m_Value: 0.000011490819
   m_Size: 0.9921187
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -17169,6 +17169,7 @@ GameObject:
   - component: {fileID: 2037523730}
   - component: {fileID: 2037523731}
   - component: {fileID: 2037523732}
+  - component: {fileID: 2037523733}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -17494,6 +17495,49 @@ MonoBehaviour:
   leastPopularItemText: {fileID: 55451445}
   stockShortagePerCustomerText: {fileID: 1149435493}
   stockShortagePerItemText: {fileID: 556067446}
+  overallSummaryManager: {fileID: 2037523733}
+--- !u!114 &2037523733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037523716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e0c3be4bee17e84a9651790cfcaf50a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  overallStats:
+    totalCustomers: 0
+    totalPurchasingCustomers: 0
+    mostPopularItem: 
+    leastPopularItem: 
+    highestTransactionValue: 0
+    mostProfitableCustomer: 
+    mostProfitableAmount: 0
+    mostProfitableProfit: 0
+    totalRevenue: 0
+    totalExpenses: 0
+    totalProfit: 0
+    averageCustomerSatisfaction: 0
+    totalStockShortagePerCustomer: 0
+    totalStockShortagePerItem: 0
+  dailySummaryManager: {fileID: 2037523732}
+  totalCustomersText: {fileID: 1304616520}
+  totalPurchasingCustomersText: {fileID: 981052865}
+  mostPopularItemText: {fileID: 958677802}
+  leastPopularItemText: {fileID: 387834978}
+  highestTransactionValueText: {fileID: 52494154}
+  mostProfitableCustomerText: {fileID: 1678252295}
+  mostProfitableAmountText: {fileID: 972835627}
+  mostProfitableProfitText: {fileID: 1889900051}
+  totalRevenueText: {fileID: 224268972}
+  totalExpensesText: {fileID: 953666983}
+  totalProfitText: {fileID: 338827602}
+  averageCustomerSatisfactionText: {fileID: 857679104}
+  totalStockShortagePerCustomerText: {fileID: 1198794570}
+  totalStockShortagePerItemText: {fileID: 1971642060}
 --- !u!1 &2039605927
 GameObject:
   m_ObjectHideFlags: 0
