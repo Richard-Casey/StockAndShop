@@ -138,22 +138,28 @@ public class DailySummaryManager : MonoBehaviour
     }
 
 
-
     public void RegisterTransaction(Customer customer, Dictionary<string, int> purchasedItems, float transactionValue, float transactionProfit)
     {
         int lastIndex = dailyStatsList.Count - 1;
         DailyStats currentDayStats = dailyStatsList[lastIndex];
 
-        // Registering the sales of each item
         foreach (var item in purchasedItems)
         {
             if (currentDayStats.itemSales.ContainsKey(item.Key))
+            {
                 currentDayStats.itemSales[item.Key] += item.Value;
+            }
             else
+            {
                 currentDayStats.itemSales[item.Key] = item.Value;
+            }
         }
 
-        currentDayStats.numberOfPurchasingCustomers++;
+        if (!customer.hasPurchasedToday)
+        {
+            currentDayStats.numberOfPurchasingCustomers++;
+            customer.hasPurchasedToday = true;
+        }
         currentDayStats.dailyRevenue += transactionValue;
         currentDayStats.dailyProfit += transactionProfit;
 
@@ -161,24 +167,59 @@ public class DailySummaryManager : MonoBehaviour
         if (transactionValue > currentDayStats.highestTransactionValue)
         {
             currentDayStats.highestTransactionValue = transactionValue;
-            // Other updates can be done here if needed
-        }
-
-        // Check for most profitable transaction
-        if (transactionProfit > currentDayStats.mostProfitableTransactionProfit)
-        {
-            currentDayStats.mostProfitableTransactionProfit = transactionProfit;
             currentDayStats.mostProfitableCustomer = customer.customerName;
-            // Assuming you want to track the total amount as well for the most profitable transaction
             currentDayStats.mostProfitableTransactionAmount = transactionValue;
+            currentDayStats.mostProfitableTransactionProfit = transactionProfit;
         }
 
-        // Update the list with new stats
         dailyStatsList[lastIndex] = currentDayStats;
-
-        // Update UI
         UpdateUI();
     }
+
+
+
+
+
+    //public void RegisterTransaction(Customer customer, Dictionary<string, int> purchasedItems, float transactionValue, float transactionProfit)
+    //{
+    //    int lastIndex = dailyStatsList.Count - 1;
+    //    DailyStats currentDayStats = dailyStatsList[lastIndex];
+
+    //    // Registering the sales of each item
+    //    foreach (var item in purchasedItems)
+    //    {
+    //        if (currentDayStats.itemSales.ContainsKey(item.Key))
+    //            currentDayStats.itemSales[item.Key] += item.Value;
+    //        else
+    //            currentDayStats.itemSales[item.Key] = item.Value;
+    //    }
+
+    //    currentDayStats.numberOfPurchasingCustomers++;
+    //    currentDayStats.dailyRevenue += transactionValue;
+    //    currentDayStats.dailyProfit += transactionProfit;
+
+    //    // Check for highest transaction value
+    //    if (transactionValue > currentDayStats.highestTransactionValue)
+    //    {
+    //        currentDayStats.highestTransactionValue = transactionValue;
+    //        // Other updates can be done here if needed
+    //    }
+
+    //    // Check for most profitable transaction
+    //    if (transactionProfit > currentDayStats.mostProfitableTransactionProfit)
+    //    {
+    //        currentDayStats.mostProfitableTransactionProfit = transactionProfit;
+    //        currentDayStats.mostProfitableCustomer = customer.customerName;
+    //        // Assuming you want to track the total amount as well for the most profitable transaction
+    //        currentDayStats.mostProfitableTransactionAmount = transactionValue;
+    //    }
+
+    //    // Update the list with new stats
+    //    dailyStatsList[lastIndex] = currentDayStats;
+
+    //    // Update UI
+    //    UpdateUI();
+    //}
 
 
 
@@ -237,11 +278,15 @@ public class DailySummaryManager : MonoBehaviour
 
     public void RegisterCustomerEntry()
     {
-        DailyStats todayStats = dailyStatsList[currentDay - 1];
+        if (dailyStatsList.Count == 0) return; // Safety check
+
+        int lastIndex = dailyStatsList.Count - 1;
+        DailyStats todayStats = dailyStatsList[lastIndex];
         todayStats.numberOfCustomers++;
-        dailyStatsList[currentDay - 1] = todayStats;
+        dailyStatsList[lastIndex] = todayStats;
         UpdateUI();
     }
+
 
     public void RegisterCustomerDissatisfaction(int itemsNotFound, int customerCount)
     {

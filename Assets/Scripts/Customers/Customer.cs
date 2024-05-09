@@ -27,6 +27,8 @@ public class Customer : MonoBehaviour
     public TextMeshProUGUI feedbackText;
     public int itemsInBasket;
     public TextMeshProUGUI itemsText;
+    public bool hasPurchasedToday { get; set; }
+
 
     // Reference to UI text elements
     public TextMeshProUGUI nameText;
@@ -43,6 +45,7 @@ public class Customer : MonoBehaviour
         shelfManager = FindObjectOfType<ShelfManager>();
         InitializeDesiredItems();
         InitializePriceTolerance();
+        hasPurchasedToday = false;
     }
 
     bool CheckIfItemIsAvailable(string itemName)
