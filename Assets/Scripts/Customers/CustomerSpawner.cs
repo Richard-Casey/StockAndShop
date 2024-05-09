@@ -1,28 +1,74 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 
+/// </summary>
 public class CustomerSpawner : MonoBehaviour
 {
-    //private float reputation = 1.0f; // Starting reputation
-
+    /// <summary>
+    /// The reputation
+    /// </summary>
     [SerializeField] private float reputation = 5f;
 
+    /// <summary>
+    /// The shop is open
+    /// </summary>
     private bool shopIsOpen = false;
+    /// <summary>
+    /// The spawn rate
+    /// </summary>
     private float spawnRate = 5f; // Start with a default spawn rate of 5 seconds
+    /// <summary>
+    /// The spawn timer
+    /// </summary>
     private float spawnTimer = 0f;
+    /// <summary>
+    /// The customer prefab
+    /// </summary>
     public GameObject customerPrefab; // Reference to your Customer prefab
+    /// <summary>
+    /// The daily summary manager
+    /// </summary>
     public DailySummaryManager dailySummaryManager;
+    /// <summary>
+    /// The maximum budget
+    /// </summary>
     public float maxBudget = 50.0f;
+    /// <summary>
+    /// The minimum budget
+    /// </summary>
     public float minBudget = 1.0f;
+    /// <summary>
+    /// The shopping bg parent
+    /// </summary>
     public Transform shoppingBGParent; // Reference to the ShoppingBG GameObject
+    /// <summary>
+    /// Gets the active customers.
+    /// </summary>
+    /// <value>
+    /// The active customers.
+    /// </value>
     public int activeCustomers { get; private set; } = 0;
+    /// <summary>
+    /// Gets the active customers.
+    /// </summary>
+    /// <value>
+    /// The active customers.
+    /// </value>
     public int ActiveCustomers => activeCustomers;
 
+    /// <summary>
+    /// Customers the entered.
+    /// </summary>
     public void CustomerEntered()
     {
         activeCustomers++;
     }
 
+    /// <summary>
+    /// Customers the exited.
+    /// </summary>
     public void CustomerExited()
     {
         activeCustomers--;
@@ -34,6 +80,9 @@ public class CustomerSpawner : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Adjusts the spawn rate based on reputation.
+    /// </summary>
     void AdjustSpawnRateBasedOnReputation()
     {
         // This formula adjusts the spawn rate so that a lower reputation results in fewer customers
@@ -53,6 +102,9 @@ public class CustomerSpawner : MonoBehaviour
         // Debug.Log($"New spawn rate: {spawnRate} seconds.");
     }
 
+    /// <summary>
+    /// Spawns the customer.
+    /// </summary>
     void SpawnCustomer()
     {
         float randomBudget = Random.Range(minBudget, maxBudget);
@@ -64,6 +116,9 @@ public class CustomerSpawner : MonoBehaviour
         InformationBar.Instance.DisplayMessage($"A new customer has entered the shop.");
     }
 
+    /// <summary>
+    /// Updates this instance.
+    /// </summary>
     void Update()
     {
         if (shopIsOpen && shoppingBGParent.childCount <= 9) // Allows for exactly 10 customers
@@ -80,12 +135,18 @@ public class CustomerSpawner : MonoBehaviour
         AdjustSpawnRateBasedOnReputation();
     }
 
+    /// <summary>
+    /// Closes the shop.
+    /// </summary>
     public void CloseShop()
     {
         Debug.Log("[CustomerSpawner] CloseShop called. DayCycle active status: " + DayCycle.Instance.isDayActive);
         shopIsOpen = false;
     }
 
+    /// <summary>
+    /// Opens the shop.
+    /// </summary>
     public void OpenShop()
     {
         if (!DayCycle.Instance.isDayActive)
@@ -99,6 +160,10 @@ public class CustomerSpawner : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Updates the reputation.
+    /// </summary>
+    /// <param name="change">The change.</param>
     public void UpdateReputation(float change)
     {
         reputation += change;
@@ -107,5 +172,11 @@ public class CustomerSpawner : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Gets the reputation.
+    /// </summary>
+    /// <value>
+    /// The reputation.
+    /// </value>
     public float Reputation => reputation;
 }

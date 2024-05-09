@@ -2,39 +2,111 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+/// <summary>
+/// 
+/// </summary>
 public class ShelfItemUI : MonoBehaviour
 {
+    /// <summary>
+    /// The dynamic content size script
+    /// </summary>
     private DynamicContentSizeForOneColumn dynamicContentSizeScript;
 
+    /// <summary>
+    /// The inventory manager
+    /// </summary>
     [Header("Manager References")]
     private InventoryManager inventoryManager;
+    /// <summary>
+    /// The shelf manager
+    /// </summary>
     private ShelfManager shelfManager;
+    /// <summary>
+    /// The bought for cost text
+    /// </summary>
     public TextMeshProUGUI boughtForCostText;
+    /// <summary>
+    /// The demand bar
+    /// </summary>
     public Image demandBar;
+    /// <summary>
+    /// The inventory item
+    /// </summary>
     public InventoryItem inventoryItem;
 
+    /// <summary>
+    /// The inventory item UI
+    /// </summary>
     [Header("Misc")]
     public InventoryItemUI inventoryItemUI;
+    /// <summary>
+    /// The item image
+    /// </summary>
     [Header("UI Components")]
     public Image itemImage;
+    /// <summary>
+    /// The item name
+    /// </summary>
     public string itemName;
+    /// <summary>
+    /// The item name text
+    /// </summary>
     public TextMeshProUGUI itemNameText;
+    /// <summary>
+    /// The minus button
+    /// </summary>
     public Button minusButton;
+    /// <summary>
+    /// The plus button
+    /// </summary>
     public Button plusButton;
+    /// <summary>
+    /// The profit per item
+    /// </summary>
     public float profitPerItem;
+    /// <summary>
+    /// The profit per item text
+    /// </summary>
     public TextMeshProUGUI profitPerItemText;
+    /// <summary>
+    /// The quantity on shelf
+    /// </summary>
     public int quantityOnShelf;
+    /// <summary>
+    /// The quantity on shelf text
+    /// </summary>
     public TextMeshProUGUI quantityOnShelfText;
+    /// <summary>
+    /// The quantity to remove text
+    /// </summary>
     public TextMeshProUGUI quantityToRemoveText;
+    /// <summary>
+    /// The remove button
+    /// </summary>
     public Button removeButton;
 
+    /// <summary>
+    /// The selling price
+    /// </summary>
     [Header("Item Settings")]
     public float sellingPrice;
+    /// <summary>
+    /// The selling price text
+    /// </summary>
     public TextMeshProUGUI sellingPriceText;
+    /// <summary>
+    /// The total profit
+    /// </summary>
     public float totalProfit;
+    /// <summary>
+    /// The total profit text
+    /// </summary>
     public TextMeshProUGUI totalProfitText;
 
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         // Add listeners to buttons
@@ -47,6 +119,9 @@ public class ShelfItemUI : MonoBehaviour
         shelfManager = FindObjectOfType<ShelfManager>();
     }
 
+    /// <summary>
+    /// Updates the size of the content.
+    /// </summary>
     private void UpdateContentSize()
     {
         if (shelfManager != null)
@@ -56,6 +131,10 @@ public class ShelfItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the demand bar.
+    /// </summary>
+    /// <param name="color">The color.</param>
     private void UpdateDemandBar(Color color)
     {
         if (demandBar != null)
@@ -68,6 +147,9 @@ public class ShelfItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when [minus button clicked].
+    /// </summary>
     public void OnMinusButtonClicked()
     {
         // Decrease the quantity to remove, ensuring it doesn't go below zero
@@ -79,6 +161,9 @@ public class ShelfItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when [plus button clicked].
+    /// </summary>
     public void OnPlusButtonClicked()
     {
         // Increase the quantity to remove, up to the maximum quantity on the shelf
@@ -90,6 +175,9 @@ public class ShelfItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when [remove button clicked].
+    /// </summary>
     public void OnRemoveButtonClicked()
     {
         int quantityToRemove = int.Parse(quantityToRemoveText.text);
@@ -116,11 +204,20 @@ public class ShelfItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sets the dynamic content size script.
+    /// </summary>
+    /// <param name="script">The script.</param>
     public void SetDynamicContentSizeScript(DynamicContentSizeForOneColumn script)
     {
         dynamicContentSizeScript = script;
     }
 
+    /// <summary>
+    /// Sets the item data.
+    /// </summary>
+    /// <param name="item">The item.</param>
+    /// <param name="sellQuantity">The sell quantity.</param>
     public void SetItemData(InventoryItem item, int sellQuantity)
     {
         Debug.Log("Setting item data for " + item.itemName);
@@ -167,6 +264,9 @@ public class ShelfItemUI : MonoBehaviour
         UpdateContentSize();
     }
 
+    /// <summary>
+    /// Updates the UI.
+    /// </summary>
     public void UpdateUI()
     {
         quantityOnShelfText.text = quantityOnShelf.ToString();

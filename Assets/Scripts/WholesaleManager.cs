@@ -3,20 +3,41 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// 
+/// </summary>
 public class WholesaleManager : MonoBehaviour
 {
+    /// <summary>
+    /// The content grid layout
+    /// </summary>
     public Transform contentGridLayout;
+    /// <summary>
+    /// The dynamic content sizer
+    /// </summary>
     public DynamicContentSizeForTwoColumns dynamicContentSizer;
 
+    /// <summary>
+    /// The inventory manager
+    /// </summary>
     [Header("Manager References")]
     public InventoryManager inventoryManager;
 
+    /// <summary>
+    /// The wholesale item prefab
+    /// </summary>
     [Header("UI Components")]
     public GameObject wholesaleItemPrefab;
+    /// <summary>
+    /// The wholesale items
+    /// </summary>
     [Header("Wholesale Items")]
     public List<InventoryItem> wholesaleItems;
 
 
+    /// <summary>
+    /// Populates the wholesale UI.
+    /// </summary>
     void PopulateWholesaleUI()
     {
         foreach (InventoryItem item in wholesaleItems)
@@ -63,6 +84,9 @@ public class WholesaleManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     void Start()
     {
         PopulateWholesaleUI();
@@ -71,6 +95,11 @@ public class WholesaleManager : MonoBehaviour
 
 
     // When moving items to the inventory from wholesale
+    /// <summary>
+    /// Moves the items to inventory.
+    /// </summary>
+    /// <param name="itemName">Name of the item.</param>
+    /// <param name="quantity">The quantity.</param>
     public void MoveItemsToInventory(string itemName, int quantity)
     {
         InventoryItem item = wholesaleItems.Find(i => i.itemName == itemName);

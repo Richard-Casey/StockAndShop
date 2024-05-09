@@ -2,36 +2,93 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// 
+/// </summary>
 public class InventoryItemUI : MonoBehaviour
 {
+    /// <summary>
+    /// The item image component
+    /// </summary>
     private Image itemImageComponent;
+    /// <summary>
+    /// The original cost
+    /// </summary>
     private float originalCost;
 
     // Private fields and methods
+    /// <summary>
+    /// The selling price
+    /// </summary>
     private float sellingPrice = 0.0f;
+    /// <summary>
+    /// The demand bar
+    /// </summary>
     [Header("UI Components")]
     public Image demandBar;
 
+    /// <summary>
+    /// The demand bar material
+    /// </summary>
     [Header("Misc")]
     public MaterialPropertyBlock demandBarMaterial;
+    /// <summary>
+    /// The inventory manager
+    /// </summary>
     public InventoryManager inventoryManager;
+    /// <summary>
+    /// The is selected for selling
+    /// </summary>
     public bool isSelectedForSelling = false;
+    /// <summary>
+    /// The item cost
+    /// </summary>
     public float itemCost;
 
+    /// <summary>
+    /// The item name
+    /// </summary>
     [Header("Item Settings")]
     public string itemName;
+    /// <summary>
+    /// The minus button
+    /// </summary>
     public Button minusButton;
+    /// <summary>
+    /// The plus button
+    /// </summary>
     public Button plusButton;
+    /// <summary>
+    /// The price input field
+    /// </summary>
     public TMP_InputField priceInputField;
+    /// <summary>
+    /// The quantity
+    /// </summary>
     public int quantity = 0;
+    /// <summary>
+    /// The sell button
+    /// </summary>
     public Button sellButton;
+    /// <summary>
+    /// The sell quantity
+    /// </summary>
     public int sellQuantity = 0;
+    /// <summary>
+    /// The sell quantity text
+    /// </summary>
     public TextMeshProUGUI sellQuantityText;
 
+    /// <summary>
+    /// The wholesale manager
+    /// </summary>
     [Header("Manager References")]
     public WholesaleManager wholesaleManager;
 
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         // Find the GameManager GameObject in the scene
@@ -48,6 +105,10 @@ public class InventoryItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Calculates the original cost.
+    /// </summary>
+    /// <returns></returns>
     private float CalculateOriginalCost()
     {
         // Check if the wholesale manager reference is assigned
@@ -68,6 +129,11 @@ public class InventoryItemUI : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Gets the item quantity in inventory.
+    /// </summary>
+    /// <param name="itemName">Name of the item.</param>
+    /// <returns></returns>
     private int GetItemQuantityInInventory(string itemName)
     {
 
@@ -83,6 +149,11 @@ public class InventoryItemUI : MonoBehaviour
         return 0;
     }
 
+    /// <summary>
+    /// Gets the maximum quantity in inventory.
+    /// </summary>
+    /// <param name="itemName">Name of the item.</param>
+    /// <returns></returns>
     private int GetMaxQuantityInInventory(string itemName)
     {
         int maxQuantity = 0;
@@ -97,6 +168,9 @@ public class InventoryItemUI : MonoBehaviour
         return maxQuantity;
     }
 
+    /// <summary>
+    /// Called when [sell button clicked].
+    /// </summary>
     void OnSellButtonClicked()
     {
         Debug.Log("[InventoryItemUI] Sell button clicked for " + itemName);
@@ -163,6 +237,10 @@ public class InventoryItemUI : MonoBehaviour
         Debug.Log($"[OnSellButtonClicked] After Selling: Item = {itemName}, Quantity in Inventory = {quantity}, Sell Quantity Reset to = {sellQuantity}");
     }
 
+    /// <summary>
+    /// Sets the color of the demand bar.
+    /// </summary>
+    /// <param name="color">The color.</param>
     private void SetDemandBarColor(Color color)
     {
         if (demandBar != null)
@@ -175,6 +253,9 @@ public class InventoryItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     private void Start()
     {
         Debug.Log("[InventoryItemUI] Start called for item: " + itemName);
@@ -198,6 +279,9 @@ public class InventoryItemUI : MonoBehaviour
         priceInputField.onValueChanged.AddListener(delegate { UpdateDemandBarBasedOnPrice(); });
     }
 
+    /// <summary>
+    /// Updates the demand bar based on price.
+    /// </summary>
     private void UpdateDemandBarBasedOnPrice()
     {
         if (float.TryParse(priceInputField.text, out float enteredPrice))
@@ -208,6 +292,10 @@ public class InventoryItemUI : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Updates the color of the demand bar.
+    /// </summary>
+    /// <param name="currentPrice">The current price.</param>
     private void UpdateDemandBarColor(float currentPrice)
     {
         float lowerBound = originalCost; // Green at the base cost
@@ -233,6 +321,9 @@ public class InventoryItemUI : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Increments the quantity.
+    /// </summary>
     public void IncrementQuantity()
     {
         Debug.Log($"[InventoryItemUI] Attempting to increment quantity for {itemName}. Current sellQuantity: {sellQuantity}, Available Quantity: {quantity}");
@@ -248,6 +339,9 @@ public class InventoryItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Decrements the quantity.
+    /// </summary>
     public void DecrementQuantity()
     {
         Debug.Log($"[InventoryItemUI] Attempting to decrement quantity for {itemName}. Current sellQuantity: {sellQuantity}");
@@ -265,6 +359,9 @@ public class InventoryItemUI : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Updates the UI.
+    /// </summary>
     public void UpdateUI()
     {
         Debug.Log($"[InventoryItemUI] Updating UI for {itemName}, Available Quantity: {quantity}, Sell Quantity: {sellQuantity}");

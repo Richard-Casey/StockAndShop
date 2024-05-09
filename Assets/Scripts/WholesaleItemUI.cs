@@ -2,28 +2,73 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+/// <summary>
+/// 
+/// </summary>
 public class WholesaleItemUI : MonoBehaviour
 {
+    /// <summary>
+    /// The buy item handler
+    /// </summary>
     public BuyItemHandler buyItemHandler;
+    /// <summary>
+    /// The cash display
+    /// </summary>
     public CashDisplay cashDisplay;
+    /// <summary>
+    /// The daily summary manager
+    /// </summary>
     public DailySummaryManager dailySummaryManager;
 
+    /// <summary>
+    /// The inventory item
+    /// </summary>
     [Header("Manager References")]
     public InventoryItem inventoryItem;
+    /// <summary>
+    /// The inventory manager
+    /// </summary>
     public InventoryManager inventoryManager;
+    /// <summary>
+    /// The item cost
+    /// </summary>
     public float itemCost;
 
+    /// <summary>
+    /// The item name
+    /// </summary>
     [Header("Item Settings")]
     public string itemName;
+    /// <summary>
+    /// The minus button
+    /// </summary>
     public Button minusButton;
+    /// <summary>
+    /// The plus button
+    /// </summary>
     public Button plusButton;
+    /// <summary>
+    /// The quantity
+    /// </summary>
     public int quantity;
 
+    /// <summary>
+    /// The quantity text
+    /// </summary>
     [Header("UI Components")]
     public TextMeshProUGUI quantityText;
+    /// <summary>
+    /// The total cost text
+    /// </summary>
     public TextMeshProUGUI totalCostText;
+    /// <summary>
+    /// The wholesale manager
+    /// </summary>
     public WholesaleManager wholesaleManager;
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         Button buyButton = GetComponentInChildren<Button>();
@@ -42,6 +87,9 @@ public class WholesaleItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     private void Start()
     {
         cashDisplay = FindObjectOfType<CashDisplay>();
@@ -65,6 +113,9 @@ public class WholesaleItemUI : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// Updates the UI.
+    /// </summary>
     private void UpdateUI()
     {
         quantityText.text = quantity.ToString();
@@ -72,6 +123,9 @@ public class WholesaleItemUI : MonoBehaviour
         totalCostText.text = $"£{totalCost:F2}";
     }
 
+    /// <summary>
+    /// Buys the item.
+    /// </summary>
     public void BuyItem()
     {
         Debug.Log("Attempting to buy item");
@@ -102,6 +156,9 @@ public class WholesaleItemUI : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Decrements the quantity.
+    /// </summary>
     public void DecrementQuantity()
     {
         if (quantity > 0)
@@ -116,6 +173,9 @@ public class WholesaleItemUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Increments the quantity.
+    /// </summary>
     public void IncrementQuantity()
     {
         quantity++;

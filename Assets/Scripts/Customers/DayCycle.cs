@@ -2,22 +2,67 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// 
+/// </summary>
 public class DayCycle : MonoBehaviour
 {
+    /// <summary>
+    /// The clock text
+    /// </summary>
     [SerializeField] public TextMeshProUGUI clockText; // Clock display
+    /// <summary>
+    /// The customer spawner
+    /// </summary>
     [SerializeField] private CustomerSpawner customerSpawner; // Reference to the CustomerSpawner script
+    /// <summary>
+    /// The daily summary manager
+    /// </summary>
     [SerializeField] private DailySummaryManager dailySummaryManager; // Reference to the DailySummaryManager
 
+    /// <summary>
+    /// The current time
+    /// </summary>
     public float currentTime = 0; // Added this line to declare currentTime
+    /// <summary>
+    /// The current day
+    /// </summary>
     public int currentDay = 0;
+    /// <summary>
+    /// The is day active
+    /// </summary>
     public bool isDayActive = false;
+    /// <summary>
+    /// The is paused
+    /// </summary>
     private bool isPaused = false;
+    /// <summary>
+    /// The normal time button
+    /// </summary>
     [SerializeField] public Button normalTimeButton, openShopButton, pauseButton, slowDownTimeButton, speedUpTimeButton;
+    /// <summary>
+    /// The time multiplier
+    /// </summary>
     private int timeMultiplier = 1;
+    /// <summary>
+    /// The day duration in seconds
+    /// </summary>
     public float dayDurationInSeconds = 600; // Duration of a game day in seconds
+    /// <summary>
+    /// Gets the instance.
+    /// </summary>
+    /// <value>
+    /// The instance.
+    /// </value>
     public static DayCycle Instance { get; private set; }
+    /// <summary>
+    /// The is first day started
+    /// </summary>
     public bool isFirstDayStarted = false;
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     private void Start()
     {
         Instance = this;
@@ -39,6 +84,9 @@ public class DayCycle : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         if (Instance == null)
@@ -52,6 +100,9 @@ public class DayCycle : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates this instance.
+    /// </summary>
     void Update()
     {
         if (isDayActive && !isPaused)
@@ -63,6 +114,9 @@ public class DayCycle : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the clock.
+    /// </summary>
     void UpdateClock()
     {
         float dayProgress = currentTime / dayDurationInSeconds;
@@ -72,6 +126,9 @@ public class DayCycle : MonoBehaviour
         clockText.text = string.Format("{0:D2}:{1:D2}", hours, minutes);
     }
 
+    /// <summary>
+    /// Ends the day.
+    /// </summary>
     public void EndDay()
     {
         Debug.Log("[DayCycle] EndDay called with activeCustomers: " + customerSpawner.ActiveCustomers);
@@ -83,6 +140,9 @@ public class DayCycle : MonoBehaviour
         FinalizeDay();
     }
 
+    /// <summary>
+    /// Finalizes the day.
+    /// </summary>
     private void FinalizeDay()
     {
         isDayActive = false;
@@ -101,6 +161,9 @@ public class DayCycle : MonoBehaviour
         currentDay++;  // Increment here after all end-of-day processing
     }
 
+    /// <summary>
+    /// Starts the day.
+    /// </summary>
     public void StartDay()
     {
         Debug.Log("[DayCycle] StartDay called. isDayActive: " + isDayActive);
@@ -135,6 +198,10 @@ public class DayCycle : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Sets the time control buttons active.
+    /// </summary>
+    /// <param name="isActive">if set to <c>true</c> [is active].</param>
     public void SetTimeControlButtonsActive(bool isActive)
     {
         speedUpTimeButton.gameObject.SetActive(isActive);
@@ -142,12 +209,18 @@ public class DayCycle : MonoBehaviour
         normalTimeButton.gameObject.SetActive(isActive);
     }
 
+    /// <summary>
+    /// Normals the time.
+    /// </summary>
     public void NormalTime()
     {
         timeMultiplier = 1;
         Time.timeScale = timeMultiplier;
     }
 
+    /// <summary>
+    /// Slows down time.
+    /// </summary>
     public void SlowDownTime()
     {
         if (timeMultiplier > 1)
@@ -157,6 +230,9 @@ public class DayCycle : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Speeds up time.
+    /// </summary>
     public void SpeedUpTime()
     {
         if (timeMultiplier < 16)
@@ -166,6 +242,9 @@ public class DayCycle : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Toggles the pause.
+    /// </summary>
     public void TogglePause()
     {
         isPaused = !isPaused;
@@ -177,6 +256,9 @@ public class DayCycle : MonoBehaviour
         InformationBar.Instance.DisplayMessage(isPaused ? "Game paused." : "Game resumed.");
     }
 
+    /// <summary>
+    /// Opens the shop UI updates.
+    /// </summary>
     public void OpenShopUIUpdates()
     {
         SetTimeControlButtonsActive(true);
@@ -184,6 +266,9 @@ public class DayCycle : MonoBehaviour
         clockText.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Starts the new day.
+    /// </summary>
     public void StartNewDay()
     {
         if (currentDay == 0)

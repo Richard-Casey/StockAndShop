@@ -2,16 +2,39 @@ using TMPro; // Make sure to include this for TextMeshPro
 using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 
+/// </summary>
 public class InformationBar : MonoBehaviour
 {
+    /// <summary>
+    /// The canvas group
+    /// </summary>
     [SerializeField] private CanvasGroup canvasGroup; // Make sure to assign this
 
+    /// <summary>
+    /// The information text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI informationText;
+    /// <summary>
+    /// The rect transform
+    /// </summary>
     [SerializeField] private RectTransform rectTransform; // Make sure to assign this
 
+    /// <summary>
+    /// The animation duration
+    /// </summary>
     public float animationDuration = 0.5f; // Duration for the rise and lower animations
+    /// <summary>
+    /// The visible duration
+    /// </summary>
     public float visibleDuration = 3f; // How long the bar stays fully visible before hiding
 
+    /// <summary>
+    /// Animates the bar.
+    /// </summary>
+    /// <param name="show">if set to <c>true</c> [show].</param>
+    /// <returns></returns>
     private IEnumerator AnimateBar(bool show)
     {
         float startY = show ? rectTransform.anchoredPosition.y : 0;
@@ -43,6 +66,9 @@ public class InformationBar : MonoBehaviour
         canvasGroup.blocksRaycasts = show;
     }
 
+    /// <summary>
+    /// Awakes this instance.
+    /// </summary>
     private void Awake()
     {
         if (Instance == null) { Instance = this; }
@@ -54,6 +80,12 @@ public class InformationBar : MonoBehaviour
         canvasGroup.blocksRaycasts = false;
     }
 
+    /// <summary>
+    /// Shows the message with animation.
+    /// </summary>
+    /// <param name="message">The message.</param>
+    /// <param name="duration">The duration.</param>
+    /// <returns></returns>
     private IEnumerator ShowMessageWithAnimation(string message, float duration = 3f)
     {
         informationText.text = message;
@@ -62,11 +94,22 @@ public class InformationBar : MonoBehaviour
         yield return AnimateBar(false); // Move the information bar out of view and fade out
     }
 
+    /// <summary>
+    /// Displays the message.
+    /// </summary>
+    /// <param name="message">The message.</param>
+    /// <param name="duration">The duration.</param>
     public void DisplayMessage(string message, float duration = 3f)
     {
         StopAllCoroutines(); // Stop any previous animations
         StartCoroutine(ShowMessageWithAnimation(message, duration));
     }
 
+    /// <summary>
+    /// Gets the instance.
+    /// </summary>
+    /// <value>
+    /// The instance.
+    /// </value>
     public static InformationBar Instance { get; private set; }
 }

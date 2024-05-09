@@ -2,15 +2,37 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic; // Make sure to include this for using Lists
 
+/// <summary>
+/// 
+/// </summary>
 public class ReceiptGenerator : MonoBehaviour
 {
+    /// <summary>
+    /// The customer name text
+    /// </summary>
     public TextMeshProUGUI customerNameText;
+    /// <summary>
+    /// The individual costs text
+    /// </summary>
     public TextMeshProUGUI individualCostsText;
+    /// <summary>
+    /// The items list text
+    /// </summary>
     public TextMeshProUGUI itemsListText;
+    /// <summary>
+    /// The total cost text
+    /// </summary>
     public TextMeshProUGUI totalCostText;
+    /// <summary>
+    /// The total profit text
+    /// </summary>
     public TextMeshProUGUI totalProfitText;
 
     // This single method is responsible for generating the receipt
+    /// <summary>
+    /// Generates the receipt.
+    /// </summary>
+    /// <param name="customer">The customer.</param>
     public void GenerateReceipt(Customer customer)
     {
         // Reset previous receipt data

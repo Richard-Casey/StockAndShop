@@ -3,58 +3,169 @@ using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// 
+/// </summary>
 [System.Serializable]
 public struct DailyStats
 {
+    /// <summary>
+    /// The day number
+    /// </summary>
     public int dayNumber;
+    /// <summary>
+    /// The number of customers
+    /// </summary>
     public int numberOfCustomers;
+    /// <summary>
+    /// The number of purchasing customers
+    /// </summary>
     public int numberOfPurchasingCustomers;
+    /// <summary>
+    /// The daily revenue
+    /// </summary>
     public float dailyRevenue;
+    /// <summary>
+    /// The daily expenses
+    /// </summary>
     public float dailyExpenses;
+    /// <summary>
+    /// The daily profit
+    /// </summary>
     public float dailyProfit;
+    /// <summary>
+    /// The item sales
+    /// </summary>
     public Dictionary<string, int> itemSales;
+    /// <summary>
+    /// The most profitable customer
+    /// </summary>
     public string mostProfitableCustomer;
+    /// <summary>
+    /// The highest transaction value
+    /// </summary>
     public float highestTransactionValue;
+    /// <summary>
+    /// The most profitable transaction profit
+    /// </summary>
     public float mostProfitableTransactionProfit;
+    /// <summary>
+    /// The most profitable transaction amount
+    /// </summary>
     public float mostProfitableTransactionAmount;
+    /// <summary>
+    /// The customer satisfaction
+    /// </summary>
     public float customerSatisfaction;
+    /// <summary>
+    /// The stock shortage per customer
+    /// </summary>
     public int stockShortagePerCustomer;
+    /// <summary>
+    /// The stock shortage per item
+    /// </summary>
     public int stockShortagePerItem;
 }
 
 
 
 
+/// <summary>
+/// 
+/// </summary>
 public class DailySummaryManager : MonoBehaviour
 {
+    /// <summary>
+    /// The current day
+    /// </summary>
     public int currentDay = 0;
+    /// <summary>
+    /// The daily stats list
+    /// </summary>
     private List<DailyStats> dailyStatsList = new List<DailyStats>();
+    /// <summary>
+    /// The customer spawner
+    /// </summary>
     private CustomerSpawner customerSpawner;
+    /// <summary>
+    /// The summary prefab script
+    /// </summary>
     [SerializeField] private SummaryPrefabScript summaryPrefabScript;
 
 
     // UI References
+    /// <summary>
+    /// The day text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI dayText;
+    /// <summary>
+    /// The number of customers text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI numberOfCustomersText;
+    /// <summary>
+    /// The number of purchasing customers text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI numberOfPurchasingCustomersText;
+    /// <summary>
+    /// The daily revenue text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI dailyRevenueText;
+    /// <summary>
+    /// The daily expenses text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI dailyExpensesText;
+    /// <summary>
+    /// The daily profit text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI dailyProfitText;
+    /// <summary>
+    /// The most profitable customer text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableCustomerText;
+    /// <summary>
+    /// The most profitable amount text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableAmountText;
+    /// <summary>
+    /// The most profitable profit text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableProfitText;
+    /// <summary>
+    /// The highest transaction value text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI highestTransactionValueText;
+    /// <summary>
+    /// The customer satisfaction text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI customerSatisfactionText;
+    /// <summary>
+    /// The most popular item text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI mostPopularItemText;
+    /// <summary>
+    /// The least popular item text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI leastPopularItemText;
+    /// <summary>
+    /// The stock shortage per customer text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI stockShortagePerCustomerText;
+    /// <summary>
+    /// The stock shortage per item text
+    /// </summary>
     [SerializeField] private TextMeshProUGUI stockShortagePerItemText;
+    /// <summary>
+    /// The overall summary manager
+    /// </summary>
     [SerializeField] private OverallSummaryManager overallSummaryManager;
 
 
 
 
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     void Start()
     {
         
@@ -68,6 +179,12 @@ public class DailySummaryManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Checks the and update highest transaction value.
+    /// </summary>
+    /// <param name="transactionValue">The transaction value.</param>
+    /// <param name="customerName">Name of the customer.</param>
+    /// <param name="transactionProfit">The transaction profit.</param>
     public void CheckAndUpdateHighestTransactionValue(float transactionValue, string customerName, float transactionProfit)
     {
         int lastIndex = dailyStatsList.Count - 1; // Correctly getting the last index
@@ -89,6 +206,9 @@ public class DailySummaryManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Initializes the day.
+    /// </summary>
     void InitializeDay()
     {
         if (dailyStatsList.Count < currentDay)
@@ -97,6 +217,9 @@ public class DailySummaryManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Initializes the item sales.
+    /// </summary>
     public void InitializeItemSales()
     {
         var currentStats = dailyStatsList.Last();
@@ -118,6 +241,9 @@ public class DailySummaryManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Adds the new day stats.
+    /// </summary>
     public void AddNewDayStats()
     {
         DailyStats newDayStats = new DailyStats
@@ -139,6 +265,13 @@ public class DailySummaryManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Registers the transaction.
+    /// </summary>
+    /// <param name="customer">The customer.</param>
+    /// <param name="purchasedItems">The purchased items.</param>
+    /// <param name="transactionValue">The transaction value.</param>
+    /// <param name="transactionProfit">The transaction profit.</param>
     public void RegisterTransaction(Customer customer, Dictionary<string, int> purchasedItems, float transactionValue, float transactionProfit)
     {
         int lastIndex = dailyStatsList.Count - 1;
@@ -225,6 +358,9 @@ public class DailySummaryManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Starts the new day.
+    /// </summary>
     public void StartNewDay()
     {
         if (currentDay == 0)
@@ -238,6 +374,9 @@ public class DailySummaryManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Prepares for new day.
+    /// </summary>
     public void PrepareForNewDay()
     {
         // This method resets the stats for any new day after the first
@@ -250,6 +389,9 @@ public class DailySummaryManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Saves the current day stats.
+    /// </summary>
     private void SaveCurrentDayStats()
     {
         // Save current day stats if needed
@@ -257,6 +399,9 @@ public class DailySummaryManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Prepares the day.
+    /// </summary>
     public void PrepareDay()
     {
         Debug.Log("[DailySummaryManager] PrepareDay called for day " + currentDay);
@@ -268,6 +413,9 @@ public class DailySummaryManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Checks the and end day.
+    /// </summary>
     public void CheckAndEndDay()
     {
         Debug.Log("[DailySummaryManager] CheckAndEndDay called with ActiveCustomers: " + customerSpawner.ActiveCustomers);
@@ -277,6 +425,9 @@ public class DailySummaryManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Registers the customer entry.
+    /// </summary>
     public void RegisterCustomerEntry()
     {
         if (dailyStatsList.Count == 0) return; // Safety check
@@ -289,6 +440,11 @@ public class DailySummaryManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Registers the customer dissatisfaction.
+    /// </summary>
+    /// <param name="itemsNotFound">The items not found.</param>
+    /// <param name="customerCount">The customer count.</param>
     public void RegisterCustomerDissatisfaction(int itemsNotFound, int customerCount)
     {
         DailyStats todayStats = dailyStatsList.Last();
@@ -297,6 +453,10 @@ public class DailySummaryManager : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// Updates the daily customer satisfaction.
+    /// </summary>
+    /// <param name="satisfactionChange">The satisfaction change.</param>
     public void UpdateDailyCustomerSatisfaction(float satisfactionChange)
     {
         DailyStats todayStats = dailyStatsList.Last();
@@ -306,6 +466,9 @@ public class DailySummaryManager : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// Updates the UI.
+    /// </summary>
     public void UpdateUI()
     {
         if (dailyStatsList.Count > 0)
@@ -338,12 +501,22 @@ public class DailySummaryManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Determines the most popular item.
+    /// </summary>
+    /// <param name="stats">The stats.</param>
+    /// <returns></returns>
     string DetermineMostPopularItem(DailyStats stats)
     {
         if (stats.itemSales.Count == 0) return "N/A";
         return stats.itemSales.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
     }
 
+    /// <summary>
+    /// Determines the least popular item.
+    /// </summary>
+    /// <param name="stats">The stats.</param>
+    /// <returns></returns>
     string DetermineLeastPopularItem(DailyStats stats)
     {
         // Retrieve initial quantities on the shelf from ShelfManager
@@ -373,17 +546,26 @@ public class DailySummaryManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Ends the of day summary.
+    /// </summary>
     public void EndOfDaySummary()
     {
         Debug.Log("Day ended: " + currentDay);        
     }
 
+    /// <summary>
+    /// Increments the day.
+    /// </summary>
     public void IncrementDay()
     {
         currentDay++;
         AddNewDayStats();
     }
 
+    /// <summary>
+    /// Starts the new day without reset.
+    /// </summary>
     public void StartNewDayWithoutReset()
     {
         Debug.Log("First day starts, keeping all previous stats including expenses.");
@@ -400,6 +582,9 @@ public class DailySummaryManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Resets the daily stats.
+    /// </summary>
     void ResetDailyStats()
     {
         float lastSatisfaction = dailyStatsList.Count > 0 ? dailyStatsList.Last().customerSatisfaction : 100;
@@ -421,6 +606,10 @@ public class DailySummaryManager : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// Gets the daily stats.
+    /// </summary>
+    /// <returns></returns>
     public List<DailyStats> GetDailyStats()
     {
         // Returns a shallow copy of the dailyStatsList to prevent modification from outside
@@ -428,6 +617,10 @@ public class DailySummaryManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Registers the daily expenses.
+    /// </summary>
+    /// <param name="amount">The amount.</param>
     public void RegisterDailyExpenses(float amount)
     {
         if (dailyStatsList.Count == 0)
@@ -439,6 +632,11 @@ public class DailySummaryManager : MonoBehaviour
         UpdateUI();
     }
 
+    /// <summary>
+    /// Registers the stock shortage.
+    /// </summary>
+    /// <param name="customersAffected">The customers affected.</param>
+    /// <param name="itemsNotFound">The items not found.</param>
     public void RegisterStockShortage(int customersAffected, int itemsNotFound)
     {
         int lastIndex = dailyStatsList.Count - 1;

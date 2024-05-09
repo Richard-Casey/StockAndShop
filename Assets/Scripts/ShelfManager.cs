@@ -2,20 +2,44 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+/// 
+/// </summary>
 public class ShelfManager : MonoBehaviour
 {
+    /// <summary>
+    /// The content grid layout
+    /// </summary>
     public Transform contentGridLayout;
+    /// <summary>
+    /// The dynamic content size script
+    /// </summary>
     public DynamicContentSizeForOneColumn dynamicContentSizeScript;
 
+    /// <summary>
+    /// The inventory manager
+    /// </summary>
     [Header("Manager References")]
     public InventoryManager inventoryManager;
+    /// <summary>
+    /// The shelf container
+    /// </summary>
     public Transform shelfContainer;
+    /// <summary>
+    /// The shelf item prefab
+    /// </summary>
     [Header("Prefab and Container")]
     public GameObject shelfItemPrefab;
 
+    /// <summary>
+    /// The shelf items
+    /// </summary>
     [Header("Misc")]
     public List<GameObject> shelfItems;
 
+    /// <summary>
+    /// Initializes the shelf items.
+    /// </summary>
     void InitializeShelfItems()
     {
         foreach (var item in shelfItems)
@@ -51,11 +75,18 @@ public class ShelfManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts this instance.
+    /// </summary>
     void Start()
     {
         InitializeShelfItems();
     }
 
+    /// <summary>
+    /// Adds to shelf items.
+    /// </summary>
+    /// <param name="itemToAdd">The item to add.</param>
     public void AddToShelfItems(InventoryItem itemToAdd)
     {
         // Check if an item with the same name and selling price already exists on the shelf
@@ -99,6 +130,12 @@ public class ShelfManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Finds the existing shelf item.
+    /// </summary>
+    /// <param name="itemName">Name of the item.</param>
+    /// <param name="sellingPrice">The selling price.</param>
+    /// <returns></returns>
     public ShelfItemUI FindExistingShelfItem(string itemName, float sellingPrice)
     {
         // Iterate through your existing shelf items and find a match
@@ -113,6 +150,11 @@ public class ShelfManager : MonoBehaviour
         return null; // If no matching shelf item is found
     }
 
+    /// <summary>
+    /// Gets the item cost.
+    /// </summary>
+    /// <param name="itemName">Name of the item.</param>
+    /// <returns></returns>
     public float GetItemCost(string itemName)
     {
         foreach (var itemGO in shelfItems)
@@ -126,6 +168,11 @@ public class ShelfManager : MonoBehaviour
         return -1; // Item not found
     }
 
+    /// <summary>
+    /// Gets the item price.
+    /// </summary>
+    /// <param name="itemName">Name of the item.</param>
+    /// <returns></returns>
     public float GetItemPrice(string itemName)
     {
         foreach (var itemGO in shelfItems)
@@ -139,6 +186,10 @@ public class ShelfManager : MonoBehaviour
         return -1; // Item not found
     }
 
+    /// <summary>
+    /// Gets the lowest price on shelf.
+    /// </summary>
+    /// <returns></returns>
     public float GetLowestPriceOnShelf()
     {
         float lowestPrice = float.MaxValue; // Start with the maximum possible float value
@@ -157,6 +208,10 @@ public class ShelfManager : MonoBehaviour
         return lowestPrice == float.MaxValue ? 0 : lowestPrice;
     }
 
+    /// <summary>
+    /// Removes the shelf item.
+    /// </summary>
+    /// <param name="shelfItem">The shelf item.</param>
     public void RemoveShelfItem(GameObject shelfItem)
     {
         if (shelfItems.Contains(shelfItem))
@@ -169,6 +224,9 @@ public class ShelfManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the size of the content.
+    /// </summary>
     public void UpdateContentSize()
     {
         if (inventoryManager != null)
@@ -182,11 +240,18 @@ public class ShelfManager : MonoBehaviour
     }
 
     // Method to update the shelf items
+    /// <summary>
+    /// Updates the shelf items.
+    /// </summary>
     public void UpdateShelfItems()
     {
         InitializeShelfItems();
     }
 
+    /// <summary>
+    /// Gets the shelf item quantities.
+    /// </summary>
+    /// <returns></returns>
     public Dictionary<string, int> GetShelfItemQuantities()
     {
         Dictionary<string, int> quantities = new Dictionary<string, int>();

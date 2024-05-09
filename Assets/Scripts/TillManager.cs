@@ -4,16 +4,38 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 
+/// <summary>
+/// 
+/// </summary>
 public class TillManager : MonoBehaviour
 {
+    /// <summary>
+    /// The till is occupied
+    /// </summary>
     public static bool tillIsOccupied = false;
+    /// <summary>
+    /// The customer queue
+    /// </summary>
     private Queue<Customer> customerQueue = new Queue<Customer>();
+    /// <summary>
+    /// The is processing
+    /// </summary>
     private bool isProcessing = false;
+    /// <summary>
+    /// The till area
+    /// </summary>
     public GameObject tillArea; // Assign the TillBG GameObject
+    /// <summary>
+    /// The till customer prefab
+    /// </summary>
     public GameObject tillCustomerPrefab;
 
 
 
+    /// <summary>
+    /// Processes the customer at till.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ProcessCustomerAtTill()
     {
         isProcessing = true;
@@ -52,6 +74,11 @@ public class TillManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Processes the transaction.
+    /// </summary>
+    /// <param name="customer">The customer.</param>
+    /// <returns></returns>
     private GameObject ProcessTransaction(Customer customer)
     {
         GameObject tillCustomerInstance = Instantiate(tillCustomerPrefab, tillArea.transform);
@@ -102,6 +129,10 @@ public class TillManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// Updates the players cash.
+    /// </summary>
+    /// <param name="totalCost">The total cost.</param>
     void UpdatePlayersCash(float totalCost)
     {
         CashDisplay cashDisplay = FindObjectOfType<CashDisplay>();
@@ -111,6 +142,10 @@ public class TillManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Adds the customer to queue.
+    /// </summary>
+    /// <param name="customer">The customer.</param>
     public void AddCustomerToQueue(Customer customer)
     {
         customerQueue.Enqueue(customer);
