@@ -408,7 +408,7 @@ public class DailySummaryManager : MonoBehaviour
             dayNumber = currentDay,
             numberOfCustomers = 0,
             dailyRevenue = 0,
-            dailyExpenses = (currentDay > 0) ? 0 : dailyStatsList.Last().dailyExpenses,
+            dailyExpenses = (currentDay > 0) ? 0 : (dailyStatsList.Count > 0 ? dailyStatsList.Last().dailyExpenses : 0),
             dailyProfit = 0,
             itemSales = new Dictionary<string, int>(),
             mostProfitableCustomer = "",

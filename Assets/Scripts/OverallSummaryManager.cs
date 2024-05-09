@@ -116,7 +116,7 @@ public class OverallSummaryManager : MonoBehaviour
         totalExpensesText.text = $"£{overallStats.totalExpenses:F2}";
         totalProfitText.text = $"£{overallStats.totalProfit:F2}";
         averageCustomerSatisfactionText.text = $"{overallStats.averageCustomerSatisfaction:F0}%";
-        totalStockShortagePerCustomerText.text = overallStats.totalStockShortagePerCustomer.ToString();
-        totalStockShortagePerItemText.text = overallStats.totalStockShortagePerItem.ToString();
+        totalStockShortagePerCustomerText.text = $"Per Customer: {overallStats.totalStockShortagePerCustomer.ToString()}";
+        totalStockShortagePerItemText.text = $"Per Item: {overallStats.totalStockShortagePerItem.ToString()}";
     }
 }
