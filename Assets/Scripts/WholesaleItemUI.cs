@@ -3,71 +3,83 @@ using TMPro;
 using UnityEngine.UI;
 
 /// <summary>
-/// 
+/// Manages the UI and logic for wholesale items, allowing the player to buy items from the wholesaler.
 /// </summary>
 public class WholesaleItemUI : MonoBehaviour
 {
     /// <summary>
-    /// The buy item handler
+    /// Handler for buying items.
     /// </summary>
     public BuyItemHandler buyItemHandler;
+
     /// <summary>
-    /// The cash display
+    /// Displays the player's current cash.
     /// </summary>
     public CashDisplay cashDisplay;
+
     /// <summary>
-    /// The daily summary manager
+    /// Manages the daily summary and statistics.
     /// </summary>
     public DailySummaryManager dailySummaryManager;
 
-    /// <summary>
-    /// The inventory item
-    /// </summary>
     [Header("Manager References")]
-    public InventoryItem inventoryItem;
+
     /// <summary>
-    /// The inventory manager
+    /// Represents the inventory item associated with this UI.
+    /// </summary>
+    public InventoryItem inventoryItem;
+
+    /// <summary>
+    /// Manages the player's inventory.
     /// </summary>
     public InventoryManager inventoryManager;
+
     /// <summary>
-    /// The item cost
+    /// Cost of the item.
     /// </summary>
     public float itemCost;
 
-    /// <summary>
-    /// The item name
-    /// </summary>
     [Header("Item Settings")]
-    public string itemName;
+
     /// <summary>
-    /// The minus button
+    /// Name of the item.
+    /// </summary>
+    public string itemName;
+
+    /// <summary>
+    /// Button to decrease the quantity of items to buy.
     /// </summary>
     public Button minusButton;
+
     /// <summary>
-    /// The plus button
+    /// Button to increase the quantity of items to buy.
     /// </summary>
     public Button plusButton;
+
     /// <summary>
-    /// The quantity
+    /// Quantity of items to buy.
     /// </summary>
     public int quantity;
 
-    /// <summary>
-    /// The quantity text
-    /// </summary>
     [Header("UI Components")]
-    public TextMeshProUGUI quantityText;
+
     /// <summary>
-    /// The total cost text
+    /// Text component displaying the quantity of items.
+    /// </summary>
+    public TextMeshProUGUI quantityText;
+
+    /// <summary>
+    /// Text component displaying the total cost of the items.
     /// </summary>
     public TextMeshProUGUI totalCostText;
+
     /// <summary>
-    /// The wholesale manager
+    /// Manages the wholesale operations.
     /// </summary>
     public WholesaleManager wholesaleManager;
 
     /// <summary>
-    /// Awakes this instance.
+    /// Initializes the component. Sets up button listeners and references.
     /// </summary>
     private void Awake()
     {
@@ -88,7 +100,7 @@ public class WholesaleItemUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts this instance.
+    /// Called on the frame when a script is enabled just before any of the Update methods are called the first time.
     /// </summary>
     private void Start()
     {
@@ -114,7 +126,7 @@ public class WholesaleItemUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the UI.
+    /// Updates the UI elements to reflect the current quantity and total cost.
     /// </summary>
     private void UpdateUI()
     {
@@ -124,7 +136,7 @@ public class WholesaleItemUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Buys the item.
+    /// Handles the purchase of the item. Checks for sufficient funds and updates the relevant components.
     /// </summary>
     public void BuyItem()
     {
@@ -154,10 +166,8 @@ public class WholesaleItemUI : MonoBehaviour
         }
     }
 
-
-
     /// <summary>
-    /// Decrements the quantity.
+    /// Decreases the quantity of items to buy, ensuring it does not go below zero.
     /// </summary>
     public void DecrementQuantity()
     {
@@ -174,7 +184,7 @@ public class WholesaleItemUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Increments the quantity.
+    /// Increases the quantity of items to buy.
     /// </summary>
     public void IncrementQuantity()
     {

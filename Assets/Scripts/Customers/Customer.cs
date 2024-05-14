@@ -6,84 +6,98 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// 
+/// Represents a customer in the game.
 /// </summary>
 public class Customer : MonoBehaviour
 {
     /// <summary>
-    /// The desired items
+    /// The list of items the customer desires.
     /// </summary>
     private List<string> desiredItems = new List<string>();
+
     /// <summary>
-    /// The found items
+    /// The list of items the customer has found.
     /// </summary>
     private List<string> foundItems = new List<string>();
+
     /// <summary>
-    /// The shelf manager
+    /// The shelf manager to interact with the shelves.
     /// </summary>
     private ShelfManager shelfManager;
 
+
     /// <summary>
-    /// The purchased items
+    /// The list of items the customer has purchased.
     /// </summary>
     public List<PurchasedItem> purchasedItems = new List<PurchasedItem>();
+
     /// <summary>
-    /// The budget
+    /// The customer's budget.
     /// </summary>
     public float budget = 50.0f;
+
     /// <summary>
-    /// The price increase tolerance
+    /// The customer's tolerance for price increases.
     /// </summary>
     public float priceIncreaseTolerance;
+
     /// <summary>
-    /// The customer name
+    /// The customer's name.
     /// </summary>
     public string customerName;
+
     /// <summary>
-    /// The feedback
+    /// The customer's feedback.
     /// </summary>
     public string feedback;
+
     /// <summary>
-    /// The items in basket
+    /// The number of items in the customer's basket.
     /// </summary>
     public int itemsInBasket;
+
     /// <summary>
-    /// Gets or sets a value indicating whether this instance has purchased today.
+    /// Indicates whether the customer has made a purchase today.
     /// </summary>
-    /// <value>
-    ///   <c>true</c> if this instance has purchased today; otherwise, <c>false</c>.
-    /// </value>
     public bool hasPurchasedToday { get; set; }
+
     /// <summary>
-    /// The customer shopping prefab
+    /// The prefab for the customer shopping UI.
     /// </summary>
     public GameObject customerShoppingPrefab;
+
     /// <summary>
-    /// The till bg panel
+    /// The panel for the till background.
     /// </summary>
     public GameObject tillBGPanel;
+
     /// <summary>
-    /// The shopping bg parent
+    /// The parent transform for the shopping background.
     /// </summary>
     public Transform shoppingBGParent;
+
     /// <summary>
-    /// The feedback text
+    /// The TextMeshPro component for feedback text.
     /// </summary>
     public TextMeshProUGUI feedbackText;
+
     /// <summary>
-    /// The items text
+    /// The TextMeshPro component for items text.
     /// </summary>
     public TextMeshProUGUI itemsText;
+
     /// <summary>
-    /// The name text
+    /// The TextMeshPro component for name text.
     /// </summary>
     public TextMeshProUGUI nameText;
+
     /// <summary>
-    /// The first initials
+    /// Array of possible first initials for customer names.
     /// </summary>
     string[] firstInitials = new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+
     /// <summary>
-    /// The surnames
+    /// Array of possible surnames for customer names.
     /// </summary>
     string[] surnames = new string[] {"Casey", "Podd", "Symonds", "Smith", "Jones", "Baker", "Fry", "Janes", "Thomas", "Bristow", "Williams", "Wilson", "Taylor", "Brown",
         "Johnson", "Evans", "Roberts", "Edwards", "Hughes", "Walker", "Davies", "Robinson", "Green", "Thompson", "Wright", "Wood", "Clark", "Clarke", "Anderson", "Campbell",
@@ -93,8 +107,9 @@ public class Customer : MonoBehaviour
         "Gray", "Mason", "Ali", "Hunt", "Hussain", "Owen", "Palmer", "Holmes", "Barnes", "Knight", "Lloyd", "Butler", "Russell", "Fisher", "Barker", "Stevens", "Jenkins",
         "Dixon", "Fletcher"};
 
+
     /// <summary>
-    /// Awakes this instance.
+    /// Initializes the customer.
     /// </summary>
     private void Awake()
     {
@@ -105,10 +120,10 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if item is available.
+    /// Checks if the specified item is available on the shelves.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <returns></returns>
+    /// <param name="itemName">The name of the item to check.</param>
+    /// <returns>True if the item is available, false otherwise.</returns>
     bool CheckIfItemIsAvailable(string itemName)
     {
         // Assuming each shelf item GameObject has a ShelfItemUI component attached
@@ -125,10 +140,10 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if item too expensive.
+    /// Checks if the specified item is too expensive for the customer.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <returns></returns>
+    /// <param name="itemName">The name of the item to check.</param>
+    /// <returns>True if the item is too expensive, false otherwise.</returns>
     bool CheckIfItemTooExpensive(string itemName)
     {
         ShelfItemUI item = shelfManager.shelfItems
@@ -139,10 +154,10 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Chooses the item.
+    /// Chooses a random item from the list of available items.
     /// </summary>
-    /// <param name="availableItems">The available items.</param>
-    /// <returns></returns>
+    /// <param name="availableItems">The list of available items.</param>
+    /// <returns>The chosen item.</returns>
     private InventoryItem ChooseItem(List<InventoryItem> availableItems)
     {
         // Implement your logic here. For now, return a random item
@@ -154,16 +169,16 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Continues the shopping.
+    /// Determines if the customer will continue shopping.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>True if the customer will continue shopping, false otherwise.</returns>
     private bool ContinueShopping()
     {
         return Random.value > 0.2f; // 80% chance to continue shopping after each purchase
     }
 
     /// <summary>
-    /// Evaluates the and select items.
+    /// Evaluates and selects items for purchase.
     /// </summary>
     void EvaluateAndSelectItems()
     {
@@ -217,13 +232,12 @@ public class Customer : MonoBehaviour
         }
     }
 
-    // Helper method to find a ShelfItemUI by item name
     /// <summary>
-    /// Finds the shelf item UI.
+    /// Finds a ShelfItemUI by item name.
     /// </summary>
-    /// <param name="shelfManager">The shelf manager.</param>
-    /// <param name="itemName">Name of the item.</param>
-    /// <returns></returns>
+    /// <param name="shelfManager">The shelf manager to search within.</param>
+    /// <param name="itemName">The name of the item to find.</param>
+    /// <returns>The ShelfItemUI if found, null otherwise.</returns>
     private ShelfItemUI FindShelfItemUI(ShelfManager shelfManager, string itemName)
     {
         foreach (var shelfItem in shelfManager.shelfItems)
@@ -238,7 +252,7 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Generates the feedback.
+    /// Generates feedback based on the customer's shopping experience.
     /// </summary>
     void GenerateFeedback()
     {
@@ -295,10 +309,10 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the customer satisfaction.
+    /// Updates the customer's satisfaction based on their shopping experience.
     /// </summary>
-    /// <param name="expensiveItemsCount">The expensive items count.</param>
-    /// <param name="notPurchasedItemsCount">The not purchased items count.</param>
+    /// <param name="expensiveItemsCount">The number of items considered too expensive.</param>
+    /// <param name="notPurchasedItemsCount">The number of items not purchased.</param>
     void UpdateCustomerSatisfaction(int expensiveItemsCount, int notPurchasedItemsCount)
     {
         float satisfactionChange = 0f;
@@ -324,9 +338,9 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Generates the random name.
+    /// Generates a random customer name.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The generated customer name.</returns>
     string GenerateRandomName()
     {
         string initial = firstInitials[Random.Range(0, firstInitials.Length)];
@@ -335,17 +349,17 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the item price.
+    /// Gets the price of an item from the shelf manager.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <returns></returns>
+    /// <param name="itemName">The name of the item.</param>
+    /// <returns>The price of the item.</returns>
     float GetItemPrice(string itemName)
     {
         return shelfManager.GetItemPrice(itemName); // Ensure this method exists in ShelfManager
     }
 
     /// <summary>
-    /// Goes to till.
+    /// Sends the customer to the till.
     /// </summary>
     void GoToTill()
     {
@@ -358,7 +372,7 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Initializes the desired items.
+    /// Initializes the customer's desired items.
     /// </summary>
     private void InitializeDesiredItems()
     {
@@ -377,7 +391,7 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Initializes the price tolerance.
+    /// Initializes the customer's price tolerance.
     /// </summary>
     private void InitializePriceTolerance()
     {
@@ -397,33 +411,29 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Determines whether [is item desired] [the specified item name].
+    /// Checks if the specified item is desired by the customer.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <returns>
-    ///   <c>true</c> if [is item desired] [the specified item name]; otherwise, <c>false</c>.
-    /// </returns>
+    /// <param name="itemName">The name of the item.</param>
+    /// <returns>True if the item is desired, false otherwise.</returns>
     private bool IsItemDesired(string itemName)
     {
         return desiredItems.Contains(itemName);
     }
 
     /// <summary>
-    /// Determines whether [is price acceptable] [the specified price].
+    /// Checks if the specified price is acceptable for the customer.
     /// </summary>
-    /// <param name="price">The price.</param>
-    /// <returns>
-    ///   <c>true</c> if [is price acceptable] [the specified price]; otherwise, <c>false</c>.
-    /// </returns>
+    /// <param name="price">The price of the item.</param>
+    /// <returns>True if the price is acceptable, false otherwise.</returns>
     private bool IsPriceAcceptable(float price)
     {
         return price <= budget; // Simple check against the budget
     }
 
     /// <summary>
-    /// Removes the customer if no purchase.
+    /// Removes the customer if they have not made any purchases.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Coroutine for removing the customer.</returns>
     private IEnumerator RemoveCustomerIfNoPurchase()
     {
         yield return new WaitForSeconds(4f); // Adjusted time to ensure shopping can complete
@@ -442,7 +452,7 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts this instance.
+    /// Initializes the customer and starts their shopping routine.
     /// </summary>
     private void Start()
     {
@@ -455,9 +465,9 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts the shopping routine.
+    /// Starts the customer's shopping routine.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Coroutine for the shopping routine.</returns>
     IEnumerator StartShoppingRoutine()
     {
         yield return new WaitForSeconds(2f);
@@ -467,7 +477,7 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the UI.
+    /// Updates the customer's UI.
     /// </summary>
     void UpdateUI()
     {
@@ -477,9 +487,9 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds to basket.
+    /// Adds the specified amount of items to the customer's basket.
     /// </summary>
-    /// <param name="amount">The amount.</param>
+    /// <param name="amount">The amount of items to add.</param>
     public void AddToBasket(int amount)
     {
         itemsInBasket += amount;
@@ -487,7 +497,7 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Displays the shopping information.
+    /// Displays the customer's shopping information.
     /// </summary>
     public void DisplayShoppingInfo()
     {
@@ -505,10 +515,10 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the item cost.
+    /// Gets the cost of an item from the shelf manager.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <returns></returns>
+    /// <param name="itemName">The name of the item.</param>
+    /// <returns>The cost of the item.</returns>
     public float GetItemCost(string itemName)
     {
         // Implementation depends on how ShelfManager stores item costs
@@ -516,18 +526,18 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the purchased items.
+    /// Gets the list of items the customer has purchased.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The list of purchased items.</returns>
     public List<PurchasedItem> GetPurchasedItems()
     {
         return purchasedItems;
     }
 
     /// <summary>
-    /// Makes the purchase decision.
+    /// Makes a purchase decision based on available items and budget.
     /// </summary>
-    /// <param name="shelfManager">The shelf manager.</param>
+    /// <param name="shelfManager">The shelf manager to interact with.</param>
     public void MakePurchaseDecision(ShelfManager shelfManager)
     {
         // Simulate a shopping list: Choose a random subset of items from the wholesale list as the customer's desired items.
@@ -564,9 +574,9 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// Provides the feedback.
+    /// Provides feedback to the customer.
     /// </summary>
-    /// <param name="message">The message.</param>
+    /// <param name="message">The feedback message.</param>
     public void ProvideFeedback(string message)
     {
         feedback = message;
@@ -574,25 +584,28 @@ public class Customer : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Represents an item the customer has purchased.
     /// </summary>
     [System.Serializable]
     public class PurchasedItem
     {
         /// <summary>
-        /// The item name
+        /// The name of the purchased item.
         /// </summary>
         public string itemName;
+
         /// <summary>
-        /// The price
+        /// The price of the purchased item.
         /// </summary>
         public float price;
+
         /// <summary>
-        /// The profit per item
+        /// The profit per item.
         /// </summary>
         public float profitPerItem;
+
         /// <summary>
-        /// The quantity
+        /// The quantity of the purchased item.
         /// </summary>
         public int quantity;
     }

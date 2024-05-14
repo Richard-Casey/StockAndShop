@@ -3,36 +3,39 @@ using TMPro;
 using System.Collections.Generic; // Make sure to include this for using Lists
 
 /// <summary>
-/// 
+/// Generates a receipt for a customer's purchases.
 /// </summary>
 public class ReceiptGenerator : MonoBehaviour
 {
     /// <summary>
-    /// The customer name text
+    /// UI text component for displaying the customer's name.
     /// </summary>
     public TextMeshProUGUI customerNameText;
+
     /// <summary>
-    /// The individual costs text
+    /// UI text component for displaying the individual costs of items.
     /// </summary>
     public TextMeshProUGUI individualCostsText;
+
     /// <summary>
-    /// The items list text
+    /// UI text component for displaying the list of items.
     /// </summary>
     public TextMeshProUGUI itemsListText;
+
     /// <summary>
-    /// The total cost text
+    /// UI text component for displaying the total cost.
     /// </summary>
     public TextMeshProUGUI totalCostText;
+
     /// <summary>
-    /// The total profit text
+    /// UI text component for displaying the total profit.
     /// </summary>
     public TextMeshProUGUI totalProfitText;
 
-    // This single method is responsible for generating the receipt
     /// <summary>
-    /// Generates the receipt.
+    /// Generates a receipt for the specified customer.
     /// </summary>
-    /// <param name="customer">The customer.</param>
+    /// <param name="customer">The customer for whom the receipt is generated.</param>
     public void GenerateReceipt(Customer customer)
     {
         // Reset previous receipt data

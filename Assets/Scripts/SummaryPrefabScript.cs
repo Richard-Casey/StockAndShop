@@ -1,87 +1,46 @@
 using UnityEngine;
 using TMPro;
-using System; // This is required for Int32, but in Unity, you can usually just use 'int'
+using System; 
 using System.Linq;
 
 /// <summary>
-/// 
+/// Updates and manages the daily summary UI elements.
 /// </summary>
 public class SummaryPrefabScript : MonoBehaviour
 {
-    /// <summary>
-    /// The customer satisfaction
-    /// </summary>
     [SerializeField] private TextMeshProUGUI customerSatisfaction;
-    /// <summary>
-    /// The daily expenses
-    /// </summary>
     [SerializeField] private TextMeshProUGUI dailyExpenses;
-    /// <summary>
-    /// The daily profit
-    /// </summary>
     [SerializeField] private TextMeshProUGUI dailyProfit;
-    /// <summary>
-    /// The daily revenue
-    /// </summary>
     [SerializeField] private TextMeshProUGUI dailyRevenue;
-    /// <summary>
-    /// The day text
-    /// </summary>
     [SerializeField] private TextMeshProUGUI dayText;
-    /// <summary>
-    /// The highest transaction value text
-    /// </summary>
     [SerializeField] private TextMeshProUGUI highestTransactionValueText;
-    /// <summary>
-    /// The least popular item
-    /// </summary>
     [SerializeField] private TextMeshProUGUI leastPopularItem;
-    /// <summary>
-    /// The most popular item
-    /// </summary>
     [SerializeField] private TextMeshProUGUI mostPopularItem;
-    /// <summary>
-    /// The most profitable customer
-    /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableCustomer;
-    /// <summary>
-    /// The most profitable transaction amount
-    /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableTransactionAmount;
-    /// <summary>
-    /// The most profitable transaction profit
-    /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableTransactionProfit;
-    /// <summary>
-    /// The number of customers number
-    /// </summary>
     [SerializeField] private TextMeshProUGUI numOfCustomersNum;
-    /// <summary>
-    /// The stock shortages customers
-    /// </summary>
     [SerializeField] private TextMeshProUGUI stockShortagesCustomers;
-    /// <summary>
-    /// The stock shortages items
-    /// </summary>
     [SerializeField] private TextMeshProUGUI stockShortagesItems;
 
+
     /// <summary>
-    /// Updates the data.
+    /// Updates the summary UI with the provided data.
     /// </summary>
-    /// <param name="day">The day.</param>
+    /// <param name="day">The current day number.</param>
     /// <param name="numberOfCustomers">The number of customers.</param>
-    /// <param name="mostPopular">The most popular.</param>
-    /// <param name="leastPopular">The least popular.</param>
-    /// <param name="highestTransaction">The highest transaction.</param>
-    /// <param name="profitableCustomer">The profitable customer.</param>
-    /// <param name="profitableAmount">The profitable amount.</param>
-    /// <param name="profitableProfit">The profitable profit.</param>
-    /// <param name="profit">The profit.</param>
-    /// <param name="satisfaction">The satisfaction.</param>
-    /// <param name="shortagesCustomers">The shortages customers.</param>
-    /// <param name="shortagesItems">The shortages items.</param>
-    /// <param name="revenue">The revenue.</param>
-    /// <param name="expenses">The expenses.</param>
+    /// <param name="mostPopular">The most popular item.</param>
+    /// <param name="leastPopular">The least popular item.</param>
+    /// <param name="highestTransaction">The highest transaction value.</param>
+    /// <param name="profitableCustomer">The most profitable customer.</param>
+    /// <param name="profitableAmount">The most profitable transaction amount.</param>
+    /// <param name="profitableProfit">The profit from the most profitable transaction.</param>
+    /// <param name="profit">The daily profit.</param>
+    /// <param name="satisfaction">The customer satisfaction percentage.</param>
+    /// <param name="shortagesCustomers">The number of customers affected by stock shortages.</param>
+    /// <param name="shortagesItems">The number of items affected by stock shortages.</param>
+    /// <param name="revenue">The daily revenue.</param>
+    /// <param name="expenses">The daily expenses.</param>
     public void UpdateData(int day, int numberOfCustomers, string mostPopular, string leastPopular, float highestTransaction, string profitableCustomer, float profitableAmount, float profitableProfit, float profit, float satisfaction, int shortagesCustomers, int shortagesItems, float revenue, float expenses)
     {
         dayText.text = $"Day: {day}";
@@ -101,11 +60,11 @@ public class SummaryPrefabScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the data from stats.
+    /// Updates the summary UI using the data from a DailyStats object.
     /// </summary>
-    /// <param name="stats">The stats.</param>
-    /// <param name="customersNotSatisfied">The customers not satisfied.</param>
-    /// <param name="itemsNotSatisfied">The items not satisfied.</param>
+    /// <param name="stats">The daily statistics to display.</param>
+    /// <param name="customersNotSatisfied">The number of customers not satisfied due to stock shortages.</param>
+    /// <param name="itemsNotSatisfied">The number of items not satisfied due to stock shortages.</param>
     public void UpdateDataFromStats(DailyStats stats, int customersNotSatisfied, int itemsNotSatisfied)
     {
         UpdateData(
@@ -126,31 +85,27 @@ public class SummaryPrefabScript : MonoBehaviour
         );
     }
 
-
-    // This is a placeholder. You'll need to define how you calculate this based on your game's data structures.
     /// <summary>
-    /// Determines the total spent by most profitable customer.
+    /// Determines the total amount spent by the most profitable customer.
     /// </summary>
-    /// <param name="stats">The stats.</param>
-    /// <returns></returns>
+    /// <param name="stats">The daily statistics to analyze.</param>
+    /// <returns>The total amount spent by the most profitable customer.</returns>
     private float DetermineTotalSpentByMostProfitableCustomer(DailyStats stats)
     {
-        // Implement your logic to determine the total amount spent by the most profitable customer
         return 0; // Placeholder
     }
 
-
     /// <summary>
-    /// Updates the most popular item.
+    /// Updates the most popular item text.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
+    /// <param name="itemName">The name of the most popular item.</param>
     public void UpdateMostPopularItem(string itemName)
     {
         mostPopularItem.text = itemName;
     }
 
     /// <summary>
-    /// Updates the number of customers.
+    /// Updates the number of customers text.
     /// </summary>
     /// <param name="newNumberOfCustomers">The new number of customers.</param>
     public void UpdateNumberOfCustomers(int newNumberOfCustomers)
@@ -159,10 +114,10 @@ public class SummaryPrefabScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Determines the most popular item.
+    /// Determines the most popular item from the daily statistics.
     /// </summary>
-    /// <param name="stats">The stats.</param>
-    /// <returns></returns>
+    /// <param name="stats">The daily statistics to analyze.</param>
+    /// <returns>The name of the most popular item.</returns>
     public string DetermineMostPopularItem(DailyStats stats)
     {
         if (stats.itemSales.Count == 0) return "N/A";
@@ -170,62 +125,67 @@ public class SummaryPrefabScript : MonoBehaviour
     }
 
     /// <summary>
-    /// Determines the least popular item.
+    /// Determines the least popular item from the daily statistics.
     /// </summary>
-    /// <param name="stats">The stats.</param>
-    /// <returns></returns>
+    /// <param name="stats">The daily statistics to analyze.</param>
+    /// <returns>The name of the least popular item.</returns>
     public string DetermineLeastPopularItem(DailyStats stats)
     {
         if (stats.itemSales.Count == 0) return "N/A";
         return stats.itemSales.Aggregate((l, r) => l.Value < r.Value ? l : r).Key;
     }
 
-
-
-    // Keep these if necessary for your architecture, otherwise consider restructuring to remove UI element data fetching
     /// <summary>
-    /// Gets the number of customers.
+    /// Gets the number of customers from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The number of customers as an integer.</returns>
     public int GetNumberOfCustomers() => int.Parse(numOfCustomersNum.text);
+
     /// <summary>
-    /// Gets the daily revenue.
+    /// Gets the daily revenue from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The daily revenue as a float.</returns>
     public float GetDailyRevenue() => float.Parse(dailyRevenue.text.Replace("£", ""));
+
     /// <summary>
-    /// Gets the daily expenses.
+    /// Gets the daily expenses from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The daily expenses as a float.</returns>
     public float GetDailyExpenses() => float.Parse(dailyExpenses.text.Replace("£", ""));
+
     /// <summary>
-    /// Gets the daily profit.
+    /// Gets the daily profit from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The daily profit as a float.</returns>
     public float GetDailyProfit() => float.Parse(dailyProfit.text.Replace("£", ""));
+
     /// <summary>
-    /// Gets the most profitable customer.
+    /// Gets the most profitable customer from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The name of the most profitable customer as a string.</returns>
     public string GetMostProfitableCustomer() => mostProfitableCustomer.text;
+
     /// <summary>
-    /// Gets the highest transaction value.
+    /// Gets the highest transaction value from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The highest transaction value as a float.</returns>
     public float GetHighestTransactionValue() => float.Parse(highestTransactionValueText.text.Replace("£", ""));
+
     /// <summary>
-    /// Gets the most profitable transaction profit.
+    /// Gets the most profitable transaction profit from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The most profitable transaction profit as a float.</returns>
     public float GetMostProfitableTransactionProfit() => float.Parse(mostProfitableTransactionProfit.text.Replace("£", ""));
+
     /// <summary>
-    /// Gets the most popular item.
+    /// Gets the most popular item from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The name of the most popular item as a string.</returns>
     public string GetMostPopularItem() => mostPopularItem.text;
+
     /// <summary>
-    /// Gets the least popular item.
+    /// Gets the least popular item from the UI.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The name of the least popular item as a string.</returns>
     public string GetLeastPopularItem() => leastPopularItem.text;
 }

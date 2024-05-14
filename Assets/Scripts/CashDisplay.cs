@@ -2,24 +2,24 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// 
+/// Displays the player's cash on the UI.
 /// </summary>
 public class CashDisplay : MonoBehaviour
 {
     /// <summary>
-    /// The cash text
+    /// The TextMeshPro component to display the cash amount.
     /// </summary>
     [Header("UI Components")]
     private TextMeshProUGUI cashText;
 
     /// <summary>
-    /// The cash on hand
+    /// The player's current cash on hand.
     /// </summary>
     [Header("Cash Settings")]
     public float cashOnHand = 50.0f;
 
     /// <summary>
-    /// Starts this instance.
+    /// Initializes the cash display.
     /// </summary>
     private void Start()
     {
@@ -28,9 +28,9 @@ public class CashDisplay : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the cash.
+    /// Sets the player's cash amount.
     /// </summary>
-    /// <param name="amount">The amount.</param>
+    /// <param name="amount">The new cash amount.</param>
     public void SetCash(float amount)
     {
         cashOnHand = amount;
@@ -39,7 +39,7 @@ public class CashDisplay : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the cash display.
+    /// Updates the cash display with the current cash amount.
     /// </summary>
     public void UpdateCashDisplay()
     {

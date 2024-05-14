@@ -2,64 +2,67 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 
+/// Manages the spawning of customers in the shop.
 /// </summary>
 public class CustomerSpawner : MonoBehaviour
 {
     /// <summary>
-    /// The reputation
+    /// The reputation of the shop.
     /// </summary>
     [SerializeField] private float reputation = 5f;
 
     /// <summary>
-    /// The shop is open
+    /// Indicates whether the shop is open.
     /// </summary>
     private bool shopIsOpen = false;
+
     /// <summary>
-    /// The spawn rate
+    /// The rate at which customers spawn, in seconds.
     /// </summary>
     private float spawnRate = 5f; // Start with a default spawn rate of 5 seconds
+
     /// <summary>
-    /// The spawn timer
+    /// The timer for spawning customers.
     /// </summary>
     private float spawnTimer = 0f;
+
     /// <summary>
-    /// The customer prefab
+    /// The prefab for the customer.
     /// </summary>
     public GameObject customerPrefab; // Reference to your Customer prefab
+
     /// <summary>
-    /// The daily summary manager
+    /// Reference to the daily summary manager.
     /// </summary>
     public DailySummaryManager dailySummaryManager;
+
     /// <summary>
-    /// The maximum budget
+    /// The maximum budget for a customer.
     /// </summary>
     public float maxBudget = 50.0f;
+
     /// <summary>
-    /// The minimum budget
+    /// The minimum budget for a customer.
     /// </summary>
     public float minBudget = 1.0f;
+
     /// <summary>
-    /// The shopping bg parent
+    /// The parent transform for the shopping background.
     /// </summary>
     public Transform shoppingBGParent; // Reference to the ShoppingBG GameObject
+
     /// <summary>
-    /// Gets the active customers.
+    /// The number of active customers in the shop.
     /// </summary>
-    /// <value>
-    /// The active customers.
-    /// </value>
     public int activeCustomers { get; private set; } = 0;
+
     /// <summary>
-    /// Gets the active customers.
+    /// Gets the number of active customers in the shop.
     /// </summary>
-    /// <value>
-    /// The active customers.
-    /// </value>
     public int ActiveCustomers => activeCustomers;
 
     /// <summary>
-    /// Customers the entered.
+    /// Called when a customer enters the shop.
     /// </summary>
     public void CustomerEntered()
     {
@@ -67,7 +70,7 @@ public class CustomerSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Customers the exited.
+    /// Called when a customer exits the shop.
     /// </summary>
     public void CustomerExited()
     {
@@ -79,9 +82,8 @@ public class CustomerSpawner : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// Adjusts the spawn rate based on reputation.
+    /// Adjusts the spawn rate of customers based on the shop's reputation.
     /// </summary>
     void AdjustSpawnRateBasedOnReputation()
     {
@@ -103,7 +105,7 @@ public class CustomerSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Spawns the customer.
+    /// Spawns a new customer in the shop.
     /// </summary>
     void SpawnCustomer()
     {
@@ -117,7 +119,7 @@ public class CustomerSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates this instance.
+    /// Updates the customer spawner.
     /// </summary>
     void Update()
     {
@@ -159,11 +161,10 @@ public class CustomerSpawner : MonoBehaviour
     }
 
 
-
     /// <summary>
-    /// Updates the reputation.
+    /// Updates the reputation of the shop.
     /// </summary>
-    /// <param name="change">The change.</param>
+    /// <param name="change">The change in reputation.</param>
     public void UpdateReputation(float change)
     {
         reputation += change;
@@ -173,10 +174,7 @@ public class CustomerSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the reputation.
+    /// Gets the reputation of the shop.
     /// </summary>
-    /// <value>
-    /// The reputation.
-    /// </value>
     public float Reputation => reputation;
 }

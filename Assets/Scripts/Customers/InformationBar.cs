@@ -1,40 +1,47 @@
-using TMPro; // Make sure to include this for TextMeshPro
+using TMPro; 
 using UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// 
+/// Manages the information bar UI element, displaying messages with animations.
 /// </summary>
 public class InformationBar : MonoBehaviour
 {
     /// <summary>
-    /// The canvas group
+    /// The canvas group for controlling visibility and interaction.
     /// </summary>
-    [SerializeField] private CanvasGroup canvasGroup; // Make sure to assign this
+    [SerializeField] private CanvasGroup canvasGroup; 
 
     /// <summary>
-    /// The information text
+    /// The text component for displaying information.
     /// </summary>
     [SerializeField] private TextMeshProUGUI informationText;
-    /// <summary>
-    /// The rect transform
-    /// </summary>
-    [SerializeField] private RectTransform rectTransform; // Make sure to assign this
 
     /// <summary>
-    /// The animation duration
+    /// The RectTransform component of the information bar.
+    /// </summary>
+    [SerializeField] private RectTransform rectTransform;
+
+    /// <summary>
+    /// Duration for the rise and lower animations.
     /// </summary>
     public float animationDuration = 0.5f; // Duration for the rise and lower animations
+
     /// <summary>
-    /// The visible duration
+    /// How long the bar stays fully visible before hiding.
     /// </summary>
     public float visibleDuration = 3f; // How long the bar stays fully visible before hiding
 
     /// <summary>
-    /// Animates the bar.
+    /// Singleton instance of the InformationBar class.
     /// </summary>
-    /// <param name="show">if set to <c>true</c> [show].</param>
-    /// <returns></returns>
+    public static InformationBar Instance { get; private set; }
+
+    /// <summary>
+    /// Animates the information bar to show or hide.
+    /// </summary>
+    /// <param name="show">Whether to show or hide the bar.</param>
+    /// <returns>An IEnumerator for the animation coroutine.</returns>
     private IEnumerator AnimateBar(bool show)
     {
         float startY = show ? rectTransform.anchoredPosition.y : 0;
@@ -67,7 +74,7 @@ public class InformationBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Awakes this instance.
+    /// Initializes the InformationBar instance and sets initial visibility.
     /// </summary>
     private void Awake()
     {
@@ -81,11 +88,11 @@ public class InformationBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the message with animation.
+    /// Shows a message with animation.
     /// </summary>
-    /// <param name="message">The message.</param>
-    /// <param name="duration">The duration.</param>
-    /// <returns></returns>
+    /// <param name="message">The message to display.</param>
+    /// <param name="duration">The duration for which the message is visible.</param>
+    /// <returns>An IEnumerator for the animation coroutine.</returns>
     private IEnumerator ShowMessageWithAnimation(string message, float duration = 3f)
     {
         informationText.text = message;
@@ -95,21 +102,14 @@ public class InformationBar : MonoBehaviour
     }
 
     /// <summary>
-    /// Displays the message.
+    /// Displays a message on the information bar.
     /// </summary>
-    /// <param name="message">The message.</param>
-    /// <param name="duration">The duration.</param>
+    /// <param name="message">The message to display.</param>
+    /// <param name="duration">The duration for which the message is visible.</param>
     public void DisplayMessage(string message, float duration = 3f)
     {
         StopAllCoroutines(); // Stop any previous animations
         StartCoroutine(ShowMessageWithAnimation(message, duration));
     }
 
-    /// <summary>
-    /// Gets the instance.
-    /// </summary>
-    /// <value>
-    /// The instance.
-    /// </value>
-    public static InformationBar Instance { get; private set; }
 }

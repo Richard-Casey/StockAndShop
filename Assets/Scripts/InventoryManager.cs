@@ -3,62 +3,71 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 
+
 /// <summary>
-/// 
+/// Manages the inventory of items, including adding, removing, and updating items,
+/// as well as updating the UI to reflect inventory changes.
 /// </summary>
 public class InventoryManager : MonoBehaviour
 {
     /// <summary>
-    /// The content grid layout
+    /// The parent transform for the content grid layout.
     /// </summary>
     public Transform contentGridLayout;
 
-    /// <summary>
-    /// The dynamic content size script
-    /// </summary>
     [Header("Dynamic Content")]
+
+    /// <summary>
+    /// Script for dynamically adjusting the content size for two columns.
+    /// </summary>
     public DynamicContentSizeForTwoColumns dynamicContentSizeScript;
 
-    /// <summary>
-    /// The inventory item prefab
-    /// </summary>
     [Header("UI Components")]
-    public GameObject inventoryItemPrefab;
+
     /// <summary>
-    /// The inventory items
+    /// The prefab for inventory item UI elements.
     /// </summary>
+    public GameObject inventoryItemPrefab;
+
+    
     [Header("Inventory Settings")]
+
+    /// <summary>
+    /// The list of inventory items.
+    /// </summary>
     public List<InventoryItem> inventoryItems = new List<InventoryItem>();
 
-
-    // Create a list to store InventoryItemUI elements
     /// <summary>
-    /// The inventory item UI list
+    /// The list of InventoryItemUI elements.
     /// </summary>
     public List<InventoryItemUI> inventoryItemUIList = new List<InventoryItemUI>();
+
     /// <summary>
-    /// The inventory panel
+    /// The parent transform for the inventory panel.
     /// </summary>
     public Transform inventoryPanel;
+
     /// <summary>
-    /// The scroll rect
+    /// The ScrollRect component for scrolling through the inventory.
     /// </summary>
     public ScrollRect scrollRect;
+
     /// <summary>
-    /// The shop floor manager
+    /// Reference to the ShopFloorManager.
     /// </summary>
     public ShopFloorManager shopFloorManager;// This can be categorized elsewhere if more appropriate
 
-    /// <summary>
-    /// The vertical scrollbar
-    /// </summary>
     [Header("Misc")]
+
+    /// <summary>
+    /// The vertical scrollbar for the inventory.
+    /// </summary>
     public Scrollbar verticalScrollbar;
 
     /// <summary>
-    /// Adds the item.
+    /// Adds an item to the inventory.
     /// </summary>
-    /// <param name="itemToAdd">The item to add.</param>
+    /// <param name="itemToAdd">The item to add to the inventory.</param>
     public void AddItem(InventoryItem itemToAdd)
     {
         InventoryItem foundItem = inventoryItems.Find(existingItem => existingItem.itemName == itemToAdd.itemName);
@@ -75,13 +84,10 @@ public class InventoryManager : MonoBehaviour
         UpdateInventoryUI(); // Call this to refresh the UI each time an item is added
     }
 
-
-
-
     /// <summary>
-    /// Adds the quantity to inventory item.
+    /// Adds quantity to an existing inventory item.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
+    /// <param name="itemName">The name of the item to add quantity to.</param>
     /// <param name="quantityToAdd">The quantity to add.</param>
     public void AddQuantityToInventoryItem(string itemName, int quantityToAdd)
     {
@@ -102,11 +108,11 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculates the color of the demand bar.
+    /// Calculates the color of the demand bar based on the current price and original cost.
     /// </summary>
-    /// <param name="currentPrice">The current price.</param>
-    /// <param name="originalCost">The original cost.</param>
-    /// <returns></returns>
+    /// <param name="currentPrice">The current price of the item.</param>
+    /// <param name="originalCost">The original cost of the item.</param>
+    /// <returns>The calculated color for the demand bar.</returns>
     public static Color CalculateDemandBarColor(float currentPrice, float originalCost)
     {
         float lowerBound = originalCost;
@@ -129,13 +135,13 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles the removed shelf item.
+    /// Handles the removal of an item from the shelf and adds it back to the inventory.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <param name="costText">The cost text.</param>
-    /// <param name="sellingPriceText">The selling price text.</param>
-    /// <param name="quantityToAdd">The quantity to add.</param>
-    /// <param name="itemImage">The item image.</param>
+    /// <param name="itemName">The name of the item to remove.</param>
+    /// <param name="costText">The cost text of the item.</param>
+    /// <param name="sellingPriceText">The selling price text of the item.</param>
+    /// <param name="quantityToAdd">The quantity to add back to the inventory.</param>
+    /// <param name="itemImage">The image of the item.</param>
     public void HandleRemovedShelfItem(string itemName, string costText, string sellingPriceText, int quantityToAdd, Sprite itemImage)
     {
         InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
@@ -169,12 +175,12 @@ public class InventoryManager : MonoBehaviour
         UpdateInventoryUI();
     }
 
-    // Method to move items from Inventory to Shop Floor
+
     /// <summary>
-    /// Moves the items to shop floor.
+    /// Moves items from the inventory to the shop floor.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <param name="quantity">The quantity.</param>
+    /// <param name="itemName">The name of the item to move.</param>
+    /// <param name="quantity">The quantity to move.</param>
     public void MoveItemsToShopFloor(string itemName, int quantity)
     {
         InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
@@ -197,9 +203,9 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes the item.
+    /// Removes an item from the inventory.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
+    /// <param name="itemName">The name of the item to remove.</param>
     public void RemoveItem(string itemName)
     {
         InventoryItem item = inventoryItems.Find(i => i.itemName == itemName);
@@ -211,10 +217,10 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the inventory item quantity.
+    /// Updates the quantity of an inventory item.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <param name="newQuantity">The new quantity.</param>
+    /// <param name="itemName">The name of the item to update.</param>
+    /// <param name="newQuantity">The new quantity of the item.</param>
     public void UpdateInventoryItemQuantity(string itemName, int newQuantity)
     {
         // Find the item in the inventory
@@ -233,7 +239,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the inventory UI.
+    /// Updates the inventory UI to reflect the current state of the inventory.
     /// </summary>
     public void UpdateInventoryUI()
     {
@@ -299,19 +305,19 @@ public class InventoryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Finds the name of the item by.
+    /// Finds an item in the inventory by name.
     /// </summary>
-    /// <param name="name">The name.</param>
-    /// <returns></returns>
+    /// <param name="name">The name of the item to find.</param>
+    /// <returns>The found inventory item, or null if not found.</returns>
     public InventoryItem FindItemByName(string name)
     {
         return inventoryItems.FirstOrDefault(item => item.itemName == name);
     }
 
     /// <summary>
-    /// Gets the available items for sale.
+    /// Gets a list of items available for sale.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A list of available items for sale.</returns>
     public List<InventoryItem> GetAvailableItemsForSale()
     {
         // This method returns all items available in the inventory

@@ -1,58 +1,68 @@
 using UnityEngine;
 
 /// <summary>
-/// 
+/// Manages the navigation and visibility of various UI panels in the game.
 /// </summary>
 public class NavigationController : MonoBehaviour
 {
     /// <summary>
-    /// The cash display
+    /// The CanvasGroup for the cash display panel.
     /// </summary>
     public CanvasGroup cashDisplay;
+
     /// <summary>
-    /// The information bar
+    /// The CanvasGroup for the information bar.
     /// </summary>
     public CanvasGroup informationBar;
+
     /// <summary>
-    /// The main menu panel
+    /// The CanvasGroup for the main menu panel.
     /// </summary>
     public CanvasGroup mainMenuPanel;
+
     /// <summary>
-    /// The open shop button
+    /// The CanvasGroup for the open shop button.
     /// </summary>
     public CanvasGroup openShopButton;
+
     /// <summary>
-    /// The overlay buttons UI
+    /// The CanvasGroup for the overlay buttons UI.
     /// </summary>
     public CanvasGroup overlayButtonsUI;
+
     /// <summary>
-    /// The shelve panel
+    /// The CanvasGroup for the shelve panel.
     /// </summary>
     public CanvasGroup shelvePanel;
+
     /// <summary>
-    /// The start screen
+    /// The CanvasGroup for the start screen.
     /// </summary>
     public CanvasGroup startScreen;
+
     /// <summary>
-    /// The stock panel
+    /// The CanvasGroup for the stock panel.
     /// </summary>
     public CanvasGroup stockPanel;
+
     /// <summary>
-    /// The summary panel
+    /// The CanvasGroup for the summary panel.
     /// </summary>
     public CanvasGroup summaryPanel;
-    /// <summary>
-    /// The till panel
-    /// </summary>
+
     [Header("UI Panels")]
-    public CanvasGroup tillPanel;
     /// <summary>
-    /// The wholesale panel
+    /// The CanvasGroup for the till panel.
+    /// </summary>
+    public CanvasGroup tillPanel;
+
+    /// <summary>
+    /// The CanvasGroup for the wholesale panel.
     /// </summary>
     public CanvasGroup wholesalePanel;
 
     /// <summary>
-    /// Awakes this instance.
+    /// Initializes the visibility of UI panels when the script instance is loaded.
     /// </summary>
     void Awake()
     {
@@ -71,10 +81,10 @@ public class NavigationController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the panel visibility.
+    /// Sets the visibility of a given panel.
     /// </summary>
-    /// <param name="panel">The panel.</param>
-    /// <param name="isVisible">if set to <c>true</c> [is visible].</param>
+    /// <param name="panel">The CanvasGroup of the panel to set visibility for.</param>
+    /// <param name="isVisible">True to make the panel visible, false to make it invisible.</param>
     private void SetPanelVisibility(CanvasGroup panel, bool isVisible)
     {
         panel.alpha = isVisible ? 1 : 0; // 1 is fully visible, 0 is fully transparent
@@ -92,7 +102,7 @@ public class NavigationController : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the shelf panel.
+    /// Shows the shelf panel and hides other panels.
     /// </summary>
     public void ShowShelfPanel()
     {
@@ -111,7 +121,7 @@ public class NavigationController : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the stock panel.
+    /// Shows the stock panel and hides other panels.
     /// </summary>
     public void ShowStockPanel()
     {
@@ -130,7 +140,7 @@ public class NavigationController : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the summary panel.
+    /// Shows the summary panel and hides other panels.
     /// </summary>
     public void ShowSummaryPanel()
     {
@@ -148,9 +158,8 @@ public class NavigationController : MonoBehaviour
 
     }
 
-
     /// <summary>
-    /// Shows the til l panel.
+    /// Shows the till panel and hides other panels.
     /// </summary>
     public void ShowTilLPanel()
     {
@@ -168,7 +177,7 @@ public class NavigationController : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the wholesale panel.
+    /// Shows the wholesale panel and hides other panels.
     /// </summary>
     public void ShowWholesalePanel()
     {
@@ -187,7 +196,7 @@ public class NavigationController : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts the game.
+    /// Starts the game by showing the till panel and hiding other panels.
     /// </summary>
     public void StartGame()
     {

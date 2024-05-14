@@ -2,24 +2,26 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 
+/// Adjusts the size of a UI element to fit a single column of content dynamically.
 /// </summary>
 public class DynamicContentSizeForOneColumn : MonoBehaviour
 {
-    /// <summary>
-    /// The content rect transform
-    /// </summary>
     [Header("Layout Settings")]
-    private RectTransform contentRectTransform;
+
     /// <summary>
-    /// The horizontal layout group
+    /// The RectTransform component of the content.
+    /// </summary>
+    private RectTransform contentRectTransform;
+
+    /// <summary>
+    /// The HorizontalLayoutGroup component of the content.
     /// </summary>
     private HorizontalLayoutGroup horizontalLayoutGroup;
 
     /// <summary>
-    /// Calculates the width of the item.
+    /// Calculates the width of each item based on the layout settings.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The calculated width of an item.</returns>
     private float CalculateItemWidth()
     {
         // Calculate the item width based on HorizontalLayoutGroup settings
@@ -33,7 +35,7 @@ public class DynamicContentSizeForOneColumn : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts this instance.
+    /// Initializes the components.
     /// </summary>
     private void Start()
     {
@@ -42,9 +44,9 @@ public class DynamicContentSizeForOneColumn : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the size of the content.
+    /// Updates the size of the content to fit the specified number of items.
     /// </summary>
-    /// <param name="itemCount">The item count.</param>
+    /// <param name="itemCount">The number of items in the content.</param>
     public void UpdateContentSize(int itemCount)
     {
         if (contentRectTransform != null && horizontalLayoutGroup != null)

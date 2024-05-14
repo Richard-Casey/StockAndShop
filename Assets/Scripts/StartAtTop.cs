@@ -3,18 +3,19 @@ using UnityEngine.UI;
 using System.Collections;
 
 /// <summary>
-/// 
+/// Ensures that the scroll view starts at the top when the GameObject is enabled.
 /// </summary>
 public class StartAtTop : MonoBehaviour
 {
-    /// <summary>
-    /// The scroll rect
-    /// </summary>
     [Header("Scroll Settings")]
+
+    /// <summary>
+    /// The ScrollRect component to be reset to the top position.
+    /// </summary>
     public ScrollRect scrollRect;
 
     /// <summary>
-    /// Called when [enable].
+    /// Unity's OnEnable method, called when the object becomes enabled and active.
     /// </summary>
     void OnEnable()
     {
@@ -22,9 +23,9 @@ public class StartAtTop : MonoBehaviour
     }
 
     /// <summary>
-    /// Resets the scroll position.
+    /// Coroutine to reset the scroll position to the top after UI layout is done.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>An IEnumerator for the coroutine.</returns>
     IEnumerator ResetScrollPosition()
     {
         // Wait for the end of the frame to ensure all UI layout is done

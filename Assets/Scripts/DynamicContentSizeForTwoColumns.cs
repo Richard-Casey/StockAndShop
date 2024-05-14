@@ -2,24 +2,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// 
+/// Adjusts the size of a UI element to fit two columns of content dynamically.
 /// </summary>
 public class DynamicContentSizeForTwoColumns : MonoBehaviour
 {
     /// <summary>
-    /// The content area
+    /// The RectTransform component of the content area.
     /// </summary>
     public RectTransform contentArea;
+
     /// <summary>
-    /// The grid layout group
+    /// The GridLayoutGroup component for the layout settings.
     /// </summary>
     [Header("Layout Settings")]
     public GridLayoutGroup gridLayoutGroup;
 
     /// <summary>
-    /// Updates the size of the content.
+    /// Updates the size of the content area to fit the specified number of items.
     /// </summary>
-    /// <param name="itemCount">The item count.</param>
+    /// <param name="itemCount">The number of items in the content area.</param>
     public void UpdateContentSize(int itemCount)
     {
         // Calculate the number of rows (2 items per row)

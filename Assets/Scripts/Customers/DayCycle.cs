@@ -2,66 +2,94 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+
 /// <summary>
-/// 
+/// Manages the day-night cycle of the shop, including customer spawning and time controls.
 /// </summary>
 public class DayCycle : MonoBehaviour
 {
     /// <summary>
-    /// The clock text
+    /// The text component for displaying the clock.
     /// </summary>
     [SerializeField] public TextMeshProUGUI clockText; // Clock display
+
     /// <summary>
-    /// The customer spawner
+    /// Reference to the CustomerSpawner script.
     /// </summary>
     [SerializeField] private CustomerSpawner customerSpawner; // Reference to the CustomerSpawner script
+
     /// <summary>
-    /// The daily summary manager
+    /// Reference to the DailySummaryManager.
     /// </summary>
     [SerializeField] private DailySummaryManager dailySummaryManager; // Reference to the DailySummaryManager
 
     /// <summary>
-    /// The current time
+    /// The current time of day in seconds.
     /// </summary>
     public float currentTime = 0; // Added this line to declare currentTime
+
     /// <summary>
-    /// The current day
+    /// The current day number.
     /// </summary>
     public int currentDay = 0;
+
     /// <summary>
-    /// The is day active
+    /// Indicates whether the day is active.
     /// </summary>
     public bool isDayActive = false;
+
     /// <summary>
-    /// The is paused
+    /// Indicates whether the game is paused.
     /// </summary>
     private bool isPaused = false;
+
     /// <summary>
-    /// The normal time button
+    /// Button to set time to normal speed.
     /// </summary>
-    [SerializeField] public Button normalTimeButton, openShopButton, pauseButton, slowDownTimeButton, speedUpTimeButton;
+    [SerializeField] public Button normalTimeButton;
+
     /// <summary>
-    /// The time multiplier
+    /// Button to open the shop.
+    /// </summary>
+    [SerializeField] public Button openShopButton;
+
+    /// <summary>
+    /// Button to pause the game.
+    /// </summary>
+    [SerializeField] public Button pauseButton;
+
+    /// <summary>
+    /// Button to slow down time.
+    /// </summary>
+    [SerializeField] public Button slowDownTimeButton;
+
+    /// <summary>
+    /// Button to speed up time.
+    /// </summary>
+    [SerializeField] public Button speedUpTimeButton;
+
+    /// <summary>
+    /// Multiplier for the speed of time.
     /// </summary>
     private int timeMultiplier = 1;
+
     /// <summary>
-    /// The day duration in seconds
+    /// Duration of a game day in seconds.
     /// </summary>
     public float dayDurationInSeconds = 600; // Duration of a game day in seconds
+
     /// <summary>
-    /// Gets the instance.
+    /// Singleton instance of the DayCycle class.
     /// </summary>
-    /// <value>
-    /// The instance.
-    /// </value>
     public static DayCycle Instance { get; private set; }
+
     /// <summary>
-    /// The is first day started
+    /// Indicates whether the first day has started.
     /// </summary>
     public bool isFirstDayStarted = false;
 
     /// <summary>
-    /// Starts this instance.
+    /// Initializes the DayCycle instance and sets up button listeners.
     /// </summary>
     private void Start()
     {
@@ -85,7 +113,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Awakes this instance.
+    /// Ensures a single instance of the DayCycle class.
     /// </summary>
     private void Awake()
     {
@@ -101,7 +129,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates this instance.
+    /// Updates the current time and checks if the day should end.
     /// </summary>
     void Update()
     {
@@ -115,7 +143,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the clock.
+    /// Updates the clock display based on the current time.
     /// </summary>
     void UpdateClock()
     {
@@ -126,8 +154,9 @@ public class DayCycle : MonoBehaviour
         clockText.text = string.Format("{0:D2}:{1:D2}", hours, minutes);
     }
 
+
     /// <summary>
-    /// Ends the day.
+    /// Ends the day if no customers are active.
     /// </summary>
     public void EndDay()
     {
@@ -141,7 +170,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Finalizes the day.
+    /// Finalizes the end of the day, resets time and updates UI.
     /// </summary>
     private void FinalizeDay()
     {
@@ -162,7 +191,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts the day.
+    /// Starts a new day, resets time and updates UI.
     /// </summary>
     public void StartDay()
     {
@@ -192,16 +221,10 @@ public class DayCycle : MonoBehaviour
         }
     }
 
-
-
-
-
-
-
     /// <summary>
-    /// Sets the time control buttons active.
+    /// Sets the active state of time control buttons.
     /// </summary>
-    /// <param name="isActive">if set to <c>true</c> [is active].</param>
+    /// <param name="isActive">The active state to set.</param>
     public void SetTimeControlButtonsActive(bool isActive)
     {
         speedUpTimeButton.gameObject.SetActive(isActive);
@@ -210,7 +233,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Normals the time.
+    /// Sets the time multiplier to normal speed.
     /// </summary>
     public void NormalTime()
     {
@@ -219,7 +242,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Slows down time.
+    /// Slows down the time multiplier.
     /// </summary>
     public void SlowDownTime()
     {
@@ -231,7 +254,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Speeds up time.
+    /// Speeds up the time multiplier.
     /// </summary>
     public void SpeedUpTime()
     {
@@ -243,7 +266,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Toggles the pause.
+    /// Toggles the paused state of the game.
     /// </summary>
     public void TogglePause()
     {
@@ -257,7 +280,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Opens the shop UI updates.
+    /// Updates the UI when the shop opens.
     /// </summary>
     public void OpenShopUIUpdates()
     {
@@ -267,7 +290,7 @@ public class DayCycle : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts the new day.
+    /// Starts a new day and updates statistics accordingly.
     /// </summary>
     public void StartNewDay()
     {

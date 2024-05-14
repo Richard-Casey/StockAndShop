@@ -2,52 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
-/// 
+/// Represents an inventory item in the shop.
 /// </summary>
 [System.Serializable]
 public class InventoryItem
 {
     /// <summary>
-    /// The base demand
+    /// The base demand for the item.
     /// </summary>
     public float baseDemand;
+
     /// <summary>
-    /// The cost
+    /// The cost price of the item.
     /// </summary>
     public float cost;
+
     /// <summary>
-    /// The demand
+    /// The current demand for the item.
     /// </summary>
     public float demand;
+
     /// <summary>
-    /// The item image
+    /// The image of the item.
     /// </summary>
     public Sprite itemImage;
+
     /// <summary>
-    /// The item name
+    /// The name of the item.
     /// </summary>
     public string itemName;
+
     /// <summary>
-    /// The quantity
+    /// The quantity of the item in stock.
     /// </summary>
     public int quantity;
+
     /// <summary>
-    /// The selling price
+    /// The selling price of the item.
     /// </summary>
     public float sellingPrice;
+
     /// <summary>
-    /// The sell quantity
+    /// The quantity of the item available for sale.
     /// </summary>
     public int sellQuantity;
 
     /// <summary>
-    /// Gets or sets a value indicating whether this instance is selected for selling.
+    /// Indicates whether the item is selected for selling.
     /// </summary>
-    /// <value>
-    ///   <c>true</c> if this instance is selected for selling; otherwise, <c>false</c>.
-    /// </value>
     public bool isSelectedForSelling { get; set; }
 
 }

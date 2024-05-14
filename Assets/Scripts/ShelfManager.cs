@@ -3,42 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// 
+/// Manages the items on the shelf, including initialization, updating, and removal.
 /// </summary>
 public class ShelfManager : MonoBehaviour
 {
     /// <summary>
-    /// The content grid layout
+    /// The grid layout where shelf items are displayed.
     /// </summary>
     public Transform contentGridLayout;
+
     /// <summary>
-    /// The dynamic content size script
+    /// Reference to the script that dynamically adjusts content size for one column.
     /// </summary>
     public DynamicContentSizeForOneColumn dynamicContentSizeScript;
 
-    /// <summary>
-    /// The inventory manager
-    /// </summary>
     [Header("Manager References")]
-    public InventoryManager inventoryManager;
-    /// <summary>
-    /// The shelf container
-    /// </summary>
-    public Transform shelfContainer;
-    /// <summary>
-    /// The shelf item prefab
-    /// </summary>
-    [Header("Prefab and Container")]
-    public GameObject shelfItemPrefab;
 
     /// <summary>
-    /// The shelf items
+    /// Reference to the InventoryManager for accessing inventory items.
     /// </summary>
+    public InventoryManager inventoryManager;
+
+    /// <summary>
+    /// The container where shelf items are instantiated.
+    /// </summary>
+    public Transform shelfContainer;
+    [Header("Prefab and Container")]
+
+    /// <summary>
+    /// The prefab used for creating shelf items.
+    /// </summary>
+    public GameObject shelfItemPrefab;
+
     [Header("Misc")]
+
+    /// <summary>
+    /// A list of currently active shelf items.
+    /// </summary>
     public List<GameObject> shelfItems;
 
     /// <summary>
-    /// Initializes the shelf items.
+    /// Initializes the shelf items by clearing existing items and adding selected inventory items.
     /// </summary>
     void InitializeShelfItems()
     {
@@ -76,7 +81,7 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts this instance.
+    /// Unity's Start method, called on the frame when a script is enabled just before any of the Update methods are called.
     /// </summary>
     void Start()
     {
@@ -84,9 +89,9 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds to shelf items.
+    /// Adds an item to the shelf items, either updating an existing item or creating a new one.
     /// </summary>
-    /// <param name="itemToAdd">The item to add.</param>
+    /// <param name="itemToAdd">The item to add to the shelf.</param>
     public void AddToShelfItems(InventoryItem itemToAdd)
     {
         // Check if an item with the same name and selling price already exists on the shelf
@@ -131,11 +136,11 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Finds the existing shelf item.
+    /// Finds an existing shelf item based on the item name and selling price.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <param name="sellingPrice">The selling price.</param>
-    /// <returns></returns>
+    /// <param name="itemName">The name of the item.</param>
+    /// <param name="sellingPrice">The selling price of the item.</param>
+    /// <returns>The found ShelfItemUI component or null if not found.</returns>
     public ShelfItemUI FindExistingShelfItem(string itemName, float sellingPrice)
     {
         // Iterate through your existing shelf items and find a match
@@ -151,10 +156,10 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the item cost.
+    /// Gets the cost of an item based on its name.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <returns></returns>
+    /// <param name="itemName">The name of the item.</param>
+    /// <returns>The cost of the item or -1 if not found.</returns>
     public float GetItemCost(string itemName)
     {
         foreach (var itemGO in shelfItems)
@@ -169,10 +174,10 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the item price.
+    /// Gets the selling price of an item based on its name.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <returns></returns>
+    /// <param name="itemName">The name of the item.</param>
+    /// <returns>The selling price of the item or -1 if not found.</returns>
     public float GetItemPrice(string itemName)
     {
         foreach (var itemGO in shelfItems)
@@ -187,9 +192,9 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the lowest price on shelf.
+    /// Gets the lowest selling price among all items on the shelf.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>The lowest selling price or 0 if no items are found.</returns>
     public float GetLowestPriceOnShelf()
     {
         float lowestPrice = float.MaxValue; // Start with the maximum possible float value
@@ -209,9 +214,9 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Removes the shelf item.
+    /// Removes a shelf item.
     /// </summary>
-    /// <param name="shelfItem">The shelf item.</param>
+    /// <param name="shelfItem">The shelf item to remove.</param>
     public void RemoveShelfItem(GameObject shelfItem)
     {
         if (shelfItems.Contains(shelfItem))
@@ -225,7 +230,7 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the size of the content.
+    /// Updates the content size based on the number of shelf items.
     /// </summary>
     public void UpdateContentSize()
     {
@@ -239,9 +244,8 @@ public class ShelfManager : MonoBehaviour
         }
     }
 
-    // Method to update the shelf items
     /// <summary>
-    /// Updates the shelf items.
+    /// Updates the shelf items by reinitializing them.
     /// </summary>
     public void UpdateShelfItems()
     {
@@ -249,9 +253,9 @@ public class ShelfManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the shelf item quantities.
+    /// Gets the quantities of items on the shelf.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A dictionary with item names and their corresponding quantities.</returns>
     public Dictionary<string, int> GetShelfItemQuantities()
     {
         Dictionary<string, int> quantities = new Dictionary<string, int>();

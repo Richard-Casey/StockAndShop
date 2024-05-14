@@ -5,37 +5,40 @@ using TMPro;
 using System.Linq;
 
 /// <summary>
-/// 
-/// </summary>
+/// Manages the till operations including processing customer transactions and updating relevant data.
+/// </summary>+
 public class TillManager : MonoBehaviour
 {
     /// <summary>
-    /// The till is occupied
+    /// Indicates if the till is currently occupied.
     /// </summary>
     public static bool tillIsOccupied = false;
+
     /// <summary>
-    /// The customer queue
+    /// Queue to manage the customers waiting to be processed at the till.
     /// </summary>
     private Queue<Customer> customerQueue = new Queue<Customer>();
+
     /// <summary>
-    /// The is processing
+    /// Flag to check if the till is currently processing a customer.
     /// </summary>
     private bool isProcessing = false;
+
     /// <summary>
-    /// The till area
+    /// Reference to the till area GameObject where the customers will be processed.
     /// </summary>
-    public GameObject tillArea; // Assign the TillBG GameObject
+    public GameObject tillArea;
+
     /// <summary>
-    /// The till customer prefab
+    /// Prefab for the till customer to be instantiated during processing.
     /// </summary>
     public GameObject tillCustomerPrefab;
 
 
-
     /// <summary>
-    /// Processes the customer at till.
+    /// Coroutine to process the customers in the queue at the till.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>IEnumerator for the coroutine.</returns>
     private IEnumerator ProcessCustomerAtTill()
     {
         isProcessing = true;
@@ -73,12 +76,11 @@ public class TillManager : MonoBehaviour
         isProcessing = false;
     }
 
-
     /// <summary>
-    /// Processes the transaction.
+    /// Processes the transaction for the given customer.
     /// </summary>
-    /// <param name="customer">The customer.</param>
-    /// <returns></returns>
+    /// <param name="customer">The customer whose transaction is being processed.</param>
+    /// <returns>GameObject instance of the till customer.</returns>
     private GameObject ProcessTransaction(Customer customer)
     {
         GameObject tillCustomerInstance = Instantiate(tillCustomerPrefab, tillArea.transform);
@@ -124,15 +126,10 @@ public class TillManager : MonoBehaviour
         return tillCustomerInstance;
     }
 
-
-
-
-
-
     /// <summary>
-    /// Updates the players cash.
+    /// Updates the player's cash display with the total cost of the transaction.
     /// </summary>
-    /// <param name="totalCost">The total cost.</param>
+    /// <param name="totalCost">The total cost of the transaction.</param>
     void UpdatePlayersCash(float totalCost)
     {
         CashDisplay cashDisplay = FindObjectOfType<CashDisplay>();
@@ -143,9 +140,9 @@ public class TillManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Adds the customer to queue.
+    /// Adds a customer to the queue to be processed at the till.
     /// </summary>
-    /// <param name="customer">The customer.</param>
+    /// <param name="customer">The customer to be added to the queue.</param>
     public void AddCustomerToQueue(Customer customer)
     {
         customerQueue.Enqueue(customer);

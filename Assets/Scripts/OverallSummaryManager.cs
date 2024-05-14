@@ -4,145 +4,169 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// 
+/// Manages the overall summary statistics of the shop, aggregating data from daily summaries.
 /// </summary>
 public class OverallSummaryManager : MonoBehaviour
 {
     /// <summary>
-    /// 
+    /// Represents the overall statistics of the shop.
     /// </summary>
     [System.Serializable]
     public struct OverallStats
     {
         /// <summary>
-        /// The total customers
+        /// The total number of customers.
         /// </summary>
         public int totalCustomers;
+
         /// <summary>
-        /// The total purchasing customers
+        /// The total number of purchasing customers.
         /// </summary>
         public int totalPurchasingCustomers;
+
         /// <summary>
-        /// The most popular item
+        /// The most popular item sold.
         /// </summary>
         public string mostPopularItem;
+
         /// <summary>
-        /// The least popular item
+        /// The least popular item sold.
         /// </summary>
         public string leastPopularItem;
+
         /// <summary>
-        /// The highest transaction value
+        /// The highest transaction value recorded.
         /// </summary>
         public float highestTransactionValue;
+
         /// <summary>
-        /// The most profitable customer
+        /// The most profitable customer.
         /// </summary>
         public string mostProfitableCustomer;
+
         /// <summary>
-        /// The most profitable amount
+        /// The amount of the most profitable transaction.
         /// </summary>
         public float mostProfitableAmount;
+
         /// <summary>
-        /// The most profitable profit
+        /// The profit from the most profitable transaction.
         /// </summary>
         public float mostProfitableProfit;
+
         /// <summary>
-        /// The total revenue
+        /// The total revenue generated.
         /// </summary>
         public float totalRevenue;
+
         /// <summary>
-        /// The total expenses
+        /// The total expenses incurred.
         /// </summary>
         public float totalExpenses;
+
         /// <summary>
-        /// The total profit
+        /// The total profit earned.
         /// </summary>
         public float totalProfit;
+
         /// <summary>
-        /// The average customer satisfaction
+        /// The average customer satisfaction.
         /// </summary>
         public float averageCustomerSatisfaction;
+
         /// <summary>
-        /// The total stock shortage per customer
+        /// The total stock shortage per customer.
         /// </summary>
         public int totalStockShortagePerCustomer;
+
         /// <summary>
-        /// The total stock shortage per item
+        /// The total stock shortage per item.
         /// </summary>
         public int totalStockShortagePerItem;
     }
 
     /// <summary>
-    /// The overall stats
+    /// The overall statistics of the shop.
     /// </summary>
     public OverallStats overallStats;
 
-    // Reference to DailySummaryManager
     /// <summary>
-    /// The daily summary manager
+    /// Reference to the DailySummaryManager for accessing daily statistics.
     /// </summary>
     [SerializeField] private DailySummaryManager dailySummaryManager;
 
-    // UI References for overall summary
     /// <summary>
-    /// The total customers text
+    /// UI text component for displaying the total number of customers.
     /// </summary>
     [SerializeField] private TextMeshProUGUI totalCustomersText;
+
     /// <summary>
-    /// The total purchasing customers text
+    /// UI text component for displaying the total number of purchasing customers.
     /// </summary>
     [SerializeField] private TextMeshProUGUI totalPurchasingCustomersText;
+
     /// <summary>
-    /// The most popular item text
+    /// UI text component for displaying the most popular item.
     /// </summary>
     [SerializeField] private TextMeshProUGUI mostPopularItemText;
+
     /// <summary>
-    /// The least popular item text
+    /// UI text component for displaying the least popular item.
     /// </summary>
     [SerializeField] private TextMeshProUGUI leastPopularItemText;
+
     /// <summary>
-    /// The highest transaction value text
+    /// UI text component for displaying the highest transaction value.
     /// </summary>
     [SerializeField] private TextMeshProUGUI highestTransactionValueText;
+
     /// <summary>
-    /// The most profitable customer text
+    /// UI text component for displaying the most profitable customer.
     /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableCustomerText;
+
     /// <summary>
-    /// The most profitable amount text
+    /// UI text component for displaying the amount of the most profitable transaction.
     /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableAmountText;
+
     /// <summary>
-    /// The most profitable profit text
+    /// UI text component for displaying the profit from the most profitable transaction.
     /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableProfitText;
+
     /// <summary>
-    /// The total revenue text
+    /// UI text component for displaying the total revenue.
     /// </summary>
     [SerializeField] private TextMeshProUGUI totalRevenueText;
+
     /// <summary>
-    /// The total expenses text
+    /// UI text component for displaying the total expenses.
     /// </summary>
     [SerializeField] private TextMeshProUGUI totalExpensesText;
+
     /// <summary>
-    /// The total profit text
+    /// UI text component for displaying the total profit.
     /// </summary>
     [SerializeField] private TextMeshProUGUI totalProfitText;
+
     /// <summary>
-    /// The average customer satisfaction text
+    /// UI text component for displaying the average customer satisfaction.
     /// </summary>
     [SerializeField] private TextMeshProUGUI averageCustomerSatisfactionText;
+
     /// <summary>
-    /// The total stock shortage per customer text
+    /// UI text component for displaying the total stock shortage per customer.
     /// </summary>
     [SerializeField] private TextMeshProUGUI totalStockShortagePerCustomerText;
+
     /// <summary>
-    /// The total stock shortage per item text
+    /// UI text component for displaying the total stock shortage per item.
     /// </summary>
     [SerializeField] private TextMeshProUGUI totalStockShortagePerItemText;
 
     /// <summary>
-    /// Starts this instance.
+    /// Initializes the OverallSummaryManager by finding the DailySummaryManager and updating the overall statistics.
     /// </summary>
     void Start()
     {
@@ -154,7 +178,7 @@ public class OverallSummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the overall stats.
+    /// Updates the overall statistics by aggregating data from daily summaries.
     /// </summary>
     public void UpdateOverallStats()
     {
@@ -201,10 +225,8 @@ public class OverallSummaryManager : MonoBehaviour
         UpdateUI();
     }
 
-
-
     /// <summary>
-    /// Updates the UI.
+    /// Updates the overall summary UI with the current overall statistics.
     /// </summary>
     private void UpdateUI()
     {

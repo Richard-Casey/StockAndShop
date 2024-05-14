@@ -4,167 +4,193 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// 
+/// Represents the daily statistics of the shop.
 /// </summary>
 [System.Serializable]
 public struct DailyStats
 {
     /// <summary>
-    /// The day number
+    /// The day number.
     /// </summary>
     public int dayNumber;
+
     /// <summary>
-    /// The number of customers
+    /// The number of customers who entered the shop.
     /// </summary>
     public int numberOfCustomers;
+
     /// <summary>
-    /// The number of purchasing customers
+    /// The number of customers who made a purchase.
     /// </summary>
     public int numberOfPurchasingCustomers;
+
     /// <summary>
-    /// The daily revenue
+    /// The total revenue for the day.
     /// </summary>
     public float dailyRevenue;
+
     /// <summary>
-    /// The daily expenses
+    /// The total expenses for the day.
     /// </summary>
     public float dailyExpenses;
+
     /// <summary>
-    /// The daily profit
+    /// The total profit for the day.
     /// </summary>
     public float dailyProfit;
+
     /// <summary>
-    /// The item sales
+    /// A dictionary of items sold and their quantities.
     /// </summary>
     public Dictionary<string, int> itemSales;
+
     /// <summary>
-    /// The most profitable customer
+    /// The name of the most profitable customer.
     /// </summary>
     public string mostProfitableCustomer;
+
     /// <summary>
-    /// The highest transaction value
+    /// The highest transaction value of the day.
     /// </summary>
     public float highestTransactionValue;
+
     /// <summary>
-    /// The most profitable transaction profit
+    /// The profit from the most profitable transaction.
     /// </summary>
     public float mostProfitableTransactionProfit;
+
     /// <summary>
-    /// The most profitable transaction amount
+    /// The amount from the most profitable transaction.
     /// </summary>
     public float mostProfitableTransactionAmount;
+
     /// <summary>
-    /// The customer satisfaction
+    /// The customer satisfaction rating for the day.
     /// </summary>
     public float customerSatisfaction;
+
     /// <summary>
-    /// The stock shortage per customer
+    /// The number of stock shortages per customer.
     /// </summary>
     public int stockShortagePerCustomer;
+
     /// <summary>
-    /// The stock shortage per item
+    /// The number of stock shortages per item.
     /// </summary>
     public int stockShortagePerItem;
 }
 
 
-
-
 /// <summary>
-/// 
+/// Manages the daily summary and statistics of the shop.
 /// </summary>
 public class DailySummaryManager : MonoBehaviour
 {
     /// <summary>
-    /// The current day
+    /// The current day number.
     /// </summary>
     public int currentDay = 0;
+
     /// <summary>
-    /// The daily stats list
+    /// The list of daily statistics.
     /// </summary>
     private List<DailyStats> dailyStatsList = new List<DailyStats>();
+
     /// <summary>
-    /// The customer spawner
+    /// The customer spawner.
     /// </summary>
     private CustomerSpawner customerSpawner;
+
     /// <summary>
-    /// The summary prefab script
+    /// The script for the summary prefab.
     /// </summary>
     [SerializeField] private SummaryPrefabScript summaryPrefabScript;
 
-
-    // UI References
     /// <summary>
-    /// The day text
+    /// Text component for displaying the day number.
     /// </summary>
     [SerializeField] private TextMeshProUGUI dayText;
+
     /// <summary>
-    /// The number of customers text
+    /// Text component for displaying the number of customers.
     /// </summary>
     [SerializeField] private TextMeshProUGUI numberOfCustomersText;
+
     /// <summary>
-    /// The number of purchasing customers text
+    /// Text component for displaying the number of purchasing customers.
     /// </summary>
     [SerializeField] private TextMeshProUGUI numberOfPurchasingCustomersText;
+
     /// <summary>
-    /// The daily revenue text
+    /// Text component for displaying the daily revenue.
     /// </summary>
     [SerializeField] private TextMeshProUGUI dailyRevenueText;
+
     /// <summary>
-    /// The daily expenses text
+    /// Text component for displaying the daily expenses.
     /// </summary>
     [SerializeField] private TextMeshProUGUI dailyExpensesText;
+
     /// <summary>
-    /// The daily profit text
+    /// Text component for displaying the daily profit.
     /// </summary>
     [SerializeField] private TextMeshProUGUI dailyProfitText;
+
     /// <summary>
-    /// The most profitable customer text
+    /// Text component for displaying the most profitable customer.
     /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableCustomerText;
+
     /// <summary>
-    /// The most profitable amount text
+    /// Text component for displaying the amount from the most profitable transaction.
     /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableAmountText;
+
     /// <summary>
-    /// The most profitable profit text
+    /// Text component for displaying the profit from the most profitable transaction.
     /// </summary>
     [SerializeField] private TextMeshProUGUI mostProfitableProfitText;
+
     /// <summary>
-    /// The highest transaction value text
+    /// Text component for displaying the highest transaction value.
     /// </summary>
     [SerializeField] private TextMeshProUGUI highestTransactionValueText;
+
     /// <summary>
-    /// The customer satisfaction text
+    /// Text component for displaying the customer satisfaction rating.
     /// </summary>
     [SerializeField] private TextMeshProUGUI customerSatisfactionText;
+
     /// <summary>
-    /// The most popular item text
+    /// Text component for displaying the most popular item.
     /// </summary>
     [SerializeField] private TextMeshProUGUI mostPopularItemText;
+
     /// <summary>
-    /// The least popular item text
+    /// Text component for displaying the least popular item.
     /// </summary>
     [SerializeField] private TextMeshProUGUI leastPopularItemText;
+
     /// <summary>
-    /// The stock shortage per customer text
+    /// Text component for displaying the stock shortage per customer.
     /// </summary>
     [SerializeField] private TextMeshProUGUI stockShortagePerCustomerText;
+
     /// <summary>
-    /// The stock shortage per item text
+    /// Text component for displaying the stock shortage per item.
     /// </summary>
     [SerializeField] private TextMeshProUGUI stockShortagePerItemText;
+
     /// <summary>
-    /// The overall summary manager
+    /// The overall summary manager.
     /// </summary>
     [SerializeField] private OverallSummaryManager overallSummaryManager;
 
 
 
 
-
     /// <summary>
-    /// Starts this instance.
+    /// Initializes the daily summary manager.
     /// </summary>
     void Start()
     {
@@ -180,10 +206,10 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks the and update highest transaction value.
+    /// Checks and updates the highest transaction value.
     /// </summary>
     /// <param name="transactionValue">The transaction value.</param>
-    /// <param name="customerName">Name of the customer.</param>
+    /// <param name="customerName">The customer's name.</param>
     /// <param name="transactionProfit">The transaction profit.</param>
     public void CheckAndUpdateHighestTransactionValue(float transactionValue, string customerName, float transactionProfit)
     {
@@ -205,7 +231,6 @@ public class DailySummaryManager : MonoBehaviour
 
 
 
-
     /// <summary>
     /// Initializes the day.
     /// </summary>
@@ -218,7 +243,7 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Initializes the item sales.
+    /// Initializes item sales for the current day.
     /// </summary>
     public void InitializeItemSales()
     {
@@ -240,9 +265,8 @@ public class DailySummaryManager : MonoBehaviour
 
 
 
-
     /// <summary>
-    /// Adds the new day stats.
+    /// Adds new daily statistics for a new day.
     /// </summary>
     public void AddNewDayStats()
     {
@@ -264,14 +288,13 @@ public class DailySummaryManager : MonoBehaviour
         UpdateUI();
     }
 
-
     /// <summary>
-    /// Registers the transaction.
+    /// Registers a transaction.
     /// </summary>
-    /// <param name="customer">The customer.</param>
-    /// <param name="purchasedItems">The purchased items.</param>
-    /// <param name="transactionValue">The transaction value.</param>
-    /// <param name="transactionProfit">The transaction profit.</param>
+    /// <param name="customer">The customer making the transaction.</param>
+    /// <param name="purchasedItems">The items purchased.</param>
+    /// <param name="transactionValue">The value of the transaction.</param>
+    /// <param name="transactionProfit">The profit from the transaction.</param>
     public void RegisterTransaction(Customer customer, Dictionary<string, int> purchasedItems, float transactionValue, float transactionProfit)
     {
         int lastIndex = dailyStatsList.Count - 1;
@@ -310,56 +333,8 @@ public class DailySummaryManager : MonoBehaviour
         UpdateUI();
     }
 
-
-
-
-
-    //public void RegisterTransaction(Customer customer, Dictionary<string, int> purchasedItems, float transactionValue, float transactionProfit)
-    //{
-    //    int lastIndex = dailyStatsList.Count - 1;
-    //    DailyStats currentDayStats = dailyStatsList[lastIndex];
-
-    //    // Registering the sales of each item
-    //    foreach (var item in purchasedItems)
-    //    {
-    //        if (currentDayStats.itemSales.ContainsKey(item.Key))
-    //            currentDayStats.itemSales[item.Key] += item.Value;
-    //        else
-    //            currentDayStats.itemSales[item.Key] = item.Value;
-    //    }
-
-    //    currentDayStats.numberOfPurchasingCustomers++;
-    //    currentDayStats.dailyRevenue += transactionValue;
-    //    currentDayStats.dailyProfit += transactionProfit;
-
-    //    // Check for highest transaction value
-    //    if (transactionValue > currentDayStats.highestTransactionValue)
-    //    {
-    //        currentDayStats.highestTransactionValue = transactionValue;
-    //        // Other updates can be done here if needed
-    //    }
-
-    //    // Check for most profitable transaction
-    //    if (transactionProfit > currentDayStats.mostProfitableTransactionProfit)
-    //    {
-    //        currentDayStats.mostProfitableTransactionProfit = transactionProfit;
-    //        currentDayStats.mostProfitableCustomer = customer.customerName;
-    //        // Assuming you want to track the total amount as well for the most profitable transaction
-    //        currentDayStats.mostProfitableTransactionAmount = transactionValue;
-    //    }
-
-    //    // Update the list with new stats
-    //    dailyStatsList[lastIndex] = currentDayStats;
-
-    //    // Update UI
-    //    UpdateUI();
-    //}
-
-
-
-
     /// <summary>
-    /// Starts the new day.
+    /// Starts a new day.
     /// </summary>
     public void StartNewDay()
     {
@@ -375,7 +350,7 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Prepares for new day.
+    /// Prepares for a new day by resetting daily statistics.
     /// </summary>
     public void PrepareForNewDay()
     {
@@ -388,9 +363,8 @@ public class DailySummaryManager : MonoBehaviour
         UpdateUI();
     }
 
-
     /// <summary>
-    /// Saves the current day stats.
+    /// Saves the current day's statistics.
     /// </summary>
     private void SaveCurrentDayStats()
     {
@@ -398,9 +372,8 @@ public class DailySummaryManager : MonoBehaviour
         Debug.Log("Stats saved for day " + currentDay);
     }
 
-
     /// <summary>
-    /// Prepares the day.
+    /// Prepares the day by resetting statistics and adding new day stats.
     /// </summary>
     public void PrepareDay()
     {
@@ -412,9 +385,8 @@ public class DailySummaryManager : MonoBehaviour
         ResetDailyStats();
     }
 
-
     /// <summary>
-    /// Checks the and end day.
+    /// Checks and ends the day if no customers are left.
     /// </summary>
     public void CheckAndEndDay()
     {
@@ -426,7 +398,7 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Registers the customer entry.
+    /// Registers a customer entry.
     /// </summary>
     public void RegisterCustomerEntry()
     {
@@ -439,12 +411,11 @@ public class DailySummaryManager : MonoBehaviour
         UpdateUI();
     }
 
-
     /// <summary>
-    /// Registers the customer dissatisfaction.
+    /// Registers customer dissatisfaction.
     /// </summary>
-    /// <param name="itemsNotFound">The items not found.</param>
-    /// <param name="customerCount">The customer count.</param>
+    /// <param name="itemsNotFound">The number of items not found.</param>
+    /// <param name="customerCount">The number of customers affected.</param>
     public void RegisterCustomerDissatisfaction(int itemsNotFound, int customerCount)
     {
         DailyStats todayStats = dailyStatsList.Last();
@@ -454,9 +425,9 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the daily customer satisfaction.
+    /// Updates daily customer satisfaction.
     /// </summary>
-    /// <param name="satisfactionChange">The satisfaction change.</param>
+    /// <param name="satisfactionChange">The change in satisfaction.</param>
     public void UpdateDailyCustomerSatisfaction(float satisfactionChange)
     {
         DailyStats todayStats = dailyStatsList.Last();
@@ -467,7 +438,7 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates the UI.
+    /// Updates the UI with the latest statistics.
     /// </summary>
     public void UpdateUI()
     {
@@ -500,12 +471,11 @@ public class DailySummaryManager : MonoBehaviour
     }
 
 
-
     /// <summary>
-    /// Determines the most popular item.
+    /// Determines the most popular item of the day.
     /// </summary>
-    /// <param name="stats">The stats.</param>
-    /// <returns></returns>
+    /// <param name="stats">The daily statistics.</param>
+    /// <returns>The most popular item.</returns>
     string DetermineMostPopularItem(DailyStats stats)
     {
         if (stats.itemSales.Count == 0) return "N/A";
@@ -513,10 +483,10 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Determines the least popular item.
+    /// Determines the least popular item of the day.
     /// </summary>
-    /// <param name="stats">The stats.</param>
-    /// <returns></returns>
+    /// <param name="stats">The daily statistics.</param>
+    /// <returns>The least popular item.</returns>
     string DetermineLeastPopularItem(DailyStats stats)
     {
         // Retrieve initial quantities on the shelf from ShelfManager
@@ -539,15 +509,8 @@ public class DailySummaryManager : MonoBehaviour
         return leastPopular.Key;  // Assumes there's always at least one item
     }
 
-
-
-
-
-
-
-
     /// <summary>
-    /// Ends the of day summary.
+    /// Ends the day and provides a summary.
     /// </summary>
     public void EndOfDaySummary()
     {
@@ -555,7 +518,7 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Increments the day.
+    /// Increments the day counter and adds new day statistics.
     /// </summary>
     public void IncrementDay()
     {
@@ -564,7 +527,7 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Starts the new day without reset.
+    /// Starts a new day without resetting statistics.
     /// </summary>
     public void StartNewDayWithoutReset()
     {
@@ -583,7 +546,7 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Resets the daily stats.
+    /// Resets the daily statistics.
     /// </summary>
     void ResetDailyStats()
     {
@@ -607,20 +570,19 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Gets the daily stats.
+    /// Gets the daily statistics.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>A list of daily statistics.</returns>
     public List<DailyStats> GetDailyStats()
     {
         // Returns a shallow copy of the dailyStatsList to prevent modification from outside
         return new List<DailyStats>(dailyStatsList);
     }
 
-
     /// <summary>
-    /// Registers the daily expenses.
+    /// Registers daily expenses.
     /// </summary>
-    /// <param name="amount">The amount.</param>
+    /// <param name="amount">The amount of expenses.</param>
     public void RegisterDailyExpenses(float amount)
     {
         if (dailyStatsList.Count == 0)
@@ -633,10 +595,10 @@ public class DailySummaryManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Registers the stock shortage.
+    /// Registers stock shortages.
     /// </summary>
-    /// <param name="customersAffected">The customers affected.</param>
-    /// <param name="itemsNotFound">The items not found.</param>
+    /// <param name="customersAffected">The number of customers affected.</param>
+    /// <param name="itemsNotFound">The number of items not found.</param>
     public void RegisterStockShortage(int customersAffected, int itemsNotFound)
     {
         int lastIndex = dailyStatsList.Count - 1;

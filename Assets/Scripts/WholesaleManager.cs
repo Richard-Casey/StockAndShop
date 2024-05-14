@@ -4,39 +4,42 @@ using UnityEngine;
 using TMPro;
 
 /// <summary>
-/// 
+/// Manages the wholesale operations, including populating the UI with wholesale items and moving items to inventory.
 /// </summary>
 public class WholesaleManager : MonoBehaviour
 {
     /// <summary>
-    /// The content grid layout
+    /// The layout where wholesale item UI elements will be instantiated.
     /// </summary>
     public Transform contentGridLayout;
+
     /// <summary>
-    /// The dynamic content sizer
+    /// Script for dynamically adjusting the content size based on the number of items.
     /// </summary>
     public DynamicContentSizeForTwoColumns dynamicContentSizer;
 
-    /// <summary>
-    /// The inventory manager
-    /// </summary>
     [Header("Manager References")]
+
+    /// <summary>
+    /// Reference to the inventory manager.
+    /// </summary>
     public InventoryManager inventoryManager;
 
-    /// <summary>
-    /// The wholesale item prefab
-    /// </summary>
     [Header("UI Components")]
-    public GameObject wholesaleItemPrefab;
+
     /// <summary>
-    /// The wholesale items
+    /// Prefab for the wholesale item UI element.
     /// </summary>
+    public GameObject wholesaleItemPrefab;
     [Header("Wholesale Items")]
+
+    /// <summary>
+    /// List of items available at the wholesale.
+    /// </summary>
     public List<InventoryItem> wholesaleItems;
 
-
     /// <summary>
-    /// Populates the wholesale UI.
+    /// Populates the wholesale UI with items.
     /// </summary>
     void PopulateWholesaleUI()
     {
@@ -83,9 +86,8 @@ public class WholesaleManager : MonoBehaviour
         }
     }
 
-
     /// <summary>
-    /// Starts this instance.
+    /// Unity's Start method, called before the first frame update.
     /// </summary>
     void Start()
     {
@@ -94,12 +96,11 @@ public class WholesaleManager : MonoBehaviour
 
 
 
-    // When moving items to the inventory from wholesale
     /// <summary>
-    /// Moves the items to inventory.
+    /// Moves items from the wholesale to the inventory.
     /// </summary>
-    /// <param name="itemName">Name of the item.</param>
-    /// <param name="quantity">The quantity.</param>
+    /// <param name="itemName">Name of the item to move.</param>
+    /// <param name="quantity">Quantity of the item to move.</param>
     public void MoveItemsToInventory(string itemName, int quantity)
     {
         InventoryItem item = wholesaleItems.Find(i => i.itemName == itemName);
