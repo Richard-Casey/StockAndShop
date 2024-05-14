@@ -2293,7 +2293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.1, y: -0.16957}
+  m_AnchoredPosition: {x: -0.1, y: 25.9}
   m_SizeDelta: {x: 101.1949, y: 19.354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &338827600
@@ -12062,8 +12062,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -47.470398, y: 0}
-  m_SizeDelta: {x: -145.84161, y: -69.677795}
+  m_AnchoredPosition: {x: -47.470398, y: 14.2099905}
+  m_SizeDelta: {x: -145.8416, y: -98.0978}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1413635862
 MonoBehaviour:
@@ -15345,8 +15345,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 672108232}
   m_HandleRect: {fileID: 672108230}
   m_Direction: 2
-  m_Value: 0.000011490951
-  m_Size: 0.9921188
+  m_Value: 0.0000057454095
+  m_Size: 0.9921187
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -16084,8 +16084,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1295334108}
   m_HandleRect: {fileID: 1295334107}
   m_Direction: 2
-  m_Value: 0.000011490951
-  m_Size: 0.9921188
+  m_Value: 0.0000057454095
+  m_Size: 0.9921187
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -17170,6 +17170,7 @@ GameObject:
   - component: {fileID: 2037523731}
   - component: {fileID: 2037523732}
   - component: {fileID: 2037523733}
+  - component: {fileID: 2037523734}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -17538,6 +17539,18 @@ MonoBehaviour:
   averageCustomerSatisfactionText: {fileID: 857679104}
   totalStockShortagePerCustomerText: {fileID: 1198794570}
   totalStockShortagePerItemText: {fileID: 1971642060}
+--- !u!114 &2037523734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037523716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819dc058e413be84c9899eabae60fef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2039605927
 GameObject:
   m_ObjectHideFlags: 0

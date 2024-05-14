@@ -1,0 +1,312 @@
+\doxysection{Daily\+Summary\+Manager Class Reference}
+\hypertarget{class_daily_summary_manager}{}\label{class_daily_summary_manager}\index{DailySummaryManager@{DailySummaryManager}}
+
+
+Manages the daily summary and statistics of the shop.  
+
+
+Inheritance diagram for Daily\+Summary\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_daily_summary_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_daily_summary_manager_a4b4a16b14cd88b32327af756e2c8f737}{Check\+And\+Update\+Highest\+Transaction\+Value}} (float transaction\+Value, string customer\+Name, float transaction\+Profit)
+\begin{DoxyCompactList}\small\item\em Checks and updates the highest transaction value. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a00673bcb18269110dabd19180b852e20}\label{class_daily_summary_manager_a00673bcb18269110dabd19180b852e20} 
+void {\bfseries Initialize\+Item\+Sales} ()
+\begin{DoxyCompactList}\small\item\em Initializes item sales for the current day. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a3c9a81186dcbf485c7ffa42338ecaa19}\label{class_daily_summary_manager_a3c9a81186dcbf485c7ffa42338ecaa19} 
+void {\bfseries Add\+New\+Day\+Stats} ()
+\begin{DoxyCompactList}\small\item\em Adds new daily statistics for a new day. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_daily_summary_manager_afe49abfad67edcfe11b0123c2d481f4f}{Register\+Transaction}} (\mbox{\hyperlink{class_customer}{Customer}} customer, Dictionary$<$ string, int $>$ purchased\+Items, float transaction\+Value, float transaction\+Profit)
+\begin{DoxyCompactList}\small\item\em Registers a transaction. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a4a59fa64a09b659769f46e143c63fe26}\label{class_daily_summary_manager_a4a59fa64a09b659769f46e143c63fe26} 
+void {\bfseries Start\+New\+Day} ()
+\begin{DoxyCompactList}\small\item\em Starts a new day. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_ac2ff70fff7c9dc0446c47154e8d2c2ae}\label{class_daily_summary_manager_ac2ff70fff7c9dc0446c47154e8d2c2ae} 
+void {\bfseries Prepare\+For\+New\+Day} ()
+\begin{DoxyCompactList}\small\item\em Prepares for a new day by resetting daily statistics. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a546dd16044ffa8ec2966b8b38c4fff99}\label{class_daily_summary_manager_a546dd16044ffa8ec2966b8b38c4fff99} 
+void {\bfseries Prepare\+Day} ()
+\begin{DoxyCompactList}\small\item\em Prepares the day by resetting statistics and adding new day stats. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a4ca88091f016a58867eca4b4ec1f1e8a}\label{class_daily_summary_manager_a4ca88091f016a58867eca4b4ec1f1e8a} 
+void {\bfseries Check\+And\+End\+Day} ()
+\begin{DoxyCompactList}\small\item\em Checks and ends the day if no customers are left. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_aff200b19a65d6019b5e40c1bad9ac055}\label{class_daily_summary_manager_aff200b19a65d6019b5e40c1bad9ac055} 
+void {\bfseries Register\+Customer\+Entry} ()
+\begin{DoxyCompactList}\small\item\em Registers a customer entry. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_daily_summary_manager_a1aa7eb8317dc41b1a6f68a9e2ed4055d}{Register\+Customer\+Dissatisfaction}} (int items\+Not\+Found, int customer\+Count)
+\begin{DoxyCompactList}\small\item\em Registers customer dissatisfaction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_daily_summary_manager_af60111feba61ee56c741df0046b08e95}{Update\+Daily\+Customer\+Satisfaction}} (float satisfaction\+Change)
+\begin{DoxyCompactList}\small\item\em Updates daily customer satisfaction. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a17fd832f9ffed61e08237c1979878eab}\label{class_daily_summary_manager_a17fd832f9ffed61e08237c1979878eab} 
+void {\bfseries Update\+UI} ()
+\begin{DoxyCompactList}\small\item\em Updates the UI with the latest statistics. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a5eee5996123165ee15e833a3237026ed}\label{class_daily_summary_manager_a5eee5996123165ee15e833a3237026ed} 
+void {\bfseries End\+Of\+Day\+Summary} ()
+\begin{DoxyCompactList}\small\item\em Ends the day and provides a summary. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_abcb333057e0a36a74e9de21734e61138}\label{class_daily_summary_manager_abcb333057e0a36a74e9de21734e61138} 
+void {\bfseries Increment\+Day} ()
+\begin{DoxyCompactList}\small\item\em Increments the day counter and adds new day statistics. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_ab393f06a12cd651251eed8c1943d270a}\label{class_daily_summary_manager_ab393f06a12cd651251eed8c1943d270a} 
+void {\bfseries Start\+New\+Day\+Without\+Reset} ()
+\begin{DoxyCompactList}\small\item\em Starts a new day without resetting statistics. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} $>$ \mbox{\hyperlink{class_daily_summary_manager_af740eea8fb6e8f32f48ceb49c9a2f633}{Get\+Daily\+Stats}} ()
+\begin{DoxyCompactList}\small\item\em Gets the daily statistics. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_daily_summary_manager_aa6e794dccc2eb542cdc34db6dec72055}{Register\+Daily\+Expenses}} (float amount)
+\begin{DoxyCompactList}\small\item\em Registers daily expenses. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_daily_summary_manager_a98a37f7460a386b76589749cf8c43abb}{Register\+Stock\+Shortage}} (int customers\+Affected, int items\+Not\+Found)
+\begin{DoxyCompactList}\small\item\em Registers stock shortages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_daily_summary_manager_a7987e5dd7897792f9adae012b53dbcfb}\label{class_daily_summary_manager_a7987e5dd7897792f9adae012b53dbcfb} 
+int {\bfseries current\+Day} = 0
+\begin{DoxyCompactList}\small\item\em The current day number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_daily_summary_manager_a364af640eedb1d2ec51174769c8b6614}\label{class_daily_summary_manager_a364af640eedb1d2ec51174769c8b6614} 
+void {\bfseries Start} ()
+\begin{DoxyCompactList}\small\item\em Initializes the daily summary manager. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a6ad48155c4f5e3ddca99e25d429d5bec}\label{class_daily_summary_manager_a6ad48155c4f5e3ddca99e25d429d5bec} 
+void {\bfseries Initialize\+Day} ()
+\begin{DoxyCompactList}\small\item\em Initializes the day. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_aa38f541bc95372641bb962db01ba298d}\label{class_daily_summary_manager_aa38f541bc95372641bb962db01ba298d} 
+void {\bfseries Save\+Current\+Day\+Stats} ()
+\begin{DoxyCompactList}\small\item\em Saves the current day\textquotesingle{}s statistics. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_daily_summary_manager_a82d9f60669858e9477fa0266792bba2e}{Determine\+Most\+Popular\+Item}} (\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} stats)
+\begin{DoxyCompactList}\small\item\em Determines the most popular item of the day. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_daily_summary_manager_a18b32114d3e5b2ae904dc7f0f7685591}{Determine\+Least\+Popular\+Item}} (\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} stats)
+\begin{DoxyCompactList}\small\item\em Determines the least popular item of the day. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a0a244bbe513cc925ee7184702eab50d9}\label{class_daily_summary_manager_a0a244bbe513cc925ee7184702eab50d9} 
+void {\bfseries Reset\+Daily\+Stats} ()
+\begin{DoxyCompactList}\small\item\em Resets the daily statistics. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_daily_summary_manager_a5229235d3578f306665d0d908d2adf10}\label{class_daily_summary_manager_a5229235d3578f306665d0d908d2adf10} 
+List$<$ \mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} $>$ {\bfseries daily\+Stats\+List} = new List$<$\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}}$>$()
+\begin{DoxyCompactList}\small\item\em The list of daily statistics. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a5d4eef6bc4c2b6c5e319d3d75b5b16c2}\label{class_daily_summary_manager_a5d4eef6bc4c2b6c5e319d3d75b5b16c2} 
+\mbox{\hyperlink{class_customer_spawner}{Customer\+Spawner}} {\bfseries customer\+Spawner}
+\begin{DoxyCompactList}\small\item\em The customer spawner. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a429a29b75673eb9bcdc5f24c03a38114}\label{class_daily_summary_manager_a429a29b75673eb9bcdc5f24c03a38114} 
+\mbox{\hyperlink{class_summary_prefab_script}{Summary\+Prefab\+Script}} {\bfseries summary\+Prefab\+Script}
+\begin{DoxyCompactList}\small\item\em The script for the summary prefab. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a168cc2b25288997d70c1a309e5919d6e}\label{class_daily_summary_manager_a168cc2b25288997d70c1a309e5919d6e} 
+Text\+Mesh\+Pro\+UGUI {\bfseries day\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the day number. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_ada5e37bc339f8fa3dd472c386f82d0e8}\label{class_daily_summary_manager_ada5e37bc339f8fa3dd472c386f82d0e8} 
+Text\+Mesh\+Pro\+UGUI {\bfseries number\+Of\+Customers\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the number of customers. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a0c7c395e07c04fe351b5ca34b281e5b0}\label{class_daily_summary_manager_a0c7c395e07c04fe351b5ca34b281e5b0} 
+Text\+Mesh\+Pro\+UGUI {\bfseries number\+Of\+Purchasing\+Customers\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the number of purchasing customers. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a119c287a5cf1ccfd46e7e3af8311cf89}\label{class_daily_summary_manager_a119c287a5cf1ccfd46e7e3af8311cf89} 
+Text\+Mesh\+Pro\+UGUI {\bfseries daily\+Revenue\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the daily revenue. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a519c64e0b7ef193759bd86aca2860823}\label{class_daily_summary_manager_a519c64e0b7ef193759bd86aca2860823} 
+Text\+Mesh\+Pro\+UGUI {\bfseries daily\+Expenses\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the daily expenses. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a8b5476e7722e4a99e5b638a4729fd3d1}\label{class_daily_summary_manager_a8b5476e7722e4a99e5b638a4729fd3d1} 
+Text\+Mesh\+Pro\+UGUI {\bfseries daily\+Profit\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the daily profit. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_ad51cb05185557e5a74df304d7d1bd466}\label{class_daily_summary_manager_ad51cb05185557e5a74df304d7d1bd466} 
+Text\+Mesh\+Pro\+UGUI {\bfseries most\+Profitable\+Customer\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the most profitable customer. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_abdb564474cf25712d98702e2b032d3c5}\label{class_daily_summary_manager_abdb564474cf25712d98702e2b032d3c5} 
+Text\+Mesh\+Pro\+UGUI {\bfseries most\+Profitable\+Amount\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the amount from the most profitable transaction. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a0e40a3e370c6a376b068ce1a53cfbefb}\label{class_daily_summary_manager_a0e40a3e370c6a376b068ce1a53cfbefb} 
+Text\+Mesh\+Pro\+UGUI {\bfseries most\+Profitable\+Profit\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the profit from the most profitable transaction. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a9761052e02102ed665c17536609e6e5e}\label{class_daily_summary_manager_a9761052e02102ed665c17536609e6e5e} 
+Text\+Mesh\+Pro\+UGUI {\bfseries highest\+Transaction\+Value\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the highest transaction value. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_acc31bf9ff9cb8b9e5978e489e49531ad}\label{class_daily_summary_manager_acc31bf9ff9cb8b9e5978e489e49531ad} 
+Text\+Mesh\+Pro\+UGUI {\bfseries customer\+Satisfaction\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the customer satisfaction rating. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a8caa3e9bd95d2c77a7d3b92c30748952}\label{class_daily_summary_manager_a8caa3e9bd95d2c77a7d3b92c30748952} 
+Text\+Mesh\+Pro\+UGUI {\bfseries most\+Popular\+Item\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the most popular item. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a2393dd247caafc31afce028902a0b820}\label{class_daily_summary_manager_a2393dd247caafc31afce028902a0b820} 
+Text\+Mesh\+Pro\+UGUI {\bfseries least\+Popular\+Item\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the least popular item. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a83d2578567205b91d208085437bf47a5}\label{class_daily_summary_manager_a83d2578567205b91d208085437bf47a5} 
+Text\+Mesh\+Pro\+UGUI {\bfseries stock\+Shortage\+Per\+Customer\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the stock shortage per customer. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a50f33c9cc09f5c9341b67c45df963748}\label{class_daily_summary_manager_a50f33c9cc09f5c9341b67c45df963748} 
+Text\+Mesh\+Pro\+UGUI {\bfseries stock\+Shortage\+Per\+Item\+Text}
+\begin{DoxyCompactList}\small\item\em Text component for displaying the stock shortage per item. \end{DoxyCompactList}\item 
+\Hypertarget{class_daily_summary_manager_a40965804c804616c2c2d8defafc378ec}\label{class_daily_summary_manager_a40965804c804616c2c2d8defafc378ec} 
+\mbox{\hyperlink{class_overall_summary_manager}{Overall\+Summary\+Manager}} {\bfseries overall\+Summary\+Manager}
+\begin{DoxyCompactList}\small\item\em The overall summary manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the daily summary and statistics of the shop. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_daily_summary_manager_a4b4a16b14cd88b32327af756e2c8f737}\label{class_daily_summary_manager_a4b4a16b14cd88b32327af756e2c8f737} 
+\index{DailySummaryManager@{DailySummaryManager}!CheckAndUpdateHighestTransactionValue@{CheckAndUpdateHighestTransactionValue}}
+\index{CheckAndUpdateHighestTransactionValue@{CheckAndUpdateHighestTransactionValue}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{CheckAndUpdateHighestTransactionValue()}{CheckAndUpdateHighestTransactionValue()}}
+{\footnotesize\ttfamily void Daily\+Summary\+Manager.\+Check\+And\+Update\+Highest\+Transaction\+Value (\begin{DoxyParamCaption}\item[{float}]{transaction\+Value,  }\item[{string}]{customer\+Name,  }\item[{float}]{transaction\+Profit }\end{DoxyParamCaption})}
+
+
+
+Checks and updates the highest transaction value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em transaction\+Value} & The transaction value.\\
+\hline
+{\em customer\+Name} & The customer\textquotesingle{}s name.\\
+\hline
+{\em transaction\+Profit} & The transaction profit.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_daily_summary_manager_a18b32114d3e5b2ae904dc7f0f7685591}\label{class_daily_summary_manager_a18b32114d3e5b2ae904dc7f0f7685591} 
+\index{DailySummaryManager@{DailySummaryManager}!DetermineLeastPopularItem@{DetermineLeastPopularItem}}
+\index{DetermineLeastPopularItem@{DetermineLeastPopularItem}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{DetermineLeastPopularItem()}{DetermineLeastPopularItem()}}
+{\footnotesize\ttfamily string Daily\+Summary\+Manager.\+Determine\+Least\+Popular\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}}}]{stats }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Determines the least popular item of the day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The daily statistics.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The least popular item.
+\end{DoxyReturn}
+\Hypertarget{class_daily_summary_manager_a82d9f60669858e9477fa0266792bba2e}\label{class_daily_summary_manager_a82d9f60669858e9477fa0266792bba2e} 
+\index{DailySummaryManager@{DailySummaryManager}!DetermineMostPopularItem@{DetermineMostPopularItem}}
+\index{DetermineMostPopularItem@{DetermineMostPopularItem}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{DetermineMostPopularItem()}{DetermineMostPopularItem()}}
+{\footnotesize\ttfamily string Daily\+Summary\+Manager.\+Determine\+Most\+Popular\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}}}]{stats }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Determines the most popular item of the day. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The daily statistics.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The most popular item.
+\end{DoxyReturn}
+\Hypertarget{class_daily_summary_manager_af740eea8fb6e8f32f48ceb49c9a2f633}\label{class_daily_summary_manager_af740eea8fb6e8f32f48ceb49c9a2f633} 
+\index{DailySummaryManager@{DailySummaryManager}!GetDailyStats@{GetDailyStats}}
+\index{GetDailyStats@{GetDailyStats}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{GetDailyStats()}{GetDailyStats()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} $>$ Daily\+Summary\+Manager.\+Get\+Daily\+Stats (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the daily statistics. 
+
+\begin{DoxyReturn}{Returns}
+A list of daily statistics.
+\end{DoxyReturn}
+\Hypertarget{class_daily_summary_manager_a1aa7eb8317dc41b1a6f68a9e2ed4055d}\label{class_daily_summary_manager_a1aa7eb8317dc41b1a6f68a9e2ed4055d} 
+\index{DailySummaryManager@{DailySummaryManager}!RegisterCustomerDissatisfaction@{RegisterCustomerDissatisfaction}}
+\index{RegisterCustomerDissatisfaction@{RegisterCustomerDissatisfaction}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{RegisterCustomerDissatisfaction()}{RegisterCustomerDissatisfaction()}}
+{\footnotesize\ttfamily void Daily\+Summary\+Manager.\+Register\+Customer\+Dissatisfaction (\begin{DoxyParamCaption}\item[{int}]{items\+Not\+Found,  }\item[{int}]{customer\+Count }\end{DoxyParamCaption})}
+
+
+
+Registers customer dissatisfaction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em items\+Not\+Found} & The number of items not found.\\
+\hline
+{\em customer\+Count} & The number of customers affected.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_daily_summary_manager_aa6e794dccc2eb542cdc34db6dec72055}\label{class_daily_summary_manager_aa6e794dccc2eb542cdc34db6dec72055} 
+\index{DailySummaryManager@{DailySummaryManager}!RegisterDailyExpenses@{RegisterDailyExpenses}}
+\index{RegisterDailyExpenses@{RegisterDailyExpenses}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{RegisterDailyExpenses()}{RegisterDailyExpenses()}}
+{\footnotesize\ttfamily void Daily\+Summary\+Manager.\+Register\+Daily\+Expenses (\begin{DoxyParamCaption}\item[{float}]{amount }\end{DoxyParamCaption})}
+
+
+
+Registers daily expenses. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of expenses.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_daily_summary_manager_a98a37f7460a386b76589749cf8c43abb}\label{class_daily_summary_manager_a98a37f7460a386b76589749cf8c43abb} 
+\index{DailySummaryManager@{DailySummaryManager}!RegisterStockShortage@{RegisterStockShortage}}
+\index{RegisterStockShortage@{RegisterStockShortage}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{RegisterStockShortage()}{RegisterStockShortage()}}
+{\footnotesize\ttfamily void Daily\+Summary\+Manager.\+Register\+Stock\+Shortage (\begin{DoxyParamCaption}\item[{int}]{customers\+Affected,  }\item[{int}]{items\+Not\+Found }\end{DoxyParamCaption})}
+
+
+
+Registers stock shortages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em customers\+Affected} & The number of customers affected.\\
+\hline
+{\em items\+Not\+Found} & The number of items not found.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_daily_summary_manager_afe49abfad67edcfe11b0123c2d481f4f}\label{class_daily_summary_manager_afe49abfad67edcfe11b0123c2d481f4f} 
+\index{DailySummaryManager@{DailySummaryManager}!RegisterTransaction@{RegisterTransaction}}
+\index{RegisterTransaction@{RegisterTransaction}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{RegisterTransaction()}{RegisterTransaction()}}
+{\footnotesize\ttfamily void Daily\+Summary\+Manager.\+Register\+Transaction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_customer}{Customer}}}]{customer,  }\item[{Dictionary$<$ string, int $>$}]{purchased\+Items,  }\item[{float}]{transaction\+Value,  }\item[{float}]{transaction\+Profit }\end{DoxyParamCaption})}
+
+
+
+Registers a transaction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em customer} & The customer making the transaction.\\
+\hline
+{\em purchased\+Items} & The items purchased.\\
+\hline
+{\em transaction\+Value} & The value of the transaction.\\
+\hline
+{\em transaction\+Profit} & The profit from the transaction.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_daily_summary_manager_af60111feba61ee56c741df0046b08e95}\label{class_daily_summary_manager_af60111feba61ee56c741df0046b08e95} 
+\index{DailySummaryManager@{DailySummaryManager}!UpdateDailyCustomerSatisfaction@{UpdateDailyCustomerSatisfaction}}
+\index{UpdateDailyCustomerSatisfaction@{UpdateDailyCustomerSatisfaction}!DailySummaryManager@{DailySummaryManager}}
+\doxysubsubsection{\texorpdfstring{UpdateDailyCustomerSatisfaction()}{UpdateDailyCustomerSatisfaction()}}
+{\footnotesize\ttfamily void Daily\+Summary\+Manager.\+Update\+Daily\+Customer\+Satisfaction (\begin{DoxyParamCaption}\item[{float}]{satisfaction\+Change }\end{DoxyParamCaption})}
+
+
+
+Updates daily customer satisfaction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em satisfaction\+Change} & The change in satisfaction.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Daily\+Summary\+Manager.\+cs\end{DoxyCompactItemize}

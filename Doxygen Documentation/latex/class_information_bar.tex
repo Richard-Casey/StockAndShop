@@ -1,0 +1,121 @@
+\doxysection{Information\+Bar Class Reference}
+\hypertarget{class_information_bar}{}\label{class_information_bar}\index{InformationBar@{InformationBar}}
+
+
+Manages the information bar UI element, displaying messages with animations.  
+
+
+Inheritance diagram for Information\+Bar\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_information_bar}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_information_bar_a604b6f3c6f2dfc52b931b99cf413c5f8}{Display\+Message}} (string message, float duration=3f)
+\begin{DoxyCompactList}\small\item\em Displays a message on the information bar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_information_bar_a93d294334c0c8c04e439d4ed01c3048e}\label{class_information_bar_a93d294334c0c8c04e439d4ed01c3048e} 
+float {\bfseries animation\+Duration} = 0.\+5f
+\begin{DoxyCompactList}\small\item\em Duration for the rise and lower animations. \end{DoxyCompactList}\item 
+\Hypertarget{class_information_bar_a126ab9d2b3f471d3ccfe05ec18fbed68}\label{class_information_bar_a126ab9d2b3f471d3ccfe05ec18fbed68} 
+float {\bfseries visible\+Duration} = 3f
+\begin{DoxyCompactList}\small\item\em How long the bar stays fully visible before hiding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_information_bar_a1f4d6e0ccd6d31520e4841a5ec71ec50}\label{class_information_bar_a1f4d6e0ccd6d31520e4841a5ec71ec50} 
+static \mbox{\hyperlink{class_information_bar}{Information\+Bar}} {\bfseries Instance}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Singleton instance of the \doxylink{class_information_bar}{Information\+Bar} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerator \mbox{\hyperlink{class_information_bar_ab9b50086b161267038e2f085912f3710}{Animate\+Bar}} (bool show)
+\begin{DoxyCompactList}\small\item\em Animates the information bar to show or hide. \end{DoxyCompactList}\item 
+\Hypertarget{class_information_bar_abfb6f9a5eff7fbddd605994573a818dc}\label{class_information_bar_abfb6f9a5eff7fbddd605994573a818dc} 
+void {\bfseries Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{class_information_bar}{Information\+Bar} instance and sets initial visibility. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_information_bar_a65811524c6f5645bd0116ad0ed9e5990}{Show\+Message\+With\+Animation}} (string message, float duration=3f)
+\begin{DoxyCompactList}\small\item\em Shows a message with animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_information_bar_ab3c354f06310c0ab6192878071d298a4}\label{class_information_bar_ab3c354f06310c0ab6192878071d298a4} 
+Canvas\+Group {\bfseries canvas\+Group}
+\begin{DoxyCompactList}\small\item\em The canvas group for controlling visibility and interaction. \end{DoxyCompactList}\item 
+\Hypertarget{class_information_bar_a0415338cdef336de9f82e6d31b4be4bc}\label{class_information_bar_a0415338cdef336de9f82e6d31b4be4bc} 
+Text\+Mesh\+Pro\+UGUI {\bfseries information\+Text}
+\begin{DoxyCompactList}\small\item\em The text component for displaying information. \end{DoxyCompactList}\item 
+\Hypertarget{class_information_bar_a7c85e33724b111928b7a7d87ac3bdfba}\label{class_information_bar_a7c85e33724b111928b7a7d87ac3bdfba} 
+Rect\+Transform {\bfseries rect\+Transform}
+\begin{DoxyCompactList}\small\item\em The Rect\+Transform component of the information bar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the information bar UI element, displaying messages with animations. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_information_bar_ab9b50086b161267038e2f085912f3710}\label{class_information_bar_ab9b50086b161267038e2f085912f3710} 
+\index{InformationBar@{InformationBar}!AnimateBar@{AnimateBar}}
+\index{AnimateBar@{AnimateBar}!InformationBar@{InformationBar}}
+\doxysubsubsection{\texorpdfstring{AnimateBar()}{AnimateBar()}}
+{\footnotesize\ttfamily IEnumerator Information\+Bar.\+Animate\+Bar (\begin{DoxyParamCaption}\item[{bool}]{show }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Animates the information bar to show or hide. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em show} & Whether to show or hide the bar.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An IEnumerator for the animation coroutine.
+\end{DoxyReturn}
+\Hypertarget{class_information_bar_a604b6f3c6f2dfc52b931b99cf413c5f8}\label{class_information_bar_a604b6f3c6f2dfc52b931b99cf413c5f8} 
+\index{InformationBar@{InformationBar}!DisplayMessage@{DisplayMessage}}
+\index{DisplayMessage@{DisplayMessage}!InformationBar@{InformationBar}}
+\doxysubsubsection{\texorpdfstring{DisplayMessage()}{DisplayMessage()}}
+{\footnotesize\ttfamily void Information\+Bar.\+Display\+Message (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{float}]{duration = {\ttfamily 3f} }\end{DoxyParamCaption})}
+
+
+
+Displays a message on the information bar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to display.\\
+\hline
+{\em duration} & The duration for which the message is visible.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_information_bar_a65811524c6f5645bd0116ad0ed9e5990}\label{class_information_bar_a65811524c6f5645bd0116ad0ed9e5990} 
+\index{InformationBar@{InformationBar}!ShowMessageWithAnimation@{ShowMessageWithAnimation}}
+\index{ShowMessageWithAnimation@{ShowMessageWithAnimation}!InformationBar@{InformationBar}}
+\doxysubsubsection{\texorpdfstring{ShowMessageWithAnimation()}{ShowMessageWithAnimation()}}
+{\footnotesize\ttfamily IEnumerator Information\+Bar.\+Show\+Message\+With\+Animation (\begin{DoxyParamCaption}\item[{string}]{message,  }\item[{float}]{duration = {\ttfamily 3f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Shows a message with animation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The message to display.\\
+\hline
+{\em duration} & The duration for which the message is visible.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An IEnumerator for the animation coroutine.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Information\+Bar.\+cs\end{DoxyCompactItemize}

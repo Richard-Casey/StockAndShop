@@ -1,0 +1,236 @@
+\doxysection{Inventory\+Manager Class Reference}
+\hypertarget{class_inventory_manager}{}\label{class_inventory_manager}\index{InventoryManager@{InventoryManager}}
+
+
+Manages the inventory of items, including adding, removing, and updating items, as well as updating the UI to reflect inventory changes.  
+
+
+Inheritance diagram for Inventory\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_inventory_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_inventory_manager_a13071373af492ab9c2385e77f7d41ce0}{Add\+Item}} (\mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} item\+To\+Add)
+\begin{DoxyCompactList}\small\item\em Adds an item to the inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_inventory_manager_ad223a185ac1401d628170a3e6d24a1eb}{Add\+Quantity\+To\+Inventory\+Item}} (string item\+Name, int quantity\+To\+Add)
+\begin{DoxyCompactList}\small\item\em Adds quantity to an existing inventory item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_inventory_manager_a8775539f0ff3040a36592b095b1e9546}{Handle\+Removed\+Shelf\+Item}} (string item\+Name, string cost\+Text, string selling\+Price\+Text, int quantity\+To\+Add, Sprite item\+Image)
+\begin{DoxyCompactList}\small\item\em Handles the removal of an item from the shelf and adds it back to the inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_inventory_manager_aeb6a9dda572b34f5a258e964a7249606}{Move\+Items\+To\+Shop\+Floor}} (string item\+Name, int quantity)
+\begin{DoxyCompactList}\small\item\em Moves items from the inventory to the shop floor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_inventory_manager_a7f15e278486a4ac39d2690a9aab40fae}{Remove\+Item}} (string item\+Name)
+\begin{DoxyCompactList}\small\item\em Removes an item from the inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_inventory_manager_a21ac1b7c5cbc79db18f46c51fd529e8c}{Update\+Inventory\+Item\+Quantity}} (string item\+Name, int new\+Quantity)
+\begin{DoxyCompactList}\small\item\em Updates the quantity of an inventory item. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_a0959bc576a07ab9b7465434d9ff390f3}\label{class_inventory_manager_a0959bc576a07ab9b7465434d9ff390f3} 
+void {\bfseries Update\+Inventory\+UI} ()
+\begin{DoxyCompactList}\small\item\em Updates the inventory UI to reflect the current state of the inventory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} \mbox{\hyperlink{class_inventory_manager_ac7c0a0ab0cd91839364c51c3dec20dc0}{Find\+Item\+By\+Name}} (string name)
+\begin{DoxyCompactList}\small\item\em Finds an item in the inventory by name. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} $>$ \mbox{\hyperlink{class_inventory_manager_a8a886aae05d4dbed0d992ee8ca469c63}{Get\+Available\+Items\+For\+Sale}} ()
+\begin{DoxyCompactList}\small\item\em Gets a list of items available for sale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static Color \mbox{\hyperlink{class_inventory_manager_a28269f42ce75ad79ae9fc5919f2504c5}{Calculate\+Demand\+Bar\+Color}} (float current\+Price, float original\+Cost)
+\begin{DoxyCompactList}\small\item\em Calculates the color of the demand bar based on the current price and original cost. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_inventory_manager_a6e29fec25b52ebb95c1f40a637f67c39}\label{class_inventory_manager_a6e29fec25b52ebb95c1f40a637f67c39} 
+Transform {\bfseries content\+Grid\+Layout}
+\begin{DoxyCompactList}\small\item\em The parent transform for the content grid layout. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_aca237f3c253628c39b6b260a31ba7b60}\label{class_inventory_manager_aca237f3c253628c39b6b260a31ba7b60} 
+\mbox{\hyperlink{class_dynamic_content_size_for_two_columns}{Dynamic\+Content\+Size\+For\+Two\+Columns}} {\bfseries dynamic\+Content\+Size\+Script}
+\begin{DoxyCompactList}\small\item\em Script for dynamically adjusting the content size for two columns. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_a26e16317b5e8297c12d4417f0497d0f3}\label{class_inventory_manager_a26e16317b5e8297c12d4417f0497d0f3} 
+Game\+Object {\bfseries inventory\+Item\+Prefab}
+\begin{DoxyCompactList}\small\item\em The prefab for inventory item UI elements. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_afac64d26a9ab0eec0fe15aba6f9a8433}\label{class_inventory_manager_afac64d26a9ab0eec0fe15aba6f9a8433} 
+List$<$ \mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} $>$ {\bfseries inventory\+Items} = new List$<$\mbox{\hyperlink{class_inventory_item}{Inventory\+Item}}$>$()
+\begin{DoxyCompactList}\small\item\em The list of inventory items. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_aa283a82fdbf4218bdd06fff0a05cbc77}\label{class_inventory_manager_aa283a82fdbf4218bdd06fff0a05cbc77} 
+List$<$ \mbox{\hyperlink{class_inventory_item_u_i}{Inventory\+Item\+UI}} $>$ {\bfseries inventory\+Item\+UIList} = new List$<$\mbox{\hyperlink{class_inventory_item_u_i}{Inventory\+Item\+UI}}$>$()
+\begin{DoxyCompactList}\small\item\em The list of \doxylink{class_inventory_item_u_i}{Inventory\+Item\+UI} elements. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_a3e9026fa674bef534ee73cd9110ac3dc}\label{class_inventory_manager_a3e9026fa674bef534ee73cd9110ac3dc} 
+Transform {\bfseries inventory\+Panel}
+\begin{DoxyCompactList}\small\item\em The parent transform for the inventory panel. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_a218c14fbb7805862da6ccd4f272a4a78}\label{class_inventory_manager_a218c14fbb7805862da6ccd4f272a4a78} 
+Scroll\+Rect {\bfseries scroll\+Rect}
+\begin{DoxyCompactList}\small\item\em The Scroll\+Rect component for scrolling through the inventory. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_a396242d6a0763d358136dc6c9faaafe7}\label{class_inventory_manager_a396242d6a0763d358136dc6c9faaafe7} 
+\mbox{\hyperlink{class_shop_floor_manager}{Shop\+Floor\+Manager}} {\bfseries shop\+Floor\+Manager}
+\begin{DoxyCompactList}\small\item\em Reference to the \doxylink{class_shop_floor_manager}{Shop\+Floor\+Manager}. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_manager_a7d08ddfab825f4e9447fb74309fc8970}\label{class_inventory_manager_a7d08ddfab825f4e9447fb74309fc8970} 
+Scrollbar {\bfseries vertical\+Scrollbar}
+\begin{DoxyCompactList}\small\item\em The vertical scrollbar for the inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the inventory of items, including adding, removing, and updating items, as well as updating the UI to reflect inventory changes. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_inventory_manager_a13071373af492ab9c2385e77f7d41ce0}\label{class_inventory_manager_a13071373af492ab9c2385e77f7d41ce0} 
+\index{InventoryManager@{InventoryManager}!AddItem@{AddItem}}
+\index{AddItem@{AddItem}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{AddItem()}{AddItem()}}
+{\footnotesize\ttfamily void Inventory\+Manager.\+Add\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_inventory_item}{Inventory\+Item}}}]{item\+To\+Add }\end{DoxyParamCaption})}
+
+
+
+Adds an item to the inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+To\+Add} & The item to add to the inventory.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_inventory_manager_ad223a185ac1401d628170a3e6d24a1eb}\label{class_inventory_manager_ad223a185ac1401d628170a3e6d24a1eb} 
+\index{InventoryManager@{InventoryManager}!AddQuantityToInventoryItem@{AddQuantityToInventoryItem}}
+\index{AddQuantityToInventoryItem@{AddQuantityToInventoryItem}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{AddQuantityToInventoryItem()}{AddQuantityToInventoryItem()}}
+{\footnotesize\ttfamily void Inventory\+Manager.\+Add\+Quantity\+To\+Inventory\+Item (\begin{DoxyParamCaption}\item[{string}]{item\+Name,  }\item[{int}]{quantity\+To\+Add }\end{DoxyParamCaption})}
+
+
+
+Adds quantity to an existing inventory item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item to add quantity to.\\
+\hline
+{\em quantity\+To\+Add} & The quantity to add.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_inventory_manager_a28269f42ce75ad79ae9fc5919f2504c5}\label{class_inventory_manager_a28269f42ce75ad79ae9fc5919f2504c5} 
+\index{InventoryManager@{InventoryManager}!CalculateDemandBarColor@{CalculateDemandBarColor}}
+\index{CalculateDemandBarColor@{CalculateDemandBarColor}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{CalculateDemandBarColor()}{CalculateDemandBarColor()}}
+{\footnotesize\ttfamily static Color Inventory\+Manager.\+Calculate\+Demand\+Bar\+Color (\begin{DoxyParamCaption}\item[{float}]{current\+Price,  }\item[{float}]{original\+Cost }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the color of the demand bar based on the current price and original cost. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Price} & The current price of the item.\\
+\hline
+{\em original\+Cost} & The original cost of the item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The calculated color for the demand bar.
+\end{DoxyReturn}
+\Hypertarget{class_inventory_manager_ac7c0a0ab0cd91839364c51c3dec20dc0}\label{class_inventory_manager_ac7c0a0ab0cd91839364c51c3dec20dc0} 
+\index{InventoryManager@{InventoryManager}!FindItemByName@{FindItemByName}}
+\index{FindItemByName@{FindItemByName}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{FindItemByName()}{FindItemByName()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} Inventory\+Manager.\+Find\+Item\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Finds an item in the inventory by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the item to find.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The found inventory item, or null if not found.
+\end{DoxyReturn}
+\Hypertarget{class_inventory_manager_a8a886aae05d4dbed0d992ee8ca469c63}\label{class_inventory_manager_a8a886aae05d4dbed0d992ee8ca469c63} 
+\index{InventoryManager@{InventoryManager}!GetAvailableItemsForSale@{GetAvailableItemsForSale}}
+\index{GetAvailableItemsForSale@{GetAvailableItemsForSale}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{GetAvailableItemsForSale()}{GetAvailableItemsForSale()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} $>$ Inventory\+Manager.\+Get\+Available\+Items\+For\+Sale (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets a list of items available for sale. 
+
+\begin{DoxyReturn}{Returns}
+A list of available items for sale.
+\end{DoxyReturn}
+\Hypertarget{class_inventory_manager_a8775539f0ff3040a36592b095b1e9546}\label{class_inventory_manager_a8775539f0ff3040a36592b095b1e9546} 
+\index{InventoryManager@{InventoryManager}!HandleRemovedShelfItem@{HandleRemovedShelfItem}}
+\index{HandleRemovedShelfItem@{HandleRemovedShelfItem}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{HandleRemovedShelfItem()}{HandleRemovedShelfItem()}}
+{\footnotesize\ttfamily void Inventory\+Manager.\+Handle\+Removed\+Shelf\+Item (\begin{DoxyParamCaption}\item[{string}]{item\+Name,  }\item[{string}]{cost\+Text,  }\item[{string}]{selling\+Price\+Text,  }\item[{int}]{quantity\+To\+Add,  }\item[{Sprite}]{item\+Image }\end{DoxyParamCaption})}
+
+
+
+Handles the removal of an item from the shelf and adds it back to the inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item to remove.\\
+\hline
+{\em cost\+Text} & The cost text of the item.\\
+\hline
+{\em selling\+Price\+Text} & The selling price text of the item.\\
+\hline
+{\em quantity\+To\+Add} & The quantity to add back to the inventory.\\
+\hline
+{\em item\+Image} & The image of the item.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_inventory_manager_aeb6a9dda572b34f5a258e964a7249606}\label{class_inventory_manager_aeb6a9dda572b34f5a258e964a7249606} 
+\index{InventoryManager@{InventoryManager}!MoveItemsToShopFloor@{MoveItemsToShopFloor}}
+\index{MoveItemsToShopFloor@{MoveItemsToShopFloor}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{MoveItemsToShopFloor()}{MoveItemsToShopFloor()}}
+{\footnotesize\ttfamily void Inventory\+Manager.\+Move\+Items\+To\+Shop\+Floor (\begin{DoxyParamCaption}\item[{string}]{item\+Name,  }\item[{int}]{quantity }\end{DoxyParamCaption})}
+
+
+
+Moves items from the inventory to the shop floor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item to move.\\
+\hline
+{\em quantity} & The quantity to move.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_inventory_manager_a7f15e278486a4ac39d2690a9aab40fae}\label{class_inventory_manager_a7f15e278486a4ac39d2690a9aab40fae} 
+\index{InventoryManager@{InventoryManager}!RemoveItem@{RemoveItem}}
+\index{RemoveItem@{RemoveItem}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{RemoveItem()}{RemoveItem()}}
+{\footnotesize\ttfamily void Inventory\+Manager.\+Remove\+Item (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})}
+
+
+
+Removes an item from the inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item to remove.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_inventory_manager_a21ac1b7c5cbc79db18f46c51fd529e8c}\label{class_inventory_manager_a21ac1b7c5cbc79db18f46c51fd529e8c} 
+\index{InventoryManager@{InventoryManager}!UpdateInventoryItemQuantity@{UpdateInventoryItemQuantity}}
+\index{UpdateInventoryItemQuantity@{UpdateInventoryItemQuantity}!InventoryManager@{InventoryManager}}
+\doxysubsubsection{\texorpdfstring{UpdateInventoryItemQuantity()}{UpdateInventoryItemQuantity()}}
+{\footnotesize\ttfamily void Inventory\+Manager.\+Update\+Inventory\+Item\+Quantity (\begin{DoxyParamCaption}\item[{string}]{item\+Name,  }\item[{int}]{new\+Quantity }\end{DoxyParamCaption})}
+
+
+
+Updates the quantity of an inventory item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item to update.\\
+\hline
+{\em new\+Quantity} & The new quantity of the item.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Inventory\+Manager.\+cs\end{DoxyCompactItemize}

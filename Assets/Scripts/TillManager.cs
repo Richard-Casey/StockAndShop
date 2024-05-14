@@ -60,12 +60,12 @@ public class TillManager : MonoBehaviour
                 // Process the customer's transaction here and instantiate the till customer prefab
                 GameObject tillCustomerInstance = ProcessTransaction(currentCustomer);
 
-                // Wait for the transaction to simulate (4 seconds here as per your requirement)
+                // Wait for the transaction to simulate (4 seconds)
                 yield return new WaitForSeconds(4);
 
                 // Destroy the instantiated till customer prefab and the customer GameObject after processing at the till
                 Destroy(tillCustomerInstance);
-                Destroy(currentCustomer.gameObject); // This now correctly removes the customer from the shopping area.
+                Destroy(currentCustomer.gameObject); // This removes the customer from the shopping area.
 
                 TillManager.tillIsOccupied = false; // Mark the till as no longer occupied
             }
@@ -151,6 +151,4 @@ public class TillManager : MonoBehaviour
             StartCoroutine(ProcessCustomerAtTill());
         }
     }
-
-
 }

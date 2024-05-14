@@ -1,0 +1,368 @@
+\doxysection{Summary\+Prefab\+Script Class Reference}
+\hypertarget{class_summary_prefab_script}{}\label{class_summary_prefab_script}\index{SummaryPrefabScript@{SummaryPrefabScript}}
+
+
+Updates and manages the daily summary UI elements.  
+
+
+Inheritance diagram for Summary\+Prefab\+Script\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_summary_prefab_script}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_summary_prefab_script_a71fbd9f1eacc41302f9cf78aece89af1}{Update\+Data}} (int day, int number\+Of\+Customers, string most\+Popular, string least\+Popular, float highest\+Transaction, string profitable\+Customer, float profitable\+Amount, float profitable\+Profit, float profit, float satisfaction, int shortages\+Customers, int shortages\+Items, float revenue, float expenses)
+\begin{DoxyCompactList}\small\item\em Updates the summary UI with the provided data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_summary_prefab_script_ad73e28fe8b6d7f22308209eef0283fb8}{Update\+Data\+From\+Stats}} (\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} stats, int customers\+Not\+Satisfied, int items\+Not\+Satisfied)
+\begin{DoxyCompactList}\small\item\em Updates the summary UI using the data from a \doxylink{struct_daily_stats}{Daily\+Stats} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_summary_prefab_script_a12dd14e42c020e67e799222a2a63c07d}{Update\+Most\+Popular\+Item}} (string item\+Name)
+\begin{DoxyCompactList}\small\item\em Updates the most popular item text. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_summary_prefab_script_aeeaed29e3484303eb55e9fe09041a3f4}{Update\+Number\+Of\+Customers}} (int new\+Number\+Of\+Customers)
+\begin{DoxyCompactList}\small\item\em Updates the number of customers text. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_summary_prefab_script_ac89b09112e63c2dd49dd79db302ba7bb}{Determine\+Most\+Popular\+Item}} (\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} stats)
+\begin{DoxyCompactList}\small\item\em Determines the most popular item from the daily statistics. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_summary_prefab_script_a695f10ed43b5d9878cd79168e5853b5c}{Determine\+Least\+Popular\+Item}} (\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} stats)
+\begin{DoxyCompactList}\small\item\em Determines the least popular item from the daily statistics. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_summary_prefab_script_acfa845d0d6d27fce1b946c0e5d285420}{Get\+Number\+Of\+Customers}} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of customers from the UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_summary_prefab_script_a12ef89a8b5acbd27fde36d7597d209fb}{Get\+Daily\+Revenue}} ()
+\begin{DoxyCompactList}\small\item\em Gets the daily revenue from the UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_summary_prefab_script_aa386954e9e83e5aa5b06cf7bc881878b}{Get\+Daily\+Expenses}} ()
+\begin{DoxyCompactList}\small\item\em Gets the daily expenses from the UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_summary_prefab_script_aa5d89d4fb650630f814edef4806fde88}{Get\+Daily\+Profit}} ()
+\begin{DoxyCompactList}\small\item\em Gets the daily profit from the UI. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_summary_prefab_script_a2521d0a04e70e8ac2a20dfdd7132ccc3}{Get\+Most\+Profitable\+Customer}} ()
+\begin{DoxyCompactList}\small\item\em Gets the most profitable customer from the UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_summary_prefab_script_a0278d24f7e9958ad5bf63cc8fbb8029e}{Get\+Highest\+Transaction\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Gets the highest transaction value from the UI. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_summary_prefab_script_abe33a0b837c7aa2b7e3300ebd085d4a0}{Get\+Most\+Profitable\+Transaction\+Profit}} ()
+\begin{DoxyCompactList}\small\item\em Gets the most profitable transaction profit from the UI. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_summary_prefab_script_a91e4efee853b7857d77810fdd5b36aa9}{Get\+Most\+Popular\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Gets the most popular item from the UI. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_summary_prefab_script_a6be5aa1cdf03bbc284d1b6bcc6a47346}{Get\+Least\+Popular\+Item}} ()
+\begin{DoxyCompactList}\small\item\em Gets the least popular item from the UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{class_summary_prefab_script_a571c6e9f5d73176e4752cab06c8d6bf1}{Determine\+Total\+Spent\+By\+Most\+Profitable\+Customer}} (\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}} stats)
+\begin{DoxyCompactList}\small\item\em Determines the total amount spent by the most profitable customer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_summary_prefab_script_a66b6b8abe0993f20f9becaf8a62ad694}\label{class_summary_prefab_script_a66b6b8abe0993f20f9becaf8a62ad694} 
+Text\+Mesh\+Pro\+UGUI {\bfseries customer\+Satisfaction}
+\item 
+\Hypertarget{class_summary_prefab_script_a61f5d28d32e91d6fc1b47e26dc1f07ba}\label{class_summary_prefab_script_a61f5d28d32e91d6fc1b47e26dc1f07ba} 
+Text\+Mesh\+Pro\+UGUI {\bfseries daily\+Expenses}
+\item 
+\Hypertarget{class_summary_prefab_script_a4f4bc5034ede4d0a4135a012b4a44b38}\label{class_summary_prefab_script_a4f4bc5034ede4d0a4135a012b4a44b38} 
+Text\+Mesh\+Pro\+UGUI {\bfseries daily\+Profit}
+\item 
+\Hypertarget{class_summary_prefab_script_a7d9b0298bb5e6edb1e0c29a888f3157e}\label{class_summary_prefab_script_a7d9b0298bb5e6edb1e0c29a888f3157e} 
+Text\+Mesh\+Pro\+UGUI {\bfseries daily\+Revenue}
+\item 
+\Hypertarget{class_summary_prefab_script_a0943927aa8005887a9bc8f2ab83cc995}\label{class_summary_prefab_script_a0943927aa8005887a9bc8f2ab83cc995} 
+Text\+Mesh\+Pro\+UGUI {\bfseries day\+Text}
+\item 
+\Hypertarget{class_summary_prefab_script_ad2a52f93091fe14ad796f73c0568fc77}\label{class_summary_prefab_script_ad2a52f93091fe14ad796f73c0568fc77} 
+Text\+Mesh\+Pro\+UGUI {\bfseries highest\+Transaction\+Value\+Text}
+\item 
+\Hypertarget{class_summary_prefab_script_a61532d23cb238a28a8282ce771f92652}\label{class_summary_prefab_script_a61532d23cb238a28a8282ce771f92652} 
+Text\+Mesh\+Pro\+UGUI {\bfseries least\+Popular\+Item}
+\item 
+\Hypertarget{class_summary_prefab_script_a1cf380e747b087ab985b14e32cb58730}\label{class_summary_prefab_script_a1cf380e747b087ab985b14e32cb58730} 
+Text\+Mesh\+Pro\+UGUI {\bfseries most\+Popular\+Item}
+\item 
+\Hypertarget{class_summary_prefab_script_ab8462451562ca36bc66d2afbfebef42b}\label{class_summary_prefab_script_ab8462451562ca36bc66d2afbfebef42b} 
+Text\+Mesh\+Pro\+UGUI {\bfseries most\+Profitable\+Customer}
+\item 
+\Hypertarget{class_summary_prefab_script_ad1964dbfab5e8ad8c7a0d32f43ba16b5}\label{class_summary_prefab_script_ad1964dbfab5e8ad8c7a0d32f43ba16b5} 
+Text\+Mesh\+Pro\+UGUI {\bfseries most\+Profitable\+Transaction\+Amount}
+\item 
+\Hypertarget{class_summary_prefab_script_a7586eb88e0f19653dface4af6df4d5bf}\label{class_summary_prefab_script_a7586eb88e0f19653dface4af6df4d5bf} 
+Text\+Mesh\+Pro\+UGUI {\bfseries most\+Profitable\+Transaction\+Profit}
+\item 
+\Hypertarget{class_summary_prefab_script_ac99cc523dfabc0af270c47e21bb553cf}\label{class_summary_prefab_script_ac99cc523dfabc0af270c47e21bb553cf} 
+Text\+Mesh\+Pro\+UGUI {\bfseries num\+Of\+Customers\+Num}
+\item 
+\Hypertarget{class_summary_prefab_script_ac920b8ff3b91fff8ce6a8c259fcd8346}\label{class_summary_prefab_script_ac920b8ff3b91fff8ce6a8c259fcd8346} 
+Text\+Mesh\+Pro\+UGUI {\bfseries stock\+Shortages\+Customers}
+\item 
+\Hypertarget{class_summary_prefab_script_a66e3f81f0ae4c62206e1c42234f2dc15}\label{class_summary_prefab_script_a66e3f81f0ae4c62206e1c42234f2dc15} 
+Text\+Mesh\+Pro\+UGUI {\bfseries stock\+Shortages\+Items}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Updates and manages the daily summary UI elements. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_summary_prefab_script_a695f10ed43b5d9878cd79168e5853b5c}\label{class_summary_prefab_script_a695f10ed43b5d9878cd79168e5853b5c} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!DetermineLeastPopularItem@{DetermineLeastPopularItem}}
+\index{DetermineLeastPopularItem@{DetermineLeastPopularItem}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{DetermineLeastPopularItem()}{DetermineLeastPopularItem()}}
+{\footnotesize\ttfamily string Summary\+Prefab\+Script.\+Determine\+Least\+Popular\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}}}]{stats }\end{DoxyParamCaption})}
+
+
+
+Determines the least popular item from the daily statistics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The daily statistics to analyze.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The name of the least popular item.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_ac89b09112e63c2dd49dd79db302ba7bb}\label{class_summary_prefab_script_ac89b09112e63c2dd49dd79db302ba7bb} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!DetermineMostPopularItem@{DetermineMostPopularItem}}
+\index{DetermineMostPopularItem@{DetermineMostPopularItem}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{DetermineMostPopularItem()}{DetermineMostPopularItem()}}
+{\footnotesize\ttfamily string Summary\+Prefab\+Script.\+Determine\+Most\+Popular\+Item (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}}}]{stats }\end{DoxyParamCaption})}
+
+
+
+Determines the most popular item from the daily statistics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The daily statistics to analyze.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The name of the most popular item.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_a571c6e9f5d73176e4752cab06c8d6bf1}\label{class_summary_prefab_script_a571c6e9f5d73176e4752cab06c8d6bf1} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!DetermineTotalSpentByMostProfitableCustomer@{DetermineTotalSpentByMostProfitableCustomer}}
+\index{DetermineTotalSpentByMostProfitableCustomer@{DetermineTotalSpentByMostProfitableCustomer}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{DetermineTotalSpentByMostProfitableCustomer()}{DetermineTotalSpentByMostProfitableCustomer()}}
+{\footnotesize\ttfamily float Summary\+Prefab\+Script.\+Determine\+Total\+Spent\+By\+Most\+Profitable\+Customer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}}}]{stats }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Determines the total amount spent by the most profitable customer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The daily statistics to analyze.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total amount spent by the most profitable customer.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_aa386954e9e83e5aa5b06cf7bc881878b}\label{class_summary_prefab_script_aa386954e9e83e5aa5b06cf7bc881878b} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetDailyExpenses@{GetDailyExpenses}}
+\index{GetDailyExpenses@{GetDailyExpenses}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetDailyExpenses()}{GetDailyExpenses()}}
+{\footnotesize\ttfamily float Summary\+Prefab\+Script.\+Get\+Daily\+Expenses (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the daily expenses from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The daily expenses as a float.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_aa5d89d4fb650630f814edef4806fde88}\label{class_summary_prefab_script_aa5d89d4fb650630f814edef4806fde88} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetDailyProfit@{GetDailyProfit}}
+\index{GetDailyProfit@{GetDailyProfit}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetDailyProfit()}{GetDailyProfit()}}
+{\footnotesize\ttfamily float Summary\+Prefab\+Script.\+Get\+Daily\+Profit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the daily profit from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The daily profit as a float.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_a12ef89a8b5acbd27fde36d7597d209fb}\label{class_summary_prefab_script_a12ef89a8b5acbd27fde36d7597d209fb} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetDailyRevenue@{GetDailyRevenue}}
+\index{GetDailyRevenue@{GetDailyRevenue}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetDailyRevenue()}{GetDailyRevenue()}}
+{\footnotesize\ttfamily float Summary\+Prefab\+Script.\+Get\+Daily\+Revenue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the daily revenue from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The daily revenue as a float.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_a0278d24f7e9958ad5bf63cc8fbb8029e}\label{class_summary_prefab_script_a0278d24f7e9958ad5bf63cc8fbb8029e} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetHighestTransactionValue@{GetHighestTransactionValue}}
+\index{GetHighestTransactionValue@{GetHighestTransactionValue}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetHighestTransactionValue()}{GetHighestTransactionValue()}}
+{\footnotesize\ttfamily float Summary\+Prefab\+Script.\+Get\+Highest\+Transaction\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the highest transaction value from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The highest transaction value as a float.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_a6be5aa1cdf03bbc284d1b6bcc6a47346}\label{class_summary_prefab_script_a6be5aa1cdf03bbc284d1b6bcc6a47346} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetLeastPopularItem@{GetLeastPopularItem}}
+\index{GetLeastPopularItem@{GetLeastPopularItem}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetLeastPopularItem()}{GetLeastPopularItem()}}
+{\footnotesize\ttfamily string Summary\+Prefab\+Script.\+Get\+Least\+Popular\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the least popular item from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The name of the least popular item as a string.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_a91e4efee853b7857d77810fdd5b36aa9}\label{class_summary_prefab_script_a91e4efee853b7857d77810fdd5b36aa9} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetMostPopularItem@{GetMostPopularItem}}
+\index{GetMostPopularItem@{GetMostPopularItem}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetMostPopularItem()}{GetMostPopularItem()}}
+{\footnotesize\ttfamily string Summary\+Prefab\+Script.\+Get\+Most\+Popular\+Item (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the most popular item from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The name of the most popular item as a string.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_a2521d0a04e70e8ac2a20dfdd7132ccc3}\label{class_summary_prefab_script_a2521d0a04e70e8ac2a20dfdd7132ccc3} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetMostProfitableCustomer@{GetMostProfitableCustomer}}
+\index{GetMostProfitableCustomer@{GetMostProfitableCustomer}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetMostProfitableCustomer()}{GetMostProfitableCustomer()}}
+{\footnotesize\ttfamily string Summary\+Prefab\+Script.\+Get\+Most\+Profitable\+Customer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the most profitable customer from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The name of the most profitable customer as a string.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_abe33a0b837c7aa2b7e3300ebd085d4a0}\label{class_summary_prefab_script_abe33a0b837c7aa2b7e3300ebd085d4a0} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetMostProfitableTransactionProfit@{GetMostProfitableTransactionProfit}}
+\index{GetMostProfitableTransactionProfit@{GetMostProfitableTransactionProfit}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetMostProfitableTransactionProfit()}{GetMostProfitableTransactionProfit()}}
+{\footnotesize\ttfamily float Summary\+Prefab\+Script.\+Get\+Most\+Profitable\+Transaction\+Profit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the most profitable transaction profit from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The most profitable transaction profit as a float.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_acfa845d0d6d27fce1b946c0e5d285420}\label{class_summary_prefab_script_acfa845d0d6d27fce1b946c0e5d285420} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!GetNumberOfCustomers@{GetNumberOfCustomers}}
+\index{GetNumberOfCustomers@{GetNumberOfCustomers}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{GetNumberOfCustomers()}{GetNumberOfCustomers()}}
+{\footnotesize\ttfamily int Summary\+Prefab\+Script.\+Get\+Number\+Of\+Customers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the number of customers from the UI. 
+
+\begin{DoxyReturn}{Returns}
+The number of customers as an integer.
+\end{DoxyReturn}
+\Hypertarget{class_summary_prefab_script_a71fbd9f1eacc41302f9cf78aece89af1}\label{class_summary_prefab_script_a71fbd9f1eacc41302f9cf78aece89af1} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!UpdateData@{UpdateData}}
+\index{UpdateData@{UpdateData}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{UpdateData()}{UpdateData()}}
+{\footnotesize\ttfamily void Summary\+Prefab\+Script.\+Update\+Data (\begin{DoxyParamCaption}\item[{int}]{day,  }\item[{int}]{number\+Of\+Customers,  }\item[{string}]{most\+Popular,  }\item[{string}]{least\+Popular,  }\item[{float}]{highest\+Transaction,  }\item[{string}]{profitable\+Customer,  }\item[{float}]{profitable\+Amount,  }\item[{float}]{profitable\+Profit,  }\item[{float}]{profit,  }\item[{float}]{satisfaction,  }\item[{int}]{shortages\+Customers,  }\item[{int}]{shortages\+Items,  }\item[{float}]{revenue,  }\item[{float}]{expenses }\end{DoxyParamCaption})}
+
+
+
+Updates the summary UI with the provided data. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em day} & The current day number.\\
+\hline
+{\em number\+Of\+Customers} & The number of customers.\\
+\hline
+{\em most\+Popular} & The most popular item.\\
+\hline
+{\em least\+Popular} & The least popular item.\\
+\hline
+{\em highest\+Transaction} & The highest transaction value.\\
+\hline
+{\em profitable\+Customer} & The most profitable customer.\\
+\hline
+{\em profitable\+Amount} & The most profitable transaction amount.\\
+\hline
+{\em profitable\+Profit} & The profit from the most profitable transaction.\\
+\hline
+{\em profit} & The daily profit.\\
+\hline
+{\em satisfaction} & The customer satisfaction percentage.\\
+\hline
+{\em shortages\+Customers} & The number of customers affected by stock shortages.\\
+\hline
+{\em shortages\+Items} & The number of items affected by stock shortages.\\
+\hline
+{\em revenue} & The daily revenue.\\
+\hline
+{\em expenses} & The daily expenses.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_summary_prefab_script_ad73e28fe8b6d7f22308209eef0283fb8}\label{class_summary_prefab_script_ad73e28fe8b6d7f22308209eef0283fb8} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!UpdateDataFromStats@{UpdateDataFromStats}}
+\index{UpdateDataFromStats@{UpdateDataFromStats}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{UpdateDataFromStats()}{UpdateDataFromStats()}}
+{\footnotesize\ttfamily void Summary\+Prefab\+Script.\+Update\+Data\+From\+Stats (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_daily_stats}{Daily\+Stats}}}]{stats,  }\item[{int}]{customers\+Not\+Satisfied,  }\item[{int}]{items\+Not\+Satisfied }\end{DoxyParamCaption})}
+
+
+
+Updates the summary UI using the data from a \doxylink{struct_daily_stats}{Daily\+Stats} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stats} & The daily statistics to display.\\
+\hline
+{\em customers\+Not\+Satisfied} & The number of customers not satisfied due to stock shortages.\\
+\hline
+{\em items\+Not\+Satisfied} & The number of items not satisfied due to stock shortages.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_summary_prefab_script_a12dd14e42c020e67e799222a2a63c07d}\label{class_summary_prefab_script_a12dd14e42c020e67e799222a2a63c07d} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!UpdateMostPopularItem@{UpdateMostPopularItem}}
+\index{UpdateMostPopularItem@{UpdateMostPopularItem}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{UpdateMostPopularItem()}{UpdateMostPopularItem()}}
+{\footnotesize\ttfamily void Summary\+Prefab\+Script.\+Update\+Most\+Popular\+Item (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})}
+
+
+
+Updates the most popular item text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the most popular item.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_summary_prefab_script_aeeaed29e3484303eb55e9fe09041a3f4}\label{class_summary_prefab_script_aeeaed29e3484303eb55e9fe09041a3f4} 
+\index{SummaryPrefabScript@{SummaryPrefabScript}!UpdateNumberOfCustomers@{UpdateNumberOfCustomers}}
+\index{UpdateNumberOfCustomers@{UpdateNumberOfCustomers}!SummaryPrefabScript@{SummaryPrefabScript}}
+\doxysubsubsection{\texorpdfstring{UpdateNumberOfCustomers()}{UpdateNumberOfCustomers()}}
+{\footnotesize\ttfamily void Summary\+Prefab\+Script.\+Update\+Number\+Of\+Customers (\begin{DoxyParamCaption}\item[{int}]{new\+Number\+Of\+Customers }\end{DoxyParamCaption})}
+
+
+
+Updates the number of customers text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Number\+Of\+Customers} & The new number of customers.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Summary\+Prefab\+Script.\+cs\end{DoxyCompactItemize}

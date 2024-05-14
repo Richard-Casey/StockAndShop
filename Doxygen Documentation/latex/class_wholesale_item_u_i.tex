@@ -1,0 +1,87 @@
+\doxysection{Wholesale\+Item\+UI Class Reference}
+\hypertarget{class_wholesale_item_u_i}{}\label{class_wholesale_item_u_i}\index{WholesaleItemUI@{WholesaleItemUI}}
+
+
+Manages the UI and logic for wholesale items, allowing the player to buy items from the wholesaler.  
+
+
+Inheritance diagram for Wholesale\+Item\+UI\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_wholesale_item_u_i}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_wholesale_item_u_i_a49af357aa596ae1e44b7023003e49b29}\label{class_wholesale_item_u_i_a49af357aa596ae1e44b7023003e49b29} 
+void {\bfseries Buy\+Item} ()
+\begin{DoxyCompactList}\small\item\em Handles the purchase of the item. Checks for sufficient funds and updates the relevant components. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a1212e5215ed2938a98dedec33f1b4406}\label{class_wholesale_item_u_i_a1212e5215ed2938a98dedec33f1b4406} 
+void {\bfseries Decrement\+Quantity} ()
+\begin{DoxyCompactList}\small\item\em Decreases the quantity of items to buy, ensuring it does not go below zero. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_aa1a3da0e636d4c078ded2cde2b12f886}\label{class_wholesale_item_u_i_aa1a3da0e636d4c078ded2cde2b12f886} 
+void {\bfseries Increment\+Quantity} ()
+\begin{DoxyCompactList}\small\item\em Increases the quantity of items to buy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_wholesale_item_u_i_a0f3089c94dea5e4cbf0c1ed43aa5ba87}\label{class_wholesale_item_u_i_a0f3089c94dea5e4cbf0c1ed43aa5ba87} 
+\mbox{\hyperlink{class_buy_item_handler}{Buy\+Item\+Handler}} {\bfseries buy\+Item\+Handler}
+\begin{DoxyCompactList}\small\item\em Handler for buying items. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a1f6e17abc4738392ddca4663a6a19a11}\label{class_wholesale_item_u_i_a1f6e17abc4738392ddca4663a6a19a11} 
+\mbox{\hyperlink{class_cash_display}{Cash\+Display}} {\bfseries cash\+Display}
+\begin{DoxyCompactList}\small\item\em Displays the player\textquotesingle{}s current cash. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_ad76ff432439a2b130615a5d6d24c4f1b}\label{class_wholesale_item_u_i_ad76ff432439a2b130615a5d6d24c4f1b} 
+\mbox{\hyperlink{class_daily_summary_manager}{Daily\+Summary\+Manager}} {\bfseries daily\+Summary\+Manager}
+\begin{DoxyCompactList}\small\item\em Manages the daily summary and statistics. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_aa344a2f7c79b4d57ee6a457c4bc06364}\label{class_wholesale_item_u_i_aa344a2f7c79b4d57ee6a457c4bc06364} 
+\mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} {\bfseries inventory\+Item}
+\begin{DoxyCompactList}\small\item\em Represents the inventory item associated with this UI. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a713c9b1f08f7a83ca52c52f3195f0146}\label{class_wholesale_item_u_i_a713c9b1f08f7a83ca52c52f3195f0146} 
+\mbox{\hyperlink{class_inventory_manager}{Inventory\+Manager}} {\bfseries inventory\+Manager}
+\begin{DoxyCompactList}\small\item\em Manages the player\textquotesingle{}s inventory. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a4d3c9b4bb551ed128493fefc932e55d2}\label{class_wholesale_item_u_i_a4d3c9b4bb551ed128493fefc932e55d2} 
+float {\bfseries item\+Cost}
+\begin{DoxyCompactList}\small\item\em Cost of the item. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_ae81cc32b1f21fd8baeddec082a1493ea}\label{class_wholesale_item_u_i_ae81cc32b1f21fd8baeddec082a1493ea} 
+string {\bfseries item\+Name}
+\begin{DoxyCompactList}\small\item\em Name of the item. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a80ca50876e3f7a9eb3410d1ba4c4343f}\label{class_wholesale_item_u_i_a80ca50876e3f7a9eb3410d1ba4c4343f} 
+Button {\bfseries minus\+Button}
+\begin{DoxyCompactList}\small\item\em Button to decrease the quantity of items to buy. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a80ebc894358099abbe3c486d8a520865}\label{class_wholesale_item_u_i_a80ebc894358099abbe3c486d8a520865} 
+Button {\bfseries plus\+Button}
+\begin{DoxyCompactList}\small\item\em Button to increase the quantity of items to buy. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a711a9eea9305327170e88901e3f5a0e6}\label{class_wholesale_item_u_i_a711a9eea9305327170e88901e3f5a0e6} 
+int {\bfseries quantity}
+\begin{DoxyCompactList}\small\item\em Quantity of items to buy. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a7180c2abcabd587faa999427e2adb240}\label{class_wholesale_item_u_i_a7180c2abcabd587faa999427e2adb240} 
+Text\+Mesh\+Pro\+UGUI {\bfseries quantity\+Text}
+\begin{DoxyCompactList}\small\item\em Text component displaying the quantity of items. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_ab32a0cbc038a974678a634c897759026}\label{class_wholesale_item_u_i_ab32a0cbc038a974678a634c897759026} 
+Text\+Mesh\+Pro\+UGUI {\bfseries total\+Cost\+Text}
+\begin{DoxyCompactList}\small\item\em Text component displaying the total cost of the items. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a73d5b1c8a4febae55c41d375253890ea}\label{class_wholesale_item_u_i_a73d5b1c8a4febae55c41d375253890ea} 
+\mbox{\hyperlink{class_wholesale_manager}{Wholesale\+Manager}} {\bfseries wholesale\+Manager}
+\begin{DoxyCompactList}\small\item\em Manages the wholesale operations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_wholesale_item_u_i_a1289d5a756d43f903bebae0ffb7a9534}\label{class_wholesale_item_u_i_a1289d5a756d43f903bebae0ffb7a9534} 
+void {\bfseries Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the component. Sets up button listeners and references. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a14a12599d4a241514117d60be6c2dc2e}\label{class_wholesale_item_u_i_a14a12599d4a241514117d60be6c2dc2e} 
+void {\bfseries Start} ()
+\begin{DoxyCompactList}\small\item\em Called on the frame when a script is enabled just before any of the Update methods are called the first time. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_item_u_i_a7707b8cdcc76861875dad9f42b5ce3c4}\label{class_wholesale_item_u_i_a7707b8cdcc76861875dad9f42b5ce3c4} 
+void {\bfseries Update\+UI} ()
+\begin{DoxyCompactList}\small\item\em Updates the UI elements to reflect the current quantity and total cost. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the UI and logic for wholesale items, allowing the player to buy items from the wholesaler. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Wholesale\+Item\+UI.\+cs\end{DoxyCompactItemize}

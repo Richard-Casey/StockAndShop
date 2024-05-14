@@ -1,0 +1,128 @@
+\doxysection{Till\+Manager Class Reference}
+\hypertarget{class_till_manager}{}\label{class_till_manager}\index{TillManager@{TillManager}}
+
+
+Manages the till operations including processing customer transactions and updating relevant data.  
+
+
+Inheritance diagram for Till\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_till_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_till_manager_a981af30e9a07dd3818ac5e00321e077e}{Add\+Customer\+To\+Queue}} (\mbox{\hyperlink{class_customer}{Customer}} customer)
+\begin{DoxyCompactList}\small\item\em Adds a customer to the queue to be processed at the till. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_till_manager_a5d641fedcb5bb2a301147dffce106e97}\label{class_till_manager_a5d641fedcb5bb2a301147dffce106e97} 
+Game\+Object {\bfseries till\+Area}
+\begin{DoxyCompactList}\small\item\em Reference to the till area Game\+Object where the customers will be processed. \end{DoxyCompactList}\item 
+\Hypertarget{class_till_manager_adbb2c4fe8e8ca6685a280f7c4c423cab}\label{class_till_manager_adbb2c4fe8e8ca6685a280f7c4c423cab} 
+Game\+Object {\bfseries till\+Customer\+Prefab}
+\begin{DoxyCompactList}\small\item\em Prefab for the till customer to be instantiated during processing. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_till_manager_a402971ad0909cdcdab183a654ebf9f97}\label{class_till_manager_a402971ad0909cdcdab183a654ebf9f97} 
+static bool {\bfseries till\+Is\+Occupied} = false
+\begin{DoxyCompactList}\small\item\em Indicates if the till is currently occupied. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+IEnumerator \mbox{\hyperlink{class_till_manager_afbf51ae769a378e6a1c083b0f1c6afc7}{Process\+Customer\+At\+Till}} ()
+\begin{DoxyCompactList}\small\item\em Coroutine to process the customers in the queue at the till. \end{DoxyCompactList}\item 
+Game\+Object \mbox{\hyperlink{class_till_manager_a995cdbe66138c0a85a73301b33be2617}{Process\+Transaction}} (\mbox{\hyperlink{class_customer}{Customer}} customer)
+\begin{DoxyCompactList}\small\item\em Processes the transaction for the given customer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_till_manager_af9775d63796ff50e01f30e1ec19764aa}{Update\+Players\+Cash}} (float total\+Cost)
+\begin{DoxyCompactList}\small\item\em Updates the player\textquotesingle{}s cash display with the total cost of the transaction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_till_manager_a84bcb724bcdc35c189311f04ced18510}\label{class_till_manager_a84bcb724bcdc35c189311f04ced18510} 
+Queue$<$ \mbox{\hyperlink{class_customer}{Customer}} $>$ {\bfseries customer\+Queue} = new Queue$<$\mbox{\hyperlink{class_customer}{Customer}}$>$()
+\begin{DoxyCompactList}\small\item\em Queue to manage the customers waiting to be processed at the till. \end{DoxyCompactList}\item 
+\Hypertarget{class_till_manager_a7e15f89431f6ec5e293554081630b45c}\label{class_till_manager_a7e15f89431f6ec5e293554081630b45c} 
+bool {\bfseries is\+Processing} = false
+\begin{DoxyCompactList}\small\item\em Flag to check if the till is currently processing a customer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the till operations including processing customer transactions and updating relevant data. 
+
+
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_till_manager_a981af30e9a07dd3818ac5e00321e077e}\label{class_till_manager_a981af30e9a07dd3818ac5e00321e077e} 
+\index{TillManager@{TillManager}!AddCustomerToQueue@{AddCustomerToQueue}}
+\index{AddCustomerToQueue@{AddCustomerToQueue}!TillManager@{TillManager}}
+\doxysubsubsection{\texorpdfstring{AddCustomerToQueue()}{AddCustomerToQueue()}}
+{\footnotesize\ttfamily void Till\+Manager.\+Add\+Customer\+To\+Queue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_customer}{Customer}}}]{customer }\end{DoxyParamCaption})}
+
+
+
+Adds a customer to the queue to be processed at the till. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em customer} & The customer to be added to the queue.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_till_manager_afbf51ae769a378e6a1c083b0f1c6afc7}\label{class_till_manager_afbf51ae769a378e6a1c083b0f1c6afc7} 
+\index{TillManager@{TillManager}!ProcessCustomerAtTill@{ProcessCustomerAtTill}}
+\index{ProcessCustomerAtTill@{ProcessCustomerAtTill}!TillManager@{TillManager}}
+\doxysubsubsection{\texorpdfstring{ProcessCustomerAtTill()}{ProcessCustomerAtTill()}}
+{\footnotesize\ttfamily IEnumerator Till\+Manager.\+Process\+Customer\+At\+Till (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coroutine to process the customers in the queue at the till. 
+
+\begin{DoxyReturn}{Returns}
+IEnumerator for the coroutine.
+\end{DoxyReturn}
+\Hypertarget{class_till_manager_a995cdbe66138c0a85a73301b33be2617}\label{class_till_manager_a995cdbe66138c0a85a73301b33be2617} 
+\index{TillManager@{TillManager}!ProcessTransaction@{ProcessTransaction}}
+\index{ProcessTransaction@{ProcessTransaction}!TillManager@{TillManager}}
+\doxysubsubsection{\texorpdfstring{ProcessTransaction()}{ProcessTransaction()}}
+{\footnotesize\ttfamily Game\+Object Till\+Manager.\+Process\+Transaction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_customer}{Customer}}}]{customer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Processes the transaction for the given customer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em customer} & The customer whose transaction is being processed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Game\+Object instance of the till customer.
+\end{DoxyReturn}
+\Hypertarget{class_till_manager_af9775d63796ff50e01f30e1ec19764aa}\label{class_till_manager_af9775d63796ff50e01f30e1ec19764aa} 
+\index{TillManager@{TillManager}!UpdatePlayersCash@{UpdatePlayersCash}}
+\index{UpdatePlayersCash@{UpdatePlayersCash}!TillManager@{TillManager}}
+\doxysubsubsection{\texorpdfstring{UpdatePlayersCash()}{UpdatePlayersCash()}}
+{\footnotesize\ttfamily void Till\+Manager.\+Update\+Players\+Cash (\begin{DoxyParamCaption}\item[{float}]{total\+Cost }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the player\textquotesingle{}s cash display with the total cost of the transaction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em total\+Cost} & The total cost of the transaction.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Till\+Manager.\+cs\end{DoxyCompactItemize}

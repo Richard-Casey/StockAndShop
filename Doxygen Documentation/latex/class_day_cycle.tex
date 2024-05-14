@@ -1,0 +1,143 @@
+\doxysection{Day\+Cycle Class Reference}
+\hypertarget{class_day_cycle}{}\label{class_day_cycle}\index{DayCycle@{DayCycle}}
+
+
+Manages the day-\/night cycle of the shop, including customer spawning and time controls.  
+
+
+Inheritance diagram for Day\+Cycle\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_day_cycle}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_day_cycle_a7b04446419e7c868d793423f0e6d252f}\label{class_day_cycle_a7b04446419e7c868d793423f0e6d252f} 
+void {\bfseries End\+Day} ()
+\begin{DoxyCompactList}\small\item\em Ends the day if no customers are active. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_aaeb3053d1949fdee51b9b1f9a618b1d1}\label{class_day_cycle_aaeb3053d1949fdee51b9b1f9a618b1d1} 
+void {\bfseries Start\+Day} ()
+\begin{DoxyCompactList}\small\item\em Starts a new day, resets time and updates UI. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_day_cycle_a1d890fd2ea90e0983a710f16c13ad9e0}{Set\+Time\+Control\+Buttons\+Active}} (bool is\+Active)
+\begin{DoxyCompactList}\small\item\em Sets the active state of time control buttons. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_aa46e68e2fc63a4c13bfcd47998ea3f75}\label{class_day_cycle_aa46e68e2fc63a4c13bfcd47998ea3f75} 
+void {\bfseries Normal\+Time} ()
+\begin{DoxyCompactList}\small\item\em Sets the time multiplier to normal speed. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a4bd7a8233a52b2e08b3eb3a8e6bd05b9}\label{class_day_cycle_a4bd7a8233a52b2e08b3eb3a8e6bd05b9} 
+void {\bfseries Slow\+Down\+Time} ()
+\begin{DoxyCompactList}\small\item\em Slows down the time multiplier. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a21d2fa80fa0d98267ff815d3ec18c375}\label{class_day_cycle_a21d2fa80fa0d98267ff815d3ec18c375} 
+void {\bfseries Speed\+Up\+Time} ()
+\begin{DoxyCompactList}\small\item\em Speeds up the time multiplier. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_aef6f80ad5de26b001e2485ecb03b89fd}\label{class_day_cycle_aef6f80ad5de26b001e2485ecb03b89fd} 
+void {\bfseries Toggle\+Pause} ()
+\begin{DoxyCompactList}\small\item\em Toggles the paused state of the game. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a79dd3989eef08502ad0263ef9bf4983b}\label{class_day_cycle_a79dd3989eef08502ad0263ef9bf4983b} 
+void {\bfseries Open\+Shop\+UIUpdates} ()
+\begin{DoxyCompactList}\small\item\em Updates the UI when the shop opens. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_ae2852803c02031e3c160741389d6e900}\label{class_day_cycle_ae2852803c02031e3c160741389d6e900} 
+void {\bfseries Start\+New\+Day} ()
+\begin{DoxyCompactList}\small\item\em Starts a new day and updates statistics accordingly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_day_cycle_a9e5ec4e2548fc8eb4486ce656f848004}\label{class_day_cycle_a9e5ec4e2548fc8eb4486ce656f848004} 
+Text\+Mesh\+Pro\+UGUI {\bfseries clock\+Text}
+\begin{DoxyCompactList}\small\item\em The text component for displaying the clock. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a913b5d1743a552ba57944755b8bc3171}\label{class_day_cycle_a913b5d1743a552ba57944755b8bc3171} 
+float {\bfseries current\+Time} = 0
+\begin{DoxyCompactList}\small\item\em The current time of day in seconds. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a5437f199ebf9a72f01032c84d9b5eb5f}\label{class_day_cycle_a5437f199ebf9a72f01032c84d9b5eb5f} 
+int {\bfseries current\+Day} = 0
+\begin{DoxyCompactList}\small\item\em The current day number. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a99dc361cd70095625ad3867871628c5f}\label{class_day_cycle_a99dc361cd70095625ad3867871628c5f} 
+bool {\bfseries is\+Day\+Active} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the day is active. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a53cca4ed4726ca3c6d8202a94c2c203d}\label{class_day_cycle_a53cca4ed4726ca3c6d8202a94c2c203d} 
+Button {\bfseries normal\+Time\+Button}
+\begin{DoxyCompactList}\small\item\em Button to set time to normal speed. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_af10bd157b82ce94567bbee1a311f866c}\label{class_day_cycle_af10bd157b82ce94567bbee1a311f866c} 
+Button {\bfseries open\+Shop\+Button}
+\begin{DoxyCompactList}\small\item\em Button to open the shop. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_ae3a30adfb413da5e625b5d2d7aa7fe4f}\label{class_day_cycle_ae3a30adfb413da5e625b5d2d7aa7fe4f} 
+Button {\bfseries pause\+Button}
+\begin{DoxyCompactList}\small\item\em Button to pause the game. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a61992e5681207b3926491951578f64a9}\label{class_day_cycle_a61992e5681207b3926491951578f64a9} 
+Button {\bfseries slow\+Down\+Time\+Button}
+\begin{DoxyCompactList}\small\item\em Button to slow down time. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a7ad6ad92368a5801567849dcbb40ade6}\label{class_day_cycle_a7ad6ad92368a5801567849dcbb40ade6} 
+Button {\bfseries speed\+Up\+Time\+Button}
+\begin{DoxyCompactList}\small\item\em Button to speed up time. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a54c241d67ae69dda1545b48a2e757b6c}\label{class_day_cycle_a54c241d67ae69dda1545b48a2e757b6c} 
+float {\bfseries day\+Duration\+In\+Seconds} = 600
+\begin{DoxyCompactList}\small\item\em Duration of a game day in seconds. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a47740122c9cfb6394265a5126749835a}\label{class_day_cycle_a47740122c9cfb6394265a5126749835a} 
+bool {\bfseries is\+First\+Day\+Started} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the first day has started. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_day_cycle_a298a4b3c1258398c6822c9f04a59e2c1}\label{class_day_cycle_a298a4b3c1258398c6822c9f04a59e2c1} 
+static \mbox{\hyperlink{class_day_cycle}{Day\+Cycle}} {\bfseries Instance}\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Singleton instance of the \doxylink{class_day_cycle}{Day\+Cycle} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_day_cycle_a9e203095a842b406acfe5258b40c397d}\label{class_day_cycle_a9e203095a842b406acfe5258b40c397d} 
+void {\bfseries Start} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{class_day_cycle}{Day\+Cycle} instance and sets up button listeners. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_afa69eda85cf4c5b74887258f4e632815}\label{class_day_cycle_afa69eda85cf4c5b74887258f4e632815} 
+void {\bfseries Awake} ()
+\begin{DoxyCompactList}\small\item\em Ensures a single instance of the \doxylink{class_day_cycle}{Day\+Cycle} class. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_ab12b3c1ba60adc34a195b273645150a6}\label{class_day_cycle_ab12b3c1ba60adc34a195b273645150a6} 
+void {\bfseries Update} ()
+\begin{DoxyCompactList}\small\item\em Updates the current time and checks if the day should end. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a3900480c2b3529cf2a7c34cd0ca44874}\label{class_day_cycle_a3900480c2b3529cf2a7c34cd0ca44874} 
+void {\bfseries Update\+Clock} ()
+\begin{DoxyCompactList}\small\item\em Updates the clock display based on the current time. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a367dbe71bba589115b649ce72366c61b}\label{class_day_cycle_a367dbe71bba589115b649ce72366c61b} 
+void {\bfseries Finalize\+Day} ()
+\begin{DoxyCompactList}\small\item\em Finalizes the end of the day, resets time and updates UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_day_cycle_a4958656c94e6e15d66ae4e2bc0ac7764}\label{class_day_cycle_a4958656c94e6e15d66ae4e2bc0ac7764} 
+\mbox{\hyperlink{class_customer_spawner}{Customer\+Spawner}} {\bfseries customer\+Spawner}
+\begin{DoxyCompactList}\small\item\em Reference to the \doxylink{class_customer_spawner}{Customer\+Spawner} script. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a88e27ae63100affd102771c49f4601f8}\label{class_day_cycle_a88e27ae63100affd102771c49f4601f8} 
+\mbox{\hyperlink{class_daily_summary_manager}{Daily\+Summary\+Manager}} {\bfseries daily\+Summary\+Manager}
+\begin{DoxyCompactList}\small\item\em Reference to the \doxylink{class_daily_summary_manager}{Daily\+Summary\+Manager}. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a69b632114c13629f95221ac76c777176}\label{class_day_cycle_a69b632114c13629f95221ac76c777176} 
+bool {\bfseries is\+Paused} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the game is paused. \end{DoxyCompactList}\item 
+\Hypertarget{class_day_cycle_a92b3db5b273d3896d364380c774497d5}\label{class_day_cycle_a92b3db5b273d3896d364380c774497d5} 
+int {\bfseries time\+Multiplier} = 1
+\begin{DoxyCompactList}\small\item\em Multiplier for the speed of time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the day-\/night cycle of the shop, including customer spawning and time controls. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_day_cycle_a1d890fd2ea90e0983a710f16c13ad9e0}\label{class_day_cycle_a1d890fd2ea90e0983a710f16c13ad9e0} 
+\index{DayCycle@{DayCycle}!SetTimeControlButtonsActive@{SetTimeControlButtonsActive}}
+\index{SetTimeControlButtonsActive@{SetTimeControlButtonsActive}!DayCycle@{DayCycle}}
+\doxysubsubsection{\texorpdfstring{SetTimeControlButtonsActive()}{SetTimeControlButtonsActive()}}
+{\footnotesize\ttfamily void Day\+Cycle.\+Set\+Time\+Control\+Buttons\+Active (\begin{DoxyParamCaption}\item[{bool}]{is\+Active }\end{DoxyParamCaption})}
+
+
+
+Sets the active state of time control buttons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is\+Active} & The active state to set.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Day\+Cycle.\+cs\end{DoxyCompactItemize}

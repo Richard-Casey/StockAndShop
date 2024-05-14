@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['generatefeedback_0',['GenerateFeedback',['../class_customer.html#ae51f5328c97a9ad2dd54ce81fe337341',1,'Customer']]],
+  ['generaterandomname_1',['GenerateRandomName',['../class_customer.html#a50d7a01d4eec76683cb22eaa6a4054b1',1,'Customer']]],
+  ['generatereceipt_2',['GenerateReceipt',['../class_receipt_generator.html#a8ff69e0f338a34a06b7ec85073fae4df',1,'ReceiptGenerator']]],
+  ['getavailableitemsforsale_3',['GetAvailableItemsForSale',['../class_inventory_manager.html#a8a886aae05d4dbed0d992ee8ca469c63',1,'InventoryManager']]],
+  ['getdailyexpenses_4',['GetDailyExpenses',['../class_summary_prefab_script.html#aa386954e9e83e5aa5b06cf7bc881878b',1,'SummaryPrefabScript']]],
+  ['getdailyprofit_5',['GetDailyProfit',['../class_summary_prefab_script.html#aa5d89d4fb650630f814edef4806fde88',1,'SummaryPrefabScript']]],
+  ['getdailyrevenue_6',['GetDailyRevenue',['../class_summary_prefab_script.html#a12ef89a8b5acbd27fde36d7597d209fb',1,'SummaryPrefabScript']]],
+  ['getdailystats_7',['GetDailyStats',['../class_daily_summary_manager.html#af740eea8fb6e8f32f48ceb49c9a2f633',1,'DailySummaryManager']]],
+  ['gethighesttransactionvalue_8',['GetHighestTransactionValue',['../class_summary_prefab_script.html#a0278d24f7e9958ad5bf63cc8fbb8029e',1,'SummaryPrefabScript']]],
+  ['getitemcost_9',['GetItemCost',['../class_customer.html#a928e4824f9f95c55fb5600a0ff39a860',1,'Customer.GetItemCost()'],['../class_shelf_manager.html#a05557df5c1472f3f97ea29ead34e2d65',1,'ShelfManager.GetItemCost()']]],
+  ['getitemprice_10',['GetItemPrice',['../class_customer.html#aec3f5a4f89002d1c9713af086dcca052',1,'Customer.GetItemPrice()'],['../class_shelf_manager.html#a40127d7d73c33760f8d9964e56185bf2',1,'ShelfManager.GetItemPrice()']]],
+  ['getitemquantityininventory_11',['GetItemQuantityInInventory',['../class_inventory_item_u_i.html#ab7dad8c79788af55559fc4f1b9c06090',1,'InventoryItemUI']]],
+  ['getleastpopularitem_12',['GetLeastPopularItem',['../class_summary_prefab_script.html#a6be5aa1cdf03bbc284d1b6bcc6a47346',1,'SummaryPrefabScript']]],
+  ['getlowestpriceonshelf_13',['GetLowestPriceOnShelf',['../class_shelf_manager.html#af5c32264e93ee4e743bf7e263e9fa19b',1,'ShelfManager']]],
+  ['getmaxquantityininventory_14',['GetMaxQuantityInInventory',['../class_inventory_item_u_i.html#aa6fb76458d3bc7231ea008741a47f545',1,'InventoryItemUI']]],
+  ['getmostpopularitem_15',['GetMostPopularItem',['../class_summary_prefab_script.html#a91e4efee853b7857d77810fdd5b36aa9',1,'SummaryPrefabScript']]],
+  ['getmostprofitablecustomer_16',['GetMostProfitableCustomer',['../class_summary_prefab_script.html#a2521d0a04e70e8ac2a20dfdd7132ccc3',1,'SummaryPrefabScript']]],
+  ['getmostprofitabletransactionprofit_17',['GetMostProfitableTransactionProfit',['../class_summary_prefab_script.html#abe33a0b837c7aa2b7e3300ebd085d4a0',1,'SummaryPrefabScript']]],
+  ['getnumberofcustomers_18',['GetNumberOfCustomers',['../class_summary_prefab_script.html#acfa845d0d6d27fce1b946c0e5d285420',1,'SummaryPrefabScript']]],
+  ['getpurchaseditems_19',['GetPurchasedItems',['../class_customer.html#a70ca6f9ce146b9972a0402178b082869',1,'Customer']]],
+  ['getshelfitemquantities_20',['GetShelfItemQuantities',['../class_shelf_manager.html#a583ac80f4cbcaeaed7079a61526c537a',1,'ShelfManager']]],
+  ['gototill_21',['GoToTill',['../class_customer.html#a70ea238815a453be9e3ea06e76be581e',1,'Customer']]],
+  ['gridlayoutgroup_22',['gridLayoutGroup',['../class_dynamic_content_size_for_two_columns.html#a6443f4144295497d864f7e071d2b7b14',1,'DynamicContentSizeForTwoColumns']]]
+];

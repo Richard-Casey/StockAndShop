@@ -102,7 +102,7 @@ public class ShelfManager : MonoBehaviour
             // Item exists, update quantity and possibly other relevant data
             existingItem.quantityOnShelf += itemToAdd.quantity;
             existingItem.inventoryItem = itemToAdd; // Ensure the inventoryItem reference is updated
-            existingItem.UpdateUI(); // Make sure you have an UpdateUI method in ShelfItemUI that updates the quantity display
+            existingItem.UpdateUI();
         }
         else
         {
@@ -115,10 +115,9 @@ public class ShelfManager : MonoBehaviour
             if (shelfItemUI != null)
             {
                 // Populate the shelf item with data from the inventory item and sell quantity
-                shelfItemUI.SetItemData(itemToAdd, itemToAdd.quantity); // Adjust this method if needed to use the inventoryItem field
+                shelfItemUI.SetItemData(itemToAdd, itemToAdd.quantity); 
                 shelfItemUI.inventoryItem = itemToAdd; // Set the inventoryItem reference
 
-                // Additional setup as needed...
                 shelfItemUI.SetDynamicContentSizeScript(dynamicContentSizeScript);
                 shelfItem.transform.SetParent(contentGridLayout, false);  // Use 'false' to maintain local position and rotation
 
@@ -143,7 +142,7 @@ public class ShelfManager : MonoBehaviour
     /// <returns>The found ShelfItemUI component or null if not found.</returns>
     public ShelfItemUI FindExistingShelfItem(string itemName, float sellingPrice)
     {
-        // Iterate through your existing shelf items and find a match
+        // Iterate through existing shelf items and find a match
         foreach (GameObject shelfItemGameObject in shelfItems)
         {
             ShelfItemUI shelfItem = shelfItemGameObject.GetComponent<ShelfItemUI>();
@@ -167,7 +166,7 @@ public class ShelfManager : MonoBehaviour
             var shelfItemUI = itemGO.GetComponent<ShelfItemUI>();
             if (shelfItemUI != null && shelfItemUI.itemName == itemName)
             {
-                return shelfItemUI.inventoryItem.cost; // Assuming inventoryItem has a cost field
+                return shelfItemUI.inventoryItem.cost; 
             }
         }
         return -1; // Item not found

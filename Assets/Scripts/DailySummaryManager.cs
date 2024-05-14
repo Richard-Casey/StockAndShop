@@ -196,9 +196,8 @@ public class DailySummaryManager : MonoBehaviour
     {
         
         customerSpawner = FindObjectOfType<CustomerSpawner>();
-        if (dailyStatsList.Count == 0) // Ensuring that we start with an initial day if no days are present
-        {
-            
+        if (dailyStatsList.Count == 0) // Ensuring that it starts with an initial day if no days are present
+        {    
             AddNewDayStats();  // Add the first day with index 0 without incrementing currentDay
         }
         UpdateUI();  // Ensure UI reflects the initial state
@@ -228,9 +227,6 @@ public class DailySummaryManager : MonoBehaviour
         }
     }
 
-
-
-
     /// <summary>
     /// Initializes the day.
     /// </summary>
@@ -250,20 +246,15 @@ public class DailySummaryManager : MonoBehaviour
         var currentStats = dailyStatsList.Last();
         InventoryManager inventoryManager = FindObjectOfType<InventoryManager>();
 
-        // Assuming inventoryItems is a list of all items that could potentially be sold
+        // InventoryItems is a list of all items that could potentially be sold
         foreach (var item in inventoryManager.inventoryItems)
         {
             if (!currentStats.itemSales.ContainsKey(item.itemName))
             {
-                currentStats.itemSales[item.itemName] = 0;  // Initialize with zero sales
+                currentStats.itemSales[item.itemName] = 0;  // Initialise with zero sales
             }
         }
     }
-
-
-
-
-
 
     /// <summary>
     /// Adds new daily statistics for a new day.
@@ -281,7 +272,7 @@ public class DailySummaryManager : MonoBehaviour
             mostProfitableCustomer = "",
             highestTransactionValue = 0,
             mostProfitableTransactionProfit = 0,
-            customerSatisfaction = 100  // Assuming a starting satisfaction score
+            customerSatisfaction = 5  // starting Satisfaction score
         };
         dailyStatsList.Add(newDayStats);
         InitializeItemSales();  // Ensure all available items are tracked from the start of the day
@@ -368,7 +359,7 @@ public class DailySummaryManager : MonoBehaviour
     /// </summary>
     private void SaveCurrentDayStats()
     {
-        // Save current day stats if needed
+        // Future implementation for saving of the day's stats
         Debug.Log("Stats saved for day " + currentDay);
     }
 
@@ -470,7 +461,6 @@ public class DailySummaryManager : MonoBehaviour
         }
     }
 
-
     /// <summary>
     /// Determines the most popular item of the day.
     /// </summary>
@@ -506,7 +496,7 @@ public class DailySummaryManager : MonoBehaviour
             return "N/A";
 
         var leastPopular = totalUnitsMoved.OrderBy(x => x.Value).ThenByDescending(x => shelfQuantities[x.Key]).FirstOrDefault();
-        return leastPopular.Key;  // Assumes there's always at least one item
+        return leastPopular.Key;  
     }
 
     /// <summary>
@@ -535,12 +525,12 @@ public class DailySummaryManager : MonoBehaviour
         // Assuming 'currentDay' is still 0 and will be incremented after this method finishes
         if (currentDay == 0)
         {
-            // We are starting the first day, so do not reset expenses or other stats
+            // Starting the first day, so do not reset expenses or other stats
             UpdateUI(); // Update the UI to reflect the current stats without resetting
         }
         else
         {
-            // For subsequent days, we reset the stats
+            // For subsequent days, reset the stats
             PrepareForNewDay();
         }
     }
@@ -588,7 +578,7 @@ public class DailySummaryManager : MonoBehaviour
         if (dailyStatsList.Count == 0)
             InitializeDay();  // Ensure there's at least one day to work with
 
-        DailyStats todayStats = dailyStatsList.Last();  // Use Last() now that you have included System.Linq
+        DailyStats todayStats = dailyStatsList.Last();
         todayStats.dailyExpenses += amount;
         dailyStatsList[dailyStatsList.Count - 1] = todayStats; // Update the last element
         UpdateUI();

@@ -1,0 +1,197 @@
+\doxysection{Inventory\+Item\+UI Class Reference}
+\hypertarget{class_inventory_item_u_i}{}\label{class_inventory_item_u_i}\index{InventoryItemUI@{InventoryItemUI}}
+
+
+Manages the UI for individual inventory items, including displaying information and handling user interactions.  
+
+
+Inheritance diagram for Inventory\+Item\+UI\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_inventory_item_u_i}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_inventory_item_u_i_ac2a2d5e977025d91ca223697af772e34}\label{class_inventory_item_u_i_ac2a2d5e977025d91ca223697af772e34} 
+void {\bfseries Increment\+Quantity} ()
+\begin{DoxyCompactList}\small\item\em Increments the sell quantity. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_abdcf8858baca2f9ba16b6472ea991b08}\label{class_inventory_item_u_i_abdcf8858baca2f9ba16b6472ea991b08} 
+void {\bfseries Decrement\+Quantity} ()
+\begin{DoxyCompactList}\small\item\em Decrements the sell quantity. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a80cef66ebac469f2b8bdf00d9787b068}\label{class_inventory_item_u_i_a80cef66ebac469f2b8bdf00d9787b068} 
+void {\bfseries Update\+UI} ()
+\begin{DoxyCompactList}\small\item\em Updates the UI elements to reflect the current state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_inventory_item_u_i_a6f3ddfe58f65d4c586d4bdeaa7d9f0d5}\label{class_inventory_item_u_i_a6f3ddfe58f65d4c586d4bdeaa7d9f0d5} 
+Image {\bfseries demand\+Bar}
+\begin{DoxyCompactList}\small\item\em The Image component representing the demand bar. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_ad672fd3da01f9c54e156f2d566e2d3fa}\label{class_inventory_item_u_i_ad672fd3da01f9c54e156f2d566e2d3fa} 
+Material\+Property\+Block {\bfseries demand\+Bar\+Material}
+\begin{DoxyCompactList}\small\item\em The Material\+Property\+Block for the demand bar. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a3dd0d6fd1ea559e3bc7f5be2acdf9639}\label{class_inventory_item_u_i_a3dd0d6fd1ea559e3bc7f5be2acdf9639} 
+\mbox{\hyperlink{class_inventory_manager}{Inventory\+Manager}} {\bfseries inventory\+Manager}
+\begin{DoxyCompactList}\small\item\em The \doxylink{class_inventory_manager}{Inventory\+Manager} managing this item. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_aaf16847cdf39b90c4c684463c9181a65}\label{class_inventory_item_u_i_aaf16847cdf39b90c4c684463c9181a65} 
+bool {\bfseries is\+Selected\+For\+Selling} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the item is selected for selling. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a8d4ff84de637b101ce93d2691eb30a2e}\label{class_inventory_item_u_i_a8d4ff84de637b101ce93d2691eb30a2e} 
+float {\bfseries item\+Cost}
+\begin{DoxyCompactList}\small\item\em The cost of the item. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a57feb2997c3841ccb867c537557049b3}\label{class_inventory_item_u_i_a57feb2997c3841ccb867c537557049b3} 
+string {\bfseries item\+Name}
+\begin{DoxyCompactList}\small\item\em The name of the item. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a93c99eee5e52178f02794e370018f588}\label{class_inventory_item_u_i_a93c99eee5e52178f02794e370018f588} 
+Button {\bfseries minus\+Button}
+\begin{DoxyCompactList}\small\item\em Button to decrease the quantity. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_aff02e61b1c9afd24f179e55103954709}\label{class_inventory_item_u_i_aff02e61b1c9afd24f179e55103954709} 
+Button {\bfseries plus\+Button}
+\begin{DoxyCompactList}\small\item\em Button to increase the quantity. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a040d6babdb51c38580ef49e5eeb2baef}\label{class_inventory_item_u_i_a040d6babdb51c38580ef49e5eeb2baef} 
+TMP\+\_\+\+Input\+Field {\bfseries price\+Input\+Field}
+\begin{DoxyCompactList}\small\item\em Input field for the price. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_afdbfb64a3bb729f5665b5d74be7c3369}\label{class_inventory_item_u_i_afdbfb64a3bb729f5665b5d74be7c3369} 
+int {\bfseries quantity} = 0
+\begin{DoxyCompactList}\small\item\em The quantity of the item in stock. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_aae02a2583a2c4779ccd454bb5aee5167}\label{class_inventory_item_u_i_aae02a2583a2c4779ccd454bb5aee5167} 
+Button {\bfseries sell\+Button}
+\begin{DoxyCompactList}\small\item\em Button to sell the item. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_ab6979d28b4b23035da0c41c325393b28}\label{class_inventory_item_u_i_ab6979d28b4b23035da0c41c325393b28} 
+int {\bfseries sell\+Quantity} = 0
+\begin{DoxyCompactList}\small\item\em The quantity of the item to sell. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a6f75df7bb4164e662468eb0fa7c87982}\label{class_inventory_item_u_i_a6f75df7bb4164e662468eb0fa7c87982} 
+Text\+Mesh\+Pro\+UGUI {\bfseries sell\+Quantity\+Text}
+\begin{DoxyCompactList}\small\item\em Text component displaying the sell quantity. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a0a1d6b2e8be8f6fc3fc197fe68576316}\label{class_inventory_item_u_i_a0a1d6b2e8be8f6fc3fc197fe68576316} 
+\mbox{\hyperlink{class_wholesale_manager}{Wholesale\+Manager}} {\bfseries wholesale\+Manager}
+\begin{DoxyCompactList}\small\item\em Reference to the \doxylink{class_wholesale_manager}{Wholesale\+Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_inventory_item_u_i_a9968e534ad306d098602f3380d7b24da}\label{class_inventory_item_u_i_a9968e534ad306d098602f3380d7b24da} 
+void {\bfseries Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes components and sets up listeners. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_inventory_item_u_i_a5163a1ebb52407c31f5ceb47a1a774eb}{Calculate\+Original\+Cost}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the original cost of the item. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_inventory_item_u_i_ab7dad8c79788af55559fc4f1b9c06090}{Get\+Item\+Quantity\+In\+Inventory}} (string \mbox{\hyperlink{class_inventory_item_u_i_a57feb2997c3841ccb867c537557049b3}{item\+Name}})
+\begin{DoxyCompactList}\small\item\em Gets the quantity of the item in the inventory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_inventory_item_u_i_aa6fb76458d3bc7231ea008741a47f545}{Get\+Max\+Quantity\+In\+Inventory}} (string \mbox{\hyperlink{class_inventory_item_u_i_a57feb2997c3841ccb867c537557049b3}{item\+Name}})
+\begin{DoxyCompactList}\small\item\em Gets the maximum quantity of the item in the inventory. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a5014fa93c6cc40703d90622e96e8d646}\label{class_inventory_item_u_i_a5014fa93c6cc40703d90622e96e8d646} 
+void {\bfseries On\+Sell\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Handles the sell button click event. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_inventory_item_u_i_a0034439b282064b0354de538da1144bf}{Set\+Demand\+Bar\+Color}} (Color color)
+\begin{DoxyCompactList}\small\item\em Sets the color of the demand bar. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_ad6163e6e3fb80eab924247259469e640}\label{class_inventory_item_u_i_ad6163e6e3fb80eab924247259469e640} 
+void {\bfseries Start} ()
+\begin{DoxyCompactList}\small\item\em Initializes the \doxylink{class_inventory_item_u_i}{Inventory\+Item\+UI} components and sets up listeners. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a92cb702a1b71a404b4e91417eb38be2b}\label{class_inventory_item_u_i_a92cb702a1b71a404b4e91417eb38be2b} 
+void {\bfseries Update\+Demand\+Bar\+Based\+On\+Price} ()
+\begin{DoxyCompactList}\small\item\em Updates the demand bar color based on the entered price. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_inventory_item_u_i_ac8e7668d86857cc3a5c6612cf89639f6}{Update\+Demand\+Bar\+Color}} (float current\+Price)
+\begin{DoxyCompactList}\small\item\em Updates the demand bar color based on the current price. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_inventory_item_u_i_aab83792cb3799f0b8b87f589f6531c2f}\label{class_inventory_item_u_i_aab83792cb3799f0b8b87f589f6531c2f} 
+Image {\bfseries item\+Image\+Component}
+\begin{DoxyCompactList}\small\item\em The Image component for the item. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a9767ca4c9242ac6e2722c0bdb8faa8cb}\label{class_inventory_item_u_i_a9767ca4c9242ac6e2722c0bdb8faa8cb} 
+float {\bfseries original\+Cost}
+\begin{DoxyCompactList}\small\item\em The original cost of the item. \end{DoxyCompactList}\item 
+\Hypertarget{class_inventory_item_u_i_a303735a7916dd71023db4a3e1705258d}\label{class_inventory_item_u_i_a303735a7916dd71023db4a3e1705258d} 
+float {\bfseries selling\+Price} = 0.\+0f
+\begin{DoxyCompactList}\small\item\em The selling price of the item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the UI for individual inventory items, including displaying information and handling user interactions. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_inventory_item_u_i_a5163a1ebb52407c31f5ceb47a1a774eb}\label{class_inventory_item_u_i_a5163a1ebb52407c31f5ceb47a1a774eb} 
+\index{InventoryItemUI@{InventoryItemUI}!CalculateOriginalCost@{CalculateOriginalCost}}
+\index{CalculateOriginalCost@{CalculateOriginalCost}!InventoryItemUI@{InventoryItemUI}}
+\doxysubsubsection{\texorpdfstring{CalculateOriginalCost()}{CalculateOriginalCost()}}
+{\footnotesize\ttfamily float Inventory\+Item\+UI.\+Calculate\+Original\+Cost (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Calculates the original cost of the item. 
+
+\begin{DoxyReturn}{Returns}
+The original cost of the item.
+\end{DoxyReturn}
+\Hypertarget{class_inventory_item_u_i_ab7dad8c79788af55559fc4f1b9c06090}\label{class_inventory_item_u_i_ab7dad8c79788af55559fc4f1b9c06090} 
+\index{InventoryItemUI@{InventoryItemUI}!GetItemQuantityInInventory@{GetItemQuantityInInventory}}
+\index{GetItemQuantityInInventory@{GetItemQuantityInInventory}!InventoryItemUI@{InventoryItemUI}}
+\doxysubsubsection{\texorpdfstring{GetItemQuantityInInventory()}{GetItemQuantityInInventory()}}
+{\footnotesize\ttfamily int Inventory\+Item\+UI.\+Get\+Item\+Quantity\+In\+Inventory (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets the quantity of the item in the inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The quantity of the item in the inventory.
+\end{DoxyReturn}
+\Hypertarget{class_inventory_item_u_i_aa6fb76458d3bc7231ea008741a47f545}\label{class_inventory_item_u_i_aa6fb76458d3bc7231ea008741a47f545} 
+\index{InventoryItemUI@{InventoryItemUI}!GetMaxQuantityInInventory@{GetMaxQuantityInInventory}}
+\index{GetMaxQuantityInInventory@{GetMaxQuantityInInventory}!InventoryItemUI@{InventoryItemUI}}
+\doxysubsubsection{\texorpdfstring{GetMaxQuantityInInventory()}{GetMaxQuantityInInventory()}}
+{\footnotesize\ttfamily int Inventory\+Item\+UI.\+Get\+Max\+Quantity\+In\+Inventory (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets the maximum quantity of the item in the inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum quantity of the item in the inventory.
+\end{DoxyReturn}
+\Hypertarget{class_inventory_item_u_i_a0034439b282064b0354de538da1144bf}\label{class_inventory_item_u_i_a0034439b282064b0354de538da1144bf} 
+\index{InventoryItemUI@{InventoryItemUI}!SetDemandBarColor@{SetDemandBarColor}}
+\index{SetDemandBarColor@{SetDemandBarColor}!InventoryItemUI@{InventoryItemUI}}
+\doxysubsubsection{\texorpdfstring{SetDemandBarColor()}{SetDemandBarColor()}}
+{\footnotesize\ttfamily void Inventory\+Item\+UI.\+Set\+Demand\+Bar\+Color (\begin{DoxyParamCaption}\item[{Color}]{color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Sets the color of the demand bar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em color} & The color to set.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_inventory_item_u_i_ac8e7668d86857cc3a5c6612cf89639f6}\label{class_inventory_item_u_i_ac8e7668d86857cc3a5c6612cf89639f6} 
+\index{InventoryItemUI@{InventoryItemUI}!UpdateDemandBarColor@{UpdateDemandBarColor}}
+\index{UpdateDemandBarColor@{UpdateDemandBarColor}!InventoryItemUI@{InventoryItemUI}}
+\doxysubsubsection{\texorpdfstring{UpdateDemandBarColor()}{UpdateDemandBarColor()}}
+{\footnotesize\ttfamily void Inventory\+Item\+UI.\+Update\+Demand\+Bar\+Color (\begin{DoxyParamCaption}\item[{float}]{current\+Price }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the demand bar color based on the current price. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Price} & The current price of the item.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Inventory\+Item\+UI.\+cs\end{DoxyCompactItemize}

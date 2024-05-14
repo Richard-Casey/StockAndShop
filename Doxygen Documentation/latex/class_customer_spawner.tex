@@ -1,0 +1,113 @@
+\doxysection{Customer\+Spawner Class Reference}
+\hypertarget{class_customer_spawner}{}\label{class_customer_spawner}\index{CustomerSpawner@{CustomerSpawner}}
+
+
+Manages the spawning of customers in the shop.  
+
+
+Inheritance diagram for Customer\+Spawner\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_customer_spawner}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_spawner_a61099489091a8f71b0d3e7139848c362}\label{class_customer_spawner_a61099489091a8f71b0d3e7139848c362} 
+void {\bfseries Customer\+Entered} ()
+\begin{DoxyCompactList}\small\item\em Called when a customer enters the shop. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a241eb19a9bcd58ac2e643f4586e705c3}\label{class_customer_spawner_a241eb19a9bcd58ac2e643f4586e705c3} 
+void {\bfseries Customer\+Exited} ()
+\begin{DoxyCompactList}\small\item\em Called when a customer exits the shop. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_abb24b169a74088d2e1329a0fd617bcc7}\label{class_customer_spawner_abb24b169a74088d2e1329a0fd617bcc7} 
+void {\bfseries Close\+Shop} ()
+\begin{DoxyCompactList}\small\item\em Closes the shop. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a0389f819322bd07cf3a05ec1a68c0c67}\label{class_customer_spawner_a0389f819322bd07cf3a05ec1a68c0c67} 
+void {\bfseries Open\+Shop} ()
+\begin{DoxyCompactList}\small\item\em Opens the shop. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_customer_spawner_aa807047996fcc5b15d5ee854e532ceb5}{Update\+Reputation}} (float change)
+\begin{DoxyCompactList}\small\item\em Updates the reputation of the shop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_spawner_aed5b6806723d8e8b81d9983b24b0d194}\label{class_customer_spawner_aed5b6806723d8e8b81d9983b24b0d194} 
+Game\+Object {\bfseries customer\+Prefab}
+\begin{DoxyCompactList}\small\item\em The prefab for the customer. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a3bed3cb1f579b3b59fadaf30546b7317}\label{class_customer_spawner_a3bed3cb1f579b3b59fadaf30546b7317} 
+\mbox{\hyperlink{class_daily_summary_manager}{Daily\+Summary\+Manager}} {\bfseries daily\+Summary\+Manager}
+\begin{DoxyCompactList}\small\item\em Reference to the daily summary manager. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_ab133c3810333f5c32a7d015e413fedf8}\label{class_customer_spawner_ab133c3810333f5c32a7d015e413fedf8} 
+float {\bfseries max\+Budget} = 50.\+0f
+\begin{DoxyCompactList}\small\item\em The maximum budget for a customer. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_adf8e50be460fb8727718587c29eb7d3d}\label{class_customer_spawner_adf8e50be460fb8727718587c29eb7d3d} 
+float {\bfseries min\+Budget} = 1.\+0f
+\begin{DoxyCompactList}\small\item\em The minimum budget for a customer. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a307a6bc6ae7e49c00be434870b5db224}\label{class_customer_spawner_a307a6bc6ae7e49c00be434870b5db224} 
+Transform {\bfseries shopping\+BGParent}
+\begin{DoxyCompactList}\small\item\em The parent transform for the shopping background. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_spawner_a7445e39a2a6d18d5c020033027d2163f}\label{class_customer_spawner_a7445e39a2a6d18d5c020033027d2163f} 
+int {\bfseries active\+Customers} = 0\hspace{0.3cm}{\ttfamily  \mbox{[}get, private set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em The number of active customers in the shop. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a4fc1bef6b4c6b3ec589f4ccbd3f1167a}\label{class_customer_spawner_a4fc1bef6b4c6b3ec589f4ccbd3f1167a} 
+int {\bfseries Active\+Customers}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the number of active customers in the shop. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a7d9b580ebd82893ba3b35c961d261530}\label{class_customer_spawner_a7d9b580ebd82893ba3b35c961d261530} 
+float {\bfseries Reputation}\hspace{0.3cm}{\ttfamily  \mbox{[}get\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Gets the reputation of the shop. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_spawner_a4118226fa05ca1363312856451455fcb}\label{class_customer_spawner_a4118226fa05ca1363312856451455fcb} 
+void {\bfseries Adjust\+Spawn\+Rate\+Based\+On\+Reputation} ()
+\begin{DoxyCompactList}\small\item\em Adjusts the spawn rate of customers based on the shop\textquotesingle{}s reputation. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_aa2a32e1b7a90ba80b0b3453595a7b734}\label{class_customer_spawner_aa2a32e1b7a90ba80b0b3453595a7b734} 
+void {\bfseries Spawn\+Customer} ()
+\begin{DoxyCompactList}\small\item\em Spawns a new customer in the shop. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a5f1ed977fc31950445ad7ba0955687a2}\label{class_customer_spawner_a5f1ed977fc31950445ad7ba0955687a2} 
+void {\bfseries Update} ()
+\begin{DoxyCompactList}\small\item\em Updates the customer spawner. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_spawner_aa9fb89e20db210f457b1bc5df60d6bf8}\label{class_customer_spawner_aa9fb89e20db210f457b1bc5df60d6bf8} 
+float {\bfseries reputation} = 5f
+\begin{DoxyCompactList}\small\item\em The reputation of the shop. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a3ead02c3b70b16ddcc64fac5c7d1f27d}\label{class_customer_spawner_a3ead02c3b70b16ddcc64fac5c7d1f27d} 
+bool {\bfseries shop\+Is\+Open} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the shop is open. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_af1a95c0a480bf579d6fda457a3eaa1a1}\label{class_customer_spawner_af1a95c0a480bf579d6fda457a3eaa1a1} 
+float {\bfseries spawn\+Rate} = 5f
+\begin{DoxyCompactList}\small\item\em The rate at which customers spawn, in seconds. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_spawner_a1d96ff407926604161befdb5a2c6f05d}\label{class_customer_spawner_a1d96ff407926604161befdb5a2c6f05d} 
+float {\bfseries spawn\+Timer} = 0f
+\begin{DoxyCompactList}\small\item\em The timer for spawning customers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the spawning of customers in the shop. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_customer_spawner_aa807047996fcc5b15d5ee854e532ceb5}\label{class_customer_spawner_aa807047996fcc5b15d5ee854e532ceb5} 
+\index{CustomerSpawner@{CustomerSpawner}!UpdateReputation@{UpdateReputation}}
+\index{UpdateReputation@{UpdateReputation}!CustomerSpawner@{CustomerSpawner}}
+\doxysubsubsection{\texorpdfstring{UpdateReputation()}{UpdateReputation()}}
+{\footnotesize\ttfamily void Customer\+Spawner.\+Update\+Reputation (\begin{DoxyParamCaption}\item[{float}]{change }\end{DoxyParamCaption})}
+
+
+
+Updates the reputation of the shop. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em change} & The change in reputation.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Customer\+Spawner.\+cs\end{DoxyCompactItemize}

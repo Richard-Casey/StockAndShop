@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['individualcoststext_0',['individualCostsText',['../class_receipt_generator.html#a837d533d380dd754cf9ff5408be08c24',1,'ReceiptGenerator']]],
+  ['informationbar_1',['informationBar',['../class_navigation_controller.html#a71327e15f2f48c7128f9985dab33a9a9',1,'NavigationController']]],
+  ['informationtext_2',['informationText',['../class_information_bar.html#a0415338cdef336de9f82e6d31b4be4bc',1,'InformationBar']]],
+  ['inventoryitem_3',['inventoryItem',['../class_shelf_item_u_i.html#ab3e45a71c753ded49b1b2263baa69fcc',1,'ShelfItemUI.inventoryItem'],['../class_wholesale_item_u_i.html#aa344a2f7c79b4d57ee6a457c4bc06364',1,'WholesaleItemUI.inventoryItem']]],
+  ['inventoryitemprefab_4',['inventoryItemPrefab',['../class_inventory_manager.html#a26e16317b5e8297c12d4417f0497d0f3',1,'InventoryManager']]],
+  ['inventoryitems_5',['inventoryItems',['../class_inventory_manager.html#afac64d26a9ab0eec0fe15aba6f9a8433',1,'InventoryManager']]],
+  ['inventoryitemui_6',['inventoryItemUI',['../class_shelf_item_u_i.html#a65c7c4cb14a15b454dabbe07efce177c',1,'ShelfItemUI']]],
+  ['inventoryitemuilist_7',['inventoryItemUIList',['../class_inventory_manager.html#aa283a82fdbf4218bdd06fff0a05cbc77',1,'InventoryManager']]],
+  ['inventorymanager_8',['inventoryManager',['../class_inventory_item_u_i.html#a3dd0d6fd1ea559e3bc7f5be2acdf9639',1,'InventoryItemUI.inventoryManager'],['../class_shelf_item_u_i.html#a5ef35684aa4fe8321676ff89cecaa9a4',1,'ShelfItemUI.inventoryManager'],['../class_shelf_manager.html#ae8d0756b4be17f545e7a4524ab28ac9e',1,'ShelfManager.inventoryManager'],['../class_wholesale_item_u_i.html#a713c9b1f08f7a83ca52c52f3195f0146',1,'WholesaleItemUI.inventoryManager'],['../class_wholesale_manager.html#afca65d6cd3c2e518650ec8b1d8fec873',1,'WholesaleManager.inventoryManager']]],
+  ['inventorypanel_9',['inventoryPanel',['../class_inventory_manager.html#a3e9026fa674bef534ee73cd9110ac3dc',1,'InventoryManager']]],
+  ['isdayactive_10',['isDayActive',['../class_day_cycle.html#a99dc361cd70095625ad3867871628c5f',1,'DayCycle']]],
+  ['isfirstdaystarted_11',['isFirstDayStarted',['../class_day_cycle.html#a47740122c9cfb6394265a5126749835a',1,'DayCycle']]],
+  ['ispaused_12',['isPaused',['../class_day_cycle.html#a69b632114c13629f95221ac76c777176',1,'DayCycle']]],
+  ['isprocessing_13',['isProcessing',['../class_till_manager.html#a7e15f89431f6ec5e293554081630b45c',1,'TillManager']]],
+  ['isselectedforselling_14',['isSelectedForSelling',['../class_inventory_item_u_i.html#aaf16847cdf39b90c4c684463c9181a65',1,'InventoryItemUI']]],
+  ['itemcost_15',['itemCost',['../class_inventory_item_u_i.html#a8d4ff84de637b101ce93d2691eb30a2e',1,'InventoryItemUI.itemCost'],['../class_wholesale_item_u_i.html#a4d3c9b4bb551ed128493fefc932e55d2',1,'WholesaleItemUI.itemCost']]],
+  ['itemimage_16',['itemImage',['../class_inventory_item.html#a166d900bdc412ab3f43aa96b26de688d',1,'InventoryItem.itemImage'],['../class_shelf_item_u_i.html#a60c32c2092a868b64bb8913bb5f30d52',1,'ShelfItemUI.itemImage']]],
+  ['itemimagecomponent_17',['itemImageComponent',['../class_inventory_item_u_i.html#aab83792cb3799f0b8b87f589f6531c2f',1,'InventoryItemUI']]],
+  ['itemname_18',['itemName',['../class_customer_1_1_purchased_item.html#a351fd0ae01f9877c1075c67831ad5855',1,'Customer.PurchasedItem.itemName'],['../class_inventory_item.html#a74266baa265af54f98f31ae4687a493e',1,'InventoryItem.itemName'],['../class_inventory_item_u_i.html#a57feb2997c3841ccb867c537557049b3',1,'InventoryItemUI.itemName'],['../class_shelf_item_u_i.html#a06cc02b8e0e61302aba327289f9a532a',1,'ShelfItemUI.itemName'],['../class_wholesale_item_u_i.html#ae81cc32b1f21fd8baeddec082a1493ea',1,'WholesaleItemUI.itemName']]],
+  ['itemnametext_19',['itemNameText',['../class_shelf_item_u_i.html#af69fcd9050711845b9642eaf6e374b89',1,'ShelfItemUI']]],
+  ['itemsales_20',['itemSales',['../struct_daily_stats.html#a3664eb9ec91f05706c169f586247bb33',1,'DailyStats']]],
+  ['itemsinbasket_21',['itemsInBasket',['../class_customer.html#adbfb58ea441162230de02a3bb1be4977',1,'Customer']]],
+  ['itemslisttext_22',['itemsListText',['../class_receipt_generator.html#a8f8a51f3a6fcbed17753d1264fd71efd',1,'ReceiptGenerator']]],
+  ['itemstext_23',['itemsText',['../class_customer.html#a21be2ff5af4bd24282a69380ecbc56bb',1,'Customer']]]
+];

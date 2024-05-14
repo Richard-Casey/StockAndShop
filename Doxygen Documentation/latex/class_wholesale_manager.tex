@@ -1,0 +1,73 @@
+\doxysection{Wholesale\+Manager Class Reference}
+\hypertarget{class_wholesale_manager}{}\label{class_wholesale_manager}\index{WholesaleManager@{WholesaleManager}}
+
+
+Manages the wholesale operations, including populating the UI with wholesale items and moving items to inventory.  
+
+
+Inheritance diagram for Wholesale\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_wholesale_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_wholesale_manager_a06b4b296a7dd9c228bdc5ad8e448d7d4}{Move\+Items\+To\+Inventory}} (string item\+Name, int quantity)
+\begin{DoxyCompactList}\small\item\em Moves items from the wholesale to the inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_wholesale_manager_a419744e9ce969c6d78fb293aa7b32116}\label{class_wholesale_manager_a419744e9ce969c6d78fb293aa7b32116} 
+Transform {\bfseries content\+Grid\+Layout}
+\begin{DoxyCompactList}\small\item\em The layout where wholesale item UI elements will be instantiated. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_manager_abedb40b7f694f14e07bdfb63b9cce46a}\label{class_wholesale_manager_abedb40b7f694f14e07bdfb63b9cce46a} 
+\mbox{\hyperlink{class_dynamic_content_size_for_two_columns}{Dynamic\+Content\+Size\+For\+Two\+Columns}} {\bfseries dynamic\+Content\+Sizer}
+\begin{DoxyCompactList}\small\item\em Script for dynamically adjusting the content size based on the number of items. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_manager_afca65d6cd3c2e518650ec8b1d8fec873}\label{class_wholesale_manager_afca65d6cd3c2e518650ec8b1d8fec873} 
+\mbox{\hyperlink{class_inventory_manager}{Inventory\+Manager}} {\bfseries inventory\+Manager}
+\begin{DoxyCompactList}\small\item\em Reference to the inventory manager. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_manager_a57ff290bf29648cbad6757a63a44cd1f}\label{class_wholesale_manager_a57ff290bf29648cbad6757a63a44cd1f} 
+Game\+Object {\bfseries wholesale\+Item\+Prefab}
+\begin{DoxyCompactList}\small\item\em Prefab for the wholesale item UI element. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_manager_a89c93d3bd1ca6775f5bc690c7b415e9d}\label{class_wholesale_manager_a89c93d3bd1ca6775f5bc690c7b415e9d} 
+List$<$ \mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} $>$ {\bfseries wholesale\+Items}
+\begin{DoxyCompactList}\small\item\em List of items available at the wholesale. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_wholesale_manager_a3b3d1325c39174d682150e2eddaef110}\label{class_wholesale_manager_a3b3d1325c39174d682150e2eddaef110} 
+void {\bfseries Populate\+Wholesale\+UI} ()
+\begin{DoxyCompactList}\small\item\em Populates the wholesale UI with items. \end{DoxyCompactList}\item 
+\Hypertarget{class_wholesale_manager_addfbe16b92deb0cf3801ad5baed41381}\label{class_wholesale_manager_addfbe16b92deb0cf3801ad5baed41381} 
+void {\bfseries Start} ()
+\begin{DoxyCompactList}\small\item\em Unity\textquotesingle{}s Start method, called before the first frame update. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Manages the wholesale operations, including populating the UI with wholesale items and moving items to inventory. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_wholesale_manager_a06b4b296a7dd9c228bdc5ad8e448d7d4}\label{class_wholesale_manager_a06b4b296a7dd9c228bdc5ad8e448d7d4} 
+\index{WholesaleManager@{WholesaleManager}!MoveItemsToInventory@{MoveItemsToInventory}}
+\index{MoveItemsToInventory@{MoveItemsToInventory}!WholesaleManager@{WholesaleManager}}
+\doxysubsubsection{\texorpdfstring{MoveItemsToInventory()}{MoveItemsToInventory()}}
+{\footnotesize\ttfamily void Wholesale\+Manager.\+Move\+Items\+To\+Inventory (\begin{DoxyParamCaption}\item[{string}]{item\+Name,  }\item[{int}]{quantity }\end{DoxyParamCaption})}
+
+
+
+Moves items from the wholesale to the inventory. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & Name of the item to move.\\
+\hline
+{\em quantity} & Quantity of the item to move.\\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Wholesale\+Manager.\+cs\end{DoxyCompactItemize}

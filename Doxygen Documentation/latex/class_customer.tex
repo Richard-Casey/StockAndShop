@@ -1,0 +1,455 @@
+\doxysection{Customer Class Reference}
+\hypertarget{class_customer}{}\label{class_customer}\index{Customer@{Customer}}
+
+
+Represents a customer in the game.  
+
+
+Inheritance diagram for Customer\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_customer}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_customer_1_1_purchased_item}{Purchased\+Item}}
+\begin{DoxyCompactList}\small\item\em Represents an item the customer has purchased. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_customer_a54a2c80cbecb8bb7344a56e87ecf9793}{Add\+To\+Basket}} (int amount)
+\begin{DoxyCompactList}\small\item\em Adds the specified amount of items to the customer\textquotesingle{}s basket. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_aaa7d8815067ea40ae1310f2998be789f}\label{class_customer_aaa7d8815067ea40ae1310f2998be789f} 
+void {\bfseries Display\+Shopping\+Info} ()
+\begin{DoxyCompactList}\small\item\em Displays the customer\textquotesingle{}s shopping information. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_customer_a928e4824f9f95c55fb5600a0ff39a860}{Get\+Item\+Cost}} (string item\+Name)
+\begin{DoxyCompactList}\small\item\em Gets the cost of an item from the shelf manager. \end{DoxyCompactList}\item 
+List$<$ \mbox{\hyperlink{class_customer_1_1_purchased_item}{Purchased\+Item}} $>$ \mbox{\hyperlink{class_customer_a70ca6f9ce146b9972a0402178b082869}{Get\+Purchased\+Items}} ()
+\begin{DoxyCompactList}\small\item\em Gets the list of items the customer has purchased. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_customer_a0d3088c0e0eecfca9191f27feaed9de2}{Make\+Purchase\+Decision}} (\mbox{\hyperlink{class_shelf_manager}{Shelf\+Manager}} \mbox{\hyperlink{class_customer_aaaf1333c9ce2b9a71652171aecd37fa8}{shelf\+Manager}})
+\begin{DoxyCompactList}\small\item\em Makes a purchase decision based on available items and budget. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_customer_a2aabd05760a8afaed25d09b459585b33}{Provide\+Feedback}} (string message)
+\begin{DoxyCompactList}\small\item\em Provides feedback to the customer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_a01882d9aa73237f2412205e871a54c7b}\label{class_customer_a01882d9aa73237f2412205e871a54c7b} 
+List$<$ \mbox{\hyperlink{class_customer_1_1_purchased_item}{Purchased\+Item}} $>$ {\bfseries purchased\+Items} = new List$<$\mbox{\hyperlink{class_customer_1_1_purchased_item}{Purchased\+Item}}$>$()
+\begin{DoxyCompactList}\small\item\em The list of items the customer has purchased. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_ae248473b69471cdfc1166506ee4e2977}\label{class_customer_ae248473b69471cdfc1166506ee4e2977} 
+float {\bfseries budget} = 50.\+0f
+\begin{DoxyCompactList}\small\item\em The customer\textquotesingle{}s budget. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a09feb4fe4e9da203e317a602d600e815}\label{class_customer_a09feb4fe4e9da203e317a602d600e815} 
+float {\bfseries price\+Increase\+Tolerance}
+\begin{DoxyCompactList}\small\item\em The customer\textquotesingle{}s tolerance for price increases. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a9ae43212be0feeae9e6545c5e2d3208c}\label{class_customer_a9ae43212be0feeae9e6545c5e2d3208c} 
+string {\bfseries customer\+Name}
+\begin{DoxyCompactList}\small\item\em The customer\textquotesingle{}s name. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_abb4c1c2bb25a6b67846c289cdf944769}\label{class_customer_abb4c1c2bb25a6b67846c289cdf944769} 
+string {\bfseries feedback}
+\begin{DoxyCompactList}\small\item\em The customer\textquotesingle{}s feedback. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_adbfb58ea441162230de02a3bb1be4977}\label{class_customer_adbfb58ea441162230de02a3bb1be4977} 
+int {\bfseries items\+In\+Basket}
+\begin{DoxyCompactList}\small\item\em The number of items in the customer\textquotesingle{}s basket. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_ae82483fccd40eded9955a0de40d2d92f}\label{class_customer_ae82483fccd40eded9955a0de40d2d92f} 
+Game\+Object {\bfseries customer\+Shopping\+Prefab}
+\begin{DoxyCompactList}\small\item\em The prefab for the customer shopping UI. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a7630084ed55020658e9ad07fa711df93}\label{class_customer_a7630084ed55020658e9ad07fa711df93} 
+Game\+Object {\bfseries till\+BGPanel}
+\begin{DoxyCompactList}\small\item\em The panel for the till background. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a6b224055946e6dab48f750eb80059985}\label{class_customer_a6b224055946e6dab48f750eb80059985} 
+Transform {\bfseries shopping\+BGParent}
+\begin{DoxyCompactList}\small\item\em The parent transform for the shopping background. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a3ed987442209b3ea440493d8646a49d0}\label{class_customer_a3ed987442209b3ea440493d8646a49d0} 
+Text\+Mesh\+Pro\+UGUI {\bfseries feedback\+Text}
+\begin{DoxyCompactList}\small\item\em The Text\+Mesh\+Pro component for feedback text. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a21be2ff5af4bd24282a69380ecbc56bb}\label{class_customer_a21be2ff5af4bd24282a69380ecbc56bb} 
+Text\+Mesh\+Pro\+UGUI {\bfseries items\+Text}
+\begin{DoxyCompactList}\small\item\em The Text\+Mesh\+Pro component for items text. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a8b6212899aa90fe21a1c1dfd8ce03da4}\label{class_customer_a8b6212899aa90fe21a1c1dfd8ce03da4} 
+Text\+Mesh\+Pro\+UGUI {\bfseries name\+Text}
+\begin{DoxyCompactList}\small\item\em The Text\+Mesh\+Pro component for name text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_a709040d0272fed4484bb444e03721d9c}\label{class_customer_a709040d0272fed4484bb444e03721d9c} 
+bool {\bfseries has\+Purchased\+Today}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
+\begin{DoxyCompactList}\small\item\em Indicates whether the customer has made a purchase today. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_ac67fa9536dab8f254152bc7804bfd7ad}\label{class_customer_ac67fa9536dab8f254152bc7804bfd7ad} 
+void {\bfseries Awake} ()
+\begin{DoxyCompactList}\small\item\em Initializes the customer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_customer_a650779004ddc116e3b984b447dabb4df}{Check\+If\+Item\+Is\+Available}} (string item\+Name)
+\begin{DoxyCompactList}\small\item\em Checks if the specified item is available on the shelves. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_customer_a96328ef2cbcb6c9afceb9fed1747b0f5}{Check\+If\+Item\+Too\+Expensive}} (string item\+Name)
+\begin{DoxyCompactList}\small\item\em Checks if the specified item is too expensive for the customer. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} \mbox{\hyperlink{class_customer_a1fab47a47ded543b91eded4abd94ffb5}{Choose\+Item}} (List$<$ \mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} $>$ available\+Items)
+\begin{DoxyCompactList}\small\item\em Chooses a random item from the list of available items. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_customer_a116b989caf82bd9d88d6a9b72a90c716}{Continue\+Shopping}} ()
+\begin{DoxyCompactList}\small\item\em Determines if the customer will continue shopping. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a3c1442d80a433d77074734ae2bc98f8d}\label{class_customer_a3c1442d80a433d77074734ae2bc98f8d} 
+void {\bfseries Evaluate\+And\+Select\+Items} ()
+\begin{DoxyCompactList}\small\item\em Evaluates and selects items for purchase. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_shelf_item_u_i}{Shelf\+Item\+UI}} \mbox{\hyperlink{class_customer_a2b0a8656bb81b2fa3e0215d0fb4861a2}{Find\+Shelf\+Item\+UI}} (\mbox{\hyperlink{class_shelf_manager}{Shelf\+Manager}} \mbox{\hyperlink{class_customer_aaaf1333c9ce2b9a71652171aecd37fa8}{shelf\+Manager}}, string item\+Name)
+\begin{DoxyCompactList}\small\item\em Finds a \doxylink{class_shelf_item_u_i}{Shelf\+Item\+UI} by item name. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_ae51f5328c97a9ad2dd54ce81fe337341}\label{class_customer_ae51f5328c97a9ad2dd54ce81fe337341} 
+void {\bfseries Generate\+Feedback} ()
+\begin{DoxyCompactList}\small\item\em Generates feedback based on the customer\textquotesingle{}s shopping experience. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_customer_a574240156ccb58b276c91a0665300365}{Update\+Customer\+Satisfaction}} (int expensive\+Items\+Count, int not\+Purchased\+Items\+Count)
+\begin{DoxyCompactList}\small\item\em Updates the customer\textquotesingle{}s satisfaction based on their shopping experience. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_customer_a50d7a01d4eec76683cb22eaa6a4054b1}{Generate\+Random\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Generates a random customer name. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_customer_aec3f5a4f89002d1c9713af086dcca052}{Get\+Item\+Price}} (string item\+Name)
+\begin{DoxyCompactList}\small\item\em Gets the price of an item from the shelf manager. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a70ea238815a453be9e3ea06e76be581e}\label{class_customer_a70ea238815a453be9e3ea06e76be581e} 
+void {\bfseries Go\+To\+Till} ()
+\begin{DoxyCompactList}\small\item\em Sends the customer to the till. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a64c7bd154094b9d2df873c3a9bc70b3d}\label{class_customer_a64c7bd154094b9d2df873c3a9bc70b3d} 
+void {\bfseries Initialize\+Desired\+Items} ()
+\begin{DoxyCompactList}\small\item\em Initializes the customer\textquotesingle{}s desired items. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_af9b6012efc39b2e94515a522363d816a}\label{class_customer_af9b6012efc39b2e94515a522363d816a} 
+void {\bfseries Initialize\+Price\+Tolerance} ()
+\begin{DoxyCompactList}\small\item\em Initializes the customer\textquotesingle{}s price tolerance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_customer_a99f222144aa6bebba83bbf47aee34704}{Is\+Item\+Desired}} (string item\+Name)
+\begin{DoxyCompactList}\small\item\em Checks if the specified item is desired by the customer. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_customer_ae3e999ed9e85d5abf1de5971f21334dc}{Is\+Price\+Acceptable}} (float price)
+\begin{DoxyCompactList}\small\item\em Checks if the specified price is acceptable for the customer. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_customer_a2ae6c23369ef9095c25e1c78930d82a2}{Remove\+Customer\+If\+No\+Purchase}} ()
+\begin{DoxyCompactList}\small\item\em Removes the customer if they have not made any purchases. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_adb59885b92b4a15995a9e61b6f466cd7}\label{class_customer_adb59885b92b4a15995a9e61b6f466cd7} 
+void {\bfseries Start} ()
+\begin{DoxyCompactList}\small\item\em Initializes the customer and starts their shopping routine. \end{DoxyCompactList}\item 
+IEnumerator \mbox{\hyperlink{class_customer_a08c89e9e210f14658a2d719c73105ac0}{Start\+Shopping\+Routine}} ()
+\begin{DoxyCompactList}\small\item\em Starts the customer\textquotesingle{}s shopping routine. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_aab342a1fc7022a3471f75dd62141f733}\label{class_customer_aab342a1fc7022a3471f75dd62141f733} 
+void {\bfseries Update\+UI} ()
+\begin{DoxyCompactList}\small\item\em Updates the customer\textquotesingle{}s UI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_customer_ab4a1e433549407ca56fb571c880880df}\label{class_customer_ab4a1e433549407ca56fb571c880880df} 
+List$<$ string $>$ {\bfseries desired\+Items} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The list of items the customer desires. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a978d07ff11f16f74ff6cd2e6c271a14a}\label{class_customer_a978d07ff11f16f74ff6cd2e6c271a14a} 
+List$<$ string $>$ {\bfseries found\+Items} = new List$<$string$>$()
+\begin{DoxyCompactList}\small\item\em The list of items the customer has found. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_aaaf1333c9ce2b9a71652171aecd37fa8}\label{class_customer_aaaf1333c9ce2b9a71652171aecd37fa8} 
+\mbox{\hyperlink{class_shelf_manager}{Shelf\+Manager}} {\bfseries shelf\+Manager}
+\begin{DoxyCompactList}\small\item\em The shelf manager to interact with the shelves. \end{DoxyCompactList}\item 
+\Hypertarget{class_customer_a0918fa7b959cfd718b23b8e7ea173a72}\label{class_customer_a0918fa7b959cfd718b23b8e7ea173a72} 
+string\mbox{[}$\,$\mbox{]} {\bfseries first\+Initials} = new string\mbox{[}$\,$\mbox{]} \{ "{}A"{}, "{}B"{}, "{}C"{}, "{}D"{}, "{}E"{}, "{}F"{}, "{}G"{}, "{}H"{}, "{}I"{}, "{}J"{}, "{}K"{}, "{}L"{}, "{}M"{}, "{}N"{}, "{}O"{}, "{}P"{}, "{}Q"{}, "{}R"{}, "{}S"{}, "{}T"{}, "{}U"{}, "{}V"{}, "{}W"{}, "{}X"{}, "{}Y"{}, "{}Z"{} \}
+\begin{DoxyCompactList}\small\item\em Array of possible first initials for customer names. \end{DoxyCompactList}\item 
+string\mbox{[}$\,$\mbox{]} \mbox{\hyperlink{class_customer_a9dc3c7f7daa7c9fb609497b30c78ab45}{surnames}}
+\begin{DoxyCompactList}\small\item\em Array of possible surnames for customer names. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a customer in the game. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_customer_a54a2c80cbecb8bb7344a56e87ecf9793}\label{class_customer_a54a2c80cbecb8bb7344a56e87ecf9793} 
+\index{Customer@{Customer}!AddToBasket@{AddToBasket}}
+\index{AddToBasket@{AddToBasket}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{AddToBasket()}{AddToBasket()}}
+{\footnotesize\ttfamily void Customer.\+Add\+To\+Basket (\begin{DoxyParamCaption}\item[{int}]{amount }\end{DoxyParamCaption})}
+
+
+
+Adds the specified amount of items to the customer\textquotesingle{}s basket. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of items to add.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_customer_a650779004ddc116e3b984b447dabb4df}\label{class_customer_a650779004ddc116e3b984b447dabb4df} 
+\index{Customer@{Customer}!CheckIfItemIsAvailable@{CheckIfItemIsAvailable}}
+\index{CheckIfItemIsAvailable@{CheckIfItemIsAvailable}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{CheckIfItemIsAvailable()}{CheckIfItemIsAvailable()}}
+{\footnotesize\ttfamily bool Customer.\+Check\+If\+Item\+Is\+Available (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if the specified item is available on the shelves. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the item is available, false otherwise.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a96328ef2cbcb6c9afceb9fed1747b0f5}\label{class_customer_a96328ef2cbcb6c9afceb9fed1747b0f5} 
+\index{Customer@{Customer}!CheckIfItemTooExpensive@{CheckIfItemTooExpensive}}
+\index{CheckIfItemTooExpensive@{CheckIfItemTooExpensive}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{CheckIfItemTooExpensive()}{CheckIfItemTooExpensive()}}
+{\footnotesize\ttfamily bool Customer.\+Check\+If\+Item\+Too\+Expensive (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if the specified item is too expensive for the customer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item to check.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the item is too expensive, false otherwise.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a1fab47a47ded543b91eded4abd94ffb5}\label{class_customer_a1fab47a47ded543b91eded4abd94ffb5} 
+\index{Customer@{Customer}!ChooseItem@{ChooseItem}}
+\index{ChooseItem@{ChooseItem}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{ChooseItem()}{ChooseItem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} Customer.\+Choose\+Item (\begin{DoxyParamCaption}\item[{List$<$ \mbox{\hyperlink{class_inventory_item}{Inventory\+Item}} $>$}]{available\+Items }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Chooses a random item from the list of available items. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em available\+Items} & The list of available items.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The chosen item.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a116b989caf82bd9d88d6a9b72a90c716}\label{class_customer_a116b989caf82bd9d88d6a9b72a90c716} 
+\index{Customer@{Customer}!ContinueShopping@{ContinueShopping}}
+\index{ContinueShopping@{ContinueShopping}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{ContinueShopping()}{ContinueShopping()}}
+{\footnotesize\ttfamily bool Customer.\+Continue\+Shopping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Determines if the customer will continue shopping. 
+
+\begin{DoxyReturn}{Returns}
+True if the customer will continue shopping, false otherwise.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a2b0a8656bb81b2fa3e0215d0fb4861a2}\label{class_customer_a2b0a8656bb81b2fa3e0215d0fb4861a2} 
+\index{Customer@{Customer}!FindShelfItemUI@{FindShelfItemUI}}
+\index{FindShelfItemUI@{FindShelfItemUI}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{FindShelfItemUI()}{FindShelfItemUI()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_shelf_item_u_i}{Shelf\+Item\+UI}} Customer.\+Find\+Shelf\+Item\+UI (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_shelf_manager}{Shelf\+Manager}}}]{shelf\+Manager,  }\item[{string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Finds a \doxylink{class_shelf_item_u_i}{Shelf\+Item\+UI} by item name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shelf\+Manager} & The shelf manager to search within.\\
+\hline
+{\em item\+Name} & The name of the item to find.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxylink{class_shelf_item_u_i}{Shelf\+Item\+UI} if found, null otherwise.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a50d7a01d4eec76683cb22eaa6a4054b1}\label{class_customer_a50d7a01d4eec76683cb22eaa6a4054b1} 
+\index{Customer@{Customer}!GenerateRandomName@{GenerateRandomName}}
+\index{GenerateRandomName@{GenerateRandomName}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{GenerateRandomName()}{GenerateRandomName()}}
+{\footnotesize\ttfamily string Customer.\+Generate\+Random\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generates a random customer name. 
+
+\begin{DoxyReturn}{Returns}
+The generated customer name.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a928e4824f9f95c55fb5600a0ff39a860}\label{class_customer_a928e4824f9f95c55fb5600a0ff39a860} 
+\index{Customer@{Customer}!GetItemCost@{GetItemCost}}
+\index{GetItemCost@{GetItemCost}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{GetItemCost()}{GetItemCost()}}
+{\footnotesize\ttfamily float Customer.\+Get\+Item\+Cost (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})}
+
+
+
+Gets the cost of an item from the shelf manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The cost of the item.
+\end{DoxyReturn}
+\Hypertarget{class_customer_aec3f5a4f89002d1c9713af086dcca052}\label{class_customer_aec3f5a4f89002d1c9713af086dcca052} 
+\index{Customer@{Customer}!GetItemPrice@{GetItemPrice}}
+\index{GetItemPrice@{GetItemPrice}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{GetItemPrice()}{GetItemPrice()}}
+{\footnotesize\ttfamily float Customer.\+Get\+Item\+Price (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Gets the price of an item from the shelf manager. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The price of the item.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a70ca6f9ce146b9972a0402178b082869}\label{class_customer_a70ca6f9ce146b9972a0402178b082869} 
+\index{Customer@{Customer}!GetPurchasedItems@{GetPurchasedItems}}
+\index{GetPurchasedItems@{GetPurchasedItems}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{GetPurchasedItems()}{GetPurchasedItems()}}
+{\footnotesize\ttfamily List$<$ \mbox{\hyperlink{class_customer_1_1_purchased_item}{Purchased\+Item}} $>$ Customer.\+Get\+Purchased\+Items (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets the list of items the customer has purchased. 
+
+\begin{DoxyReturn}{Returns}
+The list of purchased items.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a99f222144aa6bebba83bbf47aee34704}\label{class_customer_a99f222144aa6bebba83bbf47aee34704} 
+\index{Customer@{Customer}!IsItemDesired@{IsItemDesired}}
+\index{IsItemDesired@{IsItemDesired}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{IsItemDesired()}{IsItemDesired()}}
+{\footnotesize\ttfamily bool Customer.\+Is\+Item\+Desired (\begin{DoxyParamCaption}\item[{string}]{item\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if the specified item is desired by the customer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+Name} & The name of the item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the item is desired, false otherwise.
+\end{DoxyReturn}
+\Hypertarget{class_customer_ae3e999ed9e85d5abf1de5971f21334dc}\label{class_customer_ae3e999ed9e85d5abf1de5971f21334dc} 
+\index{Customer@{Customer}!IsPriceAcceptable@{IsPriceAcceptable}}
+\index{IsPriceAcceptable@{IsPriceAcceptable}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{IsPriceAcceptable()}{IsPriceAcceptable()}}
+{\footnotesize\ttfamily bool Customer.\+Is\+Price\+Acceptable (\begin{DoxyParamCaption}\item[{float}]{price }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Checks if the specified price is acceptable for the customer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em price} & The price of the item.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the price is acceptable, false otherwise.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a0d3088c0e0eecfca9191f27feaed9de2}\label{class_customer_a0d3088c0e0eecfca9191f27feaed9de2} 
+\index{Customer@{Customer}!MakePurchaseDecision@{MakePurchaseDecision}}
+\index{MakePurchaseDecision@{MakePurchaseDecision}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{MakePurchaseDecision()}{MakePurchaseDecision()}}
+{\footnotesize\ttfamily void Customer.\+Make\+Purchase\+Decision (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_shelf_manager}{Shelf\+Manager}}}]{shelf\+Manager }\end{DoxyParamCaption})}
+
+
+
+Makes a purchase decision based on available items and budget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shelf\+Manager} & The shelf manager to interact with.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_customer_a2aabd05760a8afaed25d09b459585b33}\label{class_customer_a2aabd05760a8afaed25d09b459585b33} 
+\index{Customer@{Customer}!ProvideFeedback@{ProvideFeedback}}
+\index{ProvideFeedback@{ProvideFeedback}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{ProvideFeedback()}{ProvideFeedback()}}
+{\footnotesize\ttfamily void Customer.\+Provide\+Feedback (\begin{DoxyParamCaption}\item[{string}]{message }\end{DoxyParamCaption})}
+
+
+
+Provides feedback to the customer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & The feedback message.\\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_customer_a2ae6c23369ef9095c25e1c78930d82a2}\label{class_customer_a2ae6c23369ef9095c25e1c78930d82a2} 
+\index{Customer@{Customer}!RemoveCustomerIfNoPurchase@{RemoveCustomerIfNoPurchase}}
+\index{RemoveCustomerIfNoPurchase@{RemoveCustomerIfNoPurchase}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{RemoveCustomerIfNoPurchase()}{RemoveCustomerIfNoPurchase()}}
+{\footnotesize\ttfamily IEnumerator Customer.\+Remove\+Customer\+If\+No\+Purchase (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Removes the customer if they have not made any purchases. 
+
+\begin{DoxyReturn}{Returns}
+Coroutine for removing the customer.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a08c89e9e210f14658a2d719c73105ac0}\label{class_customer_a08c89e9e210f14658a2d719c73105ac0} 
+\index{Customer@{Customer}!StartShoppingRoutine@{StartShoppingRoutine}}
+\index{StartShoppingRoutine@{StartShoppingRoutine}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{StartShoppingRoutine()}{StartShoppingRoutine()}}
+{\footnotesize\ttfamily IEnumerator Customer.\+Start\+Shopping\+Routine (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Starts the customer\textquotesingle{}s shopping routine. 
+
+\begin{DoxyReturn}{Returns}
+Coroutine for the shopping routine.
+\end{DoxyReturn}
+\Hypertarget{class_customer_a574240156ccb58b276c91a0665300365}\label{class_customer_a574240156ccb58b276c91a0665300365} 
+\index{Customer@{Customer}!UpdateCustomerSatisfaction@{UpdateCustomerSatisfaction}}
+\index{UpdateCustomerSatisfaction@{UpdateCustomerSatisfaction}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{UpdateCustomerSatisfaction()}{UpdateCustomerSatisfaction()}}
+{\footnotesize\ttfamily void Customer.\+Update\+Customer\+Satisfaction (\begin{DoxyParamCaption}\item[{int}]{expensive\+Items\+Count,  }\item[{int}]{not\+Purchased\+Items\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Updates the customer\textquotesingle{}s satisfaction based on their shopping experience. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em expensive\+Items\+Count} & The number of items considered too expensive.\\
+\hline
+{\em not\+Purchased\+Items\+Count} & The number of items not purchased.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_customer_a9dc3c7f7daa7c9fb609497b30c78ab45}\label{class_customer_a9dc3c7f7daa7c9fb609497b30c78ab45} 
+\index{Customer@{Customer}!surnames@{surnames}}
+\index{surnames@{surnames}!Customer@{Customer}}
+\doxysubsubsection{\texorpdfstring{surnames}{surnames}}
+{\footnotesize\ttfamily string \mbox{[}$\,$\mbox{]} Customer.\+surnames\hspace{0.3cm}{\ttfamily [private]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{string}[]\ \{\textcolor{stringliteral}{"{}Casey"{}},\ \textcolor{stringliteral}{"{}Podd"{}},\ \textcolor{stringliteral}{"{}Symonds"{}},\ \textcolor{stringliteral}{"{}Smith"{}},\ \textcolor{stringliteral}{"{}Jones"{}},\ \textcolor{stringliteral}{"{}Baker"{}},\ \textcolor{stringliteral}{"{}Fry"{}},\ \textcolor{stringliteral}{"{}Janes"{}},\ \textcolor{stringliteral}{"{}Thomas"{}},\ \textcolor{stringliteral}{"{}Bristow"{}},\ \textcolor{stringliteral}{"{}Williams"{}},\ \textcolor{stringliteral}{"{}Wilson"{}},\ \textcolor{stringliteral}{"{}Taylor"{}},\ \textcolor{stringliteral}{"{}Brown"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Johnson"{}},\ \textcolor{stringliteral}{"{}Evans"{}},\ \textcolor{stringliteral}{"{}Roberts"{}},\ \textcolor{stringliteral}{"{}Edwards"{}},\ \textcolor{stringliteral}{"{}Hughes"{}},\ \textcolor{stringliteral}{"{}Walker"{}},\ \textcolor{stringliteral}{"{}Davies"{}},\ \textcolor{stringliteral}{"{}Robinson"{}},\ \textcolor{stringliteral}{"{}Green"{}},\ \textcolor{stringliteral}{"{}Thompson"{}},\ \textcolor{stringliteral}{"{}Wright"{}},\ \textcolor{stringliteral}{"{}Wood"{}},\ \textcolor{stringliteral}{"{}Clark"{}},\ \textcolor{stringliteral}{"{}Clarke"{}},\ \textcolor{stringliteral}{"{}Anderson"{}},\ \textcolor{stringliteral}{"{}Campbell"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Martin"{}},\ \textcolor{stringliteral}{"{}Lewis"{}},\ \textcolor{stringliteral}{"{}Harris"{}},\ \textcolor{stringliteral}{"{}Jackson"{}},\ \textcolor{stringliteral}{"{}Patel"{}},\ \textcolor{stringliteral}{"{}Turner"{}},\ \textcolor{stringliteral}{"{}Cooper"{}},\ \textcolor{stringliteral}{"{}Hill"{}},\ \textcolor{stringliteral}{"{}Ward"{}},\ \textcolor{stringliteral}{"{}Morris"{}},\ \textcolor{stringliteral}{"{}Moore"{}},\ \textcolor{stringliteral}{"{}Lee"{}},\ \textcolor{stringliteral}{"{}King"{}},\ \textcolor{stringliteral}{"{}Harrison"{}},\ \textcolor{stringliteral}{"{}Morgan"{}},\ \textcolor{stringliteral}{"{}Allen"{}},\ \textcolor{stringliteral}{"{}James"{}},\ \textcolor{stringliteral}{"{}Scott"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Phillips"{}},\ \textcolor{stringliteral}{"{}Watson"{}},\ \textcolor{stringliteral}{"{}Parker"{}},\ \textcolor{stringliteral}{"{}Price"{}},\ \textcolor{stringliteral}{"{}Bennett"{}},\ \textcolor{stringliteral}{"{}Young"{}},\ \textcolor{stringliteral}{"{}Griffiths"{}},\ \textcolor{stringliteral}{"{}Mitchell"{}},\ \textcolor{stringliteral}{"{}Kelly"{}},\ \textcolor{stringliteral}{"{}Cook"{}},\ \textcolor{stringliteral}{"{}Carter"{}},\ \textcolor{stringliteral}{"{}Richardson"{}},\ \textcolor{stringliteral}{"{}Bailey"{}},\ \textcolor{stringliteral}{"{}Collins"{}},\ \textcolor{stringliteral}{"{}Bell"{}},\ \textcolor{stringliteral}{"{}Shaw"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Murphy"{}},\ \textcolor{stringliteral}{"{}Miller"{}},\ \textcolor{stringliteral}{"{}Cox"{}},\ \textcolor{stringliteral}{"{}Khan"{}},\ \textcolor{stringliteral}{"{}Richards"{}},\ \textcolor{stringliteral}{"{}Marshall"{}},\ \textcolor{stringliteral}{"{}Simpson"{}},\ \textcolor{stringliteral}{"{}Ellis"{}},\ \textcolor{stringliteral}{"{}Adams"{}},\ \textcolor{stringliteral}{"{}Singh"{}},\ \textcolor{stringliteral}{"{}Begum"{}},\ \textcolor{stringliteral}{"{}Wilkinson"{}},\ \textcolor{stringliteral}{"{}Foster"{}},\ \textcolor{stringliteral}{"{}Chapman"{}},\ \textcolor{stringliteral}{"{}Powell"{}},\ \textcolor{stringliteral}{"{}Webb"{}},\ \textcolor{stringliteral}{"{}Rogers"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Gray"{}},\ \textcolor{stringliteral}{"{}Mason"{}},\ \textcolor{stringliteral}{"{}Ali"{}},\ \textcolor{stringliteral}{"{}Hunt"{}},\ \textcolor{stringliteral}{"{}Hussain"{}},\ \textcolor{stringliteral}{"{}Owen"{}},\ \textcolor{stringliteral}{"{}Palmer"{}},\ \textcolor{stringliteral}{"{}Holmes"{}},\ \textcolor{stringliteral}{"{}Barnes"{}},\ \textcolor{stringliteral}{"{}Knight"{}},\ \textcolor{stringliteral}{"{}Lloyd"{}},\ \textcolor{stringliteral}{"{}Butler"{}},\ \textcolor{stringliteral}{"{}Russell"{}},\ \textcolor{stringliteral}{"{}Fisher"{}},\ \textcolor{stringliteral}{"{}Barker"{}},\ \textcolor{stringliteral}{"{}Stevens"{}},\ \textcolor{stringliteral}{"{}Jenkins"{}},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Dixon"{}},\ \textcolor{stringliteral}{"{}Fletcher"{}}\}}
+
+\end{DoxyCode}
+
+
+Array of possible surnames for customer names. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/riche/\+One\+Drive/\+Desktop/\+Richards Folder/\+Unity Projects/s233122\+Stock\+And\+Shop/\+Stock\+And\+Shop/\+Assets/\+Scripts/Customer.\+cs\end{DoxyCompactItemize}

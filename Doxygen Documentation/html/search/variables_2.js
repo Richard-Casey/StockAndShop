@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['canvasgroup_0',['canvasGroup',['../class_information_bar.html#ab3c354f06310c0ab6192878071d298a4',1,'InformationBar']]],
+  ['cashdisplay_1',['cashDisplay',['../class_navigation_controller.html#a13508d94344960abda4c385c270c2300',1,'NavigationController.cashDisplay'],['../class_wholesale_item_u_i.html#a1f6e17abc4738392ddca4663a6a19a11',1,'WholesaleItemUI.cashDisplay']]],
+  ['cashonhand_2',['cashOnHand',['../class_cash_display.html#ae71174a191c1426d5365b87d0140d9e7',1,'CashDisplay']]],
+  ['cashtext_3',['cashText',['../class_cash_display.html#a24cde3be3a915d685c4e6bccac229e21',1,'CashDisplay']]],
+  ['clocktext_4',['clockText',['../class_day_cycle.html#a9e5ec4e2548fc8eb4486ce656f848004',1,'DayCycle']]],
+  ['contentarea_5',['contentArea',['../class_dynamic_content_size_for_two_columns.html#a7118f801ae0110691d1c8baaddb0d8eb',1,'DynamicContentSizeForTwoColumns']]],
+  ['contentgridlayout_6',['contentGridLayout',['../class_inventory_manager.html#a6e29fec25b52ebb95c1f40a637f67c39',1,'InventoryManager.contentGridLayout'],['../class_shelf_manager.html#ada7a4a58f7137fa87cec957a5360a3fd',1,'ShelfManager.contentGridLayout'],['../class_wholesale_manager.html#a419744e9ce969c6d78fb293aa7b32116',1,'WholesaleManager.contentGridLayout']]],
+  ['contentrecttransform_7',['contentRectTransform',['../class_dynamic_content_size_for_one_column.html#ad03f71d76123de1ffdd6a22efa2569d2',1,'DynamicContentSizeForOneColumn']]],
+  ['cost_8',['cost',['../class_inventory_item.html#a8bf59a3ae8ae3bc34349a99f872c55e4',1,'InventoryItem']]],
+  ['currentday_9',['currentDay',['../class_daily_summary_manager.html#a7987e5dd7897792f9adae012b53dbcfb',1,'DailySummaryManager.currentDay'],['../class_day_cycle.html#a5437f199ebf9a72f01032c84d9b5eb5f',1,'DayCycle.currentDay']]],
+  ['currenttime_10',['currentTime',['../class_day_cycle.html#a913b5d1743a552ba57944755b8bc3171',1,'DayCycle']]],
+  ['customername_11',['customerName',['../class_customer.html#a9ae43212be0feeae9e6545c5e2d3208c',1,'Customer']]],
+  ['customernametext_12',['customerNameText',['../class_receipt_generator.html#a0dadb4b8171a5c17c14deb14de4733ba',1,'ReceiptGenerator']]],
+  ['customerprefab_13',['customerPrefab',['../class_customer_spawner.html#aed5b6806723d8e8b81d9983b24b0d194',1,'CustomerSpawner']]],
+  ['customerqueue_14',['customerQueue',['../class_till_manager.html#a84bcb724bcdc35c189311f04ced18510',1,'TillManager']]],
+  ['customersatisfaction_15',['customerSatisfaction',['../struct_daily_stats.html#a9297b7bb0b6cd549a62ab8db49229c2f',1,'DailyStats']]],
+  ['customersatisfactiontext_16',['customerSatisfactionText',['../class_daily_summary_manager.html#acc31bf9ff9cb8b9e5978e489e49531ad',1,'DailySummaryManager']]],
+  ['customershoppingprefab_17',['customerShoppingPrefab',['../class_customer.html#ae82483fccd40eded9955a0de40d2d92f',1,'Customer']]],
+  ['customerspawner_18',['customerSpawner',['../class_daily_summary_manager.html#a5d4eef6bc4c2b6c5e319d3d75b5b16c2',1,'DailySummaryManager.customerSpawner'],['../class_day_cycle.html#a4958656c94e6e15d66ae4e2bc0ac7764',1,'DayCycle.customerSpawner']]]
+];

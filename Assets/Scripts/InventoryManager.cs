@@ -55,7 +55,7 @@ public class InventoryManager : MonoBehaviour
     /// <summary>
     /// Reference to the ShopFloorManager.
     /// </summary>
-    public ShopFloorManager shopFloorManager;// This can be categorized elsewhere if more appropriate
+    public ShopFloorManager shopFloorManager;
 
     [Header("Misc")]
 
@@ -81,7 +81,7 @@ public class InventoryManager : MonoBehaviour
             inventoryItems.Add(itemToAdd);
             Debug.Log("Added new item: " + itemToAdd.itemName);
         }
-        UpdateInventoryUI(); // Call this to refresh the UI each time an item is added
+        UpdateInventoryUI(); // Called to refresh the UI each time something is added
     }
 
     /// <summary>
@@ -98,8 +98,6 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
-            // If the item doesn't exist in the inventory, it could be added as a new item.
-            // This depends on how you want to handle such cases.
             Debug.Log("Item not found in inventory: " + itemName);
         }
 

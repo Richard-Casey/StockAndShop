@@ -94,8 +94,6 @@ public class WholesaleManager : MonoBehaviour
         PopulateWholesaleUI();
     }
 
-
-
     /// <summary>
     /// Moves items from the wholesale to the inventory.
     /// </summary>
@@ -111,7 +109,7 @@ public class WholesaleManager : MonoBehaviour
                 itemName = item.itemName,
                 cost = item.cost,
                 quantity = quantity,
-                itemImage = item.itemImage, // Ensure this is correctly assigned
+                itemImage = item.itemImage, 
                 demand = item.demand,
                 baseDemand = item.baseDemand
             });

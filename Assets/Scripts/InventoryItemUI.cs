@@ -157,7 +157,7 @@ public class InventoryItemUI : MonoBehaviour
             }
         }
 
-        // If the item is not found in the inventory, return 0 or any appropriate default value.
+        // If the item is not found in the inventory, return 0 
         return 0;
     }
 
@@ -427,8 +427,5 @@ public class InventoryItemUI : MonoBehaviour
             Debug.LogError("[InventoryItemUI] ItemImage component not found in UI.");
         }
     }
-
-
-
 
 }

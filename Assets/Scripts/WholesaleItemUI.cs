@@ -158,7 +158,7 @@ public class WholesaleItemUI : MonoBehaviour
             Debug.Log($"Bought {quantity} {itemName}(s). Remaining cash: £{cashDisplay.cashOnHand}");
 
             quantity = 0; // Reset quantity
-            UpdateUI(); // Update the UI to reflect this change
+            UpdateUI(); // Update the UI to reflect change
         }
         else
         {
