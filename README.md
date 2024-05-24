@@ -12,7 +12,6 @@ Stock & Shop is a shop simulator focusing on economy and reputation. Players man
   - [Customer Interaction](#customer-interaction)
   - [Reputation System](#reputation-system)
 - [Scripts](#scripts)
-- [License](#license)
 - [Contact](#contact)
 
   ## Getting Started
@@ -85,10 +84,6 @@ Below are the main scripts used in the game:
 - **TillManager.cs:** Manages the till and checkout process.
 - **WholesaleItemUI.cs:** Manages the UI for wholesale items.
 - **WholesaleManager.cs:** Manages the wholesale purchasing process.
-
-## License
-
-This project is licensed under the MIT License.
 
 ## Contact
 
