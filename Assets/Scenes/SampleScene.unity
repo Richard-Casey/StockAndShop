@@ -15725,7 +15725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14488b89b8f54a84384427f3026f0abf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cashOnHand: 50
+  cashOnHand: 200
 --- !u!114 &1884633362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17496,7 +17496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be50249d56eec148a1bbc342ebb256b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reputation: 5
+  reputation: 50
   customerPrefab: {fileID: 2069644870664914178, guid: be7eddb005ed3654a840c977cec0b079, type: 3}
   dailySummaryManager: {fileID: 2037523732}
   maxBudget: 50
