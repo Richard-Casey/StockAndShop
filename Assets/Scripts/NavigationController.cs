@@ -200,12 +200,12 @@ public class NavigationController : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
-        SetPanelVisibility(tillPanel, true);
+        SetPanelVisibility(tillPanel, false);
         SetPanelVisibility(stockPanel, false);
         SetPanelVisibility(summaryPanel, false);
         SetPanelVisibility(shelvePanel, false);
         SetPanelVisibility(mainMenuPanel, false);
-        SetPanelVisibility(wholesalePanel, false);
+        SetPanelVisibility(wholesalePanel, true);
         SetPanelVisibility(startScreen, false);
         SetPanelVisibility(cashDisplay, true);
         SetPanelVisibility(overlayButtonsUI, true);
