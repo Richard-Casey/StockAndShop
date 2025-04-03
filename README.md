@@ -82,7 +82,7 @@ This project was designed to:
 
 - **Grade:** First-Class Honours (73%)
 - **TIGA Nomination:** Official 2024 nominee from the University of Suffolk Games Department
-- **Supervision:** Mentored by [Dissertation Mentor Name], nominated after unanimous agreement from the games faculty
+- **Supervision:** Mentored by Nick Thomas, nominated after unanimous agreement from the games faculty
 
 ---
 
